@@ -10,7 +10,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "symfony/validator": "3.2"
+    },
     "autoload": {
         "psr-4": {
             "Korobochkin\\WPKit\\": "source/"

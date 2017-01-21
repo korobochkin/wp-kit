@@ -4,6 +4,12 @@ namespace Korobochkin\WPKit\Plugins;
 interface PluginInterface {
 
 	/**
+	 * Define const NAME here with plugin name as 'my-plugin-name-'.
+	 *
+	 * Define const VERSION here with plugin version as '1.2.3-beta-1'.
+	 */
+
+	/**
 	 * PluginInterface constructor.
 	 *
 	 * Do not set any actions or hooks here.

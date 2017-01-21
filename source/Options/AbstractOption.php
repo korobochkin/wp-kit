@@ -2,7 +2,6 @@
 namespace Korobochkin\WPKit\Options;
 
 use Symfony\Component\Validator\ConstraintValidatorInterface;
-use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 abstract class AbstractOption implements OptionInterface {
@@ -42,28 +41,46 @@ abstract class AbstractOption implements OptionInterface {
 	 */
 	protected $autoload = true;
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getName() {
 		return $this->name;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function setName($name) {
 		$this->name = (string)$name;
 		return $this;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getGroup() {
 		return $this->group;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function setGroup($group) {
 		$this->group = (string)$group;
 		return $this;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getValueRaw() {
 		return get_option($this->getName());
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getValue() {
 		if(isset($this->value))
 			return $this->value;
@@ -76,29 +93,47 @@ abstract class AbstractOption implements OptionInterface {
 		return $this->getDefaultValue();
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function setValue($value) {
 		$this->value = $value;
 		return $this;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getDefaultValue() {
 		return $this->defaultValue;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function setDefaultValue($defaultValue) {
 		$this->defaultValue = $defaultValue;
 		return $this;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function isAutoload() {
 		return $this->autoload;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function setAutoload($autoload) {
 		$this->autoload = (bool) $autoload;
 		return $this;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getConstraint() {
 		if(!$this->constraint)
 			$this->setConstraint($this->buildConstraint());
@@ -106,26 +141,44 @@ abstract class AbstractOption implements OptionInterface {
 		return $this->constraint;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function setConstraint($constraint) {
 		$this->constraint = $constraint;
 		return $this;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	abstract public function buildConstraint();
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getValidator() {
 		return $this->validator;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function setValidator(ValidatorInterface $validator) {
 		$this->validator = $validator;
 		return $this;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function validate() {
 		return $this->getValidator()->validate($this->getValue(), $this->getConstraint());
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function isValid() {
 		$errors = $this->validate();
 
@@ -135,6 +188,9 @@ abstract class AbstractOption implements OptionInterface {
 		return false;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function delete() {
 		$result = delete_option($this->getName());
 
@@ -144,6 +200,9 @@ abstract class AbstractOption implements OptionInterface {
 		return $result;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function flush() {
 		if(isset($this->value)) {
 			try {
@@ -161,6 +220,9 @@ abstract class AbstractOption implements OptionInterface {
 		return true;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function updateValue($value, $autoload = null) {
 		$this->setValue($value);
 
@@ -170,8 +232,14 @@ abstract class AbstractOption implements OptionInterface {
 		return $this->flush();
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	abstract public function sanitize($instance);
 
+	/**
+	 * @inheritdoc
+	 */
 	public function register() {
 		register_setting(
 			$this->getGroup(),
@@ -180,6 +248,9 @@ abstract class AbstractOption implements OptionInterface {
 		);
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function unRegister() {
 		unregister_setting($this->getGroup(), $this->getName());
 	}

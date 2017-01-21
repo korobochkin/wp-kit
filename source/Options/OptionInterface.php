@@ -200,19 +200,11 @@ interface OptionInterface {
 
 	/**
 	 * Register option like a setting for WordPress admin settings pages.
-	 *
-	 * // TODO: update this return state doc
-	 *
-	 * @return mixed
 	 */
 	public function register();
 
 	/**
 	 * Unregister option from WordPress admin settings pages.
-	 *
-	 * // TODO: update this return state doc
-	 *
-	 * @return mixed
 	 */
 	public function unRegister();
 }

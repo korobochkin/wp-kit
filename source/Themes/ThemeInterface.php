@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\WPKit\Theme;
+namespace Korobochkin\WPKit\Themes;
 
 interface ThemeInterface {
 

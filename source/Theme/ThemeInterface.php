@@ -10,15 +10,6 @@ interface ThemeInterface {
 	 */
 
 	/**
-	 * ThemeInterface constructor.
-	 *
-	 * Do not set any actions or hooks here.
-	 *
-	 * @param $file string Path to theme bootstrap file.
-	 */
-	public function __construct($file);
-
-	/**
 	 * The main function which runs everything. Place your add_action() or other functions call here.
 	 */
 	public function run();

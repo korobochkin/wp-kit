@@ -2,6 +2,7 @@
 namespace Korobochkin\WPKit\Options;
 
 use Symfony\Component\Validator\ConstraintValidatorInterface;
+use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -139,27 +140,79 @@ interface OptionInterface {
 	public function getValidator();
 
 	/**
-	 * @param ValidatorInterface $validator
+	 * Setup your Symfony Validator.
 	 *
-	 * @return mixed
+	 * @param ValidatorInterface $validator Validator which should validate values.
+	 *
+	 * @return $this For chain calls.
 	 */
 	public function setValidator(ValidatorInterface $validator);
 
+	/**
+	 * Returns an array with Violations after validating. May returns empty array if validation was successful.
+	 *
+	 * @return ConstraintViolationInterface[]|array Array of validation results.
+	 */
 	public function validate();
 
+	/**
+	 * Returns boolean flag which means is your validation successful or not.
+	 *
+	 * @return bool True means all is ok, False otherwise.
+	 */
 	public function isValid();
 
-	public function validateValue($value);
-
+	/**
+	 * Performs deletion of option in DB.
+	 *
+	 * @return bool Result of deletion.
+	 */
 	public function delete();
 
+	/**
+	 * Performs pushing local value $this->value into the DB (actually save the value from instance
+	 * and remove $this->value because other code can use option via get_ delete_ option functions).
+	 *
+	 * @return bool Result of pushing (saving) option in DB.
+	 */
 	public function flush();
 
+	/**
+	 * Set value to object and then immediately save it into the DB (call $this->flush()).
+	 *
+	 * If operation was unsuccessful then return false and don't delete local value.
+	 *
+	 * @param $value mixed Any type of value which can be passed to $this->setValue().
+	 * @param null|bool $autoload This value passed to $this->setAutoload()
+	 *
+	 * @return bool Result of $this->flush() call.
+	 */
 	public function updateValue($value, $autoload = null);
 
+	/**
+	 * Helpful then WordPress sanitize value before saving it into DB. You can attach this value to WordPress filter.
+	 *
+	 * @param $instance mixed Value to sanitize.
+	 *
+	 * @return mixed Sanitized value.
+	 */
 	public function sanitize($instance);
 
+	/**
+	 * Register option like a setting for WordPress admin settings pages.
+	 *
+	 * // TODO: update this return state doc
+	 *
+	 * @return mixed
+	 */
 	public function register();
 
+	/**
+	 * Unregister option from WordPress admin settings pages.
+	 *
+	 * // TODO: update this return state doc
+	 *
+	 * @return mixed
+	 */
 	public function unRegister();
 }

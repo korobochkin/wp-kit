@@ -5,7 +5,7 @@ use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class AbstractOption implements OptionInterface {
+abstract class AbstractOption implements OptionInterface {
 
 	/**
 	 * @var string Option name which can be used in functions like update_option(option_name).

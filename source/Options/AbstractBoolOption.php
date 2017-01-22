@@ -23,9 +23,6 @@ abstract class AbstractBoolOption extends AbstractOption {
 		return $this->getDefaultValue();
 	}
 
-	/**
-	 * @inheritdoc
-	 */
 	public function setValue($value) {
 		$this->value = (bool)$value;
 		return $this;

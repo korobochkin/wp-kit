@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Options;
 
+use Korobochkin\WPKit\Sanitizers\BoolSanitizer;
 use Symfony\Component\Validator\Constraints;
 
 class BoolOption extends AbstractOption {
@@ -64,12 +65,6 @@ class BoolOption extends AbstractOption {
 	 * @return bool Always returns bool value.
 	 */
 	public function sanitize($instance) {
-		if(is_bool($instance))
-			return $instance;
-
-		if($instance == 1 || $instance === 'true')
-			return true;
-		else
-			return false;
+		return BoolSanitizer::sanitize($instance);
 	}
 }

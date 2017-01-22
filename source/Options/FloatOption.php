@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Options;
 
+use Korobochkin\WPKit\Sanitizers\FloatSanitizer;
 use Symfony\Component\Validator\Constraints;
 
 class FloatOption extends AbstractOption {
@@ -60,9 +61,6 @@ class FloatOption extends AbstractOption {
 	 * @return float Always returns int value.
 	 */
 	public function sanitize($instance) {
-		if(is_object($instance))
-			return 1.0;
-
-		return (float)$instance;
+		return FloatSanitizer::sanitize($instance);
 	}
 }

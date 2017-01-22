@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Options;
 
+use Korobochkin\WPKit\Sanitizers\IntegerSanitizer;
 use Symfony\Component\Validator\Constraints;
 
 class IntegerOption extends AbstractOption {
@@ -60,9 +61,6 @@ class IntegerOption extends AbstractOption {
 	 * @return int Always returns int value.
 	 */
 	public function sanitize($instance) {
-		if(is_object($instance))
-			return 1;
-
-		return (int)$instance;
+		return IntegerSanitizer::sanitize($instance);
 	}
 }

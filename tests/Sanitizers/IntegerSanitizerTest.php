@@ -13,7 +13,7 @@ class IntegerSanitizerTest extends \WP_UnitTestCase {
 	}
 
 	public function additionProvider() {
-		return array(
+		$values = array(
 			array(true,        1),
 			array(false,       0),
 
@@ -21,7 +21,7 @@ class IntegerSanitizerTest extends \WP_UnitTestCase {
 			array(0,           0.0),
 			array(-1234,       -1234),
 			array(PHP_INT_MAX, PHP_INT_MAX),
-			array(PHP_INT_MIN, PHP_INT_MIN),
+			//array(PHP_INT_MIN, PHP_INT_MIN),
 
 			array(1.234,       1),
 			array(1.2e3,       1200),
@@ -49,5 +49,13 @@ class IntegerSanitizerTest extends \WP_UnitTestCase {
 
 			array(NULL,        0)
 		);
+
+		// Only for PHP 7
+		$result = version_compare(phpversion(), '7');
+		if($result == 0 || $result == 1) {
+			$values[] = array(PHP_INT_MIN, PHP_INT_MIN);
+		}
+
+		return $values;
 	}
 }

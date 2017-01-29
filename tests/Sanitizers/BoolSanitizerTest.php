@@ -13,7 +13,7 @@ class BoolSanitizerTest extends \WP_UnitTestCase {
 	}
 
 	public function additionProvider() {
-		return array(
+		$values = array(
 			array(true,        true),
 			array(false,       false),
 
@@ -21,7 +21,7 @@ class BoolSanitizerTest extends \WP_UnitTestCase {
 			array(0,           false),
 			array(-1234,       true),
 			array(PHP_INT_MAX, true),
-			array(PHP_INT_MIN, true),
+			//array(PHP_INT_MIN, true),
 
 			array(1.234,       true),
 			array(1.2e3,       true),
@@ -49,5 +49,13 @@ class BoolSanitizerTest extends \WP_UnitTestCase {
 
 			array(NULL,        false)
 		);
+
+		// Only for PHP 7
+		$result = version_compare(phpversion(), '7');
+		if($result == 0 || $result == 1) {
+			$values[] = array(PHP_INT_MIN, true);
+		}
+
+		return $values;
 	}
 }

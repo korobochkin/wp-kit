@@ -13,7 +13,7 @@ class FloatSanitizerTest extends \WP_UnitTestCase {
 	}
 
 	public function additionProvider() {
-		return array(
+		$values = array(
 			array(true,        1.0),
 			array(false,       0.0),
 
@@ -21,7 +21,7 @@ class FloatSanitizerTest extends \WP_UnitTestCase {
 			array(0,           0.0),
 			array(-1234,       -1234.0),
 			array(PHP_INT_MAX, 9.2233720368548E+18),
-			array(PHP_INT_MIN, 0.0),
+			//array(PHP_INT_MIN, 0.0),
 
 			array(1.234,       1.234),
 			array(1.2e3,       1.2e3),
@@ -49,5 +49,13 @@ class FloatSanitizerTest extends \WP_UnitTestCase {
 
 			array(NULL,        0.0)
 		);
+
+		// Only for PHP 7
+		$result = version_compare(phpversion(), '7');
+		if($result == 0 || $result == 1) {
+			$values[] = array(PHP_INT_MIN, 0.0);
+		}
+
+		return $values;
 	}
 }

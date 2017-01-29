@@ -284,7 +284,11 @@ abstract class AbstractOption implements OptionInterface {
 	 * @inheritdoc
 	 */
 	public function sanitize($instance) {
-		return call_user_func($this->getSanitizer(), $instance);
+		$sanitizer = $this->getSanitizer();
+		if(is_callable($sanitizer)) {
+			return call_user_func($this->getSanitizer(), $instance);
+		}
+		return $instance;
 	}
 
 	/**

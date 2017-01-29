@@ -249,6 +249,22 @@ interface OptionInterface {
 	public function updateValue($value, $autoload = null);
 
 	/**
+	 * Returns sanitizer for this instance.
+	 *
+	 * @return callable Sanitizer.
+	 */
+	public function getSanitizer();
+
+	/**
+	 * Setup sanitizer which clean value before saving into DB.
+	 *
+	 * @param $sanitizer callable Sanitizer method (function).
+	 *
+	 * @return $this For chain calls.
+	 */
+	public function setSanitizer($sanitizer);
+
+	/**
 	 * Helpful then WordPress sanitize value before saving it into DB. You can attach this value to WordPress filter.
 	 *
 	 * @param $instance mixed Value to sanitize.

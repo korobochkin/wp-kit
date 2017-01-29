@@ -27,6 +27,11 @@ abstract class AbstractOption implements OptionInterface {
 	protected $validator;
 
 	/**
+	 * @var callable Dynamic sanitizer.
+	 */
+	protected $sanitizer;
+
+	/**
 	 * @var mixed Local version of value. You can save it into DB or just delete.
 	 */
 	protected $localValue;
@@ -264,7 +269,23 @@ abstract class AbstractOption implements OptionInterface {
 	/**
 	 * @inheritdoc
 	 */
-	abstract public function sanitize($instance);
+	public function getSanitizer() {
+		return $this->sanitizer;
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function setSanitizer($sanitizer) {
+		$this->sanitizer = $sanitizer;
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function sanitize($instance) {
+		return call_user_func($this->getSanitizer(), $instance);
+	}
 
 	/**
 	 * @inheritdoc

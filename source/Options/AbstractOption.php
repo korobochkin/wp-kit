@@ -192,12 +192,19 @@ abstract class AbstractOption implements OptionInterface {
 	 * @inheritdoc
 	 */
 	public function delete() {
-		$result = delete_option($this->getName());
+		$result = $this->deleteRaw();
 
 		if($result)
 			$this->setValue(null);
 
 		return $result;
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function deleteRaw() {
+		return delete_option($this->getName());
 	}
 
 	/**

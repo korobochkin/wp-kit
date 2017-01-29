@@ -163,11 +163,22 @@ interface OptionInterface {
 	public function isValid();
 
 	/**
-	 * Performs deletion of option in DB.
+	 * Performs fully deletion of option.
+	 *
+	 * Values in DB and in this object will be deleted. Default value not deleted by this method.
 	 *
 	 * @return bool Result of deletion.
 	 */
 	public function delete();
+
+	/**
+	 * Performs deletion of option only in DB.
+	 *
+	 * Delete option only in DB, local value (if presented) will still stored in this object.
+	 *
+	 * @return bool Resutl of deletion.
+	 */
+	public function deleteRaw();
 
 	/**
 	 * Performs pushing local value $this->value into the DB (actually save the value from instance

@@ -6,7 +6,7 @@ If you tired with plain WordPres functions and long unreadable code you need to 
 
 ### Options
 
-Read my article in blog about Options.
+In progress.
 
 ## How to install?
 

@@ -9,7 +9,7 @@ class IntegerSanitizerTest extends \WP_UnitTestCase {
 	 * @dataProvider additionProvider
 	 */
 	public function testSanitize($testIt, $expected) {
-		$this->assertEquals(IntegerSanitizer::sanitize($testIt), $expected);
+		$this->assertEquals($expected, IntegerSanitizer::sanitize($testIt));
 	}
 
 	public function additionProvider() {

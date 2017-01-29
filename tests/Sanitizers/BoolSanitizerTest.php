@@ -9,7 +9,7 @@ class BoolSanitizerTest extends \WP_UnitTestCase {
 	 * @dataProvider additionProvider
 	 */
 	public function testSanitize($testIt, $expected) {
-		$this->assertEquals(BoolSanitizer::sanitize($testIt), $expected);
+		$this->assertEquals($expected, BoolSanitizer::sanitize($testIt));
 	}
 
 	public function additionProvider() {

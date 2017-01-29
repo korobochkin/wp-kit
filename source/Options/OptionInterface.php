@@ -13,6 +13,24 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 interface OptionInterface {
 
 	/**
+	 * The main method to retrieve value.
+	 *
+	 * Should always returns the value of this option.
+	 *
+	 * @return mixed Value of this option.
+	 */
+	public function get();
+
+	/**
+	 * Alias for $this->setValue().
+	 *
+	 * @param $value mixed A value for this option.
+	 *
+	 * @return $this For chain calls.
+	 */
+	public function set($value);
+
+	/**
 	 * Returns option name which can be used in functions like update_option(option_name).
 	 *
 	 * @return string
@@ -43,31 +61,54 @@ interface OptionInterface {
 	public function setGroup($group);
 
 	/**
-	 * Returns a value from WordPress.
+	 * Returns a value from this instance without sanitize them and without default value.
 	 *
-	 * @return mixed false if option not founded (not exists). Or string (if option exists).
-	 * Or array if option saved as array.
+	 * @return mixed
 	 */
-	public function getValueRaw();
+	public function getLocalValueRaw();
 
 	/**
-	 * Gets a value from WordPress. If it not exists, then returns a default value of this instance.
+	 * Returns local saved value from $this->value property.
 	 *
-	 * @return mixed Value from WordPress or default value.
+	 * Since we try to work with WordPress via this instances other products use other methods
+	 * to work with options and we can have different values in different places. This method can help get
+	 * value which is saved locally in this object.
+	 *
+	 * @return mixed
 	 */
-	public function getValue();
+	//public function getLocalValueRaw();
+
+	/**
+	 * Get a local value.
+	 *
+	 * If it not exists, then returns a default value of this instance.
+	 *
+	 * @return mixed Value from instance or default value.
+	 */
+	public function getLocalValue();
 
 	/**
 	 * Save value in this instance but not actually in DB.
 	 *
 	 * You can setup local value via this method, validate it and push to the DB if needed or just
-	 * delete it (set to null). To save value in DB you need call $this->flush() or $this->updateValue().
+	 * delete it (set to null). To save value in DB you need call $this->flush().
 	 *
-	 * @param $value mixed Value which need to be stored for this option.
+	 * @param $value mixed Value which need to be stored in this instance.
 	 *
 	 * @return $this For chain calls.
 	 */
-	public function setValue($value);
+	public function setLocalValue($value);
+
+	/**
+	 * Retrieve value of option from WordPress DB.
+	 *
+	 * @return string|bool String value of option if exists, false if option not exists in DB.
+	 */
+	public function getValueRaw();
+
+	//public function getValue();
+
+	//public function setValue();
 
 	/**
 	 * Returns a default value for this instance or null if it not setted up.
@@ -176,9 +217,16 @@ interface OptionInterface {
 	 *
 	 * Delete option only in DB, local value (if presented) will still stored in this object.
 	 *
-	 * @return bool Resutl of deletion.
+	 * @return bool Result of deletion.
 	 */
 	public function deleteRaw();
+
+	/**
+	 * Performs deletion of option in this instance.
+	 *
+	 * @return true Always true after resetting local value.
+	 */
+	public function deleteLocal();
 
 	/**
 	 * Performs pushing local value $this->value into the DB (actually save the value from instance

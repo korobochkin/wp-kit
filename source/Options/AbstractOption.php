@@ -29,7 +29,7 @@ abstract class AbstractOption implements OptionInterface {
 	/**
 	 * @var mixed Local version of value. You can save it into DB or just delete.
 	 */
-	protected $value;
+	protected $localValue;
 
 	/**
 	 * @var mixed Default value which can be used if no value exists in DB.
@@ -40,6 +40,23 @@ abstract class AbstractOption implements OptionInterface {
 	 * @var $autoload bool Flag which define how option should be loaded by WordPress.
 	 */
 	protected $autoload = true;
+
+	public function get() {
+		if(isset($this->value))
+			return $this->getLocalValue();
+
+		$raw = $this->getValueRaw();
+
+		if($raw !== false)
+			return $this->sanitize($raw);
+
+		return $this->getDefaultValue();
+	}
+
+	public function set($value) {
+		$this->setLocalValue($value);
+		return $this;
+	}
 
 	/**
 	 * @inheritdoc
@@ -74,32 +91,32 @@ abstract class AbstractOption implements OptionInterface {
 	/**
 	 * @inheritdoc
 	 */
+	public function getLocalValueRaw() {
+		return $this->localValue;
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function getLocalValue() {
+		return $this->sanitize($this->localValue);
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function setLocalValue($value) {
+		$this->localValue = $value;
+		return $this;
+	}
+
 	public function getValueRaw() {
 		return get_option($this->getName());
 	}
 
-	/**
-	 * @inheritdoc
-	 */
-	public function getValue() {
-		if(isset($this->value))
-			return $this->value;
-
-		$raw = $this->getValueRaw();
-
-		if($raw !== false)
-			return $raw;
-
-		return $this->getDefaultValue();
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function setValue($value) {
-		$this->value = $value;
-		return $this;
-	}
+	/*public function getValue() {
+		return $this->sanitize($this->getValueRaw());
+	}*/
 
 	/**
 	 * @inheritdoc
@@ -112,7 +129,7 @@ abstract class AbstractOption implements OptionInterface {
 	 * @inheritdoc
 	 */
 	public function setDefaultValue($defaultValue) {
-		$this->defaultValue = $defaultValue;
+		$this->defaultValue = $this->sanitize($defaultValue);
 		return $this;
 	}
 
@@ -173,7 +190,7 @@ abstract class AbstractOption implements OptionInterface {
 	 * @inheritdoc
 	 */
 	public function validate() {
-		return $this->getValidator()->validate($this->getValue(), $this->getConstraint());
+		return $this->getValidator()->validate($this->get(), $this->getConstraint());
 	}
 
 	/**
@@ -195,7 +212,7 @@ abstract class AbstractOption implements OptionInterface {
 		$result = $this->deleteRaw();
 
 		if($result)
-			$this->setValue(null);
+			$this->setLocalValue(null);
 
 		return $result;
 	}
@@ -207,20 +224,25 @@ abstract class AbstractOption implements OptionInterface {
 		return delete_option($this->getName());
 	}
 
+	public function deleteLocal() {
+		$this->setLocalValue(null);
+		return true;
+	}
+
 	/**
 	 * @inheritdoc
 	 */
 	public function flush() {
 		if(isset($this->value)) {
 			try {
-				$result = update_option($this->getName(), $this->getValue(), $this->isAutoload());
+				$result = update_option($this->getName(), $this->getLocalValue(), $this->isAutoload());
 			}
 			catch(\Exception $e) {
 				return false;
 			}
 
 			if($result)
-				$this->setValue(null);
+				$this->setLocalValue(null);
 
 			return $result;
 		}
@@ -231,7 +253,7 @@ abstract class AbstractOption implements OptionInterface {
 	 * @inheritdoc
 	 */
 	public function updateValue($value, $autoload = null) {
-		$this->setValue($value);
+		$this->setLocalValue($value);
 
 		if(!is_null($autoload))
 			$this->setAutoload($autoload);

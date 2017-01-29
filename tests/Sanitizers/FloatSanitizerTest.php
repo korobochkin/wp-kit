@@ -20,7 +20,7 @@ class FloatSanitizerTest extends \WP_UnitTestCase {
 			array(1234,        1234.0),
 			array(0,           0.0),
 			array(-1234,       -1234.0),
-			array(PHP_INT_MAX, 9.2233720368548E+18),
+			array(PHP_INT_MAX, PHP_INT_MAX),
 			//array(PHP_INT_MIN, 0.0),
 
 			array(1.234,       1.234),

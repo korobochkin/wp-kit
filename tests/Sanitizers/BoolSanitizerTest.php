@@ -37,7 +37,7 @@ class BoolSanitizerTest extends \WP_UnitTestCase {
 			array('',          false),
 			array('0',         false),
 
-			array(array(),     true),
+			array(array(),     false),
 			array(array(1),    true),
 			array(array(1, 2), true),
 			array(array(''),   true),

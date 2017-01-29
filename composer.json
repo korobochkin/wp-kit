@@ -1,0 +1,21 @@
+{
+    "name": "korobochkin/wp-kit",
+    "description": "Tools for WordPress developers",
+    "type": "library",
+    "license": "GPLv2 or later",
+    "authors": [
+        {
+            "name": "Kolya Korobochkin",
+            "email": "me@korobochkin.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "symfony/validator": "3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Korobochkin\\WPKit\\": "source/"
+        }
+    }
+}

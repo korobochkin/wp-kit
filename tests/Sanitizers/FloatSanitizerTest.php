@@ -53,7 +53,7 @@ class FloatSanitizerTest extends \WP_UnitTestCase {
 		// Only for PHP 7
 		$result = version_compare(phpversion(), '7');
 		if($result == 0 || $result == 1) {
-			$values[] = array(PHP_INT_MIN, 0.0);
+			$values[] = array(PHP_INT_MIN, (float)PHP_INT_MIN);
 		}
 
 		return $values;

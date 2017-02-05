@@ -1,7 +1,6 @@
 <?php
 namespace Korobochkin\WPKit\Options;
 
-use Korobochkin\WPKit\Sanitizers\IntegerSanitizer;
 use Symfony\Component\Validator\Constraints;
 
 class IntegerOption extends AbstractOption {

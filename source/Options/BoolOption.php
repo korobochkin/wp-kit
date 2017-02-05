@@ -1,7 +1,6 @@
 <?php
 namespace Korobochkin\WPKit\Options;
 
-use Korobochkin\WPKit\Sanitizers\BoolSanitizer;
 use Symfony\Component\Validator\Constraints;
 
 class BoolOption extends AbstractOption {

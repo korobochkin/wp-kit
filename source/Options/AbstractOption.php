@@ -53,7 +53,7 @@ abstract class AbstractOption implements OptionInterface {
 		$raw = $this->getValueRaw();
 
 		if($raw !== false)
-			return $this->sanitize($raw);
+			return $this->_unSanitize($raw);
 
 		return $this->getDefaultValue();
 	}
@@ -104,7 +104,7 @@ abstract class AbstractOption implements OptionInterface {
 	 * @inheritdoc
 	 */
 	public function getLocalValue() {
-		return $this->sanitize($this->localValue);
+		return $this->_unSanitize($this->localValue);
 	}
 
 	/**
@@ -123,11 +123,15 @@ abstract class AbstractOption implements OptionInterface {
 		return $this->sanitize($this->getValueRaw());
 	}*/
 
+	public function getDefaultValueRaw() {
+		return $this->defaultValue;
+	}
+
 	/**
 	 * @inheritdoc
 	 */
 	public function getDefaultValue() {
-		return $this->defaultValue;
+		return $this->_unSanitize($this->getDefaultValueRaw());
 	}
 
 	/**
@@ -225,7 +229,7 @@ abstract class AbstractOption implements OptionInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function deleteRaw() {
+	public function deleteInStorage() {
 		return delete_option($this->getName());
 	}
 
@@ -283,29 +287,17 @@ abstract class AbstractOption implements OptionInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function sanitize($instance) {
+	public function _sanitize($value) {
 		$sanitizer = $this->getSanitizer();
 		if(is_callable($sanitizer)) {
-			return call_user_func($this->getSanitizer(), $instance);
+			return call_user_func($this->getSanitizer(), $value);
 		}
-		return $instance;
+		return $value;
 	}
 
-	/**
-	 * @inheritdoc
-	 */
-	public function register() {
-		register_setting(
-			$this->getGroup(),
-			$this->getName(),
-			array($this, 'sanitize')
-		);
+	public function _unSanitize($value) {
+		return $value;
 	}
 
-	/**
-	 * @inheritdoc
-	 */
-	public function unRegister() {
-		unregister_setting($this->getGroup(), $this->getName());
-	}
+
 }

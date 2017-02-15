@@ -3,8 +3,6 @@ namespace Korobochkin\WPKit\Options\Smart;
 
 class AbstractSmartOption {
 
-	public function getLocalValueSpecial(){}
-
 	/**
 	 * @inheritdoc
 	 */

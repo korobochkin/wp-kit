@@ -5,8 +5,20 @@ use Korobochkin\WPKit\Options\OptionInterface;
 
 interface SettingInterface {
 
+	/**
+	 * Returns option instance for this setting.
+	 *
+	 * @return \Korobochkin\WPKit\Options\OptionInterface Option for this setting.
+	 */
 	public function getOption();
 
+	/**
+	 * Set option for this setting.
+	 *
+	 * @param OptionInterface $option
+	 *
+	 * @return $this For chain calls.
+	 */
 	public function setOption(OptionInterface $option);
 
 	/**

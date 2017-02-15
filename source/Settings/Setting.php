@@ -20,12 +20,15 @@ class Setting implements SettingInterface {
 	}
 
 	/**
-	 * @return \Korobochkin\WPKit\Options\OptionInterface Option for this setting.
+	 * @inheritdoc
 	 */
 	public function getOption() {
 		return $this->getOption();
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function setOption(OptionInterface $option) {
 		$this->option = $option;
 		return $this;

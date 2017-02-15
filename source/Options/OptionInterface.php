@@ -22,7 +22,7 @@ interface OptionInterface {
 	public function get();
 
 	/**
-	 * Alias for $this->setValue().
+	 * Alias for $this->setLocalValue().
 	 *
 	 * @param $value mixed A value for this option.
 	 *
@@ -38,6 +38,8 @@ interface OptionInterface {
 	public function getName();
 
 	/**
+	 * Setup option name required for each option.
+	 *
 	 * @param $name string Option name.
 	 *
 	 * @return $this Returns instance for chain calls.
@@ -54,36 +56,18 @@ interface OptionInterface {
 	/**
 	 * Setup option group name for settings pages.
 	 *
-	 * @param $group string Option group name,
+	 * @param $group string Option group name.
 	 *
-	 * @return $this Returns instance for chain calls.
+	 * @return $this For chain calls.
 	 */
 	public function setGroup($group);
 
 	/**
-	 * Returns a value from this instance without sanitize them and without default value.
-	 *
-	 * @return mixed
-	 */
-	public function getLocalValueRaw();
-
-	/**
-	 * Returns local saved value from $this->value property.
-	 *
-	 * Since we try to work with WordPress via this instances other products use other methods
-	 * to work with options and we can have different values in different places. This method can help get
-	 * value which is saved locally in this object.
-	 *
-	 * @return mixed
-	 */
-	//public function getLocalValueRaw();
-
-	/**
 	 * Get a local value.
 	 *
-	 * If it not exists, then returns a default value of this instance.
+	 * The function will try call special method for converting sting value to desired data type before returning it.
 	 *
-	 * @return mixed Value from instance or default value.
+	 * @return mixed Local value in desired type.
 	 */
 	public function getLocalValue();
 
@@ -102,13 +86,9 @@ interface OptionInterface {
 	/**
 	 * Retrieve value of option from WordPress DB.
 	 *
-	 * @return string|bool String value of option if exists, false if option not exists in DB.
+	 * @return string|bool|array String value of option if exists, false if option not exists in DB or array if option saved as array.
 	 */
-	public function getValueRaw();
-
-	//public function getValue();
-
-	//public function setValue();
+	public function getValueFromWP();
 
 	/**
 	 * Returns a default value for this instance or null if it not setted up.
@@ -192,7 +172,7 @@ interface OptionInterface {
 	/**
 	 * Returns an array with Violations after validating. May returns empty array if validation was successful.
 	 *
-	 * @return ConstraintViolationInterface[]|array Array of validation results.
+	 * @return ConstraintViolationInterface[] Array of validation results.
 	 */
 	public function validate();
 
@@ -219,7 +199,7 @@ interface OptionInterface {
 	 *
 	 * @return bool Result of deletion.
 	 */
-	public function deleteRaw();
+	public function deleteFromWP();
 
 	/**
 	 * Performs deletion of option in this instance.
@@ -262,24 +242,14 @@ interface OptionInterface {
 	 *
 	 * @return $this For chain calls.
 	 */
-	public function setSanitizer($sanitizer);
+	public function setSanitizer(callable $sanitizer);
 
 	/**
 	 * Helpful then WordPress sanitize value before saving it into DB. You can attach this value to WordPress filter.
 	 *
-	 * @param $instance mixed Value to sanitize.
+	 * @param $value mixed Value to sanitize.
 	 *
 	 * @return mixed Sanitized value.
 	 */
-	public function sanitize($instance);
-
-	/**
-	 * Register option like a setting for WordPress admin settings pages.
-	 */
-	public function register();
-
-	/**
-	 * Unregister option from WordPress admin settings pages.
-	 */
-	public function unRegister();
+	public function sanitize($value);
 }

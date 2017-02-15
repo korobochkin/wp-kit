@@ -9,7 +9,13 @@ interface SettingInterface {
 
 	public function setOption(OptionInterface $option);
 
+	/**
+	 * Register option like a setting for WordPress admin settings pages.
+	 */
 	public function register();
 
+	/**
+	 * Unregister option from WordPress admin settings pages.
+	 */
 	public function unRegister();
 }

@@ -53,7 +53,7 @@ abstract class AbstractOption implements OptionInterface {
 		$raw = $this->getValueRaw();
 
 		if($raw !== false)
-			return $this->_unSanitize($raw);
+			return $raw;
 
 		return $this->getDefaultValue();
 	}
@@ -96,15 +96,8 @@ abstract class AbstractOption implements OptionInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function getLocalValueRaw() {
-		return $this->localValue;
-	}
-
-	/**
-	 * @inheritdoc
-	 */
 	public function getLocalValue() {
-		return $this->_unSanitize($this->localValue);
+		return $this->localValue;
 	}
 
 	/**
@@ -115,30 +108,22 @@ abstract class AbstractOption implements OptionInterface {
 		return $this;
 	}
 
-	public function getValueRaw() {
+	public function getValueFromWP() {
 		return get_option($this->getName());
-	}
-
-	/*public function getValue() {
-		return $this->sanitize($this->getValueRaw());
-	}*/
-
-	public function getDefaultValueRaw() {
-		return $this->defaultValue;
 	}
 
 	/**
 	 * @inheritdoc
 	 */
 	public function getDefaultValue() {
-		return $this->_unSanitize($this->getDefaultValueRaw());
+		return $this->defaultValue;
 	}
 
 	/**
 	 * @inheritdoc
 	 */
 	public function setDefaultValue($defaultValue) {
-		$this->defaultValue = $this->sanitize($defaultValue);
+		$this->defaultValue = $defaultValue;
 		return $this;
 	}
 
@@ -218,7 +203,7 @@ abstract class AbstractOption implements OptionInterface {
 	 * @inheritdoc
 	 */
 	public function delete() {
-		$result = $this->deleteRaw();
+		$result = $this->deleteFromWP();
 
 		if($result)
 			$this->setLocalValue(null);
@@ -229,7 +214,7 @@ abstract class AbstractOption implements OptionInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function deleteInStorage() {
+	public function deleteFromWP() {
 		return delete_option($this->getName());
 	}
 
@@ -280,7 +265,7 @@ abstract class AbstractOption implements OptionInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function setSanitizer($sanitizer) {
+	public function setSanitizer(callable $sanitizer) {
 		$this->sanitizer = $sanitizer;
 	}
 
@@ -290,14 +275,13 @@ abstract class AbstractOption implements OptionInterface {
 	public function _sanitize($value) {
 		$sanitizer = $this->getSanitizer();
 		if(is_callable($sanitizer)) {
-			return call_user_func($this->getSanitizer(), $value);
+			return call_user_func($sanitizer, $value);
 		}
-		return $value;
+		return $this->sanitize($value);
 	}
 
-	public function _unSanitize($value) {
-		return $value;
-	}
-
-
+	/**
+	 * @inheritdoc
+	 */
+	abstract public function sanitize($value);
 }

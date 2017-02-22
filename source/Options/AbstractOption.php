@@ -50,7 +50,7 @@ abstract class AbstractOption implements OptionInterface {
 		if(isset($this->value))
 			return $this->getLocalValue();
 
-		$raw = $this->getValueRaw();
+		$raw = $this->getValueFromWP();
 
 		if($raw !== false)
 			return $raw;

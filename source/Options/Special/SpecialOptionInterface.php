@@ -1,7 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Options\Special;
 
-interface SmartOptionInterface {
+interface SpecialOptionInterface {
 
 	/**
 	 * Returns a value from this instance without converting them and without default value.
@@ -10,13 +10,5 @@ interface SmartOptionInterface {
 	 */
 	public function getSpecial();
 
-	public function getLocalValueSpecial();
-
-	public function getValueFromWordPressSpecial();
-
-	/**
-	 * Returns a default value in raw (as string) format.
-	 * @return mixed
-	 */
-	public function getDefaultValueRaw();
+	public function prepareSpecial($value);
 }

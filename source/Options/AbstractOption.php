@@ -283,5 +283,7 @@ abstract class AbstractOption implements OptionInterface {
 	/**
 	 * @inheritdoc
 	 */
-	abstract public function sanitize($value);
+	public function sanitize($value) {
+		return $value;
+	}
 }

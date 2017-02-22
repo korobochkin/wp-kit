@@ -1,10 +1,9 @@
 <?php
 namespace Korobochkin\WPKit\Options\Special;
 
-use Korobochkin\WPKit\Options\AbstractOption;
 use Symfony\Component\Validator\Constraints;
 
-class BoolOption extends AbstractOption {
+class BoolOption extends AbstractSpecialOption {
 
 	protected $sanitizer = array('Korobochkin\WPKit\Sanitizers\BoolSanitizer', 'sanitize');
 

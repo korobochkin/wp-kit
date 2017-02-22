@@ -1,12 +1,21 @@
 <?php
 namespace Korobochkin\WPKit\Options\Special;
 
-class AbstractSpecialOption {
+use Korobochkin\WPKit\Options\AbstractOption;
+
+abstract class AbstractSpecialOption extends AbstractOption implements SpecialOptionInterface {
 
 	/**
 	 * @inheritdoc
 	 */
-	public function getLocalValueSpecial() {
-		return $this->convertFromStringToValue($this->localValue);
+	public function getSpecial() {
+		return $this->prepareSpecial($this->get());
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function prepareSpecial($value) {
+		return $this->prepareSpecial($value);
 	}
 }

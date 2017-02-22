@@ -251,5 +251,5 @@ interface OptionInterface {
 	 *
 	 * @return mixed Sanitized value.
 	 */
-	public function sanitize($value);
+	//public function sanitize($value);
 }

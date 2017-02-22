@@ -88,7 +88,7 @@ interface OptionInterface {
 	 *
 	 * @return string|bool|array String value of option if exists, false if option not exists in DB or array if option saved as array.
 	 */
-	public function getValueFromWP();
+	public function getValueFromWordPress();
 
 	/**
 	 * Returns a default value for this instance or null if it not setted up.

@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\WPKit\Options\Smart;
+namespace Korobochkin\WPKit\Options\Special;
 
 interface SmartOptionInterface {
 
@@ -8,7 +8,11 @@ interface SmartOptionInterface {
 	 *
 	 * @return mixed
 	 */
-	public function getLocalValueRaw();
+	public function getSpecial();
+
+	public function getLocalValueSpecial();
+
+	public function getValueFromWordPressSpecial();
 
 	/**
 	 * Returns a default value in raw (as string) format.

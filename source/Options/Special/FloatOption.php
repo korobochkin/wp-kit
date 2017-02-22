@@ -1,6 +1,7 @@
 <?php
-namespace Korobochkin\WPKit\Options;
+namespace Korobochkin\WPKit\Options\Special;
 
+use Korobochkin\WPKit\Options\AbstractOption;
 use Symfony\Component\Validator\Constraints;
 
 class FloatOption extends AbstractOption {

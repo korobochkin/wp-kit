@@ -1,7 +1,7 @@
 <?php
-namespace Korobochkin\WPKit\Options\Smart;
+namespace Korobochkin\WPKit\Options\Special;
 
-class AbstractSmartOption {
+class AbstractSpecialOption {
 
 	/**
 	 * @inheritdoc

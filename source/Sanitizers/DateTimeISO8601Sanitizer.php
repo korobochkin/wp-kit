@@ -12,7 +12,7 @@ class DateTimeSanitizer implements SanitizerInterface {
 		}
 	}
 
-	public static function unSanitize(\DateTime $value) {
+	public static function toString(\DateTime $value) {
 		return $value->format(\DateTime::ISO8601);
 	}
 }

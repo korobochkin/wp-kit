@@ -1,7 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Sanitizers;
 
-class DateTimeSanitizer implements SanitizerInterface {
+class DateTimeISO8601Sanitizer implements SanitizerInterface {
 
 	public static function sanitize($value) {
 		try {

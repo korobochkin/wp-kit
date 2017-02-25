@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\WPKit\Plugins\Traits;
+namespace Korobochkin\WPKit\Traits;
 
 trait ConstVersionTrait {
 

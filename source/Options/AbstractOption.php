@@ -46,6 +46,9 @@ abstract class AbstractOption implements OptionInterface {
 	 */
 	protected $autoload = true;
 
+	/**
+	 * @inheritdoc
+	 */
 	public function get() {
 		if(isset($this->value))
 			return $this->getLocalValue();
@@ -58,6 +61,9 @@ abstract class AbstractOption implements OptionInterface {
 		return $this->getDefaultValue();
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function set($value) {
 		$this->setLocalValue($value);
 		return $this;

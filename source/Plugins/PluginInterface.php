@@ -42,4 +42,20 @@ interface PluginInterface {
 	 * @return string An URL to plugin root folder (where you can place your assets folder for example).
 	 */
 	public function getUrl();
+
+	/**
+	 * Returns plugin version as a string which you can parse.
+	 *
+	 * @return string Version of plugin in sem ver manner.
+	 */
+	public function getVersion();
+
+	/**
+	 * Returns plugin name as a string.
+	 *
+	 * Perfect for your plugin text domain.
+	 *
+	 * @return string Plugin name in 'your-plugin-name' manner.
+	 */
+	public function getName();
 }

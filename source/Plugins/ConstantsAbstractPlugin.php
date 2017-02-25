@@ -1,11 +1,11 @@
 <?php
 namespace Korobochkin\WPKit\Plugins;
 
-use Korobochkin\WPKit;
+use Korobochkin\WPKit\Traits;
 
 abstract class ConstantsAbstractPlugin extends AbstractPlugin {
 
-	use WPKit\Traits\ConstVersionTrait;
+	use Traits\ConstVersionTrait;
 
-	use WPKit\Traits\ConstNameTrait;
+	use Traits\ConstNameTrait;
 }

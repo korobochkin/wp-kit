@@ -4,7 +4,7 @@ namespace Korobochkin\WPKit\DataComponents\Traits;
 trait NameTrait {
 
 	/**
-	 * @var string The option name which used to save option value in DB.
+	 * @var string The node name which used to save value in DB or access it.
 	 */
 	protected $name;
 

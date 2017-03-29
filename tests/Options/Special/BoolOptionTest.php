@@ -2,6 +2,7 @@
 namespace Korobochkin\WPKit\Tests\Options\Special;
 
 use Korobochkin\WPKit\Options\Special\BoolOption;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class BoolOptionTest extends \WP_UnitTestCase {
 
@@ -23,12 +24,20 @@ class BoolOptionTest extends \WP_UnitTestCase {
 			->set($value)
 			->flush();
 
-		$this->assertEquals($expected, $this->option->get());
+		if(class_exists($expected)) {
+			$this->expectException($expected);
+		} else {
+			$this->assertEquals($expected, $this->option->get());
+		}
 	}
 
 	public function testAlwaysGetBoolWithoutSaving($value, $expected) {
 		$this->option->set($value);
-		$this->assertEquals($expected, $this->option->get());
+		if(class_exists($expected)) {
+			$this->assertEquals($value, $this->option->get());
+		} else {
+			$this->assertEquals($expected, $this->option->get());
+		}
 	}
 
 	public function testAlwaysGetBoolWithNoValue() {
@@ -40,43 +49,43 @@ class BoolOptionTest extends \WP_UnitTestCase {
 			array(true,        true),
 			array(false,       false),
 
-			array(1234,        true),
-			array(0,           false),
-			array(-1234,       true),
-			array(PHP_INT_MAX, true),
+			array(1234,        TransformationFailedException::class),
+			array(0,           TransformationFailedException::class),
+			array(-1234,       TransformationFailedException::class),
+			array(PHP_INT_MAX, TransformationFailedException::class),
 			//array(PHP_INT_MIN, true),
 
-			array(1.234,       true),
-			array(1.2e3,       true),
-			array(7E-10,       true),
-			array(-1.234,      true),
-			array(-1.2e3,      true),
-			array(-7E-10,      true),
+			array(1.234,       TransformationFailedException::class),
+			array(1.2e3,       TransformationFailedException::class),
+			array(7E-10,       TransformationFailedException::class),
+			array(-1.234,      TransformationFailedException::class),
+			array(-1.2e3,      TransformationFailedException::class),
+			array(-7E-10,      TransformationFailedException::class),
 
 			array('1',         true),
-			array('VALUE',     true),
-			array('true',      true),
-			array('false',     true),
+			array('VALUE',     false),
+			array('true',      false),
+			array('false',     false),
 			array('',          false),
 			array('0',         false),
 
-			array(array(),     false),
-			array(array(1),    true),
-			array(array(1, 2), true),
-			array(array(''),   true),
-			array(array('1'),  true),
-			array(array('0'),  true),
+			array(array(),     TransformationFailedException::class),
+			array(array(1),    TransformationFailedException::class),
+			array(array(1, 2), TransformationFailedException::class),
+			array(array(''),   TransformationFailedException::class),
+			array(array('1'),  TransformationFailedException::class),
+			array(array('0'),  TransformationFailedException::class),
 
-			array(new \stdClass(), true),
-			array(new \WP_Query(), true),
+			array(new \stdClass(), TransformationFailedException::class),
+			array(new \WP_Query(), TransformationFailedException::class),
 
-			array(NULL,        false)
+			array(NULL,        NULL)
 		);
 
 		// Only for PHP 7
 		$result = version_compare(phpversion(), '7');
 		if($result == 0 || $result == 1) {
-			$values[] = array(PHP_INT_MIN, true);
+			$values[] = array(PHP_INT_MIN, TransformationFailedException::class);
 		}
 
 		return $values;

@@ -16,5 +16,6 @@ trait ValidatorTrait {
 
 	public function setValidator(ValidatorInterface $validator) {
 		$this->validator = $validator;
+		return $this;
 	}
 }

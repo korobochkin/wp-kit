@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Options;
 
+use Korobochkin\WPKit\DataComponents\Traits\ConstraintTrait;
 use Korobochkin\WPKit\DataComponents\Traits\DefaultValueTrait;
 use Korobochkin\WPKit\DataComponents\Traits\LocalValueTrait;
 use Korobochkin\WPKit\DataComponents\Traits\NameTrait;
@@ -14,6 +15,8 @@ abstract class AbstractOption implements OptionInterface {
 	use LocalValueTrait;
 
 	use DefaultValueTrait;
+
+	use ConstraintTrait;
 
 	/**
 	 * @var string The option group which can be used on WordPress admin settings pages.
@@ -99,24 +102,6 @@ abstract class AbstractOption implements OptionInterface {
 	 */
 	public function setAutoload($autoload) {
 		$this->autoload = (bool) $autoload;
-		return $this;
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function getConstraint() {
-		if(!$this->constraint)
-			$this->setConstraint($this->buildConstraint());
-
-		return $this->constraint;
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function setConstraint($constraint) {
-		$this->constraint = $constraint;
 		return $this;
 	}
 

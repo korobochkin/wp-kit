@@ -9,15 +9,10 @@ trait ConstraintTrait {
 	protected $constraint;
 
 	public function getConstraint() {
-		if(!$this->constraint) {
-			$this->setConstraint($this->buildConstraint());
-		}
 		return $this->constraint;
 	}
 
 	public function setConstraint($constraint) {
 		$this->constraint = $constraint;
 	}
-
-	abstract public function buildConstraint();
 }

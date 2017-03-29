@@ -6,9 +6,14 @@ use Korobochkin\WPKit\Options\OptionInterface;
 class Setting implements SettingInterface {
 
 	/**
-	 * @var \Korobochkin\WPKit\Options\OptionInterface Option for this setting.
+	 * @var OptionInterface Option for this setting.
 	 */
 	protected $option;
+
+	/**
+	 * @var string Group name.
+	 */
+	protected $group;
 
 	/**
 	 * Setting constructor.
@@ -31,6 +36,21 @@ class Setting implements SettingInterface {
 	 */
 	public function setOption(OptionInterface $option) {
 		$this->option = $option;
+		return $this;
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function getGroup() {
+		return $this->group;
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function setGroup($group) {
+		$this->group = $group;
 		return $this;
 	}
 

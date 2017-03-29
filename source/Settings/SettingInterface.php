@@ -22,6 +22,22 @@ interface SettingInterface {
 	public function setOption(OptionInterface $option);
 
 	/**
+	 * Returns group name which can be used on settings pages.
+	 *
+	 * @return string Option group name.
+	 */
+	public function getGroup();
+
+	/**
+	 * Setup option group name for settings pages.
+	 *
+	 * @param $group string Option group name.
+	 *
+	 * @return $this For chain calls.
+	 */
+	public function setGroup($group);
+
+	/**
 	 * Register option like a setting for WordPress admin settings pages.
 	 */
 	public function register();

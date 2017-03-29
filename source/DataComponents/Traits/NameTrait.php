@@ -4,7 +4,7 @@ namespace Korobochkin\WPKit\DataComponents\Traits;
 trait NameTrait {
 
 	/**
-	 * @var string The node name which used to save value in DB or access it.
+	 * @var string The node name which used for access the node. Must be unique.
 	 */
 	protected $name;
 
@@ -14,5 +14,6 @@ trait NameTrait {
 
 	public function setName($name) {
 		$this->name = $name;
+		return $this;
 	}
 }

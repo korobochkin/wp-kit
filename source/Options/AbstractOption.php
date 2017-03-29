@@ -1,15 +1,16 @@
 <?php
 namespace Korobochkin\WPKit\Options;
 
+use Korobochkin\WPKit\DataComponents\Traits\LocalValueTrait;
+use Korobochkin\WPKit\DataComponents\Traits\NameTrait;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 abstract class AbstractOption implements OptionInterface {
 
-	/**
-	 * @var string Option name which can be used in functions like update_option(option_name).
-	 */
-	protected $name;
+	use NameTrait;
+
+	use LocalValueTrait;
 
 	/**
 	 * @var string The option group which can be used on WordPress admin settings pages.
@@ -30,11 +31,6 @@ abstract class AbstractOption implements OptionInterface {
 	 * @var callable Dynamic sanitizer.
 	 */
 	protected $sanitizer;
-
-	/**
-	 * @var mixed Local version of value. You can save it into DB or just delete.
-	 */
-	protected $localValue;
 
 	/**
 	 * @var mixed Default value which can be used if no value exists in DB.
@@ -72,21 +68,6 @@ abstract class AbstractOption implements OptionInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function getName() {
-		return $this->name;
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function setName($name) {
-		$this->name = (string)$name;
-		return $this;
-	}
-
-	/**
-	 * @inheritdoc
-	 */
 	public function getGroup() {
 		return $this->group;
 	}
@@ -96,21 +77,6 @@ abstract class AbstractOption implements OptionInterface {
 	 */
 	public function setGroup($group) {
 		$this->group = (string)$group;
-		return $this;
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function getLocalValue() {
-		return $this->localValue;
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function setLocalValue($value) {
-		$this->localValue = $value;
 		return $this;
 	}
 
@@ -264,32 +230,32 @@ abstract class AbstractOption implements OptionInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function getSanitizer() {
+	/*public function getSanitizer() {
 		return $this->sanitizer;
-	}
+	}*/
 
 	/**
 	 * @inheritdoc
 	 */
-	public function setSanitizer(callable $sanitizer) {
+	/*public function setSanitizer(callable $sanitizer) {
 		$this->sanitizer = $sanitizer;
-	}
+	}*/
 
 	/**
 	 * @inheritdoc
 	 */
-	public function _sanitize($value) {
+	/*public function _sanitize($value) {
 		$sanitizer = $this->getSanitizer();
 		if(is_callable($sanitizer)) {
 			return call_user_func($sanitizer, $value);
 		}
 		return $this->sanitize($value);
-	}
+	}*/
 
 	/**
 	 * @inheritdoc
 	 */
-	public function sanitize($value) {
+	/*public function sanitize($value) {
 		return $value;
-	}
+	}*/
 }

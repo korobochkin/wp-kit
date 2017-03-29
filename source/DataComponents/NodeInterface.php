@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\DataComponents;
 
+use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -153,4 +154,20 @@ interface NodeInterface {
 	 * @return true Always true after resetting local value.
 	 */
 	public function deleteLocal();
+
+	/**
+	 * Returns the data transformer which transform the data.
+	 *
+	 * @return DataTransformerInterface
+	 */
+	public function getDataTransformer();
+
+	/**
+	 * Set the data transformer.
+	 *
+	 * @param DataTransformerInterface $transformer
+	 *
+	 * @return $this For chain calls.
+	 */
+	public function setDataTransformer(DataTransformerInterface $transformer);
 }

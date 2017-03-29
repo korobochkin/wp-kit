@@ -2,6 +2,7 @@
 namespace Korobochkin\WPKit\Options;
 
 use Korobochkin\WPKit\DataComponents\Traits\ConstraintTrait;
+use Korobochkin\WPKit\DataComponents\Traits\DataTransformerTrait;
 use Korobochkin\WPKit\DataComponents\Traits\DefaultValueTrait;
 use Korobochkin\WPKit\DataComponents\Traits\DeleteLocalValueTrait;
 use Korobochkin\WPKit\DataComponents\Traits\LocalValueTrait;
@@ -24,6 +25,8 @@ abstract class AbstractOption implements OptionInterface {
 	use ValidatorTrait;
 
 	use ValidateTrait;
+
+	use DataTransformerTrait;
 
 	/**
 	 * @var $autoload bool Flag which define how option should be loaded by WordPress.

@@ -209,8 +209,8 @@ interface OptionInterface {
 	public function deleteLocal();
 
 	/**
-	 * Performs pushing local value $this->value into the DB (actually save the value from instance
-	 * and remove $this->value because other code can use option via get_ delete_ option functions).
+	 * Performs pushing local value ($this->value) into the DB (actually save the value from instance
+	 * and remove $this->value because other code can use options directly with get|update|delete_option functions).
 	 *
 	 * @return bool Result of pushing (saving) option in DB.
 	 */
@@ -233,7 +233,7 @@ interface OptionInterface {
 	 *
 	 * @return callable Sanitizer.
 	 */
-	public function getSanitizer();
+	//public function getSanitizer();
 
 	/**
 	 * Setup sanitizer which clean value before saving into DB.
@@ -242,7 +242,7 @@ interface OptionInterface {
 	 *
 	 * @return $this For chain calls.
 	 */
-	public function setSanitizer(callable $sanitizer);
+	//public function setSanitizer(callable $sanitizer);
 
 	/**
 	 * Helpful then WordPress sanitize value before saving it into DB. You can attach this value to WordPress filter.

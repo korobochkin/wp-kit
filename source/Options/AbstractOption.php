@@ -52,6 +52,9 @@ abstract class AbstractOption implements OptionInterface {
 		return $this;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getValueFromWordPress() {
 		return get_option($this->getName());
 	}

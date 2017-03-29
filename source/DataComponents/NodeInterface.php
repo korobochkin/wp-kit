@@ -37,18 +37,47 @@ interface NodeInterface {
 	 */
 	public function setName($name);
 
-	/*public function getGroup();
-
-	public function setGroup($group);*/
-
+	/**
+	 * Get a local value.
+	 *
+	 * @return mixed Local value.
+	 */
 	public function getLocalValue();
 
+	/**
+	 * Save value in this instance but not actually in DB.
+	 *
+	 * You can setup local value via this method, validate it and push to the DB if needed or just
+	 * delete it (set to null). To save value in DB you need call $this->flush().
+	 *
+	 * @param $value mixed Value which need to be stored in this instance.
+	 *
+	 * @return $this For chain calls.
+	 */
 	public function setLocalValue($value);
 
+	/**
+	 * Retrieve value of node from WordPress DB.
+	 *
+	 * @return string|bool|array String value of node if exists, false if some cases (option not exists in DB) or array if option saved as array.
+	 */
 	public function getValueFromWordPress();
 
+	/**
+	 * Returns a default value for this instance or null if it not setted up.
+	 *
+	 * @return mixed Default value for this instance.
+	 */
 	public function getDefaultValue();
 
+	/**
+	 * Setup default value for instance. This value should be returned (used) by default if value
+	 * not exists in WordPress DB.
+	 *
+	 * @param $defaultValue mixed Value which need to be stored as default value for this instance.
+	 *
+	 * @return $this For chain calls.
+	 */
 	public function setDefaultValue($defaultValue);
 
 	public function getConstraint();

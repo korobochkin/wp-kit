@@ -34,7 +34,7 @@ abstract class AbstractOption implements OptionInterface {
 	 * @inheritdoc
 	 */
 	public function get() {
-		if(isset($this->value))
+		if(isset($this->localValue))
 			return $this->getLocalValue();
 
 		$raw = $this->getValueFromWordPress();

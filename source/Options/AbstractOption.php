@@ -3,6 +3,7 @@ namespace Korobochkin\WPKit\Options;
 
 use Korobochkin\WPKit\DataComponents\Traits\ConstraintTrait;
 use Korobochkin\WPKit\DataComponents\Traits\DefaultValueTrait;
+use Korobochkin\WPKit\DataComponents\Traits\DeleteLocalValueTrait;
 use Korobochkin\WPKit\DataComponents\Traits\LocalValueTrait;
 use Korobochkin\WPKit\DataComponents\Traits\NameTrait;
 use Korobochkin\WPKit\DataComponents\Traits\ValidatorTrait;
@@ -15,6 +16,8 @@ abstract class AbstractOption implements OptionInterface {
 	use LocalValueTrait;
 
 	use DefaultValueTrait;
+
+	use DeleteLocalValueTrait;
 
 	use ConstraintTrait;
 
@@ -75,11 +78,6 @@ abstract class AbstractOption implements OptionInterface {
 	/**
 	 * @inheritdoc
 	 */
-	abstract public function buildConstraint();
-
-	/**
-	 * @inheritdoc
-	 */
 	public function delete() {
 		$result = $this->deleteFromWP();
 
@@ -94,11 +92,6 @@ abstract class AbstractOption implements OptionInterface {
 	 */
 	public function deleteFromWP() {
 		return delete_option($this->getName());
-	}
-
-	public function deleteLocal() {
-		$this->setLocalValue(null);
-		return true;
 	}
 
 	/**

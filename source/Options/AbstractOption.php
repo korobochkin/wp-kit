@@ -19,8 +19,13 @@ abstract class AbstractOption extends AbstractNode implements OptionInterface {
 
 		$raw = $this->getValueFromWordPress();
 
-		if($raw !== false)
+		if($raw !== false) {
+			$transformer = $this->getDataTransformer();
+			if($transformer) {
+				return $transformer->reverseTransform($raw);
+			}
 			return $raw;
+		}
 
 		return $this->getDefaultValue();
 	}
@@ -78,9 +83,18 @@ abstract class AbstractOption extends AbstractNode implements OptionInterface {
 	 * @inheritdoc
 	 */
 	public function flush() {
-		if(isset($this->value)) {
+		if(isset($this->localValue)) {
 			try {
-				$result = update_option($this->getName(), $this->getLocalValue(), $this->isAutoload());
+				if($this->getDataTransformer()) {
+					$raw = $this->getDataTransformer()->transform($this->localValue);
+					$result = update_option(
+						$this->getName(),
+						$raw,
+						$this->isAutoload()
+					);
+				} else {
+					$result = update_option($this->getName(), $this->getLocalValue(), $this->isAutoload());
+				}
 			}
 			catch(\Exception $e) {
 				return false;

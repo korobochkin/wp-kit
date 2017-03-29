@@ -21,18 +21,20 @@ class BoolOptionTest extends \WP_UnitTestCase {
 	 */
 	public function testAlwaysGetBoolAfterSaving($value, $expected) {
 		$this->option
-			->set($value)
-			->flush();
+			->set($value);
 
 		if(class_exists($expected)) {
 			$this->expectException($expected);
+			$this->option->flush();
 		} else {
+			$this->option->flush();
 			$this->assertEquals($expected, $this->option->get());
 		}
 	}
 
-	public function testAlwaysGetBoolWithoutSaving($value, $expected) {
+	/*public function testAlwaysGetBoolWithoutSaving($value, $expected) {
 		$this->option->set($value);
+		// If
 		if(class_exists($expected)) {
 			$this->assertEquals($value, $this->option->get());
 		} else {
@@ -42,7 +44,7 @@ class BoolOptionTest extends \WP_UnitTestCase {
 
 	public function testAlwaysGetBoolWithNoValue() {
 		$this->assertEquals(false, $this->option->get());
-	}
+	}*/
 
 	public function getDataCases() {
 		$values = array(

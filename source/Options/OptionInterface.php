@@ -30,6 +30,13 @@ interface OptionInterface extends NodeInterface {
 	public function setGroup($group);
 
 	/**
+	 * Retrieve value of node from WordPress DB.
+	 *
+	 * @return string|bool|array String value of node if exists, false if some cases (option not exists in DB) or array if option saved as array.
+	 */
+	public function getValueFromWordPress();
+
+	/**
 	 * Describes if this option should be autoloaded by WordPress or not.
 	 *
 	 * @return bool true if it autoloaded, false otherwise.

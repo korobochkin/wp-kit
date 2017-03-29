@@ -7,8 +7,8 @@ use Korobochkin\WPKit\DataComponents\Traits\DefaultValueTrait;
 use Korobochkin\WPKit\DataComponents\Traits\DeleteLocalValueTrait;
 use Korobochkin\WPKit\DataComponents\Traits\LocalValueTrait;
 use Korobochkin\WPKit\DataComponents\Traits\NameTrait;
+use Korobochkin\WPKit\DataComponents\Traits\ValidateTrait;
 use Korobochkin\WPKit\DataComponents\Traits\ValidatorTrait;
-use Setka\Editor\Admin\Prototypes\Options\Traits\ValidateTrait;
 
 abstract class AbstractNode implements NodeInterface {
 

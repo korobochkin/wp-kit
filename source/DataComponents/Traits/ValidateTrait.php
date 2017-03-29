@@ -1,5 +1,5 @@
 <?php
-namespace Setka\Editor\Admin\Prototypes\Options\Traits;
+namespace Korobochkin\WPKit\DataComponents\Traits;
 
 use Korobochkin\WPKit\DataComponents\NodeInterface;
 use Symfony\Component\Validator\ConstraintViolationList;

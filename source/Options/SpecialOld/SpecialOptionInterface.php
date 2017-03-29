@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\WPKit\Options\Special;
+namespace Korobochkin\WPKit\Options\SpecialOld;
 
 interface SpecialOptionInterface {
 

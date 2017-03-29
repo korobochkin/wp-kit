@@ -105,36 +105,4 @@ abstract class AbstractOption extends AbstractNode implements OptionInterface {
 
 		return $this->flush();
 	}
-
-	/**
-	 * @inheritdoc
-	 */
-	/*public function getSanitizer() {
-		return $this->sanitizer;
-	}*/
-
-	/**
-	 * @inheritdoc
-	 */
-	/*public function setSanitizer(callable $sanitizer) {
-		$this->sanitizer = $sanitizer;
-	}*/
-
-	/**
-	 * @inheritdoc
-	 */
-	/*public function _sanitize($value) {
-		$sanitizer = $this->getSanitizer();
-		if(is_callable($sanitizer)) {
-			return call_user_func($sanitizer, $value);
-		}
-		return $this->sanitize($value);
-	}*/
-
-	/**
-	 * @inheritdoc
-	 */
-	/*public function sanitize($value) {
-		return $value;
-	}*/
 }

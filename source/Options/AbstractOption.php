@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Options;
 
+use Korobochkin\WPKit\DataComponents\Traits\DefaultValueTrait;
 use Korobochkin\WPKit\DataComponents\Traits\LocalValueTrait;
 use Korobochkin\WPKit\DataComponents\Traits\NameTrait;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
@@ -11,6 +12,8 @@ abstract class AbstractOption implements OptionInterface {
 	use NameTrait;
 
 	use LocalValueTrait;
+
+	use DefaultValueTrait;
 
 	/**
 	 * @var string The option group which can be used on WordPress admin settings pages.
@@ -82,21 +85,6 @@ abstract class AbstractOption implements OptionInterface {
 
 	public function getValueFromWordPress() {
 		return get_option($this->getName());
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function getDefaultValue() {
-		return $this->defaultValue;
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function setDefaultValue($defaultValue) {
-		$this->defaultValue = $defaultValue;
-		return $this;
 	}
 
 	/**

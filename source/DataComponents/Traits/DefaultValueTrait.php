@@ -1,7 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\DataComponents\Traits;
 
-class DefaultValueTrait {
+trait DefaultValueTrait {
 
 	protected $defaultValue;
 

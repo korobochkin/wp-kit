@@ -6,6 +6,7 @@ use Korobochkin\WPKit\DataComponents\Traits\DefaultValueTrait;
 use Korobochkin\WPKit\DataComponents\Traits\LocalValueTrait;
 use Korobochkin\WPKit\DataComponents\Traits\NameTrait;
 use Korobochkin\WPKit\DataComponents\Traits\ValidatorTrait;
+use Setka\Editor\Admin\Prototypes\Options\Traits\ValidateTrait;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -20,6 +21,8 @@ abstract class AbstractOption implements OptionInterface {
 	use ConstraintTrait;
 
 	use ValidatorTrait;
+
+	use ValidateTrait;
 
 	/**
 	 * @var string The option group which can be used on WordPress admin settings pages.
@@ -112,25 +115,6 @@ abstract class AbstractOption implements OptionInterface {
 	 * @inheritdoc
 	 */
 	abstract public function buildConstraint();
-
-	/**
-	 * @inheritdoc
-	 */
-	public function validate() {
-		return $this->getValidator()->validate($this->get(), $this->getConstraint());
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function isValid() {
-		$errors = $this->validate();
-
-		if(count($errors) === 0)
-			return true;
-
-		return false;
-	}
 
 	/**
 	 * @inheritdoc

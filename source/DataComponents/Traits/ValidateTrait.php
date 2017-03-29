@@ -1,15 +1,21 @@
 <?php
 namespace Setka\Editor\Admin\Prototypes\Options\Traits;
 
+use Korobochkin\WPKit\DataComponents\NodeInterface;
 use Symfony\Component\Validator\ConstraintViolationList;
 
 trait ValidateTrait {
 
+	/**
+	 * Returns violations list.
+	 *
+	 * @return ConstraintViolationList
+	 */
 	public function validate() {
 		/**
-		 * @var ConstraintViolationList
+		 * @var $this NodeInterface
 		 */
-		return $this->getValidator()->validate($this->getValue(), $this->getConstraint());
+		return $this->getValidator()->validate($this->get(), $this->getConstraint());
 	}
 
 	public function isValid() {
@@ -20,9 +26,14 @@ trait ValidateTrait {
 		return false;
 	}
 
+	/**
+	 * Returns violations list.
+	 *
+	 * @return ConstraintViolationList
+	 */
 	public function validateValue($value) {
 		/**
-		 * @var ConstraintViolationList
+		 * @var $this NodeInterface
 		 */
 		return $this->getValidator()->validate($value, $this->getConstraint());
 	}

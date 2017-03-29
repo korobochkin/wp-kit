@@ -1,32 +1,9 @@
 <?php
 namespace Korobochkin\WPKit\Options;
 
-use Korobochkin\WPKit\DataComponents\Traits\ConstraintTrait;
-use Korobochkin\WPKit\DataComponents\Traits\DataTransformerTrait;
-use Korobochkin\WPKit\DataComponents\Traits\DefaultValueTrait;
-use Korobochkin\WPKit\DataComponents\Traits\DeleteLocalValueTrait;
-use Korobochkin\WPKit\DataComponents\Traits\LocalValueTrait;
-use Korobochkin\WPKit\DataComponents\Traits\NameTrait;
-use Korobochkin\WPKit\DataComponents\Traits\ValidatorTrait;
-use Setka\Editor\Admin\Prototypes\Options\Traits\ValidateTrait;
+use Korobochkin\WPKit\DataComponents\AbstractNode;
 
-abstract class AbstractOption implements OptionInterface {
-
-	use NameTrait;
-
-	use LocalValueTrait;
-
-	use DefaultValueTrait;
-
-	use DeleteLocalValueTrait;
-
-	use ConstraintTrait;
-
-	use ValidatorTrait;
-
-	use ValidateTrait;
-
-	use DataTransformerTrait;
+abstract class AbstractOption extends AbstractNode implements OptionInterface {
 
 	/**
 	 * @var $autoload bool Flag which define how option should be loaded by WordPress.

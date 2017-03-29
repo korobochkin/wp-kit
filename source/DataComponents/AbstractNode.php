@@ -1,7 +1,30 @@
 <?php
 namespace Korobochkin\WPKit\DataComponents;
 
+use Korobochkin\WPKit\DataComponents\Traits\ConstraintTrait;
+use Korobochkin\WPKit\DataComponents\Traits\DataTransformerTrait;
+use Korobochkin\WPKit\DataComponents\Traits\DefaultValueTrait;
+use Korobochkin\WPKit\DataComponents\Traits\DeleteLocalValueTrait;
+use Korobochkin\WPKit\DataComponents\Traits\LocalValueTrait;
+use Korobochkin\WPKit\DataComponents\Traits\NameTrait;
+use Korobochkin\WPKit\DataComponents\Traits\ValidatorTrait;
+use Setka\Editor\Admin\Prototypes\Options\Traits\ValidateTrait;
+
 abstract class AbstractNode implements NodeInterface {
 
-	
+	use NameTrait;
+
+	use LocalValueTrait;
+
+	use DefaultValueTrait;
+
+	use DeleteLocalValueTrait;
+
+	use ConstraintTrait;
+
+	use ValidatorTrait;
+
+	use ValidateTrait;
+
+	use DataTransformerTrait;
 }

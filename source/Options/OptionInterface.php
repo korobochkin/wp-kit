@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Options;
 
+use Korobochkin\WPKit\DataComponents\NodeInterface;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -10,41 +11,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  *
  * @package Korobochkin\WPKit\Options
  */
-interface OptionInterface {
-
-	/**
-	 * The main method to retrieve value.
-	 *
-	 * Should always returns the value of this option.
-	 *
-	 * @return mixed Value of this option.
-	 */
-	public function get();
-
-	/**
-	 * Alias for $this->setLocalValue().
-	 *
-	 * @param $value mixed A value for this option.
-	 *
-	 * @return $this For chain calls.
-	 */
-	public function set($value);
-
-	/**
-	 * Returns option name which can be used in functions like update_option(option_name).
-	 *
-	 * @return string
-	 */
-	public function getName();
-
-	/**
-	 * Setup option name required for each option.
-	 *
-	 * @param $name string Option name.
-	 *
-	 * @return $this Returns instance for chain calls.
-	 */
-	public function setName($name);
+interface OptionInterface extends NodeInterface {
 
 	/**
 	 * Returns option group which can be used on settings pages.

@@ -7,8 +7,6 @@ use Korobochkin\WPKit\DataComponents\Traits\LocalValueTrait;
 use Korobochkin\WPKit\DataComponents\Traits\NameTrait;
 use Korobochkin\WPKit\DataComponents\Traits\ValidatorTrait;
 use Setka\Editor\Admin\Prototypes\Options\Traits\ValidateTrait;
-use Symfony\Component\Validator\ConstraintValidatorInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 abstract class AbstractOption implements OptionInterface {
 

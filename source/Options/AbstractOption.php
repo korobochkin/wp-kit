@@ -25,31 +25,6 @@ abstract class AbstractOption implements OptionInterface {
 	use ValidateTrait;
 
 	/**
-	 * @var string The option group which can be used on WordPress admin settings pages.
-	 */
-	protected $group;
-
-	/**
-	 * @var ConstraintValidatorInterface[]|ConstraintValidatorInterface set of Constraints (or just one) for Validator.
-	 */
-	protected $constraint;
-
-	/**
-	 * @var ValidatorInterface Validator for validating values.
-	 */
-	protected $validator;
-
-	/**
-	 * @var callable Dynamic sanitizer.
-	 */
-	protected $sanitizer;
-
-	/**
-	 * @var mixed Default value which can be used if no value exists in DB.
-	 */
-	protected $defaultValue;
-
-	/**
 	 * @var $autoload bool Flag which define how option should be loaded by WordPress.
 	 */
 	protected $autoload = true;
@@ -74,21 +49,6 @@ abstract class AbstractOption implements OptionInterface {
 	 */
 	public function set($value) {
 		$this->setLocalValue($value);
-		return $this;
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function getGroup() {
-		return $this->group;
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function setGroup($group) {
-		$this->group = (string)$group;
 		return $this;
 	}
 

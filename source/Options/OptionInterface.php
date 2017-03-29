@@ -11,22 +11,6 @@ use Korobochkin\WPKit\DataComponents\NodeInterface;
 interface OptionInterface extends NodeInterface {
 
 	/**
-	 * Returns option group which can be used on settings pages.
-	 *
-	 * @return string Option group name.
-	 */
-	public function getGroup();
-
-	/**
-	 * Setup option group name for settings pages.
-	 *
-	 * @param $group string Option group name.
-	 *
-	 * @return $this For chain calls.
-	 */
-	public function setGroup($group);
-
-	/**
 	 * Retrieve value of node from WordPress DB.
 	 *
 	 * @return string|bool|array String value of node if exists, false if some cases (option not exists in DB) or array if option saved as array.

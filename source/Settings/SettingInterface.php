@@ -8,7 +8,7 @@ interface SettingInterface {
 	/**
 	 * Returns option instance for this setting.
 	 *
-	 * @return \Korobochkin\WPKit\Options\OptionInterface Option for this setting.
+	 * @return OptionInterface Option for this setting.
 	 */
 	public function getOption();
 

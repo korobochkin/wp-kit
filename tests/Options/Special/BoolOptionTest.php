@@ -32,6 +32,9 @@ class BoolOptionTest extends \WP_UnitTestCase {
 		}
 	}
 
+	/**
+	 * @dataProvider getDataCases
+	 */
 	public function testAlwaysGetBoolWithoutSaving($value, $expected) {
 		$this->option->set($value);
 
@@ -42,9 +45,9 @@ class BoolOptionTest extends \WP_UnitTestCase {
 		}
 	}
 
-	/*public function testAlwaysGetBoolWithNoValue() {
+	public function testDefaultValue() {
 		$this->assertEquals(false, $this->option->get());
-	}*/
+	}
 
 	public function getDataCases() {
 		$values = array(

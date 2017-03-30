@@ -17,6 +17,7 @@ class FloatOptionTest extends \WP_UnitTestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->option = new FloatOption();
+		$this->option->setName('wp_kit_float_option');
 	}
 
 	/**

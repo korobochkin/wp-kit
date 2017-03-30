@@ -17,6 +17,7 @@ class BoolOptionTest extends \WP_UnitTestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->option = new BoolOption();
+		$this->option->setName('wp_kit_bool_option');
 	}
 
 	/**

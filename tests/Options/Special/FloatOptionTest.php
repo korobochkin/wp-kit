@@ -79,12 +79,12 @@ class FloatOptionTest extends \WP_UnitTestCase {
 			array(-1.2e3,      -1.2e3),
 			array(-7E-10,      -7E-10),
 
-			array('1',         TransformationFailedException::class),
+			array('1',         1.0),
 			array('VALUE',     TransformationFailedException::class),
 			array('true',      TransformationFailedException::class),
 			array('false',     TransformationFailedException::class),
 			array('',          TransformationFailedException::class),
-			array('0',         TransformationFailedException::class),
+			array('0',         0.0),
 
 			array(array(),     TransformationFailedException::class),
 			array(array(1),    TransformationFailedException::class),

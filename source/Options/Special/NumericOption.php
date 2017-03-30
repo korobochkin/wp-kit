@@ -5,7 +5,7 @@ use Korobochkin\WPKit\Options\AbstractOption;
 use Symfony\Component\Form\Extension\Core\DataTransformer\NumberToLocalizedStringTransformer;
 use Symfony\Component\Validator\Constraints;
 
-class FloatOption extends AbstractOption {
+class NumericOption extends AbstractOption {
 
 	/**
 	 * FloatOption constructor.

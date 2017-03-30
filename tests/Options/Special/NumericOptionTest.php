@@ -1,13 +1,13 @@
 <?php
 namespace Korobochkin\WPKit\Tests\Options\Special;
 
-use Korobochkin\WPKit\Options\Special\FloatOption;
+use Korobochkin\WPKit\Options\Special\NumericOption;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class FloatOptionTest extends \WP_UnitTestCase {
+class NumericOptionTest extends \WP_UnitTestCase {
 
 	/**
-	 * @var FloatOption
+	 * @var NumericOption
 	 */
 	protected $option;
 
@@ -16,8 +16,8 @@ class FloatOptionTest extends \WP_UnitTestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->option = new FloatOption();
-		$this->option->setName('wp_kit_float_option');
+		$this->option = new NumericOption();
+		$this->option->setName('wp_kit_numeric_option');
 	}
 
 	/**

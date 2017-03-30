@@ -32,9 +32,9 @@ class BoolOptionTest extends \WP_UnitTestCase {
 		}
 	}
 
-	/*public function testAlwaysGetBoolWithoutSaving($value, $expected) {
+	public function testAlwaysGetBoolWithoutSaving($value, $expected) {
 		$this->option->set($value);
-		// If
+
 		if(class_exists($expected)) {
 			$this->assertEquals($value, $this->option->get());
 		} else {
@@ -42,7 +42,7 @@ class BoolOptionTest extends \WP_UnitTestCase {
 		}
 	}
 
-	public function testAlwaysGetBoolWithNoValue() {
+	/*public function testAlwaysGetBoolWithNoValue() {
 		$this->assertEquals(false, $this->option->get());
 	}*/
 

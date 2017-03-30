@@ -75,10 +75,10 @@ class FloatOptionTest extends \WP_UnitTestCase {
 
 			array(1.234,       1.234),
 			array(1.2e3,       1.2e3),
-			array(7E-10,       7E-10),
+			array(7E-10,       0.0), // because scale is 10
 			array(-1.234,      -1.234),
 			array(-1.2e3,      -1.2e3),
-			array(-7E-10,      -7E-10),
+			array(-7E-10,      0.0), // because scale is 10
 
 			array('1',         1.0),
 			array('VALUE',     TransformationFailedException::class),
@@ -97,7 +97,7 @@ class FloatOptionTest extends \WP_UnitTestCase {
 			array(new \stdClass(), TransformationFailedException::class),
 			array(new \WP_Query(), TransformationFailedException::class),
 
-			array(NULL,        NULL),
+			array(NULL,        0.0),
 		);
 
 		// Only for PHP 7

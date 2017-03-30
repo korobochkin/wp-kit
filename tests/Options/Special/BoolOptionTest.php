@@ -11,6 +11,9 @@ class BoolOptionTest extends \WP_UnitTestCase {
 	 */
 	protected $option;
 
+	/**
+	 * Prepare option for tests.
+	 */
 	public function setUp() {
 		parent::setUp();
 		$this->option = new BoolOption();
@@ -24,8 +27,17 @@ class BoolOptionTest extends \WP_UnitTestCase {
 			->set($value);
 
 		if(class_exists($expected)) {
-			$this->expectException($expected);
-			$this->option->flush();
+			if(method_exists($this, 'expectException')) {
+				$this->expectException($expected);
+				$this->option->flush();
+			} else {
+				try {
+					$this->option->flush();
+				}
+				catch(\Exception $exception) {
+					$this->assertTrue(is_a($exception, $expected));
+				}
+			}
 		} else {
 			$this->option->flush();
 			$this->assertEquals($expected, $this->option->get());

@@ -70,7 +70,7 @@ class FloatOptionTest extends \WP_UnitTestCase {
 			array(1234,        1234.0),
 			array(0,           0.0),
 			array(-1234,       -1234.0),
-			array(PHP_INT_MAX, (float) PHP_INT_MAX),
+			array(PHP_INT_MAX, TransformationFailedException::class),
 			//array(PHP_INT_MIN, true),
 
 			array(1.234,       1.234),
@@ -103,7 +103,7 @@ class FloatOptionTest extends \WP_UnitTestCase {
 		// Only for PHP 7
 		$result = version_compare(phpversion(), '7');
 		if($result == 0 || $result == 1) {
-			$values[] = array(PHP_INT_MIN, (float) PHP_INT_MIN);
+			$values[] = array(PHP_INT_MIN, TransformationFailedException::class);
 		}
 
 		return $values;

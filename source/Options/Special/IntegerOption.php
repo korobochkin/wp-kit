@@ -11,7 +11,7 @@ class IntegerOption extends AbstractOption {
 	 * FloatOption constructor.
 	 */
 	public function __construct() {
-		$this->setDataTransformer(new NumberToLocalizedStringTransformer());
+		$this->setDataTransformer(new NumberToLocalizedStringTransformer(0));
 	}
 
 	public function buildConstraint() {

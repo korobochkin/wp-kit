@@ -96,7 +96,9 @@ class FloatOptionTest extends \WP_UnitTestCase {
 			array(new \stdClass(), TransformationFailedException::class),
 			array(new \WP_Query(), TransformationFailedException::class),
 
-			array(NULL,        NULL)
+			array(NULL,        NULL),
+
+			array(0,  0.0)
 		);
 
 		// Only for PHP 7

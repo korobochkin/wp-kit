@@ -1,13 +1,13 @@
 <?php
 namespace Korobochkin\WPKit\Tests\Options\Special;
 
-use Korobochkin\WPKit\Options\Special\FloatOption;
+use Korobochkin\WPKit\Options\Special\IntegerOption;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class FloatOptionTest extends \WP_UnitTestCase {
+class IntegerOptionTest extends \WP_UnitTestCase {
 
 	/**
-	 * @var FloatOption
+	 * @var IntegerOption
 	 */
 	protected $option;
 
@@ -16,8 +16,8 @@ class FloatOptionTest extends \WP_UnitTestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->option = new FloatOption();
-		$this->option->setName('wp_kit_float_option');
+		$this->option = new IntegerOption();
+		$this->option->setName('wp_kit_integer_option');
 	}
 
 	/**
@@ -70,15 +70,15 @@ class FloatOptionTest extends \WP_UnitTestCase {
 			array(1234,        1234.0),
 			array(0,           0.0),
 			array(-1234,       -1234.0),
-			//array(PHP_INT_MAX, TransformationFailedException::class), // this case throwing error but PHP 7 not catching it
+			array(PHP_INT_MAX, TransformationFailedException::class),
 			//array(PHP_INT_MIN, true),
 
-			array(1.234,       1.234),
-			array(1.2e3,       1.2e3),
-			array(7E-10,       7E-10),
-			array(-1.234,      -1.234),
-			array(-1.2e3,      -1.2e3),
-			array(-7E-10,      -7E-10),
+			array(1.234,       1.0),
+			array(1.2e3,       1.0),
+			array(7E-10,       0.0),
+			array(-1.234,      -1.0),
+			array(-1.2e3,      -1.0),
+			array(-7E-10,      0.0),
 
 			array('1',         1.0),
 			array('VALUE',     TransformationFailedException::class),
@@ -101,11 +101,10 @@ class FloatOptionTest extends \WP_UnitTestCase {
 		);
 
 		// Only for PHP 7
-		// this case throwing error but PHP 7 not catching it
-		/*$result = version_compare(phpversion(), '7');
+		$result = version_compare(phpversion(), '7');
 		if($result == 0 || $result == 1) {
 			$values[] = array(PHP_INT_MIN, TransformationFailedException::class);
-		}*/
+		}
 
 		return $values;
 	}

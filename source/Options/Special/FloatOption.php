@@ -12,6 +12,7 @@ class FloatOption extends AbstractOption {
 	 */
 	public function __construct() {
 		$this->setDataTransformer(new NumberToLocalizedStringTransformer(10));
+		$this->setDefaultValue(0.0);
 	}
 
 	public function buildConstraint() {

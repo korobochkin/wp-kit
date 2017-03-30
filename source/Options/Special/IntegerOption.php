@@ -12,13 +12,15 @@ class IntegerOption extends AbstractOption {
 	 */
 	public function __construct() {
 		$this->setDataTransformer(new NumberToLocalizedStringTransformer(0));
+		$this->setDefaultValue(0.0);
 	}
 
 	public function buildConstraint() {
 		return array(
 			new Constraints\NotBlank(),
 			new Constraints\Type(array(
-				'type' => 'integer',
+				// NumberToLocalizedStringTransformer transforms numbers always to float but without decimals
+				'type' => 'float',
 			)),
 		);
 	}

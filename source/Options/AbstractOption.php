@@ -84,21 +84,13 @@ abstract class AbstractOption extends AbstractNode implements OptionInterface {
 	 */
 	public function flush() {
 		if(isset($this->localValue)) {
-			try {
-				if($this->getDataTransformer()) {
-					$raw = $this->getDataTransformer()->transform($this->localValue);
-					$result = update_option(
-						$this->getName(),
-						$raw,
-						$this->isAutoload()
-					);
-				} else {
-					$result = update_option($this->getName(), $this->getLocalValue(), $this->isAutoload());
-				}
+			if($this->getDataTransformer()) {
+				$raw = $this->getDataTransformer()->transform($this->localValue);
+			} else {
+				$raw =& $this->localValue;
 			}
-			catch(\Exception $e) {
-				return false;
-			}
+
+			$result = update_option($this->getName(), $raw, $this->isAutoload());
 
 			if($result)
 				$this->setLocalValue(null);

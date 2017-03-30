@@ -64,12 +64,12 @@ class BoolOptionTest extends \WP_UnitTestCase {
 			array(-1.2e3,      TransformationFailedException::class),
 			array(-7E-10,      TransformationFailedException::class),
 
-			array('1',         true),
-			array('VALUE',     false),
-			array('true',      false),
-			array('false',     false),
-			array('',          false),
-			array('0',         false),
+			array('1',         TransformationFailedException::class),
+			array('VALUE',     TransformationFailedException::class),
+			array('true',      TransformationFailedException::class),
+			array('false',     TransformationFailedException::class),
+			array('',          TransformationFailedException::class),
+			array('0',         TransformationFailedException::class),
 
 			array(array(),     TransformationFailedException::class),
 			array(array(1),    TransformationFailedException::class),

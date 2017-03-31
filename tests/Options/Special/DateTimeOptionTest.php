@@ -1,13 +1,13 @@
 <?php
 namespace Korobochkin\WPKit\Tests\Options\Special;
 
-use Korobochkin\WPKit\Options\Special\NumericOption;
+use Korobochkin\WPKit\Options\Special\DateTimeOption;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class NumericOptionTest extends \WP_UnitTestCase {
+class DateTimeOptionTest extends \WP_UnitTestCase {
 
 	/**
-	 * @var NumericOption
+	 * @var DateTimeOption
 	 */
 	protected $option;
 
@@ -16,19 +16,20 @@ class NumericOptionTest extends \WP_UnitTestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->option = new NumericOption();
-		$this->option->setName('wp_kit_numeric_option');
+		$this->option = new DateTimeOption();
+		$this->option->setName('wp_kit_datetime_option');
 	}
 
 	/**
 	 * @dataProvider getDataCases
-	 * // TODO: rename test methods in this instance
 	 */
-	public function testAlwaysGetBoolAfterSaving($value, $expected) {
-		$this->option
-			->set($value);
+	public function testTypes($value, $expected) {
+		$this->option->set($value);
 
-		if(class_exists($expected)) {
+		if(is_a($expected, \DateTime::class)) {
+			$this->option->flush();
+			$this->assertEquals($expected, $this->option->get());
+		} else {
 			if(method_exists($this, 'expectException')) {
 				$this->expectException($expected);
 				$this->option->flush();
@@ -40,53 +41,36 @@ class NumericOptionTest extends \WP_UnitTestCase {
 					$this->assertTrue(is_a($exception, $expected));
 				}
 			}
-		} else {
-			$this->option->flush();
-			$this->assertEquals($expected, $this->option->get());
 		}
-	}
-
-	/**
-	 * @dataProvider getDataCases
-	 */
-	public function testAlwaysGetBoolWithoutSaving($value, $expected) {
-		$this->option->set($value);
-
-		if(class_exists($expected)) {
-			$this->assertEquals($value, $this->option->get());
-		} else {
-			$this->assertEquals($expected, $this->option->get());
-		}
-	}
-
-	public function testDefaultValue() {
-		$this->assertEquals(0.0, $this->option->get());
 	}
 
 	public function getDataCases() {
+		$now = new \DateTime();
 		$values = array(
+			array($now, $now),
+
 			array(true,        TransformationFailedException::class),
 			array(false,       TransformationFailedException::class),
 
-			array(1234,        1234.0),
-			array(0,           0.0),
-			array(-1234,       -1234.0),
-			//array(PHP_INT_MAX, TransformationFailedException::class), // this case throwing error but PHP 7 not catching it
+			array(1234,        TransformationFailedException::class),
+			array(0,           TransformationFailedException::class),
+			array(-1234,       TransformationFailedException::class),
+			array(PHP_INT_MAX, TransformationFailedException::class),
 			//array(PHP_INT_MIN, true),
 
-			array(1.234,       1.234),
-			array(1.2e3,       1.2e3),
-			array(7E-10,       7E-10),
-			array(-1.234,      -1.234),
-			array(-1.2e3,      -1.2e3),
-			array(-7E-10,      -7E-10),
+			array(1.234,       TransformationFailedException::class),
+			array(1.2e3,       TransformationFailedException::class),
+			array(7E-10,       TransformationFailedException::class),
+			array(-1.234,      TransformationFailedException::class),
+			array(-1.2e3,      TransformationFailedException::class),
+			array(-7E-10,      TransformationFailedException::class),
 
-			array('1',         1.0),
+			array('1',         TransformationFailedException::class),
 			array('VALUE',     TransformationFailedException::class),
 			array('true',      TransformationFailedException::class),
 			array('false',     TransformationFailedException::class),
 			array('',          TransformationFailedException::class),
-			array('0',         0.0),
+			array('0',         TransformationFailedException::class),
 
 			array(array(),     TransformationFailedException::class),
 			array(array(1),    TransformationFailedException::class),
@@ -98,15 +82,14 @@ class NumericOptionTest extends \WP_UnitTestCase {
 			array(new \stdClass(), TransformationFailedException::class),
 			array(new \WP_Query(), TransformationFailedException::class),
 
-			array(NULL,        0.0),
+			array(NULL,        TransformationFailedException::class),
 		);
 
 		// Only for PHP 7
-		// this case throwing error but PHP 7 not catching it
-		/*$result = version_compare(phpversion(), '7');
+		$result = version_compare(phpversion(), '7');
 		if($result == 0 || $result == 1) {
 			$values[] = array(PHP_INT_MIN, TransformationFailedException::class);
-		}*/
+		}
 
 		return $values;
 	}

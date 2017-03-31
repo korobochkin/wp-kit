@@ -23,6 +23,8 @@ class NumericOptionTest extends \WP_UnitTestCase {
 	/**
 	 * @dataProvider getDataCases
 	 * // TODO: rename test methods in this instance
+	 * @var $value mixed Value to insert and test.
+	 * @var $expected mixed Value to compare output value with.
 	 */
 	public function testAlwaysGetBoolAfterSaving($value, $expected) {
 		$this->option
@@ -48,6 +50,8 @@ class NumericOptionTest extends \WP_UnitTestCase {
 
 	/**
 	 * @dataProvider getDataCases
+	 * @var $value mixed Value to insert and test.
+	 * @var $expected mixed Value to compare output value with.
 	 */
 	public function testAlwaysGetBoolWithoutSaving($value, $expected) {
 		$this->option->set($value);

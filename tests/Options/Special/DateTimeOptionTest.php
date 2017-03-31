@@ -22,6 +22,8 @@ class DateTimeOptionTest extends \WP_UnitTestCase {
 
 	/**
 	 * @dataProvider getDataCases
+	 * @var $value mixed Value to insert and test.
+	 * @var $expected mixed Value to compare output value with.
 	 */
 	public function testTypes($value, $expected) {
 		$this->option->set($value);

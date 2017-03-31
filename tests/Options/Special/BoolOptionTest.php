@@ -22,6 +22,8 @@ class BoolOptionTest extends \WP_UnitTestCase {
 
 	/**
 	 * @dataProvider getDataCases
+	 * @var $value mixed Value to insert and test.
+	 * @var $expected mixed Value to compare output value with.
 	 */
 	public function testAlwaysGetBoolAfterSaving($value, $expected) {
 		$this->option
@@ -47,6 +49,8 @@ class BoolOptionTest extends \WP_UnitTestCase {
 
 	/**
 	 * @dataProvider getDataCases
+	 * @var $value mixed Value to insert and test.
+	 * @var $expected mixed Value to compare output value with.
 	 */
 	public function testAlwaysGetBoolWithoutSaving($value, $expected) {
 		$this->option->set($value);

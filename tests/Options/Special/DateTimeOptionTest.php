@@ -46,6 +46,11 @@ class DateTimeOptionTest extends \WP_UnitTestCase {
 		}
 	}
 
+	public function testNull() {
+		$this->option->set(null);
+		$this->assertEquals('', $this->option->get());
+	}
+
 	public function getDataCases() {
 		$now = new \DateTime();
 		$values = array(
@@ -84,7 +89,7 @@ class DateTimeOptionTest extends \WP_UnitTestCase {
 			array(new \stdClass(), TransformationFailedException::class),
 			array(new \WP_Query(), TransformationFailedException::class),
 
-			array(NULL,        ''),
+			//array(NULL,        ''), // null tested in separated test
 		);
 
 		// Only for PHP 7

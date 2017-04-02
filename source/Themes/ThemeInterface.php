@@ -27,4 +27,20 @@ interface ThemeInterface {
 	 * @return string An URL to theme root folder (where you can place your style.css for example).
 	 */
 	public function getUrl($file);
+
+	/**
+	 * Returns theme version as a string which you can parse.
+	 *
+	 * @return string Version of theme in sem ver manner.
+	 */
+	public function getVersion();
+
+	/**
+	 * Returns theme name as a string.
+	 *
+	 * Perfect for your theme text domain.
+	 *
+	 * @return string Theme name in 'your-theme-name' manner.
+	 */
+	public function getName();
 }

@@ -10,6 +10,10 @@ If you tired with plain WordPres functions and long unreadable code you need to 
 
 In progress.
 
+### Transients
+
+Transients are very similar to Options. All the difference the only in one thing: `expiration` instead of `autoload`.
+
 ## How to install?
 
 Use Composer.

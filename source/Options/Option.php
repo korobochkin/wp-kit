@@ -6,6 +6,9 @@ namespace Korobochkin\WPKit\Options;
  */
 class Option extends AbstractOption {
 
+	/**
+	 * @inheritdoc
+	 */
 	public function buildConstraint() {
 		return null;
 	}

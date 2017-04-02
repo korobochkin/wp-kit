@@ -8,7 +8,7 @@ trait GetTrait {
 	 */
 	public function get() {
 		/**
-		 * @var $this \Korobochkin\WPKit\DataComponents\NodeInterface
+		 * @var $this \Korobochkin\WPKit\Options\OptionInterface|\Korobochkin\WPKit\Transients\TransientInterface
 		 */
 		if(isset($this->localValue))
 			return $this->getLocalValue();

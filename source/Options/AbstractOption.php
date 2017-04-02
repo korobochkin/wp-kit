@@ -2,8 +2,11 @@
 namespace Korobochkin\WPKit\Options;
 
 use Korobochkin\WPKit\DataComponents\AbstractNode;
+use Korobochkin\WPKit\DataComponents\Traits\DeleteTrait;
 
 abstract class AbstractOption extends AbstractNode implements OptionInterface {
+
+	use DeleteTrait;
 
 	/**
 	 * @var $autoload bool Flag which define how option should be loaded by WordPress.

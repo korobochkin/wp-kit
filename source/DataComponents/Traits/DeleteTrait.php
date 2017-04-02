@@ -1,8 +1,6 @@
 <?php
 namespace Korobochkin\WPKit\DataComponents\Traits;
 
-use Korobochkin\WPKit\DataComponents\NodeInterface;
-
 trait DeleteTrait {
 
 	/**
@@ -10,7 +8,7 @@ trait DeleteTrait {
 	 */
 	public function delete() {
 		/**
-		 * @var $this NodeInterface
+		 * @var $this \Korobochkin\WPKit\Options\OptionInterface|\Korobochkin\WPKit\Transients\TransientInterface
 		 */
 		$result = $this->deleteFromWP();
 

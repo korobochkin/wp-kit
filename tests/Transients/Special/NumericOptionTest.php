@@ -1,23 +1,23 @@
 <?php
-namespace Korobochkin\WPKit\Tests\Options\Special;
+namespace Korobochkin\WPKit\Tests\Transients\Special;
 
-use Korobochkin\WPKit\Options\Special\NumericOption;
+use Korobochkin\WPKit\Transients\Special\NumericTransient;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class NumericOptionTest extends \WP_UnitTestCase {
 
 	/**
-	 * @var NumericOption
+	 * @var NumericTransient
 	 */
-	protected $option;
+	protected $transient;
 
 	/**
 	 * Prepare option for tests.
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->option = new NumericOption();
-		$this->option->setName('wp_kit_numeric_option');
+		$this->transient = new NumericTransient();
+		$this->transient->setName('wp_kit_numeric_transient');
 	}
 
 	/**
@@ -26,24 +26,24 @@ class NumericOptionTest extends \WP_UnitTestCase {
 	 * @var $expected mixed Value to compare output value with.
 	 */
 	public function testTypesAfterSaving($value, $expected) {
-		$this->option
+		$this->transient
 			->set($value);
 
 		if(class_exists($expected)) {
 			if(method_exists($this, 'expectException')) {
 				$this->expectException($expected);
-				$this->option->flush();
+				$this->transient->flush();
 			} else {
 				try {
-					$this->option->flush();
+					$this->transient->flush();
 				}
 				catch(\Exception $exception) {
 					$this->assertTrue(is_a($exception, $expected));
 				}
 			}
 		} else {
-			$this->option->flush();
-			$this->assertEquals($expected, $this->option->get());
+			$this->transient->flush();
+			$this->assertEquals($expected, $this->transient->get());
 		}
 	}
 
@@ -53,17 +53,17 @@ class NumericOptionTest extends \WP_UnitTestCase {
 	 * @var $expected mixed Value to compare output value with.
 	 */
 	public function testTypesWithoutSaving($value, $expected) {
-		$this->option->set($value);
+		$this->transient->set($value);
 
 		if(class_exists($expected)) {
-			$this->assertEquals($value, $this->option->get());
+			$this->assertEquals($value, $this->transient->get());
 		} else {
-			$this->assertEquals($expected, $this->option->get());
+			$this->assertEquals($expected, $this->transient->get());
 		}
 	}
 
 	public function testDefaultValue() {
-		$this->assertEquals(0.0, $this->option->get());
+		$this->assertEquals(0.0, $this->transient->get());
 	}
 
 	public function getDataCases() {

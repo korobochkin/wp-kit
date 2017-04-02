@@ -66,4 +66,8 @@ Transients are very similar to Options. All the difference the only in one thing
 
 ## How to install?
 
-Use Composer.
+Use Composer. The publishing on WordPress will be in the near future.
+
+```bash
+composer require korobochkin/wp-kit
+```

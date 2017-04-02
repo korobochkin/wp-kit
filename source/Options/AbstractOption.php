@@ -13,34 +13,6 @@ abstract class AbstractOption extends AbstractNode implements OptionInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function get() {
-		if(isset($this->localValue))
-			return $this->getLocalValue();
-
-		$raw = $this->getValueFromWordPress();
-
-		if($raw !== false) {
-			$transformer = $this->getDataTransformer();
-			if($transformer) {
-				return $transformer->reverseTransform($raw);
-			}
-			return $raw;
-		}
-
-		return $this->getDefaultValue();
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function set($value) {
-		$this->setLocalValue($value);
-		return $this;
-	}
-
-	/**
-	 * @inheritdoc
-	 */
 	public function getValueFromWordPress() {
 		return get_option($this->getName());
 	}
@@ -58,18 +30,6 @@ abstract class AbstractOption extends AbstractNode implements OptionInterface {
 	public function setAutoload($autoload) {
 		$this->autoload = (bool) $autoload;
 		return $this;
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function delete() {
-		$result = $this->deleteFromWP();
-
-		if($result)
-			$this->setLocalValue(null);
-
-		return $result;
 	}
 
 	/**

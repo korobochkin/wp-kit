@@ -6,11 +6,6 @@ abstract class AbstractTheme implements ThemeInterface {
 	/**
 	 * @inheritdoc
 	 */
-	abstract public function run();
-
-	/**
-	 * @inheritdoc
-	 */
 	public function getDir($file) {
 		$path = get_stylesheet_directory();
 		if($file) {

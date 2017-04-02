@@ -1,37 +1,37 @@
 <?php
-namespace Korobochkin\WPKit\Options;
+namespace Korobochkin\WPKit\Transients;
 
 use Korobochkin\WPKit\DataComponents\AbstractNode;
 use Korobochkin\WPKit\DataComponents\Traits\DeleteTrait;
 
-abstract class AbstractOption extends AbstractNode implements OptionInterface {
+abstract class AbstractTransient extends AbstractNode implements TransientInterface {
 
 	use DeleteTrait;
 
 	/**
-	 * @var $autoload bool Flag which define how option should be loaded by WordPress.
+	 * @var $expiration int Expiration of transient.
 	 */
-	protected $autoload = true;
+	protected $expiration = 1;
 
 	/**
 	 * @inheritdoc
 	 */
 	public function getValueFromWordPress() {
-		return get_option($this->getName());
+		return get_transient($this->getName());
 	}
 
 	/**
 	 * @inheritdoc
 	 */
-	public function isAutoload() {
-		return $this->autoload;
+	public function getExpiration() {
+		return $this->expiration;
 	}
 
 	/**
 	 * @inheritdoc
 	 */
-	public function setAutoload($autoload) {
-		$this->autoload = (bool) $autoload;
+	public function setExpiration($expiration) {
+		$this->expiration = $expiration;
 		return $this;
 	}
 
@@ -39,7 +39,7 @@ abstract class AbstractOption extends AbstractNode implements OptionInterface {
 	 * @inheritdoc
 	 */
 	public function deleteFromWP() {
-		return delete_option($this->getName());
+		return delete_transient($this->getName());
 	}
 
 	/**
@@ -53,7 +53,7 @@ abstract class AbstractOption extends AbstractNode implements OptionInterface {
 				$raw =& $this->localValue;
 			}
 
-			$result = update_option($this->getName(), $raw, $this->isAutoload());
+			$result = set_transient($this->getName(), $raw, $this->getExpiration());
 
 			if($result)
 				$this->setLocalValue(null);
@@ -66,11 +66,11 @@ abstract class AbstractOption extends AbstractNode implements OptionInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function updateValue($value, $autoload = null) {
+	public function updateValue($value, $expiration = null) {
 		$this->setLocalValue($value);
 
-		if(!is_null($autoload))
-			$this->setAutoload($autoload);
+		if(!is_null($expiration))
+			$this->setExpiration($expiration);
 
 		return $this->flush();
 	}

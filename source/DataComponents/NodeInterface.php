@@ -79,33 +79,6 @@ interface NodeInterface {
 	public function setDefaultValue($defaultValue);
 
 	/**
-	 * Retrieve value of node from WordPress DB.
-	 *
-	 * @return string|bool|array String value of node if exists, false if some cases (option not exists in DB) or array if option saved as array.
-	 */
-	public function getValueFromWordPress();
-
-	/**
-	 * Performs pushing local value ($this->value) into the DB (actually save the value from instance
-	 * and remove $this->value because other code can use options directly with get|update|delete_option functions).
-	 *
-	 * @return bool Result of pushing (saving) option in DB.
-	 */
-	public function flush();
-
-	/**
-	 * Set value to object and then immediately save it into the DB (call $this->flush()).
-	 *
-	 * If operation was unsuccessful then return false and don't delete local value.
-	 *
-	 * @param $value mixed Any type of value which can be passed to $this->setValue().
-	 * @param null|bool $autoload This value passed to $this->setAutoload()
-	 *
-	 * @return bool Result of $this->flush() call.
-	 */
-	public function updateValue($value, $autoload = null);
-
-	/**
 	 * Returns set of Constraints (or just one) for Validator.
 	 *
 	 * @return ConstraintValidatorInterface[]|ConstraintValidatorInterface Constraint which defines how to validate your value.
@@ -181,15 +154,6 @@ interface NodeInterface {
 	 * @return true Always true after resetting local value.
 	 */
 	public function deleteLocal();
-
-	/**
-	 * Performs deletion of option only in DB.
-	 *
-	 * Delete option only in DB, local value (if presented) will still stored in this object.
-	 *
-	 * @return bool Result of deletion.
-	 */
-	public function deleteFromWP();
 
 	/**
 	 * Returns the data transformer which transform the data.

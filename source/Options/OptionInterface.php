@@ -4,7 +4,9 @@ namespace Korobochkin\WPKit\Options;
 use Korobochkin\WPKit\DataComponents\NodeInterface;
 
 /**
- * Interface OptionInterface represent single option with non nested (non array) values like string or numeric.
+ * Interface OptionInterface
+ *
+ * Represent single option with non nested values.
  *
  * @package Korobochkin\WPKit\Options
  */

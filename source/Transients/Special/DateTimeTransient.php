@@ -1,14 +1,14 @@
 <?php
-namespace Korobochkin\WPKit\Options\Special;
+namespace Korobochkin\WPKit\Transients\Special;
 
-use Korobochkin\WPKit\Options\AbstractOption;
+use Korobochkin\WPKit\Transients\AbstractTransient;
 use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
 use Symfony\Component\Validator\Constraints;
 
-class DateTimeOption extends AbstractOption {
+class DateTimeTransient extends AbstractTransient {
 
 	/**
-	 * DateTimeOption constructor.
+	 * DateTimeTransient constructor.
 	 */
 	public function __construct() {
 		$this->setDataTransformer(new DateTimeToStringTransformer());

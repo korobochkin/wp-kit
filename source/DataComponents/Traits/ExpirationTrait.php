@@ -1,7 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\DataComponents\Traits;
 
-class ExpirationTrait {
+trait ExpirationTrait {
 
 	/**
 	 * @var int The maximum of seconds to keep the data before refreshing.

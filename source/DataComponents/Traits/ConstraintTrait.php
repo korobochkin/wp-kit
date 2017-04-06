@@ -14,5 +14,6 @@ trait ConstraintTrait {
 
 	public function setConstraint($constraint) {
 		$this->constraint = $constraint;
+		return $this;
 	}
 }

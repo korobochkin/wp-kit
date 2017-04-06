@@ -42,7 +42,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	 */
 	public function testGetValueFromWordPressWithName() {
 		$this->stub->setName('wp_kit_abstract_option');
-		$this->assertTrue($this->stub->getValueFromWordPress());
+		$this->assertFalse($this->stub->getValueFromWordPress());
 	}
 
 	/**
@@ -59,7 +59,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 			array(false,       false),
 
 			array(1234,        true),
-			array(0,           true),
+			array(0,           false),
 			array(-1234,       true),
 			array(PHP_INT_MAX, true),
 			//array(PHP_INT_MIN, true),
@@ -76,17 +76,17 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 			array('true',      true),
 			array('false',     true),
 			array('',          false),
-			array('0',         true),
+			array('0',         false),
 
-			array(array(),     true),
+			array(array(),     false),
 			array(array(1),    true),
 			array(array(1, 2), true),
 			array(array(''),   true),
 			array(array('1'),  true),
 			array(array('0'),  true),
 
-			array(new \stdClass(), false),
-			array(new \WP_Query(), false),
+			array(new \stdClass(), true),
+			array(new \WP_Query(), true),
 
 			array(NULL,        false)
 		);

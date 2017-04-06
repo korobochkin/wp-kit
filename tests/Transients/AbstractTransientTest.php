@@ -82,7 +82,7 @@ class AbstractTransientTest extends \WP_UnitTestCase {
 	public function flushCases() {
 		return array(
 			array(true,        true),
-			array(false,       false), // false not saved by WordPress :)
+			array(false,       true),
 
 			array(1234,        true),
 			array(0,           true),

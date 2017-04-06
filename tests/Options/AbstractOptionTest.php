@@ -137,7 +137,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	public function flushCases() {
 		return array(
 			array(true,        true),
-			array(false,       true),
+			array(false,       false), // false not saved by WordPress :)
 
 			array(1234,        true),
 			array(0,           true),
@@ -187,7 +187,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	public function flushValueCases() {
 		return array(
 			array(true,        '1'),
-			array(false,       '0'),
+			array(false,       false),
 
 			array(1234,        '1234'),
 			array(0,           '0'),

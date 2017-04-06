@@ -17,7 +17,13 @@ abstract class AbstractOption extends AbstractNode implements OptionInterface {
 	 * @inheritdoc
 	 */
 	public function getValueFromWordPress() {
-		return get_option($this->getName());
+		$name = $this->getName();
+
+		if(!$name) {
+			throw new \LogicException('You must specify the name of option before calling any methods using name of option.');
+		}
+
+		return get_option($name);
 	}
 
 	/**
@@ -39,6 +45,12 @@ abstract class AbstractOption extends AbstractNode implements OptionInterface {
 	 * @inheritdoc
 	 */
 	public function deleteFromWP() {
+		$name = $this->getName();
+
+		if(!$name) {
+			throw new \LogicException('You must specify the name of option before calling any methods using name of option.');
+		}
+
 		return delete_option($this->getName());
 	}
 
@@ -53,7 +65,13 @@ abstract class AbstractOption extends AbstractNode implements OptionInterface {
 				$raw =& $this->localValue;
 			}
 
-			$result = update_option($this->getName(), $raw, $this->isAutoload());
+			$name = $this->getName();
+
+			if(!$name) {
+				throw new \LogicException('You must specify the name of option before calling any methods using name of option.');
+			}
+
+			$result = update_option($name, $raw, $this->isAutoload());
 
 			if($result)
 				$this->setLocalValue(null);

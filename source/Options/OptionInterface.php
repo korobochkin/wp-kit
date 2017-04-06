@@ -15,6 +15,8 @@ interface OptionInterface extends NodeInterface {
 	/**
 	 * Retrieve value of node from WordPress DB.
 	 *
+	 * @throws \LogicException If name of option not setted up.
+	 *
 	 * @return string|bool|array String value of node if exists, false if some cases (option not exists in DB) or array if option saved as array.
 	 */
 	public function getValueFromWordPress();
@@ -41,6 +43,8 @@ interface OptionInterface extends NodeInterface {
 	 *
 	 * Delete option only in DB, local value (if presented) will still stored in this object.
 	 *
+	 * @throws \LogicException If name of option not setted up.
+	 *
 	 * @return bool Result of deletion.
 	 */
 	public function deleteFromWP();
@@ -48,6 +52,8 @@ interface OptionInterface extends NodeInterface {
 	/**
 	 * Performs pushing local value ($this->value) into the DB (actually save the value from instance
 	 * and remove $this->value because other code can use options directly with get|update|delete_option functions).
+	 *
+	 * @throws \LogicException If name of option not setted up.
 	 *
 	 * @return bool Result of pushing (saving) option in DB.
 	 */

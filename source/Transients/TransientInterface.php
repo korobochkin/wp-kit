@@ -15,6 +15,8 @@ interface TransientInterface extends NodeInterface {
 	/**
 	 * Retrieve value of node from WordPress DB.
 	 *
+	 * @throws \LogicException If name of option not setted up.
+	 *
 	 * @return string|bool|array String value of node if exists, false if some cases (transient not exists in DB) or array if option saved as array.
 	 */
 	public function getValueFromWordPress();
@@ -39,6 +41,8 @@ interface TransientInterface extends NodeInterface {
 	 *
 	 * Delete transient only in DB, local value (if presented) will still stored in this object.
 	 *
+	 * @throws \LogicException If name of option not setted up.
+	 *
 	 * @return bool Result of deletion.
 	 */
 	public function deleteFromWP();
@@ -46,6 +50,8 @@ interface TransientInterface extends NodeInterface {
 	/**
 	 * Performs pushing local value ($this->value) into the DB (actually save the value from instance
 	 * and remove $this->value because other code can use transients directly with get|update|delete_transient functions).
+	 *
+	 * @throws \LogicException If name of option not setted up.
 	 *
 	 * @return bool Result of pushing (saving) transient in DB.
 	 */

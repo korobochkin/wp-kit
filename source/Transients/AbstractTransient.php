@@ -17,7 +17,13 @@ abstract class AbstractTransient extends AbstractNode implements TransientInterf
 	 * @inheritdoc
 	 */
 	public function getValueFromWordPress() {
-		return get_transient($this->getName());
+		$name = $this->getName();
+
+		if(!$name) {
+			throw new \LogicException('You must specify the name of option before calling any methods using name of option.');
+		}
+
+		return get_transient($name);
 	}
 
 	/**
@@ -39,7 +45,13 @@ abstract class AbstractTransient extends AbstractNode implements TransientInterf
 	 * @inheritdoc
 	 */
 	public function deleteFromWP() {
-		return delete_transient($this->getName());
+		$name = $this->getName();
+
+		if(!$name) {
+			throw new \LogicException('You must specify the name of option before calling any methods using name of option.');
+		}
+
+		return delete_transient($name);
 	}
 
 	/**
@@ -53,10 +65,17 @@ abstract class AbstractTransient extends AbstractNode implements TransientInterf
 				$raw =& $this->localValue;
 			}
 
-			$result = set_transient($this->getName(), $raw, $this->getExpiration());
+			$name = $this->getName();
 
-			if($result)
+			if(!$name) {
+				throw new \LogicException('You must specify the name of option before calling any methods using name of option.');
+			}
+
+			$result = set_transient($name, $raw, $this->getExpiration());
+
+			if($result) {
 				$this->setLocalValue(null);
+			}
 
 			return $result;
 		}

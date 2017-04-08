@@ -103,4 +103,67 @@ class OptionTest extends \WP_UnitTestCase {
 	public function casesDeleteLocalValue() {
 		return new DifferentTypesSet();
 	}
+
+	/**
+	 * Test deleting value in WordPress.
+	 *
+	 * @dataProvider casesDelete
+	 *
+	 * @param $value mixed Any variable types.
+	 * @param $expectedDeletingResult bool Result of deleting operation.
+	 */
+	public function testDelete($value, $expectedDeletingResult) {
+		$this->stub
+			->set($value)
+			->setName('wp_kit_dummy_option')
+			->flush();
+		$this->assertEquals($expectedDeletingResult, $this->stub->delete());
+		$this->assertFalse($this->stub->getValueFromWordPress());
+	}
+
+	public function casesDelete() {
+		$values = array(
+			array(true, true), // 0
+			array(false, false), // 1
+
+			array(1234, true), // 2
+			array(0, true), // 3
+			array(-1234, true), // 4
+			array(PHP_INT_MAX, true), // 5
+			//array(PHP_INT_MIN, true),
+
+			array(1.234, true), // 6
+			array(1.2e3, true), // 7
+			array(7E-10, true), // 8
+			array(-1.234, true), // 9
+			array(-1.2e3, true), // 10
+			array(-7E-10, true), // 11
+
+			array('1', true), // 12
+			array('VALUE', true), // 13
+			array('true', true), // 14
+			array('false', true), // 15
+			array('', true), // 16
+			array('0', true), // 17
+
+			array(array(), true), // 18
+			array(array(1), true), // 19
+			array(array(1, 2), true), // 20
+			array(array(''), true), // 21
+			array(array('1'), true), // 22
+			array(array('0'), true), // 23
+
+			array(new \stdClass(), true), // 24
+			array(new \WP_Query(), true), // 25
+
+			array(NULL, false), // 26
+		);
+
+		// Only for PHP 7
+		if(PHP_VERSION_ID >= 70000) {
+			$values[] = array(PHP_INT_MIN); // 27
+		}
+
+		return $values;
+	}
 }

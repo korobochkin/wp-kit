@@ -18,5 +18,10 @@
         "psr-4": {
             "Korobochkin\\WPKit\\": "source/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Korobochkin\\WPKit\\Tests\\": "tests/"
+        }
     }
 }

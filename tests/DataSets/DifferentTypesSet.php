@@ -5,7 +5,7 @@ class DifferentTypesSet implements \Iterator {
 
 	protected $variants;
 
-	protected $key = 0;
+	protected $position = 0;
 
 	/**
 	 * DifferentTypesSet constructor.
@@ -54,27 +54,26 @@ class DifferentTypesSet implements \Iterator {
 		}
 
 		$this->variants = $values;
-	}
-
-
-	public function current() {
-		return $this->variants[$this->key];
-	}
-
-	public function next() {
-		$this->key++;
-	}
-
-	public function key() {
-		return $this->key();
-	}
-
-	public function valid() {
-		return isset($this->variants[$this->key()]);
+		$this->position = 0;
 	}
 
 	public function rewind() {
-		$this->key = 0;
+		$this->position = 0;
 	}
 
+	public function current() {
+		return $this->variants[$this->position];
+	}
+
+	public function key() {
+		return $this->position;
+	}
+
+	public function next() {
+		++$this->position;
+	}
+
+	public function valid() {
+		return isset($this->variants[$this->position]);
+	}
 }

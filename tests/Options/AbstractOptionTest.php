@@ -24,7 +24,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	 * Test without setting name.
 	 */
 	public function testGetValueFromWordPress() {
-		if(method_exists($this, 'expectException')) {
+		if(PHP_VERSION_ID >= 70000) {
 			// PHP 7
 			$this->expectException(\LogicException::class);
 			$this->stub->getValueFromWordPress();
@@ -112,7 +112,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	 */
 	public function testDeleteFromWP($value, $expectedDeletingResult) {
 		// Without name throwing an error
-		if(method_exists($this, 'expectException')) {
+		if(PHP_VERSION_ID >= 70000) {
 			// PHP 7
 			$this->expectException(\LogicException::class);
 			$this->stub->deleteFromWP();

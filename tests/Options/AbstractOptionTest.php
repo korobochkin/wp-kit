@@ -141,7 +141,13 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	}
 
 	/**
+	 * Test flushing (saving) values into WordPress.
+	 *
 	 * @dataProvider casesFlush
+	 *
+	 * @param $value mixed Any variable types.
+	 * @param $expectedFlushingResult bool Expected result of flushing (saving).
+	 * @param $expectedValue mixed Expected value from WordPress
 	 */
 	public function testFlush($value, $expectedFlushingResult, $expectedValue) {
 		$this->assertTrue($this->stub->flush());
@@ -176,92 +182,5 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 
 	public function casesFlush() {
 		return new AfterSavingSet();
-
-		return array(
-			array(true,        true),
-			array(false,       false), // false not saved by WordPress :)
-
-			array(1234,        true),
-			array(0,           true),
-			array(-1234,       true),
-			array(PHP_INT_MAX, true),
-			//array(PHP_INT_MIN, true),
-
-			array(1.234,       true),
-			array(1.2e3,       true),
-			array(7E-10,       true),
-			array(-1.234,      true),
-			array(-1.2e3,      true),
-			array(-7E-10,      true),
-
-			array('1',         true),
-			array('VALUE',     true),
-			array('true',      true),
-			array('false',     true),
-			array('',          true),
-			array('0',         true),
-
-			array(array(),     true),
-			array(array(1),    true),
-			array(array(1, 2), true),
-			array(array(''),   true),
-			array(array('1'),  true),
-			array(array('0'),  true),
-
-			array(new \stdClass(), true),
-			array(new \WP_Query(), true),
-
-			array(NULL,        true)
-		);
-	}
-
-	/**
-	 * @dataProvider flushValueCases
-	 */
-	public function testValueAfterSaving($value, $expected) {
-		$this->stub
-			->setName('wp_kit_abstract_option')
-			->set($value)
-			->flush();
-		$this->assertEquals($expected, $this->stub->get());
-	}
-
-	public function flushValueCases() {
-		return array(
-			array(true,        '1'),
-			array(false,       false),
-
-			array(1234,        '1234'),
-			array(0,           '0'),
-			array(-1234,       '-1234'),
-			array(PHP_INT_MAX, (string)PHP_INT_MAX),
-			//array(PHP_INT_MIN, true),
-
-			array(1.234,       '1.234'),
-			array(1.2e3,       '1.2e3'),
-			array(7E-10,       '7E-10'),
-			array(-1.234,      '-1.234'),
-			array(-1.2e3,      '-1.2e3'),
-			array(-7E-10,      '-7E-10'),
-
-			array('1',         '1'),
-			array('VALUE',     'VALUE'),
-			array('true',      'true'),
-			array('false',     'false'),
-			array('',          ''),
-			array('0',         '0'),
-
-			array(array(),     array()),
-			array(array(1),    array(1)),
-			array(array(1, 2), array(1, 2)),
-			array(array(''),   array('')),
-			array(array('1'),  array('1')),
-			array(array('0'),  array('0')),
-
-			array(new \stdClass(), new \stdClass()),
-			array(new \WP_Query(), new \WP_Query()),
-
-			array(NULL,        '')
-		);
 	}
 }

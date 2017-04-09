@@ -46,14 +46,14 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * @dataProvider autoloadCases
+	 * @dataProvider casesAutoload
 	 */
 	public function testAutoload($value, $expected) {
 		$this->stub->setName('wp_kit_abstract_option');
 		$this->assertEquals($expected, $this->stub->setAutoload($value)->isAutoload());
 	}
 
-	public function autoloadCases() {
+	public function casesAutoload() {
 		$values = array(
 			array(true,        true),
 			array(false,       false),

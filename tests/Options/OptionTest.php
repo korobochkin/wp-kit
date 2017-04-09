@@ -2,7 +2,6 @@
 namespace Korobochkin\WPKit\Tests\Options;
 
 use Korobochkin\WPKit\Options\Option;
-use Korobochkin\WPKit\Tests\DataSets\DifferentTypesSet;
 
 class OptionTest extends \WP_UnitTestCase {
 
@@ -24,22 +23,5 @@ class OptionTest extends \WP_UnitTestCase {
 	 */
 	public function testBuildConstraint() {
 		$this->assertEquals(null, $this->stub->buildConstraint());
-	}
-
-	/**
-	 * Test deleting local value.
-	 *
-	 * @dataProvider casesDeleteLocalValue
-	 *
-	 * @param $value mixed Any variable types.
-	 */
-	public function testDeleteLocalValue($value) {
-		$this->assertEquals($this->stub, $this->stub->setLocalValue($value));
-		$this->assertTrue($this->stub->deleteLocal());
-		$this->assertNull($this->stub->getLocalValue());
-	}
-
-	public function casesDeleteLocalValue() {
-		return new DifferentTypesSet();
 	}
 }

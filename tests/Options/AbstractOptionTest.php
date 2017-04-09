@@ -272,4 +272,21 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	public function casesDefaultValue() {
 		return new DifferentTypesSet();
 	}
+
+	/**
+	 * Test deleting local value.
+	 *
+	 * @dataProvider casesDeleteLocalValue
+	 *
+	 * @param $value mixed Any variable types.
+	 */
+	public function testDeleteLocalValue($value) {
+		$this->assertEquals($this->stub, $this->stub->setLocalValue($value));
+		$this->assertTrue($this->stub->deleteLocal());
+		$this->assertNull($this->stub->getLocalValue());
+	}
+
+	public function casesDeleteLocalValue() {
+		return new DifferentTypesSet();
+	}
 }

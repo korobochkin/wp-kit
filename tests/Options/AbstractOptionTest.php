@@ -215,6 +215,31 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 		return new AfterSavingSet();
 	}
 
+	public function testGet($value, $expectedFlushingResult, $expectedValue) {
+		$this->stub->setName('wp_kit_abstract_option');
+
+		// Check default value
+		$this->assertEquals(null, $this->stub->get());
+
+		// Check Default value again
+		$this->stub->setDefaultValue($value);
+		$this->assertEquals($value, $this->stub->get());
+
+		// Check returning local value
+		$this->stub->setDefaultValue(uniqid('wp_kit', true));
+		$this->stub->setLocalValue($value);
+		$this->assertEquals($value, $this->stub->get());
+
+		// Check returning value from WordPress
+		$this->stub->flush();
+		$this->assertEquals($expectedValue, $this->stub->get());
+		// TODO: more checks here!
+	}
+
+	public function casesGet() {
+		return new AfterSavingSet();
+	}
+
 	/**
 	 * Test Getter and Setter for Constraint
 	 *

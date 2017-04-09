@@ -4,6 +4,7 @@ namespace Korobochkin\WPKit\Tests\Options;
 use Korobochkin\WPKit\Options\Option;
 use Korobochkin\WPKit\Tests\DataSets\AfterDeletionSet;
 use Korobochkin\WPKit\Tests\DataSets\AfterSavingSet;
+use Symfony\Component\Validator\Constraints;
 
 class AbstractOptionTest extends \WP_UnitTestCase {
 
@@ -209,5 +210,28 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 
 	public function casesUpdateValue() {
 		return new AfterSavingSet();
+	}
+
+	/**
+	 * Test Getter and Setter for Constraint
+	 *
+	 * @dataProvider casesConstraint
+	 *
+	 * @param $value \Symfony\Component\Validator\Constraint[]|\Symfony\Component\Validator\Constraint
+	 */
+	public function testConstraint($value) {
+		$this->assertEquals($this->stub, $this->stub->setConstraint($value));
+		$this->assertEquals($value, $this->stub->getConstraint());
+	}
+
+	public function casesConstraint() {
+		return array(
+			array(new Constraints\Blank()),
+			array(new Constraints\NotNull()),
+			array(array(
+				new Constraints\Blank(),
+				new Constraints\NotNull(),
+			)),
+		);
 	}
 }

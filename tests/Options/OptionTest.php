@@ -3,7 +3,6 @@ namespace Korobochkin\WPKit\Tests\Options;
 
 use Korobochkin\WPKit\Options\Option;
 use Korobochkin\WPKit\Tests\DataSets\DifferentTypesSet;
-use Symfony\Component\Validator\Constraints;
 use Symfony\Component\Form\Extension\Core\DataTransformer\BooleanToStringTransformer;
 use Symfony\Component\Form\ReversedTransformer;
 
@@ -27,29 +26,6 @@ class OptionTest extends \WP_UnitTestCase {
 	 */
 	public function testBuildConstraint() {
 		$this->assertEquals(null, $this->stub->buildConstraint());
-	}
-
-	/**
-	 * Test Getter and Setter for Constraint
-	 *
-	 * @dataProvider casesConstraint
-	 *
-	 * @param $value \Symfony\Component\Validator\Constraint[]|\Symfony\Component\Validator\Constraint
-	 */
-	public function testConstraint($value) {
-		$this->assertEquals($this->stub, $this->stub->setConstraint($value));
-		$this->assertEquals($value, $this->stub->getConstraint());
-	}
-
-	public function casesConstraint() {
-		return array(
-			array(new Constraints\Blank()),
-			array(new Constraints\NotNull()),
-			array(array(
-				new Constraints\Blank(),
-				new Constraints\NotNull(),
-			)),
-		);
 	}
 
 	/**

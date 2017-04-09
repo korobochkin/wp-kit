@@ -182,4 +182,32 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	public function casesFlush() {
 		return new AfterSavingSet();
 	}
+
+	/**
+	 * Test flushing (saving) values into WordPress.
+	 *
+	 * @dataProvider casesUpdateValue
+	 *
+	 * @param $value mixed Any variable types.
+	 * @param $expectedFlushingResult bool Expected result of flushing (saving).
+	 * @param $expectedValue mixed Expected value from WordPress
+	 */
+	public function testUpdateValue($value, $expectedFlushingResult, $expectedValue) {
+		$this->stub
+			->setName('wp_kit_abstract_option')
+			->set($value);
+
+		// Successful saved
+		$this->assertEquals($expectedFlushingResult, $this->stub->flush());
+
+		// Retrieve value back
+		$this->assertEquals($expectedValue, $this->stub->get());
+
+		// Local value deleted
+		$this->assertEquals(null, $this->stub->getLocalValue());
+	}
+
+	public function casesUpdateValue() {
+		return new AfterSavingSet();
+	}
 }

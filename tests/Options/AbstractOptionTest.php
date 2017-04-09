@@ -94,8 +94,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 		);
 
 		// Only for PHP 7
-		$result = version_compare(phpversion(), '7');
-		if($result == 0 || $result == 1) {
+		if(PHP_VERSION_ID >= 70000) {
 			$values[] = array(PHP_INT_MIN, true);
 		}
 

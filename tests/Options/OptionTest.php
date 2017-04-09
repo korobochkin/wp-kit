@@ -27,22 +27,6 @@ class OptionTest extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * Test Getter and Setter.
-	 *
-	 * @dataProvider casesDefaultValue
-	 *
-	 * @param $value mixed Any variable types.
-	 */
-	public function testDefaultValue($value) {
-		$this->assertEquals($this->stub, $this->stub->setDefaultValue($value));
-		$this->assertEquals($value, $this->stub->getDefaultValue());
-	}
-
-	public function casesDefaultValue() {
-		return new DifferentTypesSet();
-	}
-
-	/**
 	 * Test deleting local value.
 	 *
 	 * @dataProvider casesDeleteLocalValue

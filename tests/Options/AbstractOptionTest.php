@@ -3,8 +3,7 @@ namespace Korobochkin\WPKit\Tests\Options;
 
 use Korobochkin\WPKit\Options\Option;
 use Korobochkin\WPKit\Tests\DataSets\AfterDeletionSet;
-use Korobochkin\WPKit\Tests\DataSets\DifferentTypesAfterSavingSet;
-use Korobochkin\WPKit\Tests\DataSets\DifferentTypesSet;
+use Korobochkin\WPKit\Tests\DataSets\AfterSavingSet;
 
 class AbstractOptionTest extends \WP_UnitTestCase {
 
@@ -141,28 +140,43 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 		return new AfterDeletionSet();
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	/**
-	 * @dataProvider flushCases
+	 * @dataProvider casesFlush
 	 */
-	public function testFlush($value, $expected) {
+	public function testFlush($value, $expectedFlushingResult, $expectedValue) {
+		$this->assertTrue($this->stub->flush());
+
+		$this->stub->set($value);
+
+		if(PHP_VERSION_ID >= 70000) {
+			// PHP 7
+			$this->expectException(\LogicException::class);
+			$this->stub->flush();
+		} else {
+			// PHP 5
+			try {
+				$this->stub->flush();
+			}
+			catch(\Exception $exception) {
+				$this->assertTrue(is_a($exception, \LogicException::class));
+			}
+		}
+
 		$this->stub->setName('wp_kit_abstract_option');
-		$this->assertEquals($expected, $this->stub->set($value)->flush());
+
+		// Successful saved
+		$this->assertEquals($expectedFlushingResult, $this->stub->flush());
+
+		// Retrieve value back
+		$this->assertEquals($expectedValue, $this->stub->get());
+
+		// Local value deleted
+		$this->assertEquals(null, $this->stub->getLocalValue());
 	}
 
-	public function flushCases() {
+	public function casesFlush() {
+		return new AfterSavingSet();
+
 		return array(
 			array(true,        true),
 			array(false,       false), // false not saved by WordPress :)

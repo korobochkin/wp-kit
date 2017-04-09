@@ -1,17 +1,13 @@
 <?php
 namespace Korobochkin\WPKit\Tests\DataSets;
 
-class DifferentTypesSet implements \Iterator {
-
-	protected $variants;
-
-	protected $position = 0;
+class DifferentTypesSet extends AbstractDataSet {
 
 	/**
 	 * DifferentTypesSet constructor.
 	 */
 	public function __construct() {
-		$values = array(
+		$variants = array(
 			array(true), // 0
 			array(false), // 1
 
@@ -50,30 +46,10 @@ class DifferentTypesSet implements \Iterator {
 
 		// Only for PHP 7
 		if(PHP_VERSION_ID >= 70000) {
-			$values[] = array(PHP_INT_MIN); // 27
+			$variants[] = array(PHP_INT_MIN); // 27
 		}
 
-		$this->variants = $values;
+		$this->variants = $variants;
 		$this->position = 0;
-	}
-
-	public function rewind() {
-		$this->position = 0;
-	}
-
-	public function current() {
-		return $this->variants[$this->position];
-	}
-
-	public function key() {
-		return $this->position;
-	}
-
-	public function next() {
-		++$this->position;
-	}
-
-	public function valid() {
-		return isset($this->variants[$this->position]);
 	}
 }

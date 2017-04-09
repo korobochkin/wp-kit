@@ -2,6 +2,9 @@
 namespace Korobochkin\WPKit\Tests\Options;
 
 use Korobochkin\WPKit\Options\Option;
+use Korobochkin\WPKit\Tests\DataSets\AfterDeletionSet;
+use Korobochkin\WPKit\Tests\DataSets\DifferentTypesAfterSavingSet;
+use Korobochkin\WPKit\Tests\DataSets\DifferentTypesSet;
 
 class AbstractOptionTest extends \WP_UnitTestCase {
 
@@ -100,7 +103,16 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 		return $values;
 	}
 
-	public function testDeleteFromWP() {
+	/**
+	 * Test deleting value in WordPress.
+	 *
+	 * @dataProvider casesDeleteFromWP
+	 *
+	 * @param $value mixed Any variable types.
+	 * @param $expectedDeletingResult bool Result of deleting operation.
+	 */
+	public function testDeleteFromWP($value, $expectedDeletingResult) {
+		// Without name throwing an error
 		if(method_exists($this, 'expectException')) {
 			// PHP 7
 			$this->expectException(\LogicException::class);
@@ -115,16 +127,32 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 			}
 		}
 
-		$this->stub->setName('wp_kit_abstract_option');
-		$this->stub->updateValue('hello');
-
-		// Check that successful pushed into DB
-		$this->assertEquals('hello', $this->stub->getValueFromWordPress());
+		// Load value into WordPress
+		$this->stub
+			->setName('wp_kit_abstract_option')
+			->updateValue($value);
 
 		// Check that successful remove from DB
-		$this->assertTrue($this->stub->deleteFromWP());
-		$this->assertEquals(false, $this->stub->getValueFromWordPress());
+		$this->assertEquals($expectedDeletingResult, $this->stub->deleteFromWP());
+		$this->assertFalse($this->stub->getValueFromWordPress());
 	}
+
+	public function casesDeleteFromWP() {
+		return new AfterDeletionSet();
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	/**
 	 * @dataProvider flushCases

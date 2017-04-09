@@ -3,8 +3,6 @@ namespace Korobochkin\WPKit\Tests\Options;
 
 use Korobochkin\WPKit\Options\Option;
 use Korobochkin\WPKit\Tests\DataSets\DifferentTypesSet;
-use Symfony\Component\Form\Extension\Core\DataTransformer\BooleanToStringTransformer;
-use Symfony\Component\Form\ReversedTransformer;
 
 class OptionTest extends \WP_UnitTestCase {
 
@@ -26,25 +24,6 @@ class OptionTest extends \WP_UnitTestCase {
 	 */
 	public function testBuildConstraint() {
 		$this->assertEquals(null, $this->stub->buildConstraint());
-	}
-
-	/**
-	 * Test Getter and Setter for Data Transformers
-	 *
-	 * @dataProvider casesTransformer
-	 *
-	 * @param $value
-	 */
-	public function testTransformer($value) {
-		$this->assertEquals($this->stub, $this->stub->setDataTransformer($value));
-		$this->assertEquals($value, $this->stub->getDataTransformer());
-	}
-
-	public function casesTransformer() {
-		return array(
-			array(new BooleanToStringTransformer('1')),
-			array(new ReversedTransformer(new BooleanToStringTransformer('1'))),
-		);
 	}
 
 	/**

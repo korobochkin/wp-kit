@@ -5,6 +5,8 @@ use Korobochkin\WPKit\Options\Option;
 use Korobochkin\WPKit\Tests\DataSets\AfterDeletionSet;
 use Korobochkin\WPKit\Tests\DataSets\AfterSavingSet;
 use Symfony\Component\Validator\Constraints;
+use Symfony\Component\Form\Extension\Core\DataTransformer\BooleanToStringTransformer;
+use Symfony\Component\Form\ReversedTransformer;
 
 class AbstractOptionTest extends \WP_UnitTestCase {
 
@@ -232,6 +234,25 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 				new Constraints\Blank(),
 				new Constraints\NotNull(),
 			)),
+		);
+	}
+
+	/**
+	 * Test Getter and Setter for Data Transformers
+	 *
+	 * @dataProvider casesTransformer
+	 *
+	 * @param $value
+	 */
+	public function testTransformer($value) {
+		$this->assertEquals($this->stub, $this->stub->setDataTransformer($value));
+		$this->assertEquals($value, $this->stub->getDataTransformer());
+	}
+
+	public function casesTransformer() {
+		return array(
+			array(new BooleanToStringTransformer('1')),
+			array(new ReversedTransformer(new BooleanToStringTransformer('1'))),
 		);
 	}
 }

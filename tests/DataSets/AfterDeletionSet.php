@@ -38,12 +38,12 @@ class AfterDeletionSet extends AbstractDataSet {
 			array(new \stdClass(), true), // 24
 			array(new \WP_Query(), true), // 25
 
-			array(NULL,            false), // 26
+			array(NULL,            true), // 26
 		);
 
 		// Only for PHP 7
 		if(PHP_VERSION_ID >= 70000) {
-			$variants[] = array(PHP_INT_MIN, false); // 27
+			$variants[] = array(PHP_INT_MIN, true); // 27
 		}
 
 		$this->variants = $variants;

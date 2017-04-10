@@ -58,7 +58,6 @@ abstract class AbstractOption extends AbstractNode implements OptionInterface {
 	 * @inheritdoc
 	 */
 	public function flush() {
-		if(isset($this->localValue)) {
 			if($this->getDataTransformer()) {
 				$raw = $this->getDataTransformer()->transform($this->localValue);
 			} else {
@@ -77,8 +76,6 @@ abstract class AbstractOption extends AbstractNode implements OptionInterface {
 				$this->setLocalValue(null);
 
 			return $result;
-		}
-		return true;
 	}
 
 	/**

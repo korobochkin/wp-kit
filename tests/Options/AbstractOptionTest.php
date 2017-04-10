@@ -153,8 +153,6 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	 * @param $expectedValue mixed Expected value from WordPress
 	 */
 	public function testFlush($value, $expectedFlushingResult, $expectedValue) {
-		$this->assertTrue($this->stub->flush());
-
 		$this->stub->set($value);
 
 		if(PHP_VERSION_ID >= 70000) {

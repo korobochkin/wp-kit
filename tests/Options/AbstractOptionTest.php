@@ -215,6 +215,13 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 		return new AfterSavingSet();
 	}
 
+	/**
+	 * @dataProvider casesGet
+	 *
+	 * @param $value
+	 * @param $expectedFlushingResult
+	 * @param $expectedValue
+	 */
 	public function testGet($value, $expectedFlushingResult, $expectedValue) {
 		$this->stub->setName('wp_kit_abstract_option');
 
@@ -228,12 +235,16 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 		// Check returning local value
 		$this->stub->setDefaultValue(uniqid('wp_kit', true));
 		$this->stub->setLocalValue($value);
-		$this->assertEquals($value, $this->stub->get());
+		if($value === null) {
+			$this->assertEquals($this->stub->getDefaultValue(), $this->stub->get());
+		} else {
+			$this->assertEquals($value, $this->stub->get());
+		}
 
 		// Check returning value from WordPress
 		$this->stub->flush();
+		// TODO: something wrong here
 		$this->assertEquals($expectedValue, $this->stub->get());
-		// TODO: more checks here!
 	}
 
 	public function casesGet() {

@@ -8,6 +8,7 @@ use Korobochkin\WPKit\Tests\DataSets\DifferentTypesSet;
 use Symfony\Component\Validator\Constraints;
 use Symfony\Component\Form\Extension\Core\DataTransformer\BooleanToStringTransformer;
 use Symfony\Component\Form\ReversedTransformer;
+use Symfony\Component\Validator\Validation;
 
 class AbstractOptionTest extends \WP_UnitTestCase {
 
@@ -261,7 +262,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	 * @param $expectedValue
 	 */
 	public function testSet($value, $expectedFlushingResult, $expectedValue) {
-		$this->stub->set($value);
+		$this->assertEquals($this->stub, $this->stub->set($value));
 		$this->assertEquals($value, $this->stub->get());
 		$this->assertEquals($value, $this->stub->getLocalValue());
 	}
@@ -283,7 +284,8 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	 * @param $value mixed Any types of values.
 	 */
 	public function testLocalValue($value) {
-		$this->stub->setLocalValue($value);
+		$this->assertNull($this->stub->getLocalValue());
+		$this->assertEquals($this->stub, $this->stub->setLocalValue($value));
 		$this->assertEquals($value, $this->stub->getLocalValue());
 	}
 
@@ -299,6 +301,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	 * @param $value mixed Any variable types.
 	 */
 	public function testDefaultValue($value) {
+		$this->assertNull($this->stub->getDefaultValue());
 		$this->assertEquals($this->stub, $this->stub->setDefaultValue($value));
 		$this->assertEquals($value, $this->stub->getDefaultValue());
 	}
@@ -332,6 +335,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	 * @param $value \Symfony\Component\Validator\Constraint[]|\Symfony\Component\Validator\Constraint
 	 */
 	public function testConstraint($value) {
+		$this->assertNull($this->stub->getConstraint());
 		$this->assertEquals($this->stub, $this->stub->setConstraint($value));
 		$this->assertEquals($value, $this->stub->getConstraint());
 	}
@@ -345,6 +349,14 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 				new Constraints\NotNull(),
 			)),
 		);
+	}
+
+	public function testValidator() {
+		$validator = Validation::createValidator();
+
+		$this->assertNull($this->stub->getValidator());
+		$this->assertEquals($this->stub, $this->stub->setValidator($validator));
+		$this->assertEquals($validator, $this->stub->getValidator());
 	}
 
 	/**

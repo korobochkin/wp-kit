@@ -208,6 +208,8 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 		return new AfterSavingSet();
 	}
 
+	/* The tests bellow for methods inherited from AbstractNode class */
+
 	/**
 	 * @dataProvider casesGet
 	 *
@@ -216,6 +218,14 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	 * @param $expectedValue
 	 */
 	public function testGet($value, $expectedFlushingResult, $expectedValue) {
+
+		// Test that local value returned
+		$this->stub->setLocalValue($value);
+		$this->assertEquals($value, $this->stub->get());
+
+		// Reset local value
+		$this->stub->setLocalValue(null);
+
 		$this->stub->setName('wp_kit_abstract_option');
 
 		// Check default value
@@ -234,13 +244,29 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 			$this->assertEquals($value, $this->stub->get());
 		}
 
-		// Check returning value from WordPress
+		// Check value from WordPress after saving
 		$this->stub->flush();
-		// TODO: something wrong here
 		$this->assertEquals($expectedValue, $this->stub->get());
 	}
 
 	public function casesGet() {
+		return new AfterSavingSet();
+	}
+
+	/**
+	 * @dataProvider casesSet
+	 *
+	 * @param $value
+	 * @param $expectedFlushingResult
+	 * @param $expectedValue
+	 */
+	public function testSet($value, $expectedFlushingResult, $expectedValue) {
+		$this->stub->set($value);
+		$this->assertEquals($value, $this->stub->get());
+		$this->assertEquals($value, $this->stub->getLocalValue());
+	}
+
+	public function casesSet() {
 		return new AfterSavingSet();
 	}
 

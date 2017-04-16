@@ -25,7 +25,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * Test without setting name.
+	 * Test getting raw value from WordPress
 	 */
 	public function testGetValueFromWordPress() {
 		if(PHP_VERSION_ID >= 70000) {
@@ -41,12 +41,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 				$this->assertTrue(is_a($exception, \LogicException::class));
 			}
 		}
-	}
 
-	/**
-	 * Test with setting name before request value.
-	 */
-	public function testGetValueFromWordPressWithName() {
 		$this->stub->setName('wp_kit_abstract_option');
 		$this->assertFalse($this->stub->getValueFromWordPress());
 	}

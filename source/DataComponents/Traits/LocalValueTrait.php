@@ -13,4 +13,6 @@ trait LocalValueTrait {
 		$this->localValue = $value;
 		return $this;
 	}
+
+	// TODO: add hasLocalValue method
 }

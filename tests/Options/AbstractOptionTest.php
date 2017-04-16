@@ -278,6 +278,20 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	}
 
 	/**
+	 * @dataProvider casesLocalValue
+	 *
+	 * @param $value mixed Any types of values.
+	 */
+	public function testLocalValue($value) {
+		$this->stub->setLocalValue($value);
+		$this->assertEquals($value, $this->stub->getLocalValue());
+	}
+
+	public function casesLocalValue() {
+		return new DifferentTypesSet();
+	}
+
+	/**
 	 * Test Getter and Setter for Constraint
 	 *
 	 * @dataProvider casesConstraint

@@ -270,6 +270,13 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 		return new AfterSavingSet();
 	}
 
+	public function testName() {
+		$this->assertNull($this->stub->getName());
+
+		$this->assertEquals($this->stub, $this->stub->setName('wp_kit_dummy_name'));
+		$this->assertEquals('wp_kit_dummy_name', $this->stub->getName());
+	}
+
 	/**
 	 * Test Getter and Setter for Constraint
 	 *

@@ -17,9 +17,4 @@ class AbstractNodeTest extends \WP_UnitTestCase {
 		parent::setUp();
 		$this->stub = $this->getMockForAbstractClass(AbstractNode::class);
 	}
-
-	public function testName() {
-		$this->assertEquals($this->stub, $this->stub->setName('wp_kit_dummy_name'));
-		$this->assertEquals('wp_kit_dummy_name', $this->stub->getName());
-	}
 }

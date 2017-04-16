@@ -396,6 +396,19 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 		return new ValidateSet();
 	}
 
+	public function testValidateValue() {
+		$validator = Validation::createValidator();
+		$this->stub->setValidator($validator);
+		$this->stub->setConstraint(array(
+			new Constraints\NotNull(),
+			new Constraints\EqualTo(array(
+				'value' => 'wp_kit_test_value',
+			)),
+		));
+
+		$this->assertInstanceOf(ConstraintViolationList::class, $this->stub->validateValue('wp_kit_test_value'));
+	}
+
 	/**
 	 * Test Getter and Setter for Data Transformers
 	 *

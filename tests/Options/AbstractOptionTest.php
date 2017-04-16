@@ -292,6 +292,22 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	}
 
 	/**
+	 * Test Getter and Setter for default value.
+	 *
+	 * @dataProvider casesDefaultValue
+	 *
+	 * @param $value mixed Any variable types.
+	 */
+	public function testDefaultValue($value) {
+		$this->assertEquals($this->stub, $this->stub->setDefaultValue($value));
+		$this->assertEquals($value, $this->stub->getDefaultValue());
+	}
+
+	public function casesDefaultValue() {
+		return new DifferentTypesSet();
+	}
+
+	/**
 	 * Test Getter and Setter for Constraint
 	 *
 	 * @dataProvider casesConstraint
@@ -331,22 +347,6 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 			array(new BooleanToStringTransformer('1')),
 			array(new ReversedTransformer(new BooleanToStringTransformer('1'))),
 		);
-	}
-
-	/**
-	 * Test Getter and Setter.
-	 *
-	 * @dataProvider casesDefaultValue
-	 *
-	 * @param $value mixed Any variable types.
-	 */
-	public function testDefaultValue($value) {
-		$this->assertEquals($this->stub, $this->stub->setDefaultValue($value));
-		$this->assertEquals($value, $this->stub->getDefaultValue());
-	}
-
-	public function casesDefaultValue() {
-		return new DifferentTypesSet();
 	}
 
 	/**

@@ -308,6 +308,23 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	}
 
 	/**
+	 * Test deleting local value.
+	 *
+	 * @dataProvider casesDeleteLocalValue
+	 *
+	 * @param $value mixed Any variable types.
+	 */
+	public function testDeleteLocalValue($value) {
+		$this->assertEquals($this->stub, $this->stub->setLocalValue($value));
+		$this->assertTrue($this->stub->deleteLocal());
+		$this->assertNull($this->stub->getLocalValue());
+	}
+
+	public function casesDeleteLocalValue() {
+		return new DifferentTypesSet();
+	}
+
+	/**
 	 * Test Getter and Setter for Constraint
 	 *
 	 * @dataProvider casesConstraint
@@ -347,22 +364,5 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 			array(new BooleanToStringTransformer('1')),
 			array(new ReversedTransformer(new BooleanToStringTransformer('1'))),
 		);
-	}
-
-	/**
-	 * Test deleting local value.
-	 *
-	 * @dataProvider casesDeleteLocalValue
-	 *
-	 * @param $value mixed Any variable types.
-	 */
-	public function testDeleteLocalValue($value) {
-		$this->assertEquals($this->stub, $this->stub->setLocalValue($value));
-		$this->assertTrue($this->stub->deleteLocal());
-		$this->assertNull($this->stub->getLocalValue());
-	}
-
-	public function casesDeleteLocalValue() {
-		return new DifferentTypesSet();
 	}
 }

@@ -5,9 +5,12 @@ use Korobochkin\WPKit\Options\Option;
 use Korobochkin\WPKit\Tests\DataSets\AfterDeletionSet;
 use Korobochkin\WPKit\Tests\DataSets\AfterSavingSet;
 use Korobochkin\WPKit\Tests\DataSets\DifferentTypesSet;
+use Korobochkin\WPKit\Tests\DataSets\ValidateSet;
+use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints;
 use Symfony\Component\Form\Extension\Core\DataTransformer\BooleanToStringTransformer;
 use Symfony\Component\Form\ReversedTransformer;
+use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validation;
 
 class AbstractOptionTest extends \WP_UnitTestCase {
@@ -357,6 +360,40 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 		$this->assertNull($this->stub->getValidator());
 		$this->assertEquals($this->stub, $this->stub->setValidator($validator));
 		$this->assertEquals($validator, $this->stub->getValidator());
+	}
+
+	public function testValidate() {
+		$validator = Validation::createValidator();
+		$this->stub->setValidator($validator);
+		$this->stub->set('wp_kit_test_value');
+		$this->stub->setConstraint(array(
+			new Constraints\NotNull(),
+			new Constraints\EqualTo(array(
+				'value' => 'wp_kit_test_value',
+			)),
+		));
+
+		$this->assertInstanceOf(ConstraintViolationList::class, $this->stub->validate());
+	}
+
+	/**
+	 * @dataProvider casesIsValid
+	 *
+	 * @param $value mixed Value to set in instance and validate.
+	 * @param $constraints Constraint|Constraint[] Set of constraints (rules) to validator.
+	 * @param $expectedValidOrNot bool What should return isValid method.
+	 */
+	public function testIsValid($value, $constraints, $expectedValidOrNot) {
+		$validator = Validation::createValidator();
+		$this->stub->setValidator($validator);
+
+		$this->stub->set($value);
+		$this->stub->setConstraint($constraints);
+		$this->assertEquals($expectedValidOrNot, $this->stub->isValid());
+	}
+
+	public function casesIsValid() {
+		return new ValidateSet();
 	}
 
 	/**

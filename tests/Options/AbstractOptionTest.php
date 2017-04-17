@@ -52,6 +52,8 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	}
 
 	/**
+	 * Testing autoload getter and setter.
+	 *
 	 * @dataProvider casesAutoload
 	 */
 	public function testAutoload($value, $expected) {
@@ -145,7 +147,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * Test flushing (saving) values into WordPress.
+	 * Test flushing (saving) values into WordPress with flush().
 	 *
 	 * @dataProvider casesFlush
 	 *
@@ -187,7 +189,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * Test flushing (saving) values into WordPress.
+	 * Testing flushing (saving) values into WordPress with updateValue().
 	 *
 	 * @dataProvider casesUpdateValue
 	 *

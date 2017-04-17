@@ -262,6 +262,8 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	}
 
 	/**
+	 * Testing set() method.
+	 *
 	 * @dataProvider casesSet
 	 *
 	 * @param $value                            mixed Any variable types.
@@ -308,7 +310,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * Test Getter and Setter for default value.
+	 * Testing Getter and Setter for default value.
 	 *
 	 * @dataProvider casesDefaultValue
 	 *

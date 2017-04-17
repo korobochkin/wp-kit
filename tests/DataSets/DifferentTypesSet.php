@@ -4,8 +4,6 @@ namespace Korobochkin\WPKit\Tests\DataSets;
 /**
  * Class DifferentTypesSet
  * @package Korobochkin\WPKit\Tests\DataSets
- *
- * @deprecated
  */
 class DifferentTypesSet extends AbstractDataSet {
 

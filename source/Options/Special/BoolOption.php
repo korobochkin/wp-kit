@@ -12,7 +12,7 @@ class BoolOption extends AbstractOption {
 	 */
 	public function __construct() {
 		$this->setDataTransformer(new BooleanToStringTransformer('1', '0'));
-		$this->setDefaultValue(false);
+		$this->setDefaultValue(true);
 	}
 
 	public function buildConstraint() {

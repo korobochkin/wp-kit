@@ -47,7 +47,7 @@ class BoolSanitizerTest extends \WP_UnitTestCase {
 			array(new \stdClass(), true),
 			array(new \WP_Query(), true),
 
-			array(NULL,        false)
+			array(NULL,        true),
 		);
 
 		// Only for PHP 7

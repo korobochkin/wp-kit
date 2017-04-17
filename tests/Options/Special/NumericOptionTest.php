@@ -6,6 +6,8 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class NumericOptionTest extends \WP_UnitTestCase {
 
+	// TODO: fix this test
+
 	/**
 	 * @var NumericOption
 	 */

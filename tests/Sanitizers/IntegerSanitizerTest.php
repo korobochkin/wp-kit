@@ -5,6 +5,8 @@ use Korobochkin\WPKit\Sanitizers\IntegerSanitizer;
 
 class IntegerSanitizerTest extends \WP_UnitTestCase {
 
+	// TODO: fix this test
+
 	/**
 	 * @dataProvider additionProvider
 	 */

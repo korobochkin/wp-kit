@@ -6,6 +6,8 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class NumericTransientTest extends \WP_UnitTestCase {
 
+	// TODO: fix this test
+
 	/**
 	 * @var NumericTransient
 	 */

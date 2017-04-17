@@ -5,6 +5,8 @@ use Korobochkin\WPKit\Sanitizers\FloatSanitizer;
 
 class FloatSanitizerTest extends \WP_UnitTestCase {
 
+	// TODO: fix this test
+
 	/**
 	 * @dataProvider additionProvider
 	 */

@@ -5,6 +5,7 @@ use Korobochkin\WPKit\Options\Option;
 use Korobochkin\WPKit\Tests\DataSets\AfterDeletionSet;
 use Korobochkin\WPKit\Tests\DataSets\AfterSavingSet;
 use Korobochkin\WPKit\Tests\DataSets\DifferentTypesSet;
+use Korobochkin\WPKit\Tests\DataSets\EverythingSet;
 use Korobochkin\WPKit\Tests\DataSets\ValidateSet;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints;
@@ -109,10 +110,11 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	 *
 	 * @dataProvider casesDeleteFromWP
 	 *
-	 * @param $value mixed Any variable types.
-	 * @param $expectedDeletingResult bool Result of deleting operation.
+	 * @param $value                            mixed Any variable types.
+	 * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
+	 * @param $expectedValueFromWP              mixed Value after saving which will return WP
 	 */
-	public function testDeleteFromWP($value, $expectedDeletingResult) {
+	public function testDeleteFromWP($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP) {
 		// Without name throwing an error
 		if(PHP_VERSION_ID >= 70000) {
 			// PHP 7
@@ -134,12 +136,12 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 			->updateValue($value);
 
 		// Check that successful remove from DB
-		$this->assertEquals($expectedDeletingResult, $this->stub->deleteFromWP());
+		$this->assertEquals($expectedResultOfSavingOrDeletion, $this->stub->deleteFromWP());
 		$this->assertFalse($this->stub->getValueFromWordPress());
 	}
 
 	public function casesDeleteFromWP() {
-		return new AfterDeletionSet();
+		return new EverythingSet();
 	}
 
 	/**
@@ -147,11 +149,11 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	 *
 	 * @dataProvider casesFlush
 	 *
-	 * @param $value mixed Any variable types.
-	 * @param $expectedFlushingResult bool Expected result of flushing (saving).
-	 * @param $expectedValue mixed Expected value from WordPress
+	 * @param $value                            mixed Any variable types.
+	 * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
+	 * @param $expectedValueFromWP              mixed Value after saving which will return WP
 	 */
-	public function testFlush($value, $expectedFlushingResult, $expectedValue) {
+	public function testFlush($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP) {
 		$this->stub->set($value);
 
 		if(PHP_VERSION_ID >= 70000) {
@@ -171,17 +173,17 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 		$this->stub->setName('wp_kit_abstract_option');
 
 		// Successful saved
-		$this->assertEquals($expectedFlushingResult, $this->stub->flush());
+		$this->assertEquals($expectedResultOfSavingOrDeletion, $this->stub->flush());
 
 		// Retrieve value back
-		$this->assertEquals($expectedValue, $this->stub->get());
+		$this->assertEquals($expectedValueFromWP, $this->stub->get());
 
 		// Local value deleted
 		$this->assertEquals(null, $this->stub->getLocalValue());
 	}
 
 	public function casesFlush() {
-		return new AfterSavingSet();
+		return new EverythingSet();
 	}
 
 	/**
@@ -189,27 +191,27 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	 *
 	 * @dataProvider casesUpdateValue
 	 *
-	 * @param $value mixed Any variable types.
-	 * @param $expectedFlushingResult bool Expected result of flushing (saving).
-	 * @param $expectedValue mixed Expected value from WordPress
+	 * @param $value                            mixed Any variable types.
+	 * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
+	 * @param $expectedValueFromWP              mixed Value after saving which will return WP
 	 */
-	public function testUpdateValue($value, $expectedFlushingResult, $expectedValue) {
+	public function testUpdateValue($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP) {
 		$this->stub
 			->setName('wp_kit_abstract_option')
 			->set($value);
 
 		// Successful saved
-		$this->assertEquals($expectedFlushingResult, $this->stub->flush());
+		$this->assertEquals($expectedResultOfSavingOrDeletion, $this->stub->flush());
 
 		// Retrieve value back
-		$this->assertEquals($expectedValue, $this->stub->get());
+		$this->assertEquals($expectedValueFromWP, $this->stub->get());
 
 		// Local value deleted
 		$this->assertEquals(null, $this->stub->getLocalValue());
 	}
 
 	public function casesUpdateValue() {
-		return new AfterSavingSet();
+		return new EverythingSet();
 	}
 
 	/* The tests bellow for methods inherited from AbstractNode class */
@@ -217,11 +219,11 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	/**
 	 * @dataProvider casesGet
 	 *
-	 * @param $value
-	 * @param $expectedFlushingResult
-	 * @param $expectedValue
+	 * @param $value                            mixed Any variable types.
+	 * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
+	 * @param $expectedValueFromWP              mixed Value after saving which will return WP
 	 */
-	public function testGet($value, $expectedFlushingResult, $expectedValue) {
+	public function testGet($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP) {
 		// Set name to prevent triggering exceptions
 		$this->stub->setName('wp_kit_abstract_option');
 
@@ -252,21 +254,21 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 
 		// Check value from WordPress after saving
 		$this->stub->flush();
-		$this->assertEquals($expectedValue, $this->stub->get());
+		$this->assertEquals($expectedValueFromWP, $this->stub->get());
 	}
 
 	public function casesGet() {
-		return new AfterSavingSet();
+		return new EverythingSet();
 	}
 
 	/**
 	 * @dataProvider casesSet
 	 *
-	 * @param $value
-	 * @param $expectedFlushingResult
-	 * @param $expectedValue
+	 * @param $value                            mixed Any variable types.
+	 * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
+	 * @param $expectedValueFromWP              mixed Value after saving which will return WP
 	 */
-	public function testSet($value, $expectedFlushingResult, $expectedValue) {
+	public function testSet($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP) {
 		// Set name to prevent triggering exceptions
 		$this->stub->setName('wp_kit_abstract_option');
 
@@ -276,7 +278,7 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	}
 
 	public function casesSet() {
-		return new AfterSavingSet();
+		return new EverythingSet();
 	}
 
 	public function testName() {

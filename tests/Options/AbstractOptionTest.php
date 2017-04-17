@@ -289,18 +289,22 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	}
 
 	/**
+	 * Testing setLocalValue() and getLocalValue() methods.
+	 *
 	 * @dataProvider casesLocalValue
 	 *
-	 * @param $value mixed Any types of values.
+	 * @param $value                            mixed Any variable types.
+	 * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
+	 * @param $expectedValueFromWP              mixed Value after saving which will return WP
 	 */
-	public function testLocalValue($value) {
+	public function testLocalValue($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP) {
 		$this->assertNull($this->stub->getLocalValue());
 		$this->assertEquals($this->stub, $this->stub->setLocalValue($value));
 		$this->assertEquals($value, $this->stub->getLocalValue());
 	}
 
 	public function casesLocalValue() {
-		return new DifferentTypesSet();
+		return new EverythingSet();
 	}
 
 	/**

@@ -222,6 +222,8 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	 * @param $expectedValue
 	 */
 	public function testGet($value, $expectedFlushingResult, $expectedValue) {
+		// Set name to prevent triggering exceptions
+		$this->stub->setName('wp_kit_abstract_option');
 
 		// Test that local value returned
 		$this->stub->setLocalValue($value);
@@ -265,6 +267,9 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	 * @param $expectedValue
 	 */
 	public function testSet($value, $expectedFlushingResult, $expectedValue) {
+		// Set name to prevent triggering exceptions
+		$this->stub->setName('wp_kit_abstract_option');
+
 		$this->assertEquals($this->stub, $this->stub->set($value));
 		$this->assertEquals($value, $this->stub->get());
 		$this->assertEquals($value, $this->stub->getLocalValue());

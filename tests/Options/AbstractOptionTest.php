@@ -394,6 +394,8 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	}
 
 	/**
+	 * Testing isValid() method.
+	 *
 	 * @dataProvider casesIsValid
 	 *
 	 * @param $value mixed Value to set in instance and validate.

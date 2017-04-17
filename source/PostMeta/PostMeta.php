@@ -1,9 +1,9 @@
 <?php
-namespace Korobochkin\WPKit\Transients;
+namespace Korobochkin\WPKit\PostMeta;
 
 use Korobochkin\WPKit\DataComponents\Traits\DummyBuildConstraintTrait;
 
-class Transient extends AbstractTransient {
+class PostMeta extends AbstractPostMeta {
 
 	use DummyBuildConstraintTrait;
 }

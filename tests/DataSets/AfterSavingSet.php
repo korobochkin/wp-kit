@@ -1,6 +1,11 @@
 <?php
 namespace Korobochkin\WPKit\Tests\DataSets;
 
+/**
+ * Class AfterSavingSet
+ * @package Korobochkin\WPKit\Tests\DataSets
+ * @deprecated
+ */
 class AfterSavingSet extends AbstractDataSet {
 
 	public function __construct() {

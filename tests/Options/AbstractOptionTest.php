@@ -217,6 +217,8 @@ class AbstractOptionTest extends \WP_UnitTestCase {
 	/* The tests bellow for methods inherited from AbstractNode class */
 
 	/**
+	 * Testing get() method.
+	 *
 	 * @dataProvider casesGet
 	 *
 	 * @param $value                            mixed Any variable types.

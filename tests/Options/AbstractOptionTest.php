@@ -2,7 +2,6 @@
 namespace Korobochkin\WPKit\Tests\Options;
 
 use Korobochkin\WPKit\Options\Option;
-use Korobochkin\WPKit\Tests\DataSets\AfterDeletionSet;
 use Korobochkin\WPKit\Tests\DataSets\AfterSavingSet;
 use Korobochkin\WPKit\Tests\DataSets\DifferentTypesSet;
 use Korobochkin\WPKit\Tests\DataSets\EverythingSet;

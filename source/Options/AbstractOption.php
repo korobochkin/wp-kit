@@ -51,6 +51,7 @@ abstract class AbstractOption extends AbstractNode implements OptionInterface {
 			throw new \LogicException('You must specify the name of option before calling any methods using name of option.');
 		}
 
+		// TODO: use local name here.
 		return delete_option($this->getName());
 	}
 

@@ -4,7 +4,7 @@ namespace Korobochkin\WPKit\Tests\Transients\Special;
 use Korobochkin\WPKit\Transients\Special\NumericTransient;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class NumericOptionTest extends \WP_UnitTestCase {
+class NumericTransientTest extends \WP_UnitTestCase {
 
 	/**
 	 * @var NumericTransient

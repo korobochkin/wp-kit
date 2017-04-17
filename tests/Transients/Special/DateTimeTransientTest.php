@@ -4,7 +4,7 @@ namespace Korobochkin\WPKit\Tests\Transients\Special;
 use Korobochkin\WPKit\Transients\Special\DateTimeTransient;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class DateTimeOptionTest extends \WP_UnitTestCase {
+class DateTimeTransientTest extends \WP_UnitTestCase {
 
 	/**
 	 * @var DateTimeTransient

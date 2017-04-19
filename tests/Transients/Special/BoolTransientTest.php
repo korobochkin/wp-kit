@@ -5,7 +5,7 @@ use Korobochkin\WPKit\Tests\DataSets\Bool\BoolTransformationSet;
 use Korobochkin\WPKit\Transients\Special\BoolTransient;
 
 class BoolTransientTest extends \WP_UnitTestCase {
-	
+
 	/**
 	 * @var BoolTransient
 	 */

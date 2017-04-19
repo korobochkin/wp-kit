@@ -4,7 +4,7 @@ namespace Korobochkin\WPKit\Tests\DataSets\BoolOption;
 use Korobochkin\WPKit\Tests\DataSets\AbstractDataSet;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class DifferentTypesAndTransformationSet extends AbstractDataSet {
+class DifferentTypesTransformationSet extends AbstractDataSet {
 
 	/**
 	 * DifferentTypesAndTransformationSet constructor.

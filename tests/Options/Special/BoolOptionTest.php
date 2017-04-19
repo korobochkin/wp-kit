@@ -7,8 +7,6 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class BoolOptionTest extends \WP_UnitTestCase {
 
-	// TODO: fix this test
-
 	/**
 	 * @var BoolOption
 	 */

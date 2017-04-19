@@ -11,6 +11,8 @@ class DifferentTypesTransformationSet extends AbstractDataSet {
 	 */
 	public function __construct() {
 		$variants = array(
+			array(NULL,        true),
+
 			array(true,        true),
 			array(false,       false),
 
@@ -43,8 +45,6 @@ class DifferentTypesTransformationSet extends AbstractDataSet {
 
 			array(new \stdClass(), TransformationFailedException::class),
 			array(new \WP_Query(), TransformationFailedException::class),
-
-			array(NULL,        true)
 		);
 
 		// Only for PHP 7

@@ -14,5 +14,7 @@ trait LocalValueTrait {
 		return $this;
 	}
 
-	// TODO: add hasLocalValue method
+	public function hasLocalValue() {
+		return isset($this->localValue);
+	}
 }

@@ -13,4 +13,8 @@ trait DefaultValueTrait {
 		$this->defaultValue = $defaultValue;
 		return $this;
 	}
+
+	public function hasDefaultValue() {
+		return isset($this->defaultValue);
+	}
 }

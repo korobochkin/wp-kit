@@ -33,7 +33,7 @@ class BoolOptionTest extends \WP_UnitTestCase {
 			->set($value);
 
 		if(class_exists($expected)) {
-			if(method_exists($this, 'expectException')) {
+			if(PHP_VERSION_ID >= 70000) {
 				$this->expectException($expected);
 				$this->stub->flush();
 			} else {
@@ -66,7 +66,7 @@ class BoolOptionTest extends \WP_UnitTestCase {
 	}
 
 	public function casesTypesWithoutSaving() {
-		return new DataSets\BoolOption\DifferentTypesAndTransformationSet();
+		return new DataSets\BoolOption\DifferentTypesTransformationSet();
 	}
 
 	public function testDefaultValue() {

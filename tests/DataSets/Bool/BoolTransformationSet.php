@@ -1,16 +1,18 @@
 <?php
-namespace Korobochkin\WPKit\Tests\DataSets\BoolOption;
+namespace Korobochkin\WPKit\Tests\DataSets\Bool;
 
 use Korobochkin\WPKit\Tests\DataSets\AbstractDataSet;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class DifferentTypesAndTransformationSet extends AbstractDataSet {
+class BoolTransformationSet extends AbstractDataSet {
 
 	/**
 	 * DifferentTypesAndTransformationSet constructor.
 	 */
 	public function __construct() {
 		$variants = array(
+			array(NULL,        true),
+
 			array(true,        true),
 			array(false,       false),
 
@@ -43,8 +45,6 @@ class DifferentTypesAndTransformationSet extends AbstractDataSet {
 
 			array(new \stdClass(), TransformationFailedException::class),
 			array(new \WP_Query(), TransformationFailedException::class),
-
-			array(NULL,        true)
 		);
 
 		// Only for PHP 7

@@ -11,15 +11,15 @@ class NumericOptionTest extends \WP_UnitTestCase {
 	/**
 	 * @var NumericOption
 	 */
-	protected $option;
+	protected $stub;
 
 	/**
 	 * Prepare option for tests.
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->option = new NumericOption();
-		$this->option->setName('wp_kit_numeric_option');
+		$this->stub = new NumericOption();
+		$this->stub->setName('wp_kit_numeric_option');
 	}
 
 	/**
@@ -28,24 +28,24 @@ class NumericOptionTest extends \WP_UnitTestCase {
 	 * @var $expected mixed Value to compare output value with.
 	 */
 	public function testTypesAfterSaving($value, $expected) {
-		$this->option
+		$this->stub
 			->set($value);
 
 		if(class_exists($expected)) {
 			if(method_exists($this, 'expectException')) {
 				$this->expectException($expected);
-				$this->option->flush();
+				$this->stub->flush();
 			} else {
 				try {
-					$this->option->flush();
+					$this->stub->flush();
 				}
 				catch(\Exception $exception) {
 					$this->assertTrue(is_a($exception, $expected));
 				}
 			}
 		} else {
-			$this->option->flush();
-			$this->assertEquals($expected, $this->option->get());
+			$this->stub->flush();
+			$this->assertEquals($expected, $this->stub->get());
 		}
 	}
 
@@ -58,14 +58,14 @@ class NumericOptionTest extends \WP_UnitTestCase {
 		$this->option->set($value);
 
 		if(class_exists($expected)) {
-			$this->assertEquals($value, $this->option->get());
+			$this->assertEquals($value, $this->stub->get());
 		} else {
-			$this->assertEquals($expected, $this->option->get());
+			$this->assertEquals($expected, $this->stub->get());
 		}
 	}
 
 	public function testDefaultValue() {
-		$this->assertEquals(0.0, $this->option->get());
+		$this->assertEquals(0.0, $this->stub->get());
 	}
 
 	public function getDataCases() {

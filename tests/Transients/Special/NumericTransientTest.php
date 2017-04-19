@@ -6,8 +6,6 @@ use Korobochkin\WPKit\Transients\Special\NumericTransient;
 
 class NumericTransientTest extends \WP_UnitTestCase {
 
-	// TODO: fix this test
-
 	/**
 	 * @var NumericTransient
 	 */

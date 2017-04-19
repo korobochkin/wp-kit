@@ -11,15 +11,15 @@ class DateTimeOptionTest extends \WP_UnitTestCase {
 	/**
 	 * @var DateTimeOption
 	 */
-	protected $option;
+	protected $stub;
 
 	/**
 	 * Prepare option for tests.
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->option = new DateTimeOption();
-		$this->option->setName('wp_kit_datetime_option');
+		$this->stub = new DateTimeOption();
+		$this->stub->setName('wp_kit_datetime_option');
 	}
 
 	/**
@@ -28,18 +28,18 @@ class DateTimeOptionTest extends \WP_UnitTestCase {
 	 * @var $expected mixed Value to compare output value with.
 	 */
 	public function testTypes($value, $expected) {
-		$this->option->set($value);
+		$this->stub->set($value);
 
 		if(is_a($expected, \DateTime::class)) {
-			$this->option->flush();
-			$this->assertEquals($expected, $this->option->get());
+			$this->stub->flush();
+			$this->assertEquals($expected, $this->stub->get());
 		} else {
 			if(method_exists($this, 'expectException')) {
 				$this->expectException($expected);
-				$this->option->flush();
+				$this->stub->flush();
 			} else {
 				try {
-					$this->option->flush();
+					$this->stub->flush();
 				}
 				catch(\Exception $exception) {
 					$this->assertTrue(is_a($exception, $expected));
@@ -49,8 +49,8 @@ class DateTimeOptionTest extends \WP_UnitTestCase {
 	}
 
 	public function testNull() {
-		$this->option->set(null);
-		$this->assertEquals('', $this->option->get());
+		$this->stub->set(null);
+		$this->assertEquals('', $this->stub->get());
 	}
 
 	public function getDataCases() {

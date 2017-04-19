@@ -6,8 +6,6 @@ use Korobochkin\WPKit\Tests\DataSets\DateTimeOption\TypesTransformationSet;
 
 class DateTimeOptionTest extends \WP_UnitTestCase {
 
-	// TODO: fix this test
-
 	/**
 	 * @var DateTimeOption
 	 */
@@ -23,7 +21,7 @@ class DateTimeOptionTest extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * @dataProvider getDataCases
+	 * @dataProvider casesTypes
 	 * @var $value mixed Value to insert and test.
 	 * @var $expected mixed Value to compare output value with.
 	 */

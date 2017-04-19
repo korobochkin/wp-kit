@@ -31,7 +31,7 @@ class BoolTransientTest extends \WP_UnitTestCase {
 			->set($value);
 
 		if(class_exists($expected)) {
-			if(method_exists($this, 'expectException')) {
+			if(PHP_VERSION_ID >= 70000) {
 				$this->expectException($expected);
 				$this->stub->flush();
 			} else {

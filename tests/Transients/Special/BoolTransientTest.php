@@ -11,15 +11,15 @@ class BoolTransientTest extends \WP_UnitTestCase {
 	/**
 	 * @var BoolTransient
 	 */
-	protected $transient;
+	protected $stub;
 
 	/**
 	 * Prepare option for tests.
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->transient = new BoolTransient();
-		$this->transient->setName('wp_kit_bool_transient');
+		$this->stub = new BoolTransient();
+		$this->stub->setName('wp_kit_bool_transient');
 	}
 
 	/**
@@ -28,24 +28,24 @@ class BoolTransientTest extends \WP_UnitTestCase {
 	 * @var $expected mixed Value to compare output value with.
 	 */
 	public function testTypesAfterSaving($value, $expected) {
-		$this->transient
+		$this->stub
 			->set($value);
 
 		if(class_exists($expected)) {
 			if(method_exists($this, 'expectException')) {
 				$this->expectException($expected);
-				$this->transient->flush();
+				$this->stub->flush();
 			} else {
 				try {
-					$this->transient->flush();
+					$this->stub->flush();
 				}
 				catch(\Exception $exception) {
 					$this->assertTrue(is_a($exception, $expected));
 				}
 			}
 		} else {
-			$this->transient->flush();
-			$this->assertEquals($expected, $this->transient->get());
+			$this->stub->flush();
+			$this->assertEquals($expected, $this->stub->get());
 		}
 	}
 
@@ -55,17 +55,17 @@ class BoolTransientTest extends \WP_UnitTestCase {
 	 * @var $expected mixed Value to compare output value with.
 	 */
 	public function testTypesWithoutSaving($value, $expected) {
-		$this->transient->set($value);
+		$this->stub->set($value);
 
 		if(class_exists($expected)) {
-			$this->assertEquals($value, $this->transient->get());
+			$this->assertEquals($value, $this->stub->get());
 		} else {
-			$this->assertEquals($expected, $this->transient->get());
+			$this->assertEquals($expected, $this->stub->get());
 		}
 	}
 
 	public function testDefaultValue() {
-		$this->assertEquals(true, $this->transient->get());
+		$this->assertEquals(true, $this->stub->get());
 	}
 
 	public function getDataCases() {

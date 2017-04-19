@@ -10,7 +10,7 @@ trait GetTrait {
 		/**
 		 * @var $this \Korobochkin\WPKit\Options\OptionInterface|\Korobochkin\WPKit\Transients\TransientInterface
 		 */
-		if(isset($this->localValue))
+		if($this->hasLocalValue())
 			return $this->getLocalValue();
 
 		$raw = $this->getValueFromWordPress();

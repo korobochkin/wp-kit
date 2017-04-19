@@ -6,8 +6,6 @@ use Korobochkin\WPKit\Tests\DataSets\NumericOption\TypesTransformationSet;
 
 class NumericOptionTest extends \WP_UnitTestCase {
 
-	// TODO: fix this test
-
 	/**
 	 * @var NumericOption
 	 */

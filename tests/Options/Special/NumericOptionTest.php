@@ -2,7 +2,7 @@
 namespace Korobochkin\WPKit\Tests\Options\Special;
 
 use Korobochkin\WPKit\Options\Special\NumericOption;
-use Korobochkin\WPKit\Tests\DataSets\NumericOption\TypesTransformationSet;
+use Korobochkin\WPKit\Tests\DataSets\Numeric\NumericTransformationSet;
 
 class NumericOptionTest extends \WP_UnitTestCase {
 
@@ -49,7 +49,7 @@ class NumericOptionTest extends \WP_UnitTestCase {
 	}
 
 	public function casesTypesAfterSaving() {
-		return new TypesTransformationSet();
+		return new NumericTransformationSet();
 	}
 
 	/**
@@ -69,7 +69,7 @@ class NumericOptionTest extends \WP_UnitTestCase {
 	}
 
 	public function casesTypesWithoutSaving() {
-		return new TypesTransformationSet();
+		return new NumericTransformationSet();
 	}
 
 	public function testDefaultValue() {

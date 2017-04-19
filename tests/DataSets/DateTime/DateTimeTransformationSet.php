@@ -1,10 +1,10 @@
 <?php
-namespace Korobochkin\WPKit\Tests\DataSets\DateTimeOption;
+namespace Korobochkin\WPKit\Tests\DataSets\DateTime;
 
 use Korobochkin\WPKit\Tests\DataSets\AbstractDataSet;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class TypesTransformationSet extends AbstractDataSet {
+class DateTimeTransformationSet extends AbstractDataSet {
 
 	/**
 	 * TypesTransformationSet constructor.

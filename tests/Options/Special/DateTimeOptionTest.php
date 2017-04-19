@@ -2,7 +2,7 @@
 namespace Korobochkin\WPKit\Tests\Options\Special;
 
 use Korobochkin\WPKit\Options\Special\DateTimeOption;
-use Korobochkin\WPKit\Tests\DataSets\DateTimeOption\TypesTransformationSet;
+use Korobochkin\WPKit\Tests\DataSets\DateTime\DateTimeTransformationSet;
 
 class DateTimeOptionTest extends \WP_UnitTestCase {
 
@@ -47,7 +47,7 @@ class DateTimeOptionTest extends \WP_UnitTestCase {
 	}
 
 	public function casesTypes() {
-		return new TypesTransformationSet();
+		return new DateTimeTransformationSet();
 	}
 
 	public function testNull() {

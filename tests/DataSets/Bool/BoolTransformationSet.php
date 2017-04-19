@@ -1,38 +1,40 @@
 <?php
-namespace Korobochkin\WPKit\Tests\DataSets\NumericOption;
+namespace Korobochkin\WPKit\Tests\DataSets\Bool;
 
 use Korobochkin\WPKit\Tests\DataSets\AbstractDataSet;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class TypesTransformationSet extends AbstractDataSet {
+class BoolTransformationSet extends AbstractDataSet {
 
 	/**
-	 * TypesTransformationSet constructor.
+	 * DifferentTypesAndTransformationSet constructor.
 	 */
 	public function __construct() {
 		$variants = array(
-			array(true,        TransformationFailedException::class),
-			array(false,       TransformationFailedException::class),
+			array(NULL,        true),
 
-			array(1234,        1234.0),
-			array(0,           0.0),
-			array(-1234,       -1234.0),
-			//array(PHP_INT_MAX, TransformationFailedException::class), // this case throwing error but PHP 7 not catching it
+			array(true,        true),
+			array(false,       false),
+
+			array(1234,        TransformationFailedException::class),
+			array(0,           TransformationFailedException::class),
+			array(-1234,       TransformationFailedException::class),
+			array(PHP_INT_MAX, TransformationFailedException::class),
 			//array(PHP_INT_MIN, true),
 
-			array(1.234,       1.234),
-			array(1.2e3,       1.2e3),
-			array(7E-10,       7E-10),
-			array(-1.234,      -1.234),
-			array(-1.2e3,      -1.2e3),
-			array(-7E-10,      -7E-10),
+			array(1.234,       TransformationFailedException::class),
+			array(1.2e3,       TransformationFailedException::class),
+			array(7E-10,       TransformationFailedException::class),
+			array(-1.234,      TransformationFailedException::class),
+			array(-1.2e3,      TransformationFailedException::class),
+			array(-7E-10,      TransformationFailedException::class),
 
-			array('1',         1.0),
+			array('1',         TransformationFailedException::class),
 			array('VALUE',     TransformationFailedException::class),
 			array('true',      TransformationFailedException::class),
 			array('false',     TransformationFailedException::class),
 			array('',          TransformationFailedException::class),
-			array('0',         0.0),
+			array('0',         TransformationFailedException::class),
 
 			array(array(),     TransformationFailedException::class),
 			array(array(1),    TransformationFailedException::class),
@@ -43,17 +45,14 @@ class TypesTransformationSet extends AbstractDataSet {
 
 			array(new \stdClass(), TransformationFailedException::class),
 			array(new \WP_Query(), TransformationFailedException::class),
-
-			array(NULL,        0.0),
 		);
 
 		// Only for PHP 7
-		// this case throwing error but PHP 7 not catching it
-		/*$result = version_compare(phpversion(), '7');
-		if($result == 0 || $result == 1) {
+		if(PHP_VERSION_ID >= 70000) {
 			$values[] = array(PHP_INT_MIN, TransformationFailedException::class);
-		}*/
+		}
 
 		$this->variants = $variants;
+		$this->position = 0;
 	}
 }

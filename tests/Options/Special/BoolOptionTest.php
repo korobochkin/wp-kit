@@ -2,8 +2,7 @@
 namespace Korobochkin\WPKit\Tests\Options\Special;
 
 use Korobochkin\WPKit\Options\Special\BoolOption;
-use Korobochkin\WPKit\Tests\DataSets;
-use Symfony\Component\Form\Exception\TransformationFailedException;
+use Korobochkin\WPKit\Tests\DataSets\Bool\BoolTransformationSet;
 
 class BoolOptionTest extends \WP_UnitTestCase {
 
@@ -50,7 +49,7 @@ class BoolOptionTest extends \WP_UnitTestCase {
 	}
 
 	public function casesTypesAfterSaving() {
-		return new DataSets\BoolOption\DifferentTypesTransformationSet();
+		return new BoolTransformationSet();
 	}
 
 	/**
@@ -70,7 +69,7 @@ class BoolOptionTest extends \WP_UnitTestCase {
 	}
 
 	public function casesTypesWithoutSaving() {
-		return new DataSets\BoolOption\DifferentTypesTransformationSet();
+		return new BoolTransformationSet();
 	}
 
 	public function testDefaultValue() {

@@ -12,15 +12,15 @@ class BoolOptionTest extends \WP_UnitTestCase {
 	/**
 	 * @var BoolOption
 	 */
-	protected $option;
+	protected $stub;
 
 	/**
 	 * Prepare option for tests.
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->option = new BoolOption();
-		$this->option->setName('wp_kit_bool_option');
+		$this->stub = new BoolOption();
+		$this->stub->setName('wp_kit_bool_option');
 	}
 
 	/**
@@ -29,24 +29,24 @@ class BoolOptionTest extends \WP_UnitTestCase {
 	 * @var $expected mixed Value to compare output value with.
 	 */
 	public function testTypesAfterSaving($value, $expected) {
-		$this->option
+		$this->stub
 			->set($value);
 
 		if(class_exists($expected)) {
 			if(method_exists($this, 'expectException')) {
 				$this->expectException($expected);
-				$this->option->flush();
+				$this->stub->flush();
 			} else {
 				try {
-					$this->option->flush();
+					$this->stub->flush();
 				}
 				catch(\Exception $exception) {
 					$this->assertTrue(is_a($exception, $expected));
 				}
 			}
 		} else {
-			$this->option->flush();
-			$this->assertEquals($expected, $this->option->get());
+			$this->stub->flush();
+			$this->assertEquals($expected, $this->stub->get());
 		}
 	}
 
@@ -56,12 +56,12 @@ class BoolOptionTest extends \WP_UnitTestCase {
 	 * @var $expected mixed Value to compare output value with.
 	 */
 	public function testTypesWithoutSaving($value, $expected) {
-		$this->option->set($value);
+		$this->stub->set($value);
 
 		if(class_exists($expected)) {
-			$this->assertEquals($value, $this->option->get());
+			$this->assertEquals($value, $this->stub->get());
 		} else {
-			$this->assertEquals($expected, $this->option->get());
+			$this->assertEquals($expected, $this->stub->get());
 		}
 	}
 
@@ -70,7 +70,7 @@ class BoolOptionTest extends \WP_UnitTestCase {
 	}
 
 	public function testDefaultValue() {
-		$this->assertEquals(true, $this->option->get());
+		$this->assertEquals(true, $this->stub->get());
 	}
 
 	public function getDataCases() {

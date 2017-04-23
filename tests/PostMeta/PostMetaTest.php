@@ -19,7 +19,7 @@ class PostMetaTest extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * Dummy option always returns null as Constraint.
+	 * Dummy post meta always returns null as Constraint.
 	 */
 	public function testBuildConstraint() {
 		$this->assertEquals(null, $this->stub->buildConstraint());

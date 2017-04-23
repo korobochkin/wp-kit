@@ -79,6 +79,13 @@ abstract class AbstractPostMeta extends AbstractNode implements PostMetaInterfac
 			throw new \LogicException('You must specify the ID of post meta before calling any methods using ID of post meta.');
 		}
 
+		// Do not save (bool) false values :)
+		// since DataTransformer must convert it to '0' or other similar string.
+		// This check needed to fully identity with Options and Transients.
+		if($raw === false) {
+			return $raw;
+		}
+
 		$result = update_post_meta($id, $name, $raw);
 
 		if($result)

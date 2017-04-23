@@ -27,7 +27,15 @@ abstract class AbstractPostMeta extends AbstractNode implements PostMetaInterfac
 			throw new \LogicException('You must specify the ID of post meta before calling any methods using ID of post meta.');
 		}
 
-		return get_post_meta($id, $name, true);
+		$value = get_post_meta($id, $name, true);
+
+		// If value is empty string this can means that value not exists at all.
+		// This strange behaviour peculiar only for Post Meta (not Options or Transients).
+		if($value === '' && !metadata_exists('post', $id, $name)) {
+			return false;
+		}
+
+		return $value;
 	}
 
 	/**

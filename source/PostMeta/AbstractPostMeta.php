@@ -27,7 +27,15 @@ abstract class AbstractPostMeta extends AbstractNode implements PostMetaInterfac
 			throw new \LogicException('You must specify the ID of post meta before calling any methods using ID of post meta.');
 		}
 
-		return get_post_meta($id, $name, true);
+		$value = get_post_meta($id, $name, true);
+
+		// If value is empty string this can means that value not exists at all.
+		// This strange behaviour peculiar only for Post Meta (not Options or Transients).
+		if($value === '' && !metadata_exists('post', $id, $name)) {
+			return false;
+		}
+
+		return $value;
 	}
 
 	/**
@@ -62,13 +70,20 @@ abstract class AbstractPostMeta extends AbstractNode implements PostMetaInterfac
 		$name = $this->getName();
 
 		if(!$name) {
-			throw new \LogicException('You must specify the name of option before calling any methods using name of option.');
+			throw new \LogicException('You must specify the name of post meta before calling any methods using name of post meta.');
 		}
 
 		$id = $this->getPostId();
 
 		if(!$id) {
 			throw new \LogicException('You must specify the ID of post meta before calling any methods using ID of post meta.');
+		}
+
+		// Do not save (bool) false values :)
+		// since DataTransformer must convert it to '0' or other similar string.
+		// This check needed to fully identity with Options and Transients.
+		if($raw === false) {
+			return $raw;
 		}
 
 		$result = update_post_meta($id, $name, $raw);

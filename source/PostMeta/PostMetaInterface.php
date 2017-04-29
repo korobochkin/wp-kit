@@ -17,7 +17,7 @@ interface PostMetaInterface extends NodeInterface {
 	 *
 	 * @throws \LogicException If name of post meta not setted up.
 	 *
-	 * @return string|bool|array String value of node if exists, false if some cases (post meta not exists in DB) or array if option saved as array.
+	 * @return string|bool|array String value of node if exists, false if some cases (post meta not exists in DB) or array if post meta saved as array.
 	 */
 	public function getValueFromWordPress();
 

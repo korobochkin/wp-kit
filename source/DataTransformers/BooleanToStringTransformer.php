@@ -58,7 +58,7 @@ class BooleanToStringTransformer implements DataTransformerInterface {
 	 */
 	public function reverseTransform($value) {
 		if (null === $value) {
-			return false;
+			return true;
 		}
 
 		if (!is_string($value)) {

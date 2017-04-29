@@ -70,7 +70,7 @@ abstract class AbstractPostMeta extends AbstractNode implements PostMetaInterfac
 		$name = $this->getName();
 
 		if(!$name) {
-			throw new \LogicException('You must specify the name of option before calling any methods using name of option.');
+			throw new \LogicException('You must specify the name of post meta before calling any methods using name of option.');
 		}
 
 		$id = $this->getPostId();

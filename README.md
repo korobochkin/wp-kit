@@ -36,7 +36,7 @@ $option
   ->setValue('the value of option')
   
   // Actually save the value in DB.
-  ->flush;
+  ->flush();
 ```
 
 The more advanced usage is creating unique classes for each option which you have in your product. After that if you want use your option you can just use this class to retrieve the value.

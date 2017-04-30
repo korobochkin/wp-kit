@@ -13,4 +13,8 @@ trait LocalValueTrait {
 		$this->localValue = $value;
 		return $this;
 	}
+
+	public function hasLocalValue() {
+		return isset($this->localValue);
+	}
 }

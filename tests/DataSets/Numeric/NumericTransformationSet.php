@@ -1,73 +1,16 @@
 <?php
-namespace Korobochkin\WPKit\Tests\Transients\Special;
+namespace Korobochkin\WPKit\Tests\DataSets\Numeric;
 
-use Korobochkin\WPKit\Transients\Special\NumericTransient;
+use Korobochkin\WPKit\Tests\DataSets\AbstractDataSet;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class NumericOptionTest extends \WP_UnitTestCase {
+class NumericTransformationSet extends AbstractDataSet {
 
 	/**
-	 * @var NumericTransient
+	 * TypesTransformationSet constructor.
 	 */
-	protected $transient;
-
-	/**
-	 * Prepare option for tests.
-	 */
-	public function setUp() {
-		parent::setUp();
-		$this->transient = new NumericTransient();
-		$this->transient->setName('wp_kit_numeric_transient');
-	}
-
-	/**
-	 * @dataProvider getDataCases
-	 * @var $value mixed Value to insert and test.
-	 * @var $expected mixed Value to compare output value with.
-	 */
-	public function testTypesAfterSaving($value, $expected) {
-		$this->transient
-			->set($value);
-
-		if(class_exists($expected)) {
-			if(method_exists($this, 'expectException')) {
-				$this->expectException($expected);
-				$this->transient->flush();
-			} else {
-				try {
-					$this->transient->flush();
-				}
-				catch(\Exception $exception) {
-					$this->assertTrue(is_a($exception, $expected));
-				}
-			}
-		} else {
-			$this->transient->flush();
-			$this->assertEquals($expected, $this->transient->get());
-		}
-	}
-
-	/**
-	 * @dataProvider getDataCases
-	 * @var $value mixed Value to insert and test.
-	 * @var $expected mixed Value to compare output value with.
-	 */
-	public function testTypesWithoutSaving($value, $expected) {
-		$this->transient->set($value);
-
-		if(class_exists($expected)) {
-			$this->assertEquals($value, $this->transient->get());
-		} else {
-			$this->assertEquals($expected, $this->transient->get());
-		}
-	}
-
-	public function testDefaultValue() {
-		$this->assertEquals(0.0, $this->transient->get());
-	}
-
-	public function getDataCases() {
-		$values = array(
+	public function __construct() {
+		$variants = array(
 			array(true,        TransformationFailedException::class),
 			array(false,       TransformationFailedException::class),
 
@@ -111,6 +54,6 @@ class NumericOptionTest extends \WP_UnitTestCase {
 			$values[] = array(PHP_INT_MIN, TransformationFailedException::class);
 		}*/
 
-		return $values;
+		$this->variants = $variants;
 	}
 }

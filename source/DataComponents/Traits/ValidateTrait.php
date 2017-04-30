@@ -29,6 +29,8 @@ trait ValidateTrait {
 	/**
 	 * Returns violations list.
 	 *
+	 * @param $value mixed Value which you want to validate.
+	 *
 	 * @return ConstraintViolationList
 	 */
 	public function validateValue($value) {

@@ -1,12 +1,9 @@
 <?php
 namespace Korobochkin\WPKit\Transients;
 
+use Korobochkin\WPKit\DataComponents\Traits\DummyBuildConstraintTrait;
+
 class Transient extends AbstractTransient {
 
-	/**
-	 * @inheritdoc
-	 */
-	public function buildConstraint() {
-		return null;
-	}
+	use DummyBuildConstraintTrait;
 }

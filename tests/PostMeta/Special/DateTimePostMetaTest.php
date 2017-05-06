@@ -4,6 +4,12 @@ namespace Korobochkin\WPKit\Tests\PostMeta\Special;
 use Korobochkin\WPKit\PostMeta\Special\DateTimePostMeta;
 use Korobochkin\WPKit\Tests\DataSets\DateTime\DateTimeTransformationSet;
 
+/**
+ * Class DateTimePostMetaTest
+ * @package Korobochkin\WPKit\Tests\PostMeta\Special
+ *
+ * @group data-components
+ */
 class DateTimePostMetaTest extends \WP_UnitTestCase {
 
 	/**

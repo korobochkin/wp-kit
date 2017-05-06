@@ -4,6 +4,12 @@ namespace Korobochkin\WPKit\Tests\Options\Special;
 use Korobochkin\WPKit\Options\Special\BoolOption;
 use Korobochkin\WPKit\Tests\DataSets\Bool\BoolTransformationSet;
 
+/**
+ * Class BoolOptionTest
+ * @package Korobochkin\WPKit\Tests\Options\Special
+ *
+ * @group data-components
+ */
 class BoolOptionTest extends \WP_UnitTestCase {
 
 	/**

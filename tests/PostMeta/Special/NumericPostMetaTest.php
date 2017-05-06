@@ -4,6 +4,12 @@ namespace Korobochkin\WPKit\Tests\PostMeta\Special;
 use Korobochkin\WPKit\PostMeta\Special\NumericPostMeta;
 use Korobochkin\WPKit\Tests\DataSets\Numeric\NumericTransformationSet;
 
+/**
+ * Class NumericPostMetaTest
+ * @package Korobochkin\WPKit\Tests\PostMeta\Special
+ *
+ * @group data-components
+ */
 class NumericPostMetaTest extends \WP_UnitTestCase {
 
 	/**

@@ -4,6 +4,12 @@ namespace Korobochkin\WPKit\Tests\Options\Special;
 use Korobochkin\WPKit\Options\Special\NumericOption;
 use Korobochkin\WPKit\Tests\DataSets\Numeric\NumericTransformationSet;
 
+/**
+ * Class NumericOptionTest
+ * @package Korobochkin\WPKit\Tests\Options\Special
+ *
+ * @group data-components
+ */
 class NumericOptionTest extends \WP_UnitTestCase {
 
 	/**

@@ -12,6 +12,12 @@ use Symfony\Component\Form\ReversedTransformer;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validation;
 
+/**
+ * Class AbstractOptionTest
+ * @package Korobochkin\WPKit\Tests\Options
+ *
+ * @group data-components
+ */
 class AbstractOptionTest extends \WP_UnitTestCase {
 
 	/**

@@ -3,6 +3,12 @@ namespace Korobochkin\WPKit\Tests\Transients;
 
 use Korobochkin\WPKit\Transients\Transient;
 
+/**
+ * Class TransientTest
+ * @package Korobochkin\WPKit\Tests\Transients
+ *
+ * @group data-components
+ */
 class TransientTest extends \WP_UnitTestCase {
 
 	/**

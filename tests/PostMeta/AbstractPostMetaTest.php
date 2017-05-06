@@ -12,6 +12,12 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints;
 use Symfony\Component\Validator\Validation;
 
+/**
+ * Class AbstractPostMetaTest
+ * @package Korobochkin\WPKit\Tests\PostMeta
+ *
+ * @group data-components
+ */
 class AbstractPostMetaTest extends \WP_UnitTestCase {
 
 	/**

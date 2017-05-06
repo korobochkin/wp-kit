@@ -4,6 +4,12 @@ namespace Korobochkin\WPKit\Tests\Transients\Special;
 use Korobochkin\WPKit\Tests\DataSets\DateTime\DateTimeTransformationSet;
 use Korobochkin\WPKit\Transients\Special\DateTimeTransient;
 
+/**
+ * Class DateTimeTransientTest
+ * @package Korobochkin\WPKit\Tests\Transients\Special
+ *
+ * @group data-components
+ */
 class DateTimeTransientTest extends \WP_UnitTestCase {
 
 	/**

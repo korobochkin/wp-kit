@@ -3,6 +3,12 @@ namespace Korobochkin\WPKit\Tests\PostMeta;
 
 use Korobochkin\WPKit\PostMeta\PostMeta;
 
+/**
+ * Class PostMetaTest
+ * @package Korobochkin\WPKit\Tests\PostMeta
+ *
+ * @group data-components
+ */
 class PostMetaTest extends \WP_UnitTestCase {
 
 	/**

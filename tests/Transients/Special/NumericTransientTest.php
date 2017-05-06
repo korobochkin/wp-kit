@@ -4,6 +4,12 @@ namespace Korobochkin\WPKit\Tests\Transients\Special;
 use Korobochkin\WPKit\Tests\DataSets\Numeric\NumericTransformationSet;
 use Korobochkin\WPKit\Transients\Special\NumericTransient;
 
+/**
+ * Class NumericTransientTest
+ * @package Korobochkin\WPKit\Tests\Transients\Special
+ *
+ * @group data-components
+ */
 class NumericTransientTest extends \WP_UnitTestCase {
 
 	/**

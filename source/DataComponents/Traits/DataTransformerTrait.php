@@ -10,7 +10,7 @@ trait DataTransformerTrait {
 	/**
 	 * Get DataTransformer.
 	 *
-	 * @return DataTransformerInterface
+	 * @return DataTransformerInterface DataTransformer instance for this istance.
 	 */
 	public function getDataTransformer() {
 		return $this->dataTransformer;
@@ -19,7 +19,7 @@ trait DataTransformerTrait {
 	/**
 	 * Setup DataTransformer.
 	 *
-	 * @param DataTransformerInterface $transformer
+	 * @param DataTransformerInterface $transformer Setup DataTransformer for this instance.
 	 *
 	 * @return $this For chain calls.
 	 */

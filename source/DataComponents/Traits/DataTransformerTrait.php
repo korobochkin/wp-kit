@@ -19,7 +19,8 @@ trait DataTransformerTrait {
 	/**
 	 * Setup DataTransformer.
 	 *
-	 * @param DataTransformerInterface $transformer Setup DataTransformer for this instance.
+	 * @param DataTransformerInterface $transformer Setup DataTransformer for this
+	 * instance.
 	 *
 	 * @return $this For chain calls.
 	 */

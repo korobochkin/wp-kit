@@ -4,7 +4,7 @@ namespace Korobochkin\WPKit\DataComponents\Traits;
 trait NameTrait {
 
 	/**
-	 * @var string The node name which used for access the node. Must be unique.
+	 * @var string The node name which is used to access the node must be unique.
 	 */
 	protected $name;
 

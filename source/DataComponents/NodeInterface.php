@@ -9,9 +9,9 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 interface NodeInterface {
 
 	/**
-	 * The main method to retrieve value.
+	 * The main method retrieves the value.
 	 *
-	 * Should always returns the value of this node.
+	 * Should always return the value of this node.
 	 *
 	 * @return mixed Value of this node.
 	 */

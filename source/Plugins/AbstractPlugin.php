@@ -32,6 +32,7 @@ abstract class AbstractPlugin implements PluginInterface {
 	 */
 	public function setFile($file) {
 		$this->file = $file;
+		return $this;
 	}
 
 	/**

@@ -4,6 +4,12 @@ namespace Korobochkin\WPKit\Tests\Options\Special;
 use Korobochkin\WPKit\Options\Special\DateTimeOption;
 use Korobochkin\WPKit\Tests\DataSets\DateTime\DateTimeTransformationSet;
 
+/**
+ * Class DateTimeOptionTest
+ * @package Korobochkin\WPKit\Tests\Options\Special
+ *
+ * @group data-components
+ */
 class DateTimeOptionTest extends \WP_UnitTestCase {
 
 	/**

@@ -4,6 +4,12 @@ namespace Korobochkin\WPKit\Tests\Transients\Special;
 use Korobochkin\WPKit\Tests\DataSets\Bool\BoolTransformationSet;
 use Korobochkin\WPKit\Transients\Special\BoolTransient;
 
+/**
+ * Class BoolTransientTest
+ * @package Korobochkin\WPKit\Tests\Transients\Special
+ *
+ * @group data-components
+ */
 class BoolTransientTest extends \WP_UnitTestCase {
 
 	/**

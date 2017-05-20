@@ -4,6 +4,12 @@ namespace Korobochkin\WPKit\Tests\PostMeta\Special;
 use Korobochkin\WPKit\PostMeta\Special\BoolPostMeta;
 use Korobochkin\WPKit\Tests\DataSets\Bool\BoolTransformationSet;
 
+/**
+ * Class BoolPostMetaTest
+ * @package Korobochkin\WPKit\Tests\PostMeta\Special
+ *
+ * @group data-components
+ */
 class BoolPostMetaTest extends \WP_UnitTestCase {
 
 	/**

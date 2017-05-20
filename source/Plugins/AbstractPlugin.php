@@ -11,7 +11,7 @@ abstract class AbstractPlugin implements PluginInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function __construct( $file ) {
+	public function __construct($file) {
 		$this->setFile($file);
 	}
 
@@ -30,7 +30,7 @@ abstract class AbstractPlugin implements PluginInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function setFile( $file ) {
+	public function setFile($file) {
 		$this->file = $file;
 	}
 

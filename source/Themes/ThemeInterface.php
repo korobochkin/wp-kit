@@ -15,18 +15,18 @@ interface ThemeInterface {
 	public function run();
 
 	/**
-	 * @param $file string A subpath + filename.
+	 * The theme folder path.
 	 *
 	 * @return string A path to theme root folder (where your functions.php file located).
 	 */
-	public function getDir($file);
+	public function getDir();
 
 	/**
-	 * @param $file string A subpath + filename.
+	 * The theme folder URL.
 	 *
-	 * @return string An URL to theme root folder (where you can place your style.css for example).
+	 * @return string An URL to theme root folder (where your style.css exists).
 	 */
-	public function getUrl($file);
+	public function getUrl();
 
 	/**
 	 * Returns theme version as a string which you can parse.

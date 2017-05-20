@@ -5,7 +5,7 @@ Plugin URI: https://wordpress.org/plugins/wp-kit
 Description: Tools for WordPress developers.
 Author: Kolya Korobochkin
 Author URI: https://korobochkin.com/
-Version: 0.1.0-alpha-3
+Version: 0.1.0-alpha-4
 Text Domain: wp-kit
 Domain Path: /languages/
 Requires at least: 4.0.0

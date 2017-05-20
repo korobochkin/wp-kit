@@ -30,6 +30,8 @@ interface PluginInterface {
 
 	/**
 	 * @param $file string A path to plugin bootstrap file.
+	 *
+	 * @return $this For chain calls.
 	 */
 	public function setFile($file);
 

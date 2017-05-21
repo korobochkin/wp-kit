@@ -63,7 +63,7 @@ interface TransientInterface extends NodeInterface {
 	 * If operation was unsuccessful then return false and don't delete local value.
 	 *
 	 * @param $value mixed Any type of value which can be passed to $this->setValue().
-	 * @param integer $expiration The maximum of seconds to keep the data before refreshing.
+	 * @param integer $expiration After this time the data will be updated.
 	 *
 	 * @return bool Result of $this->flush() call.
 	 */

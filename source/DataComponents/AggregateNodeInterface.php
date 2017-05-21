@@ -4,23 +4,23 @@ namespace Korobochkin\WPKit\DataComponents;
 interface AggregateNodeInterface {
 
 	/**
-	 * Returns all children nodes list in array.
+	 * Returns list of all children nodes as array.
 	 *
 	 * @return array The nodes list.
 	 */
 	public function getNodes();
 
 	/**
-	 * Add single node to this instance.
+	 * Adds single node to this instance.
 	 *
-	 * @param NodeInterface $node Node to add
+	 * @param NodeInterface $node Node for adding.
 	 *
 	 * @return $this For chain calls.
 	 */
 	public function addNode(NodeInterface $node);
 
 	/**
-	 * Remove single node by name.
+	 * Removes single node by name.
 	 *
 	 * @param $name string The node name.
 	 *
@@ -29,7 +29,7 @@ interface AggregateNodeInterface {
 	public function removeNode($name);
 
 	/**
-	 * Get single node by name.
+	 * Gets single node by name.
 	 *
 	 * @param $name string The node name.
 	 *

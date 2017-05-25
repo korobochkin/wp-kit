@@ -9,27 +9,21 @@ abstract class AbstractCronEvent extends AbstractCronSingleEvent {
 	 * @inheritdoc
 	 */
 	public function schedule() {
-		// TODO: update this method
 		if(!is_int($this->timestamp))
 			throw new \LogicException('You must specify valid timestamp of event before schedule.');
 
 		if(!is_string($this->name))
 			throw new \LogicException('You must specify name for event before schedule.');
 
-		return wp_schedule_single_event($this->getTimestamp(), $this->getName(), $this->getArgs());
-	}
+		$schedules = wp_get_schedules();
+		if(!array_key_exists($this->recurrence, $schedules))
+			throw new \LogicException('Invalid recurrence name. You should register before using.');
 
-	/**
-	 * @inheritdoc
-	 */
-	public function unSchedule() {
-		// TODO: update this method
-		if(!is_int($this->timestamp))
-			throw new \LogicException('You must specify valid timestamp of event before un schedule.');
-
-		if(!is_string($this->name))
-			throw new \LogicException('You must specify name for event before un schedule.');
-
-		return wp_unschedule_event($this->getTimestamp(), $this->getName(), $this->getArgs());
+		return wp_schedule_event(
+			$this->getTimestamp(),
+			$this->getRecurrence(),
+			$this->getName(),
+			$this->getArgs()
+		);
 	}
 }

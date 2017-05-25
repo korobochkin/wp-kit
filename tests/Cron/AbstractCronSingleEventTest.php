@@ -122,4 +122,12 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 		$tasks = _get_cron_array();
 		$this->assertFalse(isset($tasks[$time][$name]));
 	}
+
+	public function testUnScheduleAll() {
+		$this->markTestIncomplete();
+	}
+
+	public function testImmediately() {
+		$this->markTestIncomplete();
+	}
 }

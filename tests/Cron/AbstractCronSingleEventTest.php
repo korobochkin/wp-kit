@@ -124,10 +124,43 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 	}
 
 	public function testUnScheduleAll() {
-		$this->markTestIncomplete();
+		$time = time();
+		$time2 = $time + HOUR_IN_SECONDS;
+		$time3 = $time2 + HOUR_IN_SECONDS;
+		$name = 'wp_kit_test_cron_event';
+
+		$this->stub
+			->setName($name);
+
+		$this->stub
+			->setTimestamp($time)
+			->schedule();
+
+		$this->stub
+			->setTimestamp($time2)
+			->schedule();
+
+		$this->stub
+			->setTimestamp($time3)
+			->schedule();
+
+		$tasks = _get_cron_array();
+		$this->assertTrue(isset($tasks[$time][$name]));
+		$this->assertTrue(isset($tasks[$time2][$name]));
+		$this->assertTrue(isset($tasks[$time3][$name]));
+
+		$this->stub->unScheduleAll();
+		$tasks = _get_cron_array();
+		$this->assertFalse(isset($tasks[$time][$name]));
+		$this->assertFalse(isset($tasks[$time2][$name]));
+		$this->assertFalse(isset($tasks[$time3][$name]));
 	}
 
 	public function testImmediately() {
+
+
+
 		$this->markTestIncomplete();
+
 	}
 }

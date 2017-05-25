@@ -29,10 +29,10 @@ abstract class AbstractCronSingleEvent implements CronSingleEventInterface {
 	 */
 	public function unSchedule() {
 		if(!is_int($this->timestamp))
-			throw new \LogicException('You must specify valid timestamp of event before schedule.');
+			throw new \LogicException('You must specify valid timestamp of event before un schedule.');
 
 		if(!is_string($this->name))
-			throw new \LogicException('You must specify name for event before schedule.');
+			throw new \LogicException('You must specify name for event before un schedule.');
 
 		return wp_unschedule_event($this->getTimestamp(), $this->getName(), $this->getArgs());
 	}

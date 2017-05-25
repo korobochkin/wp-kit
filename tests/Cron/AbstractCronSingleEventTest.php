@@ -157,10 +157,8 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 	}
 
 	public function testImmediately() {
-
-
-
-		$this->markTestIncomplete();
-
+		$time = time();
+		$this->assertEquals($this->stub, $this->stub->immediately());
+		$this->assertEquals($time, $this->stub->getTimestamp());
 	}
 }

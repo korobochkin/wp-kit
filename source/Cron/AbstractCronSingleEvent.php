@@ -21,7 +21,7 @@ abstract class AbstractCronSingleEvent implements CronSingleEventInterface {
 		if(!is_callable($this->hook))
 			throw new \LogicException('You must specify callable hook for event before schedule.');
 
-		return wp_schedule_single_event($this->getTimestamp(), $this->getHook(), $this->getArgs());
+		return wp_schedule_single_event($this->getTimestamp(), $this->getName(), $this->getArgs());
 	}
 
 	/**
@@ -34,14 +34,14 @@ abstract class AbstractCronSingleEvent implements CronSingleEventInterface {
 		if(!is_callable($this->hook))
 			throw new \LogicException('You must specify callable hook for event before schedule.');
 
-		return wp_unschedule_event($this->getTimestamp(), $this->getHook(), $this->getArgs());
+		return wp_unschedule_event($this->getTimestamp(), $this->getName(), $this->getArgs());
 	}
 
 	/**
 	 * @inheritdoc
 	 */
 	public function unScheduleAll() {
-		return wp_clear_scheduled_hook($this->getHook(), $this->getArgs());
+		return wp_clear_scheduled_hook($this->getName(), $this->getArgs());
 	}
 
 	/**

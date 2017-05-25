@@ -69,7 +69,57 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 		$this->assertEquals(1, count($tasks[$time][$name]));
 	}
 
-	public function unSchedule() {
+	public function testUnSchedule() {
+		$time = time();
+		$name = 'wp_kit_test_cron_event';
+		$tasks = _get_cron_array();
 
+		// Add event
+		$this->stub
+			->setTimestamp($time)
+			->setName($name)
+			->schedule();
+
+		// Reset values of object to default
+		$this->stub
+			->setTimestamp('123')
+			->setName(null);
+
+		if(PHP_VERSION_ID >= 70000) {
+			// PHP 7
+			$this->expectException(\LogicException::class);
+			$this->stub->unSchedule();
+		} else {
+			// PHP 5
+			try {
+				$this->stub->unSchedule();
+			}
+			catch(\Exception $exception) {
+				$this->assertTrue(is_a($exception, \LogicException::class));
+			}
+		}
+
+		$this->stub->setTimestamp($time);
+
+		if(PHP_VERSION_ID >= 70000) {
+			// PHP 7
+			$this->expectException(\LogicException::class);
+			$this->stub->unSchedule();
+		} else {
+			// PHP 5
+			try {
+				$this->stub->unSchedule();
+			}
+			catch(\Exception $exception) {
+				$this->assertTrue(is_a($exception, \LogicException::class));
+			}
+		}
+
+		$this->stub->setName($name);
+
+		$this->assertNull($this->stub->unSchedule());
+
+		$tasks = _get_cron_array();
+		$this->assertFalse(isset($tasks[$time][$name]));
 	}
 }

@@ -21,7 +21,11 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 	public function testSchedule() {
 		$time = time();
 		$name = 'wp_kit_test_cron_event';
+		$tasks = _get_cron_array();
 
+		$this->assertFalse(isset($tasks[$time][$name]));
+
+		// Set wrong timestamp
 		$this->stub->setTimestamp('123');
 
 		if(PHP_VERSION_ID >= 70000) {
@@ -63,5 +67,9 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 		$this->assertTrue(isset($tasks[$time][$name]));
 		$this->assertNotEmpty($tasks[$time][$name]);
 		$this->assertEquals(1, count($tasks[$time][$name]));
+	}
+
+	public function unSchedule() {
+
 	}
 }

@@ -18,8 +18,8 @@ abstract class AbstractCronSingleEvent implements CronSingleEventInterface {
 		if(!is_int($this->timestamp))
 			throw new \LogicException('You must specify valid timestamp of event before schedule.');
 
-		if(!is_callable($this->name))
-			throw new \LogicException('You must specify callable hook for event before schedule.');
+		if(!is_string($this->name))
+			throw new \LogicException('You must specify name for event before schedule.');
 
 		return wp_schedule_single_event($this->getTimestamp(), $this->getName(), $this->getArgs());
 	}
@@ -31,8 +31,8 @@ abstract class AbstractCronSingleEvent implements CronSingleEventInterface {
 		if(!is_int($this->timestamp))
 			throw new \LogicException('You must specify valid timestamp of event before schedule.');
 
-		if(!is_callable($this->name))
-			throw new \LogicException('You must specify callable hook for event before schedule.');
+		if(!is_string($this->name))
+			throw new \LogicException('You must specify name for event before schedule.');
 
 		return wp_unschedule_event($this->getTimestamp(), $this->getName(), $this->getArgs());
 	}

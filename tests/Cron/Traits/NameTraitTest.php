@@ -15,7 +15,7 @@ class NameTraitTest extends \WP_UnitTestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->stub = $this->getMockForAbstractClass(NameTrait::class);
+		$this->stub = $this->getMockForTrait(NameTrait::class);
 	}
 
 	public function testStub() {

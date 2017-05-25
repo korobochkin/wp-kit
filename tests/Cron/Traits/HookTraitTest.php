@@ -15,7 +15,7 @@ class HookTraitTest extends \WP_UnitTestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->stub = $this->getMockForAbstractClass(HookTrait::class);
+		$this->stub = $this->getMockForTrait(HookTrait::class);
 	}
 
 	public function testStub() {

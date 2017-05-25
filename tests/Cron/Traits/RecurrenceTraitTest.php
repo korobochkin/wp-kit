@@ -15,7 +15,7 @@ class RecurrenceTraitTest extends \WP_UnitTestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->stub = $this->getMockForAbstractClass(RecurrenceTrait::class);
+		$this->stub = $this->getMockForTrait(RecurrenceTrait::class);
 	}
 
 	public function testStub() {

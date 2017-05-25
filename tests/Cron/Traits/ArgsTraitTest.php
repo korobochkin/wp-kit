@@ -15,7 +15,7 @@ class ArgsTraitTest extends \WP_UnitTestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->stub = $this->getMockForAbstractClass(ArgsTrait::class);
+		$this->stub = $this->getMockForTrait(ArgsTrait::class);
 	}
 
 	public function testStub() {

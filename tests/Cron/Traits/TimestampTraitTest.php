@@ -15,7 +15,7 @@ class TimestampTraitTest extends \WP_UnitTestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->stub = $this->getMockForAbstractClass(TimestampTrait::class);
+		$this->stub = $this->getMockForTrait(TimestampTrait::class);
 	}
 
 	public function testStub() {

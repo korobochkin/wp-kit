@@ -182,15 +182,20 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 			->setTimestamp($time3)
 			->schedule();
 
-		$tasks = _get_cron_array();
-		if($resultOfScheduling === null) {
-			$this->assertTrue(isset($tasks[$time][$name]));
-			$this->assertTrue(isset($tasks[$time2][$name]));
-			$this->assertTrue(isset($tasks[$time3][$name]));
-		} else {
-			$this->assertFalse(isset($tasks[$time][$name]));
-			$this->assertTrue(isset($tasks[$time2][$name]));
-			$this->assertTrue(isset($tasks[$time3][$name]));
+		global $wp_version;
+		$result = version_compare($wp_version, '4.1');
+		if($result >= 0) {
+			// Do not check this if WordPress lower 4.1 because this versions have a bugs
+			$tasks = _get_cron_array();
+			if($resultOfScheduling === null) {
+				$this->assertTrue(isset($tasks[$time][$name]));
+				$this->assertTrue(isset($tasks[$time2][$name]));
+				$this->assertTrue(isset($tasks[$time3][$name]));
+			} else {
+				$this->assertFalse(isset($tasks[$time][$name]));
+				$this->assertTrue(isset($tasks[$time2][$name]));
+				$this->assertTrue(isset($tasks[$time3][$name]));
+			}
 		}
 
 		$this->stub->unScheduleAll();

@@ -15,7 +15,7 @@ class CronEventDataSet extends AbstractDataSet {
 			//    timestamp                  result      result
 			//                               of          of
 			//                               scheduling  un-scheduling
-			array(0,                         false,      false),
+			array(1,                         null,       null),
 			array($time,                     null,       null),
 			array($time + MINUTE_IN_SECONDS, null,       null),
 			array($time + HOUR_IN_SECONDS,   null,       null),

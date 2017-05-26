@@ -72,9 +72,13 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 
 		// And finally validate that this event added to WordPress
 		$tasks = _get_cron_array();
-		$this->assertTrue(isset($tasks[$time][$name]));
-		$this->assertNotEmpty($tasks[$time][$name]);
-		$this->assertEquals(1, count($tasks[$time][$name]));
+		if($resultOfScheduling === null) {
+			$this->assertTrue(isset($tasks[$time][$name]));
+			$this->assertNotEmpty($tasks[$time][$name]);
+			$this->assertEquals(1, count($tasks[$time][$name]));
+		} else {
+			$this->assertFalse(isset($tasks[$time][$name]));
+		}
 	}
 
 	public function casesSchedule() {
@@ -179,9 +183,15 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 			->schedule();
 
 		$tasks = _get_cron_array();
-		$this->assertTrue(isset($tasks[$time][$name]));
-		$this->assertTrue(isset($tasks[$time2][$name]));
-		$this->assertTrue(isset($tasks[$time3][$name]));
+		if($resultOfScheduling === null) {
+			$this->assertTrue(isset($tasks[$time][$name]));
+			$this->assertTrue(isset($tasks[$time2][$name]));
+			$this->assertTrue(isset($tasks[$time3][$name]));
+		} else {
+			$this->assertFalse(isset($tasks[$time][$name]));
+			$this->assertFalse(isset($tasks[$time2][$name]));
+			$this->assertFalse(isset($tasks[$time3][$name]));
+		}
 
 		$this->stub->unScheduleAll();
 		$tasks = _get_cron_array();

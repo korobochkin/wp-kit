@@ -72,13 +72,13 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 
 		// And finally validate that this event added to WordPress
 		$tasks = _get_cron_array();
-		if($resultOfScheduling === null) {
 			$this->assertTrue(isset($tasks[$time][$name]));
 			$this->assertNotEmpty($tasks[$time][$name]);
 			$this->assertEquals(1, count($tasks[$time][$name]));
+		/*if($resultOfScheduling === null) {
 		} else {
 			$this->assertFalse(isset($tasks[$time][$name]));
-		}
+		}*/
 	}
 
 	public function casesSchedule() {

@@ -6,7 +6,7 @@ trait TimestampTrait {
 	/**
 	 * @var int The time you want the event to occur. This must be in a UNIX timestamp format.
 	 */
-	protected $timestamp = 0;
+	protected $timestamp = 1;
 
 	/**
 	 * Returns the timestamp.

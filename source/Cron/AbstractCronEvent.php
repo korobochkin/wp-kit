@@ -9,7 +9,7 @@ abstract class AbstractCronEvent extends AbstractCronSingleEvent {
 	 * @inheritdoc
 	 */
 	public function schedule() {
-		if(!is_int($this->timestamp))
+		if(!is_int($this->timestamp) || $this->timestamp <= 0)
 			throw new \LogicException('You must specify valid timestamp of event before schedule.');
 
 		if(!is_string($this->name))

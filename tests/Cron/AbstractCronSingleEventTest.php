@@ -25,8 +25,9 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 	 * @dataProvider casesSchedule
 	 *
 	 * @param $time int Timestamp to test with.
+	 * @param $resultOfScheduling mixed Result which returns schedule method.
 	 */
-	public function testSchedule($time) {
+	public function testSchedule($time, $resultOfScheduling) {
 		$name = 'wp_kit_test_cron_event';
 		$tasks = _get_cron_array();
 
@@ -66,7 +67,7 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 		}
 
 		$this->stub->setName($name);
-		$this->assertNull($this->stub->schedule());
+		$this->assertEquals($resultOfScheduling, $this->stub->schedule());
 		$this->assertEquals($name, $this->stub->getName());
 
 		// And finally validate that this event added to WordPress
@@ -86,8 +87,9 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 	 * @dataProvider casesUnSchedule
 	 *
 	 * @param $time int Timestamp to test with.
+	 * @param $resultOfScheduling mixed Result which returns schedule method.
 	 */
-	public function testUnSchedule($time) {
+	public function testUnSchedule($time, $resultOfScheduling) {
 		$name = 'wp_kit_test_cron_event';
 		$tasks = _get_cron_array();
 
@@ -134,7 +136,7 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 
 		$this->stub->setName($name);
 
-		$this->assertNull($this->stub->unSchedule());
+		$this->assertEquals($resultOfScheduling, $this->stub->unSchedule());
 
 		$tasks = _get_cron_array();
 		$this->assertFalse(isset($tasks[$time][$name]));
@@ -154,8 +156,9 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 	 * @dataProvider casesUnScheduleAll
 	 *
 	 * @param $time int Timestamp to test with.
+	 * @param $resultOfScheduling mixed Result which returns schedule method.
 	 */
-	public function testUnScheduleAll($time) {
+	public function testUnScheduleAll($time, $resultOfScheduling) {
 		$time2 = $time + DAY_IN_SECONDS;
 		$time3 = $time2 + DAY_IN_SECONDS;
 		$name = 'wp_kit_test_cron_event';

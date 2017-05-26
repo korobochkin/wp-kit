@@ -12,12 +12,16 @@ class CronEventDataSet extends AbstractDataSet {
 		$time = time();
 
 		$variants = array(
-			array(0),
-			array($time + MINUTE_IN_SECONDS),
-			array($time + HOUR_IN_SECONDS),
-			array($time + DAY_IN_SECONDS),
-			array($time + WEEK_IN_SECONDS),
-			array($time + YEAR_IN_SECONDS),
+			//    timestamp                  result      result
+			//                               of          of
+			//                               scheduling  un-scheduling
+			array(0,                         false,      false),
+			array($time,                     null,       null),
+			array($time + MINUTE_IN_SECONDS, null,       null),
+			array($time + HOUR_IN_SECONDS,   null,       null),
+			array($time + DAY_IN_SECONDS,    null,       null),
+			array($time + WEEK_IN_SECONDS,   null,       null),
+			array($time + YEAR_IN_SECONDS,   null,       null),
 		);
 
 		$this->variants = $variants;

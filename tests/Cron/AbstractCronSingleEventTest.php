@@ -147,6 +147,10 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 	/**
 	 * Test un-scheduling all events with same name.
 	 *
+	 * Scheduling events close to each other may have a bugs in older WordPress versions
+	 *
+	 * @see https://core.trac.wordpress.org/ticket/28213 Bug in WordPress < 4.1
+	 *
 	 * @dataProvider casesUnScheduleAll
 	 *
 	 * @param $time int Timestamp to test with.

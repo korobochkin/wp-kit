@@ -2,6 +2,7 @@
 namespace Korobochkin\WPKit\Tests\Cron;
 
 use Korobochkin\WPKit\Cron\AbstractCronSingleEvent;
+use Korobochkin\WPKit\Tests\DataSets\Cron\CronEventDataSet;
 
 class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 
@@ -18,8 +19,14 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 		$this->stub = $this->getMockForAbstractClass(AbstractCronSingleEvent::class);
 	}
 
-	public function testSchedule() {
-		$time = time();
+	/**
+	 * Test schedule event.
+	 *
+	 * @dataProvider casesSchedule
+	 *
+	 * @param $time int Timestamp to test with.
+	 */
+	public function testSchedule($time) {
 		$name = 'wp_kit_test_cron_event';
 		$tasks = _get_cron_array();
 
@@ -69,8 +76,18 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 		$this->assertEquals(1, count($tasks[$time][$name]));
 	}
 
-	public function testUnSchedule() {
-		$time = time();
+	public function casesSchedule() {
+		return new CronEventDataSet();
+	}
+
+	/**
+	 * Test un-schedule single event with name.
+	 *
+	 * @dataProvider casesUnSchedule
+	 *
+	 * @param $time int Timestamp to test with.
+	 */
+	public function testUnSchedule($time) {
 		$name = 'wp_kit_test_cron_event';
 		$tasks = _get_cron_array();
 
@@ -123,10 +140,20 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 		$this->assertFalse(isset($tasks[$time][$name]));
 	}
 
-	public function testUnScheduleAll() {
-		$time = time();
-		$time2 = $time + HOUR_IN_SECONDS;
-		$time3 = $time2 + HOUR_IN_SECONDS;
+	public function casesUnSchedule() {
+		return new CronEventDataSet();
+	}
+
+	/**
+	 * Test un-scheduling all events with same name.
+	 *
+	 * @dataProvider casesUnScheduleAll
+	 *
+	 * @param $time int Timestamp to test with.
+	 */
+	public function testUnScheduleAll($time) {
+		$time2 = $time + DAY_IN_SECONDS;
+		$time3 = $time2 + DAY_IN_SECONDS;
 		$name = 'wp_kit_test_cron_event';
 
 		$this->stub
@@ -154,6 +181,10 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase {
 		$this->assertFalse(isset($tasks[$time][$name]));
 		$this->assertFalse(isset($tasks[$time2][$name]));
 		$this->assertFalse(isset($tasks[$time3][$name]));
+	}
+
+	public function casesUnScheduleAll() {
+		return new CronEventDataSet();
 	}
 
 	public function testImmediately() {

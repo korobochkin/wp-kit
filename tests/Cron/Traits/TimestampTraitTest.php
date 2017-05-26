@@ -19,7 +19,7 @@ class TimestampTraitTest extends \WP_UnitTestCase {
 	}
 
 	public function testStub() {
-		$defaultValue = 0;
+		$defaultValue = 1;
 
 		$this->assertEquals($defaultValue, $this->stub->getTimestamp());
 

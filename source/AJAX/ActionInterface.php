@@ -6,6 +6,9 @@ use Symfony\Component\Validator\ConstraintViolationList;
 
 interface ActionInterface {
 
+	/**
+	 * @return bool
+	 */
 	public function isEnabledForLoggedIn();
 
 	public function setEnabledForLoggedIn($enabledForLoggedIn);

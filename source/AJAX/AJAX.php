@@ -55,7 +55,7 @@ class AJAX implements AJAXInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function setRequest($request) {
+	public function setRequest(Request $request) {
 		$this->request = $request;
 		return $this;
 	}
@@ -70,11 +70,14 @@ class AJAX implements AJAXInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function setResponse($response) {
+	public function setResponse(Response $response) {
 		$this->response = $response;
 		return $this;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function load() {
 		if(empty($this->actions)) {
 			return $this;
@@ -94,12 +97,18 @@ class AJAX implements AJAXInterface {
 		return $this;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function lateConstruct() {
 		$this->request = Request::createFromGlobals();
 		$this->response = new Response();
 		return $this;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function handleRequest() {
 		$this->lateConstruct();
 

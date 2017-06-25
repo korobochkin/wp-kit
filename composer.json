@@ -12,7 +12,8 @@
     "minimum-stability": "dev",
     "require": {
         "symfony/validator": "3.2",
-        "symfony/form": "^3.2"
+        "symfony/form": "^3.2",
+        "symfony/http-foundation": "^3.3"
     },
     "autoload": {
         "psr-4": {

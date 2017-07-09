@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bdecf739cee63586c90e807e668ab4f4",
+    "content-hash": "300f1b630afd47aeb58dac4314c2a5e0",
     "packages": [
         {
             "name": "paragonie/random_compat",
@@ -56,16 +56,16 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "dev-master",
+            "version": "3.3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "6813d5fde9b4263e3ba968f654d4913733e0996c"
+                "reference": "67535f1e3fd662bdc68d7ba317c93eecd973617e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/6813d5fde9b4263e3ba968f654d4913733e0996c",
-                "reference": "6813d5fde9b4263e3ba968f654d4913733e0996c",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/67535f1e3fd662bdc68d7ba317c93eecd973617e",
+                "reference": "67535f1e3fd662bdc68d7ba317c93eecd973617e",
                 "shasum": ""
             },
             "require": {
@@ -115,20 +115,20 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-03-21 21:44:47"
+            "time": "2017-06-09 14:53:08"
         },
         {
             "name": "symfony/form",
-            "version": "dev-master",
+            "version": "3.3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/form.git",
-                "reference": "0619b166ca6a3801d94eb3dece5f7cba3f9f810b"
+                "reference": "7c728458818dd00024f1900716166a4b6fa6c5fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/0619b166ca6a3801d94eb3dece5f7cba3f9f810b",
-                "reference": "0619b166ca6a3801d94eb3dece5f7cba3f9f810b",
+                "url": "https://api.github.com/repos/symfony/form/zipball/7c728458818dd00024f1900716166a4b6fa6c5fa",
+                "reference": "7c728458818dd00024f1900716166a4b6fa6c5fa",
                 "shasum": ""
             },
             "require": {
@@ -194,20 +194,73 @@
             ],
             "description": "Symfony Form Component",
             "homepage": "https://symfony.com",
-            "time": "2017-03-23 09:34:23"
+            "time": "2017-06-24 09:29:48"
         },
         {
-            "name": "symfony/inflector",
-            "version": "dev-master",
+            "name": "symfony/http-foundation",
+            "version": "3.4.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/inflector.git",
-                "reference": "3b19c08dc4b1506872e22d79d599d2d6ebd77fd1"
+                "url": "https://github.com/symfony/http-foundation.git",
+                "reference": "af6487eab1f2573ba33046d159ded76af4f25dc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/inflector/zipball/3b19c08dc4b1506872e22d79d599d2d6ebd77fd1",
-                "reference": "3b19c08dc4b1506872e22d79d599d2d6ebd77fd1",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/af6487eab1f2573ba33046d159ded76af4f25dc2",
+                "reference": "af6487eab1f2573ba33046d159ded76af4f25dc2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/polyfill-mbstring": "~1.1"
+            },
+            "require-dev": {
+                "symfony/expression-language": "~2.8|~3.0|~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\HttpFoundation\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony HttpFoundation Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-06-24 09:47:31"
+        },
+        {
+            "name": "symfony/inflector",
+            "version": "3.3.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/inflector.git",
+                "reference": "aed5a0874a3bcfd8d0393a2d91b4cf828f29c7fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/inflector/zipball/aed5a0874a3bcfd8d0393a2d91b4cf828f29c7fb",
+                "reference": "aed5a0874a3bcfd8d0393a2d91b4cf828f29c7fb",
                 "shasum": ""
             },
             "require": {
@@ -251,20 +304,20 @@
                 "symfony",
                 "words"
             ],
-            "time": "2017-02-20 13:49:17"
+            "time": "2017-04-12 14:14:56"
         },
         {
             "name": "symfony/intl",
-            "version": "dev-master",
+            "version": "3.3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/intl.git",
-                "reference": "dc7b5a5d4316a71494d8c7e85ce20b24377381a5"
+                "reference": "a310b29a794578f544305f4f48e3f6c7981b606c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/intl/zipball/dc7b5a5d4316a71494d8c7e85ce20b24377381a5",
-                "reference": "dc7b5a5d4316a71494d8c7e85ce20b24377381a5",
+                "url": "https://api.github.com/repos/symfony/intl/zipball/a310b29a794578f544305f4f48e3f6c7981b606c",
+                "reference": "a310b29a794578f544305f4f48e3f6c7981b606c",
                 "shasum": ""
             },
             "require": {
@@ -326,20 +379,20 @@
                 "l10n",
                 "localization"
             ],
-            "time": "2017-03-14 18:55:49"
+            "time": "2017-06-01 21:01:25"
         },
         {
             "name": "symfony/options-resolver",
-            "version": "dev-master",
+            "version": "3.3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "5edcb71c1d94e44702aca4effadd12ddaa437c00"
+                "reference": "ff48982d295bcac1fd861f934f041ebc73ae40f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/5edcb71c1d94e44702aca4effadd12ddaa437c00",
-                "reference": "5edcb71c1d94e44702aca4effadd12ddaa437c00",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/ff48982d295bcac1fd861f934f041ebc73ae40f0",
+                "reference": "ff48982d295bcac1fd861f934f041ebc73ae40f0",
                 "shasum": ""
             },
             "require": {
@@ -380,7 +433,7 @@
                 "configuration",
                 "options"
             ],
-            "time": "2017-03-21 21:44:47"
+            "time": "2017-04-12 14:14:56"
         },
         {
             "name": "symfony/polyfill-intl-icu",
@@ -560,16 +613,16 @@
         },
         {
             "name": "symfony/property-access",
-            "version": "dev-master",
+            "version": "3.3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-access.git",
-                "reference": "65b11974ffa44b3d3d5fee5f3ba02715f1261f6a"
+                "reference": "0e379834279464452e7ac904fde63a9a2162f93f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-access/zipball/65b11974ffa44b3d3d5fee5f3ba02715f1261f6a",
-                "reference": "65b11974ffa44b3d3d5fee5f3ba02715f1261f6a",
+                "url": "https://api.github.com/repos/symfony/property-access/zipball/0e379834279464452e7ac904fde63a9a2162f93f",
+                "reference": "0e379834279464452e7ac904fde63a9a2162f93f",
                 "shasum": ""
             },
             "require": {
@@ -624,20 +677,20 @@
                 "property path",
                 "reflection"
             ],
-            "time": "2017-03-21 21:44:47"
+            "time": "2017-06-24 09:29:48"
         },
         {
             "name": "symfony/translation",
-            "version": "dev-master",
+            "version": "3.3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "fc74a95c8aed8029e1311a9b6c177e94c338027d"
+                "reference": "35dd5fb003c90e8bd4d8cabdf94bf9c96d06fdc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/fc74a95c8aed8029e1311a9b6c177e94c338027d",
-                "reference": "fc74a95c8aed8029e1311a9b6c177e94c338027d",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/35dd5fb003c90e8bd4d8cabdf94bf9c96d06fdc3",
+                "reference": "35dd5fb003c90e8bd4d8cabdf94bf9c96d06fdc3",
                 "shasum": ""
             },
             "require": {
@@ -689,7 +742,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-03-21 21:44:47"
+            "time": "2017-06-24 16:45:30"
         },
         {
             "name": "symfony/validator",

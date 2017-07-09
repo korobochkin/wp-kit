@@ -4,12 +4,18 @@ namespace Korobochkin\WPKit\PostMeta;
 use Korobochkin\WPKit\DataComponents\AbstractNode;
 use Korobochkin\WPKit\DataComponents\Traits\DeleteTrait;
 use Korobochkin\WPKit\DataComponents\Traits\PostIdTrait;
+use Korobochkin\WPKit\DataComponents\Traits\PostMeta\GetNameWithVisibilityTrait;
+use Korobochkin\WPKit\DataComponents\Traits\VisibilityTrait;
 
 abstract class AbstractPostMeta extends AbstractNode implements PostMetaInterface {
 
 	use DeleteTrait;
 
 	use PostIdTrait;
+
+	use VisibilityTrait;
+
+	use GetNameWithVisibilityTrait;
 
 	/**
 	 * @inheritdoc

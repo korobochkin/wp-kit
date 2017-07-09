@@ -69,4 +69,20 @@ interface PostMetaInterface extends NodeInterface {
 	 */
 	public function setPostId($id);
 
+    /**
+     * Returns visibility flag for post meta.
+     *
+     * @return bool True if meta visible, false otherwise.
+     */
+	public function isVisible();
+
+    /**
+     * Set the visibility for meta.
+     *
+     * @param $visibility bool Should this meta be visible or not.
+     *
+     * @return $this For chain calls.
+     */
+	public function setVisibility($visibility);
+
 }

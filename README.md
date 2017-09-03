@@ -2,25 +2,25 @@
 
 [![Packagist Pre Release](https://img.shields.io/packagist/vpre/korobochkin/wp-kit.svg)](https://packagist.org/packages/korobochkin/wp-kit) [![Build Status](https://travis-ci.org/korobochkin/wp-kit.svg?branch=master)](https://travis-ci.org/korobochkin/wp-kit) [![Packagist](https://img.shields.io/packagist/dt/korobochkin/wp-kit.svg)](https://packagist.org/packages/korobochkin/wp-kit)
 
-If you tired with plain WordPres functions and long unreadable code you need to switch to OOP code. It's easy! This library is created for making WordPress more friendly. Plugin and theme authors can create more reusable components and products by using this library.
+If you have been coding with plain WordPress functions and long unreadable code, you need to switch to Object Oriented Programming (OOP) code. It's easy! This library makes WordPress more friendly. Plugin and theme authors can create more reusable components and products by using this library.
 
 ## Examples of usage
 
-### Options
+### Option
 
-Options is the one of component from `DataComponents` series. Options represents the native WordPress options which you can use with `get_option()` or `update_option()` functions from WordPress. But this way of usage is not very handy.
+Option is a component from the `DataComponents` series. Option represents the native WordPress options associated with the `get_option()` or `update_option()` WordPress functions, which are not very convienent.
 
-**The Options component in WP Kit is options on steroids.**
+**The Option component in WP Kit is options on steroids.**
  
- 1. Each time when you are trying to use option you need manually type its name. Without auto complete. And if your product have many options you can get confused. WP Kit solves this issue.
+ 1. Each time you use the WordPress option, you have to manually type its name (unless you're using auto complete), and if your product has many options, you can get confused. WP Kit solves this issue.
    
- 2. Options in WordPress not handling with variable types. If you are saving `integer` and after saving and retrieve value back you get `string` value which you need manually convert. WP Kit solves this with DataTransformers and you always get data in desired type.
+ 2. Options in WordPress do not handle variable types. For example, if you save an `integer` variable, after saving and retrieving the value back, you receive a `string` value, which you then need to manually convert back to `integer`. WP Kit solves this with DataTransformers so you always receive the data in your desired type.
  
- 3. Now you have chance to validate your options. No more manual validations for emails, urls, strings... You can easily define the rules of validation (Constraints) and error messages. 
+ 3. Also, now you can validate your options data. No more manual validations for emails, urls, strings... You can easily define the rules of validation (Constraints) and error messages. 
  
- 4. And that's only the key features of Option component!
+ 4. And those are only the key features of the Option component! There are more.
 
-Here is most simple usage of `Option` class. Very helpful if you want to use not your options, for example from other plugins or WordPress options. 
+Here is a simple sample usage of the WP Kit `Option` class. It's very helpful to avoid conflicting options, for example from other plugins or WordPress options. 
 
 ```php
 use Korobochkin\WPKit\Options\Option;
@@ -39,7 +39,7 @@ $option
   ->flush();
 ```
 
-The more advanced usage is creating unique classes for each option which you have in your product. After that if you want use your option you can just use this class to retrieve the value.
+A more advanced usage is creating unique classes for each option in your product, after which to use your option you just use this class to retrieve the value.
 
 ```php
 namespace Korobochkin\MyProject\Options;
@@ -51,7 +51,7 @@ class TokenOption extends Option {
   }
 }
 
-// Anythere in your code
+// Anywhere in your code
 
 // Create the option instance
 $option = new TokenOption();
@@ -62,11 +62,11 @@ $option->get();
 
 ### Transients
 
-Transients are very similar to Options. All the difference the only in one thing: `expiration` instead of `autoload`.
+Transients are very similar to Options. The only difference is using `expiration` instead of `autoload`.
 
 ## How to install?
 
-Use Composer. The publishing on WordPress will be in the near future.
+Use Composer. The will be published on the WordPress repository in the near future.
 
 ```bash
 composer require korobochkin/wp-kit

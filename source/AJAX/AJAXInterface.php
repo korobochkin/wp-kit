@@ -71,15 +71,6 @@ interface AJAXInterface {
 	public function load();
 
 	/**
-	 * Setup any other related stuff for handling requests.
-	 *
-	 * Need to be called from $this->handleRequest() and prepare Request and Response objects for Action.
-	 *
-	 * @return $this For chain calls.
-	 */
-	public function lateConstruct();
-
-	/**
 	 * Handling HTTP requests and send Response back
 	 *
 	 * @see $this->send()

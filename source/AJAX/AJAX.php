@@ -100,22 +100,10 @@ class AJAX implements AJAXInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function lateConstruct() {
-		$this->request = Request::createFromGlobals();
-		$this->response = new Response();
-		return $this;
-	}
-
-	/**
-	 * @inheritdoc
-	 */
 	public function handleRequest() {
-		$this->lateConstruct();
-
 		if(isset($this->actions[$_REQUEST['action']])) {
 			$this->actions[$_REQUEST['action']]->handleRequest();
 		}
-
 		$this->send();
 	}
 

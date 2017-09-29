@@ -249,10 +249,10 @@ class AbstractPostMetaTest extends \WP_UnitTestCase {
 	}
 
 	public function testName() {
-		$this->assertNull($this->stub->getName());
+		$this->assertEquals('_', $this->stub->getName());
 
 		$this->assertEquals($this->stub, $this->stub->setName('wp_kit_dummy_name'));
-		$this->assertEquals('wp_kit_dummy_name', $this->stub->getName());
+		$this->assertEquals('_wp_kit_dummy_name', $this->stub->getName());
 	}
 
 	/**

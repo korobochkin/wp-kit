@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="Coding Standards for SDK">
+<ruleset name="Coding Standards">
 	<description>PSR-2 with additions for docs and more.</description>
 
 	<file>./source</file>

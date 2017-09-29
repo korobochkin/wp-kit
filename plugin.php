@@ -13,6 +13,6 @@ Tested up to: 4.8.2
 License: GPLv2 or later
 */
 
-if(!interface_exists('Korobochkin\WPKit\Plugins\PluginInterface')) {
-	require_once 'vendor/autoload.php';
+if (!interface_exists('Korobochkin\WPKit\Plugins\PluginInterface')) {
+    require_once 'vendor/autoload.php';
 }

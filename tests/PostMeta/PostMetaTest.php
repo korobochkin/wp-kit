@@ -9,25 +9,27 @@ use Korobochkin\WPKit\PostMeta\PostMeta;
  *
  * @group data-components
  */
-class PostMetaTest extends \WP_UnitTestCase {
+class PostMetaTest extends \WP_UnitTestCase
+{
+    /**
+     * @var PostMeta
+     */
+    protected $stub;
 
-	/**
-	 * @var PostMeta
-	 */
-	protected $stub;
+    /**
+     * Prepare option for tests.
+     */
+    public function setUp()
+    {
+        parent::setUp();
+        $this->stub = new PostMeta();
+    }
 
-	/**
-	 * Prepare option for tests.
-	 */
-	public function setUp() {
-		parent::setUp();
-		$this->stub = new PostMeta();
-	}
-
-	/**
-	 * Dummy post meta always returns null as Constraint.
-	 */
-	public function testBuildConstraint() {
-		$this->assertEquals(null, $this->stub->buildConstraint());
-	}
+    /**
+     * Dummy post meta always returns null as Constraint.
+     */
+    public function testBuildConstraint()
+    {
+        $this->assertEquals(null, $this->stub->buildConstraint());
+    }
 }

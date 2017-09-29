@@ -3,6 +3,11 @@ namespace Korobochkin\WPKit\PostMeta\Special;
 
 use Korobochkin\WPKit\PostMeta\AbstractPostMeta;
 
-abstract class AbstractStringPostMeta extends AbstractPostMeta {
+/**
+ * Class AbstractStringPostMeta
+ * @package Korobochkin\WPKit\PostMeta\Special
+ */
+abstract class AbstractStringPostMeta extends AbstractPostMeta
+{
 
 }

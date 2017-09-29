@@ -1,7 +1,8 @@
 <?php
 namespace Korobochkin\WPKit\DataComponents\Traits;
 
-trait VisibilityTrait {
+trait VisibilityTrait
+{
 
     /**
      * @var bool True if visible, false if not.
@@ -13,7 +14,8 @@ trait VisibilityTrait {
      *
      * @return bool True if meta visible, false otherwise.
      */
-    public function isVisible() {
+    public function isVisible()
+    {
         return $this->visibility;
     }
 
@@ -24,8 +26,10 @@ trait VisibilityTrait {
      *
      * @return $this For chain calls.
      */
-    public function setVisibility($visibility) {
+    public function setVisibility($visibility)
+    {
         $this->visibility = $visibility;
+
         return $this;
     }
 }

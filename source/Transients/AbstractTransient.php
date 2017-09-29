@@ -33,6 +33,10 @@ abstract class AbstractTransient extends AbstractNode implements TransientInterf
         return get_transient($name);
     }
 
+    public function doIt()
+    {
+    }
+
     /**
      * @inheritdoc
      */

@@ -13,7 +13,7 @@ abstract class AbstractDataSet implements \Iterator
     protected $variants;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $position = 0;
 

@@ -3,7 +3,9 @@ namespace Korobochkin\WPKit\DataComponents\Traits;
 
 trait LocalValueTrait
 {
-
+    /**
+     * @var mixed
+     */
     protected $localValue;
 
     public function getLocalValue()

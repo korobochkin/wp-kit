@@ -5,7 +5,9 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 trait DataTransformerTrait
 {
-
+    /**
+     * @var DataTransformerInterface
+     */
     protected $dataTransformer;
 
     /**

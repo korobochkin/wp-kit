@@ -3,7 +3,9 @@ namespace Korobochkin\WPKit\DataComponents\Traits;
 
 trait DefaultValueTrait
 {
-
+    /**
+     * @var mixed
+     */
     protected $defaultValue;
 
     public function getDefaultValue()

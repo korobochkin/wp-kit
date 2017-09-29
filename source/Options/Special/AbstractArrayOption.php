@@ -3,6 +3,11 @@ namespace Korobochkin\WPKit\Options\Special;
 
 use Korobochkin\WPKit\Options\AbstractOption;
 
-abstract class AbstractArrayOption extends AbstractOption {
+/**
+ * Class AbstractArrayOption
+ * @package Korobochkin\WPKit\Options\Special
+ */
+abstract class AbstractArrayOption extends AbstractOption
+{
 
 }

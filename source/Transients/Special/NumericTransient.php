@@ -5,9 +5,13 @@ use Korobochkin\WPKit\DataComponents\Traits\Special\Numeric\NumericBuildConstrai
 use Korobochkin\WPKit\DataComponents\Traits\Special\Numeric\NumericConstructorTrait;
 use Korobochkin\WPKit\Transients\AbstractTransient;
 
-class NumericTransient extends AbstractTransient {
+/**
+ * Class NumericTransient
+ * @package Korobochkin\WPKit\Transients\Special
+ */
+class NumericTransient extends AbstractTransient
+{
+    use NumericConstructorTrait;
 
-	use NumericConstructorTrait;
-
-	use NumericBuildConstraintTrait;
+    use NumericBuildConstraintTrait;
 }

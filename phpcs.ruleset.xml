@@ -4,6 +4,7 @@
 
 	<file>./source</file>
 	<file>./tests</file>
+	<exclude-pattern>./tests/bootstrap.php</exclude-pattern>
 
 	<arg name="colors"/>
 
@@ -27,6 +28,11 @@
 	<rule ref="Generic.Functions.FunctionCallArgumentSpacing"/>
 	<rule ref="Generic.Metrics"/>
 	<rule ref="Generic.NamingConventions"/>
+	<rule ref="Generic.NamingConventions.CamelCapsFunctionName">
+		<properties>
+			<property name="strict" value="false"/>
+		</properties>
+	</rule>
 	<rule ref="Generic.PHP">
 		<exclude name="Generic.PHP.ClosingPHPTag"/>
 		<exclude name="Generic.PHP.UpperCaseConstant"/>
@@ -35,10 +41,12 @@
 	<rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
 
 	<rule ref="Squiz.Classes"/>
-	<rule ref="Squiz.Commenting">
+	<!--<rule ref="Squiz.Commenting">
 		<exclude name="Squiz.Commenting.FileComment"/>
 		<exclude name="Squiz.Commenting.ClosingDeclarationComment"/>
 		<exclude name="Squiz.Commenting.FunctionComment"/>
+	</rule>-->
+	<rule ref="Squiz.ControlStructures">
+		<exclude name="Squiz.ControlStructures.ElseIfDeclaration"/>
 	</rule>
-	<rule ref="Squiz.ControlStructures"/>
 </ruleset>

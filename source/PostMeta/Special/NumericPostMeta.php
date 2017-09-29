@@ -5,9 +5,13 @@ use Korobochkin\WPKit\DataComponents\Traits\Special\Numeric\NumericBuildConstrai
 use Korobochkin\WPKit\DataComponents\Traits\Special\Numeric\NumericConstructorTrait;
 use Korobochkin\WPKit\PostMeta\AbstractPostMeta;
 
-class NumericPostMeta extends AbstractPostMeta {
+/**
+ * Class NumericPostMeta
+ * @package Korobochkin\WPKit\PostMeta\Special
+ */
+class NumericPostMeta extends AbstractPostMeta
+{
+    use NumericConstructorTrait;
 
-	use NumericConstructorTrait;
-
-	use NumericBuildConstraintTrait;
+    use NumericBuildConstraintTrait;
 }

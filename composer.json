@@ -9,7 +9,7 @@
             "email": "me@korobochkin.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "symfony/validator": "3.2",
         "symfony/form": "^3.2",

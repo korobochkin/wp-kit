@@ -5,9 +5,14 @@ use Korobochkin\WPKit\DataComponents\Traits\Special\Numeric\NumericBuildConstrai
 use Korobochkin\WPKit\DataComponents\Traits\Special\Numeric\NumericConstructorTrait;
 use Korobochkin\WPKit\Options\AbstractOption;
 
-class NumericOption extends AbstractOption {
+/**
+ * Class NumericOption
+ * @package Korobochkin\WPKit\Options\Special
+ */
+class NumericOption extends AbstractOption
+{
 
-	use NumericConstructorTrait;
+    use NumericConstructorTrait;
 
-	use NumericBuildConstraintTrait;
+    use NumericBuildConstraintTrait;
 }

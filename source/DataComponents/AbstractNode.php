@@ -12,25 +12,30 @@ use Korobochkin\WPKit\DataComponents\Traits\NameTrait;
 use Korobochkin\WPKit\DataComponents\Traits\ValidateTrait;
 use Korobochkin\WPKit\DataComponents\Traits\ValidatorTrait;
 
-abstract class AbstractNode implements NodeInterface {
+/**
+ * Class AbstractNode
+ * @package Korobochkin\WPKit\DataComponents
+ */
+abstract class AbstractNode implements NodeInterface
+{
 
-	use GetTrait;
+    use GetTrait;
 
-	use SetTrait;
+    use SetTrait;
 
-	use NameTrait;
+    use NameTrait;
 
-	use LocalValueTrait;
+    use LocalValueTrait;
 
-	use DefaultValueTrait;
+    use DefaultValueTrait;
 
-	use DeleteLocalValueTrait;
+    use DeleteLocalValueTrait;
 
-	use ConstraintTrait;
+    use ConstraintTrait;
 
-	use ValidatorTrait;
+    use ValidatorTrait;
 
-	use ValidateTrait;
+    use ValidateTrait;
 
-	use DataTransformerTrait;
+    use DataTransformerTrait;
 }

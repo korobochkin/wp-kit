@@ -1,9 +1,11 @@
 <?php
 namespace Korobochkin\WPKit\DataComponents\Traits;
 
-trait DummyBuildConstraintTrait {
+trait DummyBuildConstraintTrait
+{
 
-	public function buildConstraint() {
-		return null;
-	}
+    public function buildConstraint()
+    {
+        return null;
+    }
 }

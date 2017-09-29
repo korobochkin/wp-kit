@@ -3,14 +3,20 @@ namespace Korobochkin\WPKit\DataComponents\Traits\PostMeta;
 
 use Korobochkin\WPKit\PostMeta\PostMetaInterface;
 
-trait GetNameWithVisibilityTrait {
+/**
+ * Trait GetNameWithVisibilityTrait
+ * @package Korobochkin\WPKit\DataComponents\Traits\PostMeta
+ */
+trait GetNameWithVisibilityTrait
+{
 
-    public function getName() {
+    public function getName()
+    {
         /**
          * @var $this PostMetaInterface
          */
-        if(!$this->isVisible()) {
-            return '_' . $this->name;
+        if (!$this->isVisible()) {
+            return '_'.$this->name;
         }
 
         return $this->name;

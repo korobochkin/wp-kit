@@ -1,20 +1,27 @@
 <?php
 namespace Korobochkin\WPKit\DataComponents\Traits;
 
-trait DefaultValueTrait {
+trait DefaultValueTrait
+{
+    /**
+     * @var mixed
+     */
+    protected $defaultValue;
 
-	protected $defaultValue;
+    public function getDefaultValue()
+    {
+        return $this->defaultValue;
+    }
 
-	public function getDefaultValue() {
-		return $this->defaultValue;
-	}
+    public function setDefaultValue($defaultValue)
+    {
+        $this->defaultValue = $defaultValue;
 
-	public function setDefaultValue($defaultValue) {
-		$this->defaultValue = $defaultValue;
-		return $this;
-	}
+        return $this;
+    }
 
-	public function hasDefaultValue() {
-		return isset($this->defaultValue);
-	}
+    public function hasDefaultValue()
+    {
+        return isset($this->defaultValue);
+    }
 }

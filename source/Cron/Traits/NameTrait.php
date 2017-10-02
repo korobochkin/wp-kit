@@ -5,16 +5,22 @@ namespace Korobochkin\WPKit\Cron\Traits;
  * Trait NameTrait
  * @package Korobochkin\WPKit\Cron\Traits
  */
-trait NameTrait {
+trait NameTrait
+{
+    /**
+     * @var string
+     */
+    protected $name;
 
-	protected $name;
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	public function getName() {
-		return $this->name;
-	}
+    public function setName($name)
+    {
+        $this->name = $name;
 
-	public function setName($name) {
-		$this->name = $name;
-		return $this;
-	}
+        return $this;
+    }
 }

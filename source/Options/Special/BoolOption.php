@@ -5,9 +5,14 @@ use Korobochkin\WPKit\DataComponents\Traits\Special\Bool\BoolBuildConstraintTrai
 use Korobochkin\WPKit\DataComponents\Traits\Special\Bool\BoolConstructorTrait;
 use Korobochkin\WPKit\Options\AbstractOption;
 
-class BoolOption extends AbstractOption {
+/**
+ * Class BoolOption
+ * @package Korobochkin\WPKit\Options\Special
+ */
+class BoolOption extends AbstractOption
+{
 
-	use BoolConstructorTrait;
+    use BoolConstructorTrait;
 
-	use BoolBuildConstraintTrait;
+    use BoolBuildConstraintTrait;
 }

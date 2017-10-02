@@ -5,9 +5,13 @@ use Korobochkin\WPKit\DataComponents\Traits\Special\DateTime\DateTimeBuildConstr
 use Korobochkin\WPKit\DataComponents\Traits\Special\DateTime\DateTimeConstructorTrait;
 use Korobochkin\WPKit\Transients\AbstractTransient;
 
-class DateTimeTransient extends AbstractTransient {
+/**
+ * Class DateTimeTransient
+ * @package Korobochkin\WPKit\Transients\Special
+ */
+class DateTimeTransient extends AbstractTransient
+{
+    use DateTimeConstructorTrait;
 
-	use DateTimeConstructorTrait;
-
-	use DateTimeBuildConstraintTrait;
+    use DateTimeBuildConstraintTrait;
 }

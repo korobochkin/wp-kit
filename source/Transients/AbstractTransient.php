@@ -4,93 +4,116 @@ namespace Korobochkin\WPKit\Transients;
 use Korobochkin\WPKit\DataComponents\AbstractNode;
 use Korobochkin\WPKit\DataComponents\Traits\DeleteTrait;
 
-abstract class AbstractTransient extends AbstractNode implements TransientInterface {
+/**
+ * Class AbstractTransient
+ * @package Korobochkin\WPKit\Transients
+ */
+abstract class AbstractTransient extends AbstractNode implements TransientInterface
+{
+    use DeleteTrait;
 
-	use DeleteTrait;
+    /**
+     * @var $expiration int Expiration of transient.
+     */
+    protected $expiration = 1;
 
-	/**
-	 * @var $expiration int Expiration of transient.
-	 */
-	protected $expiration = 1;
+    /**
+     * @inheritdoc
+     */
+    public function getValueFromWordPress()
+    {
+        $name = $this->getName();
 
-	/**
-	 * @inheritdoc
-	 */
-	public function getValueFromWordPress() {
-		$name = $this->getName();
+        if (!$name) {
+            throw new \LogicException(
+                'You must specify the name of option before calling any methods using name of option.'
+            );
+        }
 
-		if(!$name) {
-			throw new \LogicException('You must specify the name of option before calling any methods using name of option.');
-		}
+        return get_transient($name);
+    }
 
-		return get_transient($name);
-	}
+    public function doIt()
+    {
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function getExpiration() {
-		return $this->expiration;
-	}
+    /**
+     * @inheritdoc
+     */
+    public function getExpiration()
+    {
+        return $this->expiration;
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function setExpiration($expiration) {
-		$this->expiration = $expiration;
-		return $this;
-	}
+    /**
+     * @inheritdoc
+     */
+    public function setExpiration($expiration)
+    {
+        $this->expiration = $expiration;
 
-	/**
-	 * @inheritdoc
-	 */
-	public function deleteFromWP() {
-		$name = $this->getName();
+        return $this;
+    }
 
-		if(!$name) {
-			throw new \LogicException('You must specify the name of option before calling any methods using name of option.');
-		}
+    /**
+     * @inheritdoc
+     */
+    public function deleteFromWP()
+    {
+        $name = $this->getName();
 
-		return delete_transient($name);
-	}
+        if (!$name) {
+            throw new \LogicException(
+                'You must specify the name of option before calling any methods using name of option.'
+            );
+        }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function flush() {
-		if(isset($this->localValue)) {
-			if($this->getDataTransformer()) {
-				$raw = $this->getDataTransformer()->transform($this->localValue);
-			} else {
-				$raw =& $this->localValue;
-			}
+        return delete_transient($name);
+    }
 
-			$name = $this->getName();
+    /**
+     * @inheritdoc
+     */
+    public function flush()
+    {
+        if (isset($this->localValue)) {
+            if ($this->getDataTransformer()) {
+                $raw = $this->getDataTransformer()->transform($this->localValue);
+            } else {
+                $raw =& $this->localValue;
+            }
 
-			if(!$name) {
-				throw new \LogicException('You must specify the name of option before calling any methods using name of option.');
-			}
+            $name = $this->getName();
 
-			$result = set_transient($name, $raw, $this->getExpiration());
+            if (!$name) {
+                throw new \LogicException(
+                    'You must specify the name of option before calling any methods using name of option.'
+                );
+            }
 
-			if($result) {
-				$this->setLocalValue(null);
-			}
+            $result = set_transient($name, $raw, $this->getExpiration());
 
-			return $result;
-		}
-		return true;
-	}
+            if ($result) {
+                $this->setLocalValue(null);
+            }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function updateValue($value, $expiration = null) {
-		$this->setLocalValue($value);
+            return $result;
+        }
 
-		if(!is_null($expiration))
-			$this->setExpiration($expiration);
+        return true;
+    }
 
-		return $this->flush();
-	}
+    /**
+     * @inheritdoc
+     */
+    public function updateValue($value, $expiration = null)
+    {
+        $this->setLocalValue($value);
+
+        if (!is_null($expiration)) {
+            $this->setExpiration($expiration);
+        }
+
+        return $this->flush();
+    }
 }

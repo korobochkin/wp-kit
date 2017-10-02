@@ -1,20 +1,23 @@
 <?php
 namespace Korobochkin\WPKit\DataComponents\Traits;
 
-trait DeleteTrait {
+trait DeleteTrait
+{
 
-	/**
-	 * @inheritdoc
-	 */
-	public function delete() {
-		/**
-		 * @var $this \Korobochkin\WPKit\Options\OptionInterface|\Korobochkin\WPKit\Transients\TransientInterface
-		 */
-		$result = $this->deleteFromWP();
+    /**
+     * @inheritdoc
+     */
+    public function delete()
+    {
+        /**
+         * @var $this \Korobochkin\WPKit\Options\OptionInterface|\Korobochkin\WPKit\Transients\TransientInterface
+         */
+        $result = $this->deleteFromWP();
 
-		if($result)
-			$this->setLocalValue(null);
+        if ($result) {
+            $this->setLocalValue(null);
+        }
 
-		return $result;
-	}
+        return $result;
+    }
 }

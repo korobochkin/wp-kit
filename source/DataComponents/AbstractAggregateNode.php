@@ -3,7 +3,12 @@ namespace Korobochkin\WPKit\DataComponents;
 
 use Korobochkin\WPKit\DataComponents\Traits\AggregateNodeTrait;
 
-abstract class AbstractAggregateNode extends AbstractNode {
+/**
+ * Class AbstractAggregateNode
+ * @package Korobochkin\WPKit\DataComponents
+ */
+abstract class AbstractAggregateNode extends AbstractNode
+{
 
-	use AggregateNodeTrait;
+    use AggregateNodeTrait;
 }

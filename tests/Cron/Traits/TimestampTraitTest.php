@@ -3,30 +3,36 @@ namespace Korobochkin\WPKit\Tests\Cron\Traits;
 
 use Korobochkin\WPKit\Cron\Traits\TimestampTrait;
 
-class TimestampTraitTest extends \WP_UnitTestCase {
+/**
+ * Class TimestampTraitTest
+ * @package Korobochkin\WPKit\Tests\Cron\Traits
+ */
+class TimestampTraitTest extends \WP_UnitTestCase
+{
+    /**
+     * @var TimestampTrait
+     */
+    protected $stub;
 
-	/**
-	 * @var TimestampTrait
-	 */
-	protected $stub;
+    /**
+     * Prepare stub for tests.
+     */
+    public function setUp()
+    {
+        parent::setUp();
+        $this->stub = $this->getMockForTrait(TimestampTrait::class);
+    }
 
-	/**
-	 * Prepare stub for tests.
-	 */
-	public function setUp() {
-		parent::setUp();
-		$this->stub = $this->getMockForTrait(TimestampTrait::class);
-	}
+    public function testStub()
+    {
+        $defaultValue = 1;
 
-	public function testStub() {
-		$defaultValue = 1;
+        $this->assertEquals($defaultValue, $this->stub->getTimestamp());
 
-		$this->assertEquals($defaultValue, $this->stub->getTimestamp());
+        $value = time();
 
-		$value = time();
+        $this->assertEquals($this->stub, $this->stub->setTimestamp($value));
 
-		$this->assertEquals($this->stub, $this->stub->setTimestamp($value));
-
-		$this->assertEquals($value, $this->stub->getTimestamp());
-	}
+        $this->assertEquals($value, $this->stub->getTimestamp());
+    }
 }

@@ -3,30 +3,36 @@ namespace Korobochkin\WPKit\Tests\Cron\Traits;
 
 use Korobochkin\WPKit\Cron\Traits\HookTrait;
 
-class HookTraitTest extends \WP_UnitTestCase {
+/**
+ * Class HookTraitTest
+ * @package Korobochkin\WPKit\Tests\Cron\Traits
+ */
+class HookTraitTest extends \WP_UnitTestCase
+{
+    /**
+     * @var HookTrait
+     */
+    protected $stub;
 
-	/**
-	 * @var HookTrait
-	 */
-	protected $stub;
+    /**
+     * Prepare stub for tests.
+     */
+    public function setUp()
+    {
+        parent::setUp();
+        $this->stub = $this->getMockForTrait(HookTrait::class);
+    }
 
-	/**
-	 * Prepare stub for tests.
-	 */
-	public function setUp() {
-		parent::setUp();
-		$this->stub = $this->getMockForTrait(HookTrait::class);
-	}
+    public function testStub()
+    {
+        $defaultValue = 'execute';
 
-	public function testStub() {
-		$defaultValue = 'execute';
+        $this->assertEquals($defaultValue, $this->stub->getHook());
 
-		$this->assertEquals($defaultValue, $this->stub->getHook());
+        $value = 'custom_callback';
 
-		$value = 'custom_callback';
+        $this->assertEquals($this->stub, $this->stub->setHook($value));
 
-		$this->assertEquals($this->stub, $this->stub->setHook($value));
-
-		$this->assertEquals($value, $this->stub->getHook());
-	}
+        $this->assertEquals($value, $this->stub->getHook());
+    }
 }

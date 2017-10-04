@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Pages;
 
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 abstract class AbstractPage implements PageInterface
@@ -49,6 +50,11 @@ abstract class AbstractPage implements PageInterface
      * @var Request Current HTTP request.
      */
     protected $request;
+
+    /**
+     * @var FormFactoryInterface
+     */
+    protected $formFactory;
 
     /**
      * Called only if user can see this page (have required capability).
@@ -164,7 +170,7 @@ abstract class AbstractPage implements PageInterface
     }
 
     /**
-     * @return Request HTTP request.
+     * @inheritdoc
      */
     public function getRequest()
     {
@@ -172,13 +178,28 @@ abstract class AbstractPage implements PageInterface
     }
 
     /**
-     * @param Request $request HTTP request.
-     *
-     * @return $this For chain calls.
+     * @inheritdoc
      */
-    public function setRequest($request)
+    public function setRequest(Request $request)
     {
         $this->request = $request;
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getFormFactory()
+    {
+        return $this->formFactory;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setFormFactory(FormFactoryInterface $formFactory)
+    {
+        $this->formFactory = $formFactory;
         return $this;
     }
 }

@@ -2,18 +2,20 @@
 namespace Korobochkin\WPKit\Pages;
 
 use Korobochkin\WPKit\Pages\Views\PageViewInterface;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 interface PageInterface
 {
     public function lateConstruct();
 
-    public function register();
-
-    public function unRegister();
-
     public function getName();
 
     public function setName($name);
+
+    public function setParentPage(MenuPageInterface $page);
+
+    public function getParentPage();
 
     public function getPageTitle();
 
@@ -35,11 +37,35 @@ interface PageInterface
 
     public function setView(PageViewInterface $view);
 
-    public function getURL();
-
     public function render();
 
-    public function setParentPage(MenuPageInterface $page);
+    /**
+     * @return Request
+     */
+    public function getRequest();
 
-    public function getParentPage();
+    /**
+     * @param Request $request HTTP request.
+     *
+     * @return $this For chain calls.
+     */
+    public function setRequest(Request $request);
+
+    public function register();
+
+    public function unRegister();
+
+    public function getURL();
+
+    /**
+     * @return FormFactoryInterface
+     */
+    public function getFormFactory();
+
+    /**
+     * @param $formFactory FormFactoryInterface
+     *
+     * @return $this For chain calls.
+     */
+    public function setFormFactory(FormFactoryInterface $formFactory);
 }

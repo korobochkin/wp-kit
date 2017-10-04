@@ -8,4 +8,8 @@
 # 0.2.1 - October 2, 2017
 
 * Fixed code style.
+
+# 0.2.2 - October 4, 2017
+
+* Added form factory getter and setter for page classes.
  

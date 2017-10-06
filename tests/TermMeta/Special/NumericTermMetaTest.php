@@ -3,6 +3,7 @@ namespace Korobochkin\WPKit\Tests\TermMeta\Special;
 
 use Korobochkin\WPKit\TermMeta\Special\NumericTermMeta;
 use Korobochkin\WPKit\Tests\DataSets\Numeric\NumericTransformationSet;
+use Korobochkin\WPKit\Utils\Compatibility;
 
 /**
  * Class NumericTermMetaTest
@@ -28,6 +29,11 @@ class NumericTermMetaTest extends \WP_UnitTestCase
      */
     public function setUp()
     {
+        if (!Compatibility::checkWordPress('4.4')) {
+            // Skip tests on WP bellow 4.4 since it doesn't have required functions.
+            $this->markTestSkipped('Term meta features not supported in WordPress bellow 4.4');
+        }
+
         parent::setUp();
 
         $this->termId = wp_insert_post(

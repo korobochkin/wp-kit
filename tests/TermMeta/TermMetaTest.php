@@ -2,6 +2,7 @@
 namespace Korobochkin\WPKit\Tests\TermMeta;
 
 use Korobochkin\WPKit\TermMeta\TermMeta;
+use Korobochkin\WPKit\Utils\Compatibility;
 
 /**
  * Class TermMetaTest
@@ -21,6 +22,11 @@ class TermMetaTest extends \WP_UnitTestCase
      */
     public function setUp()
     {
+        if (!Compatibility::checkWordPress('4.4')) {
+            // Skip tests on WP bellow 4.4 since it doesn't have required functions.
+            $this->markTestSkipped('Term meta features not supported in WordPress bellow 4.4');
+        }
+
         parent::setUp();
         $this->stub = new TermMeta();
     }

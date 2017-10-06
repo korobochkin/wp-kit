@@ -5,6 +5,7 @@ use Korobochkin\WPKit\TermMeta\AbstractTermMeta;
 use Korobochkin\WPKit\Tests\DataSets\DifferentTypesSet;
 use Korobochkin\WPKit\Tests\DataSets\EverythingSet;
 use Korobochkin\WPKit\Tests\DataSets\ValidateSet;
+use Korobochkin\WPKit\Utils\Compatibility;
 use Symfony\Component\Form\Extension\Core\DataTransformer\BooleanToStringTransformer;
 use Symfony\Component\Form\ReversedTransformer;
 use Symfony\Component\Validator\ConstraintViolationList;
@@ -32,6 +33,11 @@ class AbstractTermMetaTest extends \WP_UnitTestCase
 
     public function setUp()
     {
+        if (!Compatibility::checkWordPress('4.4')) {
+            // Skip tests on WP bellow 4.4 since it doesn't have required functions.
+            $this->markTestSkipped('Term meta features not supported in WordPress bellow 4.4');
+        }
+
         parent::setUp();
         $this->stub   = $this->getMockForAbstractClass(AbstractTermMeta::class);
         $result       = wp_insert_term('Test Term with PHP Unit', 'category', array(

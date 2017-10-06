@@ -1,33 +1,33 @@
 <?php
 namespace Korobochkin\WPKit\DataComponents\Traits;
 
-trait PostIdTrait
+trait TermIdTrait
 {
     /**
-     * @var int Unique Post ID.
+     * @var int Unique Term ID.
      */
-    protected $postId;
+    protected $termId;
 
     /**
-     * Returns the post ID.
+     * Returns the term ID.
      *
      * @return int Post ID.
      */
-    public function getPostId()
+    public function getTermId()
     {
-        return $this->postId;
+        return $this->termId;
     }
 
     /**
-     * Set the post ID.
+     * Set the term ID.
      *
      * @param int $id
      *
      * @return $this For chain calls.
      */
-    public function setPostId($id)
+    public function setTermId($id)
     {
-        $this->postId = $id;
+        $this->termId = $id;
 
         return $this;
     }

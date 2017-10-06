@@ -40,9 +40,9 @@ abstract class AbstractTermMeta extends AbstractNode implements TermMetaInterfac
 
         // If value is empty string this can means that value not exists at all.
         // This strange behaviour peculiar only for Post Meta (not Options or Transients).
-        if ($value === '' && ! metadata_exists('post', $id, $name)) {
+        /*if ($value === '' && ! metadata_exists('post', $id, $name)) {
             return false;
-        }
+        }*/
 
         return $value;
     }

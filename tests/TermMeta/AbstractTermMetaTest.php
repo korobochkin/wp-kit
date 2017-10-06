@@ -263,7 +263,7 @@ class AbstractTermMetaTest extends \WP_UnitTestCase
         $this->assertEquals(null, $this->stub->getName());
 
         $this->assertEquals($this->stub, $this->stub->setName('wp_kit_dummy_name'));
-        $this->assertEquals('_wp_kit_dummy_name', $this->stub->getName());
+        $this->assertEquals('wp_kit_dummy_name', $this->stub->getName());
     }
 
     /**

@@ -43,7 +43,7 @@ class MinimalVersionSet extends AbstractAssociativeDataSet
             ),
             '9' => array(
                 // current version // minimal version // result
-                '4.4',              '4.4.0',             true,
+                '4.4',              '4.4.0',             false,
             ),
             '10' => array(
                 // current version // minimal version // result

@@ -13,3 +13,7 @@
 
 * Added form factory getter and setter for page classes.
  
+# 0.3.0 - October 6, 2017
+
+* Added TermMeta classes and interface ([#13](https://github.com/korobochkin/wp-kit/issues/13)).
+* Added small Compatibility utility for check versions.

@@ -3,7 +3,7 @@ namespace Korobochkin\WPKit\Tests\TermMeta\Special;
 
 use Korobochkin\WPKit\TermMeta\Special\DateTimeTermMeta;
 use Korobochkin\WPKit\Tests\DataSets\DateTime\DateTimeTransformationSet;
-use Korobochkin\WPKit\Utils\Compatibility;
+use Korobochkin\WPKit\Utils\WordPressFeatures;
 
 /**
  * Class DateTimeTermMetaTest
@@ -28,7 +28,7 @@ class DateTimeTermMetaTest extends \WP_UnitTestCase
      */
     public function setUp()
     {
-        if (!Compatibility::checkWordPress('4.4')) {
+        if (!WordPressFeatures::isTermsMetaSupported()) {
             // Skip tests on WP bellow 4.4 since it doesn't have required functions.
             $this->markTestSkipped('Term meta features not supported in WordPress bellow 4.4');
         }

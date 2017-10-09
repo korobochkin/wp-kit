@@ -17,3 +17,7 @@
 
 * Added TermMeta classes and interface ([#13](https://github.com/korobochkin/wp-kit/issues/13)).
 * Added small Compatibility utility for check versions.
+
+# 0.4.0 - October 9, 2017
+
+* Added a small utility for checking if terms meta supported.

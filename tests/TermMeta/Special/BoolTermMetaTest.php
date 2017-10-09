@@ -3,7 +3,6 @@ namespace Korobochkin\WPKit\Tests\TermMeta\Special;
 
 use Korobochkin\WPKit\TermMeta\Special\BoolTermMeta;
 use Korobochkin\WPKit\Tests\DataSets\Bool\BoolTransformationSet;
-use Korobochkin\WPKit\Utils\Compatibility;
 use Korobochkin\WPKit\Utils\WordPressFeatures;
 
 /**

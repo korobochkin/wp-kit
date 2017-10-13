@@ -16,11 +16,10 @@ class AbstractPluginTest extends \WP_UnitTestCase
 
     public function setUp()
     {
-        $this->stub = $this->getMock(
-            AbstractPlugin::class,
-            array(),
-            array(__FILE__)
-        );
+
+        $this->stub = $this->getMockBuilder(AbstractPlugin::class)
+            ->setConstructorArgs(array(__FILE__))
+            ->getMock();
     }
 
     public function testConstruct()

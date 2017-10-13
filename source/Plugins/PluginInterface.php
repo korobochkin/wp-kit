@@ -1,6 +1,8 @@
 <?php
 namespace Korobochkin\WPKit\Plugins;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 interface PluginInterface
 {
     /**
@@ -34,6 +36,18 @@ interface PluginInterface
      * @return $this For chain calls.
      */
     public function setFile($file);
+
+    /**
+     * @return ContainerBuilder
+     */
+    public function getContainer();
+
+    /**
+     * @param ContainerBuilder $container
+     *
+     * @return $this For chain calls.
+     */
+    public function setContainer(ContainerBuilder $container);
 
     /**
      * @return string A path to plugin root folder (where your bootstrap file located).

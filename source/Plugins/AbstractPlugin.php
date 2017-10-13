@@ -1,17 +1,23 @@
 <?php
 namespace Korobochkin\WPKit\Plugins;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 /**
  * Class AbstractPlugin
  * @package Korobochkin\WPKit\Plugins
  */
 abstract class AbstractPlugin implements PluginInterface
 {
-
     /**
      * @var string A path to plugin bootstrap file.
      */
     protected $file;
+
+    /**
+     * @var ContainerBuilder
+     */
+    protected $container;
 
     /**
      * @inheritdoc
@@ -41,6 +47,23 @@ abstract class AbstractPlugin implements PluginInterface
     {
         $this->file = $file;
 
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getContainer()
+    {
+        return $this->container;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setContainer(ContainerBuilder $container)
+    {
+        $this->container = $container;
         return $this;
     }
 

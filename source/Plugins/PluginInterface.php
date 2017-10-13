@@ -22,6 +22,8 @@ interface PluginInterface
 
     /**
      * The main function which runs everything. Place your add_action() or other functions call here.
+     *
+     * @return $this For chain calls.
      */
     public function run();
 
@@ -38,12 +40,12 @@ interface PluginInterface
     public function setFile($file);
 
     /**
-     * @return ContainerBuilder
+     * @return ContainerBuilder Dependency Injection container with services.
      */
     public function getContainer();
 
     /**
-     * @param ContainerBuilder $container
+     * @param ContainerBuilder $container Dependency Injection container with services.
      *
      * @return $this For chain calls.
      */

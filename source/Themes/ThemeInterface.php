@@ -11,6 +11,8 @@ interface ThemeInterface
 
     /**
      * The main function which runs everything. Place your add_action() or other functions call here.
+     *
+     * @return $this For chain calls.
      */
     public function run();
 

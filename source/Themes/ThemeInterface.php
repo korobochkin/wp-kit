@@ -17,6 +17,22 @@ interface ThemeInterface
     public function run();
 
     /**
+     * Returns the ContainerBuilder instance used to store services.
+     *
+     * @return ContainerBuilder Dependency Injection container with services.
+     */
+    public function getContainer();
+
+    /**
+     * Sets the ContainerBuilder instance used to store services.
+     *
+     * @param ContainerBuilder $container Dependency Injection container with services.
+     *
+     * @return $this For chain calls.
+     */
+    public function setContainer(ContainerBuilder $container);
+
+    /**
      * The theme folder path.
      *
      * @return string A path to theme root folder (where your functions.php file located).

@@ -8,6 +8,28 @@ namespace Korobochkin\WPKit\Themes;
 abstract class AbstractTheme implements ThemeInterface
 {
     /**
+     * @var ContainerBuilder
+     */
+    protected $container;
+
+    /**
+     * @inheritdoc
+     */
+    public function getContainer()
+    {
+        return $this->container;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setContainer(ContainerBuilder $container)
+    {
+        $this->container = $container;
+        return $this;
+    }
+
+    /**
      * @inheritdoc
      */
     public function getDir()

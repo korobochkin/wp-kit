@@ -40,11 +40,15 @@ interface PluginInterface
     public function setFile($file);
 
     /**
+     * Returns the ContainerBuilder instance used to store services.
+     *
      * @return ContainerBuilder Dependency Injection container with services.
      */
     public function getContainer();
 
     /**
+     * Sets the ContainerBuilder instance used to store services.
+     *
      * @param ContainerBuilder $container Dependency Injection container with services.
      *
      * @return $this For chain calls.

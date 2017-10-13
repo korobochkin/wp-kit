@@ -22,11 +22,6 @@ class AbstractPluginTest extends \WP_UnitTestCase
             ->getMock();
     }
 
-    public function testConstruct()
-    {
-        $this->assertEquals(__FILE__, $this->stub->getFile());
-    }
-
     public function testGetFile()
     {
         $this->assertEquals(__FILE__, $this->stub->getFile());

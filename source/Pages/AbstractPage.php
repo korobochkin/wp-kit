@@ -58,16 +58,11 @@ abstract class AbstractPage implements PageInterface
     protected $formEntity;
 
     /**
-     * Called only if user can see this page (have required capability).
-     *
-     * Validation process in wp-admin/includes/menu.php
-     * 1. admin.php:138
-     * 2. require(ABSPATH . 'wp-admin/menu.php') (138 line)
-     * 3. require_once(ABSPATH . 'wp-admin/includes/menu.php') (282 line).
-     * 4. if ( !user_can_access_admin_page() ) (333 line).
+     * @inheritdoc
      */
     public function lateConstruct()
     {
+        return $this;
     }
 
     /**

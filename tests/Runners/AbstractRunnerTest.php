@@ -16,6 +16,7 @@ class AbstractRunnerTest extends \WP_UnitTestCase
 
     public function setUp()
     {
+        parent::setUp();
         $this->stub = $this->getMockForAbstractClass(AbstractRunner::class);
     }
 

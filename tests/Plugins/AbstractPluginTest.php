@@ -16,6 +16,7 @@ class AbstractPluginTest extends \WP_UnitTestCase
 
     public function setUp()
     {
+        parent::setUp();
         $this->stub = $this->getMockForAbstractClass(
             AbstractPlugin::class,
             array(__FILE__)

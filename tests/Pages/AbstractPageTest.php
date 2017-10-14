@@ -72,7 +72,7 @@ class AbstractPageTest extends \WP_UnitTestCase
         $this->assertEquals($value, $this->stub->getMenuSlug());
     }
 
-    public function testGetterAndSetterView()
+    /*public function testGetterAndSetterView()
     {
         $value = new TwigPageView();
 
@@ -81,7 +81,7 @@ class AbstractPageTest extends \WP_UnitTestCase
         $this->assertEquals($value, $this->stub->getView());
     }
 
-    /*public function testGetterAndSetterRequest()
+    public function testGetterAndSetterRequest()
     {
         $value = new Request();
 

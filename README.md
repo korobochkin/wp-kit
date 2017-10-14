@@ -6,11 +6,11 @@ If you have been coding with plain WordPress functions and long unreadable code,
 
 ## Table of content
 
-Data Components (Options, Post Meta, Settings, Term Meta, Transients)
-Pages (WordPress Admin Pages)
-Plugins
-Themes
-Utils
+  * Data Components (Options, Post Meta, Settings, Term Meta, Transients)
+  * Pages (WordPress Admin Pages)
+  * Plugins
+  * Themes
+  * Utils
 
 ## Which other tools used?
 

@@ -27,7 +27,7 @@ class AbstractPageTest extends \WP_UnitTestCase
         $this->assertEquals($this->stub, $this->stub->lateConstruct());
     }
 
-    /*public function testGetterAndSetterName()
+    public function testGetterAndSetterName()
     {
         $value = 'test-name';
 
@@ -81,7 +81,7 @@ class AbstractPageTest extends \WP_UnitTestCase
         $this->assertEquals($value, $this->stub->getView());
     }
 
-    public function testGetterAndSetterRequest()
+    /*public function testGetterAndSetterRequest()
     {
         $value = new Request();
 

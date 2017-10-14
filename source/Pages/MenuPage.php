@@ -13,6 +13,9 @@ class MenuPage extends AbstractPage implements MenuPageInterface
      */
     protected $position;
 
+    /**
+     * @inheritdoc
+     */
     public function register()
     {
         $page = add_menu_page(
@@ -34,19 +37,33 @@ class MenuPage extends AbstractPage implements MenuPageInterface
         add_action('admin_action_update', array($this, 'lateConstruct'));
 
         add_action('admin_enqueue_scripts', array($this, 'enqueueScriptStyles'));
+
+        return $this;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function unRegister()
     {
-        return remove_menu_page($this->getMenuSlug());
+        $result = remove_menu_page($this->getMenuSlug());
+
+        if (!$result) {
+            throw new \Exception();
+        }
+
+        return $this;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getURL()
     {
         return add_query_arg(
             'page',
             $this->getMenuSlug(),
-            admin_url('admin.php')
+            admin_url('options-general.php')
         );
     }
 

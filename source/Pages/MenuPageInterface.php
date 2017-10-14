@@ -1,27 +1,38 @@
 <?php
 namespace Korobochkin\WPKit\Pages;
 
+/**
+ * Interface MenuPageInterface represents top level admin pages in menu.
+ */
 interface MenuPageInterface extends PageInterface
 {
     /**
-     * @return string
+     * Returns the page icon.
+     *
+     * @return string Page icon name or base-64 encoded.
      */
     public function getIcon();
 
     /**
-     * @param string $icon
+     * Sets the page icon.
+     *
+     * @param string $icon Page icon.
      *
      * @return $this For chain calls.
      */
     public function setIcon($icon);
 
     /**
-     * @return int
+     * Returns the page position.
+     *
+     * @return int Page position.
      */
     public function getPosition();
 
     /**
-     * @param int $position
+     * Sets the page position.
+     *
+     * @param int $position Page position.
      *
      * @return $this For chain calls.
      */

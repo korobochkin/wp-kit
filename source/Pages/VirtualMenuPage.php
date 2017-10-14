@@ -1,6 +1,9 @@
 <?php
 namespace Korobochkin\WPKit\Pages;
 
+/**
+ * Class VirtualMenuPage
+ */
 class VirtualMenuPage extends MenuPage implements VirtualMenuPageInterface
 {
     /**
@@ -9,7 +12,9 @@ class VirtualMenuPage extends MenuPage implements VirtualMenuPageInterface
     protected $virtualPage;
 
     /**
-     * @return MenuPageInterface
+     * Returns virtual page.
+     *
+     * @return MenuPageInterface Page instance.
      */
     public function getVirtualPage()
     {
@@ -17,21 +22,29 @@ class VirtualMenuPage extends MenuPage implements VirtualMenuPageInterface
     }
 
     /**
-     * @param MenuPageInterface $virtualPage
+     * Sets virtual page.
+     *
+     * @param MenuPageInterface $page Page instance.
      *
      * @return $this For chain calls.
      */
-    public function setVirtualPage(MenuPageInterface $virtualPage)
+    public function setVirtualPage(MenuPageInterface $page)
     {
-        $this->virtualPage = $virtualPage;
+        $this->virtualPage = $page;
         return $this;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function render()
     {
         $this->getVirtualPage()->render();
     }
 
+    /**
+     * @inheritdoc
+     */
     public function lateConstruct()
     {
         $this->getVirtualPage()->lateConstruct();

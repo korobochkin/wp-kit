@@ -36,11 +36,11 @@ class AbstractThemeTest extends \WP_UnitTestCase
 
     public function testGetDir()
     {
-        $this->assertEquals('string', $this->stub->getDir());
+        $this->assertEquals('/tmp/wordpress/wp-content/themes/twentyfourteen', $this->stub->getDir());
     }
 
     public function testGetUrl()
     {
-        $this->assertEquals('string', $this->stub->getUrl());
+        $this->assertEquals('http://example.org/wp-content/themes/twentyfourteen', $this->stub->getUrl());
     }
 }

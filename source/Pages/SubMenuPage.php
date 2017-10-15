@@ -3,6 +3,19 @@ namespace Korobochkin\WPKit\Pages;
 
 class SubMenuPage extends AbstractPage implements SubMenuPageInterface
 {
+    /**
+     * @var string Slug of parent page.
+     */
+    protected $parentSlug;
+
+    /**
+     * @var MenuPageInterface Parent page.
+     */
+    protected $parentPage;
+
+    /**
+     * @inheritdoc
+     */
     public function register()
     {
         $page = add_submenu_page(
@@ -22,13 +35,27 @@ class SubMenuPage extends AbstractPage implements SubMenuPageInterface
             add_action('load-'.$page, array($this, 'lateConstruct'));
             add_action('admin_action_update', array($this, 'lateConstruct'));
         }
+
+        return $this;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function unRegister()
     {
-        remove_submenu_page($this->getParentSlug(), $this->getMenuSlug());
+        $result = remove_submenu_page($this->getParentSlug(), $this->getMenuSlug());
+        var_dump($result);
+        if (!$result) {
+            throw new \Exception();
+        }
+
+        return $this;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getURL()
     {
         return add_query_arg(
@@ -36,5 +63,39 @@ class SubMenuPage extends AbstractPage implements SubMenuPageInterface
             $this->getMenuSlug(),
             admin_url('admin.php')
         );
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getParentSlug()
+    {
+        return $this->parentSlug;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setParentSlug($slug)
+    {
+        $this->parentSlug = $slug;
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getParentPage()
+    {
+        return $this->parentPage;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setParentPage(MenuPageInterface $page)
+    {
+        $this->parentPage = $page;
+        return $this;
     }
 }

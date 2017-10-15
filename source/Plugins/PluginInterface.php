@@ -1,6 +1,8 @@
 <?php
 namespace Korobochkin\WPKit\Plugins;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 interface PluginInterface
 {
     /**
@@ -20,6 +22,8 @@ interface PluginInterface
 
     /**
      * The main function which runs everything. Place your add_action() or other functions call here.
+     *
+     * @return $this For chain calls.
      */
     public function run();
 
@@ -34,6 +38,22 @@ interface PluginInterface
      * @return $this For chain calls.
      */
     public function setFile($file);
+
+    /**
+     * Returns the ContainerBuilder instance used to store services.
+     *
+     * @return ContainerBuilder Dependency Injection container with services.
+     */
+    public function getContainer();
+
+    /**
+     * Sets the ContainerBuilder instance used to store services.
+     *
+     * @param ContainerBuilder $container Dependency Injection container with services.
+     *
+     * @return $this For chain calls.
+     */
+    public function setContainer(ContainerBuilder $container);
 
     /**
      * @return string A path to plugin root folder (where your bootstrap file located).

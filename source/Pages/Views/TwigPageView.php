@@ -3,6 +3,9 @@ namespace Korobochkin\WPKit\Pages\Views;
 
 use Korobochkin\WPKit\Pages\PageInterface;
 
+/**
+ * Class TwigPageView
+ */
 class TwigPageView implements PageViewInterface
 {
     /**
@@ -20,6 +23,9 @@ class TwigPageView implements PageViewInterface
      */
     protected $twigEnvironment;
 
+    /**
+     * @inheritdoc
+     */
     public function render(PageInterface $page)
     {
         echo $this->getTwigEnvironment()->render($this->getTemplate(), $this->getContext());

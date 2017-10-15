@@ -4,6 +4,18 @@
 
 If you have been coding with plain WordPress functions and long unreadable code, you need to switch to Object Oriented Programming (OOP) code. It's easy! This library makes WordPress more friendly. Plugin and theme authors can create more reusable components and products by using this library.
 
+## Table of content
+
+  * Data Components (Options, Post Meta, Settings, Term Meta, Transients)
+  * Pages (WordPress Admin Pages)
+  * Plugins
+  * Themes
+  * Utils
+
+## Which other tools used?
+
+Symfony components such as Validator, Forms, Dependency Injection, Twig (as part of Forms rendered engine).
+
 ## Examples of usage
 
 ### Option

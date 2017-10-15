@@ -36,88 +36,88 @@ class AbstractPageTest extends \WP_UnitTestCase
         $this->assertEquals($value, $this->stub->getName());
     }
 
-    public function testGetterAndSetterPageTitle()
-    {
-        $value = 'Test Page Title';
+    /*  public function testGetterAndSetterPageTitle()
+      {
+          $value = 'Test Page Title';
 
-        $this->assertNull($this->stub->getPageTitle());
-        $this->assertEquals($this, $this->stub->setPageTitle($value));
-        $this->assertEquals($value, $this->stub->getPageTitle());
-    }
+          $this->assertNull($this->stub->getPageTitle());
+          $this->assertEquals($this, $this->stub->setPageTitle($value));
+          $this->assertEquals($value, $this->stub->getPageTitle());
+      }
 
-    public function testGetterAndSetterMenuTitle()
-    {
-        $value = 'Test Menu Title';
+      public function testGetterAndSetterMenuTitle()
+      {
+          $value = 'Test Menu Title';
 
-        $this->assertNull($this->stub->getMenuTitle());
-        $this->assertEquals($this, $this->stub->setMenuTitle($value));
-        $this->assertEquals($value, $this->stub->getMenuTitle());
-    }
+          $this->assertNull($this->stub->getMenuTitle());
+          $this->assertEquals($this, $this->stub->setMenuTitle($value));
+          $this->assertEquals($value, $this->stub->getMenuTitle());
+      }
 
-    public function testGetterAndSetterCapability()
-    {
-        $value = 'test_manage_options';
+      public function testGetterAndSetterCapability()
+      {
+          $value = 'test_manage_options';
 
-        $this->assertNull($this->stub->getCapability());
-        $this->assertEquals($this, $this->stub->setCapability($value));
-        $this->assertEquals($value, $this->stub->getCapability());
-    }
+          $this->assertNull($this->stub->getCapability());
+          $this->assertEquals($this, $this->stub->setCapability($value));
+          $this->assertEquals($value, $this->stub->getCapability());
+      }
 
-    public function testGetterAndSetterMenuSlug()
-    {
-        $value = 'test-menu-slug';
+      public function testGetterAndSetterMenuSlug()
+      {
+          $value = 'test-menu-slug';
 
-        $this->assertNull($this->stub->getMenuSlug());
-        $this->assertEquals($this, $this->stub->setMenuSlug($value));
-        $this->assertEquals($value, $this->stub->getMenuSlug());
-    }
+          $this->assertNull($this->stub->getMenuSlug());
+          $this->assertEquals($this, $this->stub->setMenuSlug($value));
+          $this->assertEquals($value, $this->stub->getMenuSlug());
+      }
 
-    /*public function testGetterAndSetterView()
-    {
-        $value = new TwigPageView();
+      public function testGetterAndSetterView()
+      {
+          $value = new TwigPageView();
 
-        $this->assertNull($this->stub->getView());
-        $this->assertEquals($this, $this->stub->setView($value));
-        $this->assertEquals($value, $this->stub->getView());
-    }
+          $this->assertNull($this->stub->getView());
+          $this->assertEquals($this, $this->stub->setView($value));
+          $this->assertEquals($value, $this->stub->getView());
+      }
 
-    public function testGetterAndSetterRequest()
-    {
-        $value = new Request();
+      public function testGetterAndSetterRequest()
+      {
+          $value = new Request();
 
-        $this->assertNull($this->stub->getRequest());
-        $this->assertEquals($this, $this->stub->setRequest($value));
-        $this->assertEquals($value, $this->stub->getRequest());
-    }
+          $this->assertNull($this->stub->getRequest());
+          $this->assertEquals($this, $this->stub->setRequest($value));
+          $this->assertEquals($value, $this->stub->getRequest());
+      }
 
-    public function testGetterAndSetterFormFactory()
-    {
-        $value = new FormFactoryBuilder();
-        $value = $value->getFormFactory();
+      public function testGetterAndSetterFormFactory()
+      {
+          $value = new FormFactoryBuilder();
+          $value = $value->getFormFactory();
 
-        $this->assertNull($this->stub->getFormFactory());
-        $this->assertEquals($this, $this->stub->setFormFactory($value));
-        $this->assertEquals($value, $this->stub->getFormFactory());
-    }
+          $this->assertNull($this->stub->getFormFactory());
+          $this->assertEquals($this, $this->stub->setFormFactory($value));
+          $this->assertEquals($value, $this->stub->getFormFactory());
+      }
 
-    public function testGetterAndSetterForm()
-    {
-        $this->assertNull($this->stub->getForm());
-        //$this->assertEquals($this, $this->stub->setForm($value));
-        //$this->assertEquals($value, $this->stub->getForm());
-    }
+      public function testGetterAndSetterForm()
+      {
+          $this->assertNull($this->stub->getForm());
+          //$this->assertEquals($this, $this->stub->setForm($value));
+          //$this->assertEquals($value, $this->stub->getForm());
+      }
 
-    public function testGetterAndSetterFormEntity()
-    {
-        $value = new \stdClass();
+      public function testGetterAndSetterFormEntity()
+      {
+          $value = new \stdClass();
 
-        $this->assertNull($this->stub->getFormEntity());
-        $this->assertEquals($this, $this->stub->setFormEntity($value));
-        $this->assertEquals($value, $this->stub->getFormEntity());
-    }
+          $this->assertNull($this->stub->getFormEntity());
+          $this->assertEquals($this, $this->stub->setFormEntity($value));
+          $this->assertEquals($value, $this->stub->getFormEntity());
+      }
 
-    public function testHandleRequest()
-    {
-        //$this->assertNull($this->stub->handleRequest());
-    }*/
+      public function testHandleRequest()
+      {
+          //$this->assertNull($this->stub->handleRequest());
+      }*/
 }

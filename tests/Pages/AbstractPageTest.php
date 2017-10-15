@@ -32,7 +32,7 @@ class AbstractPageTest extends \WP_UnitTestCase
         $value = 'test-name';
 
         $this->assertNull($this->stub->getName());
-        $this->assertEquals($this, $this->stub->setName($value));
+        $this->assertEquals($this->stub, $this->stub->setName($value));
         $this->assertEquals($value, $this->stub->getName());
     }
 

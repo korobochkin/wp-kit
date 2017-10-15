@@ -48,5 +48,6 @@ class VirtualMenuPage extends MenuPage implements VirtualMenuPageInterface
     public function lateConstruct()
     {
         $this->getVirtualPage()->lateConstruct();
+        return $this;
     }
 }

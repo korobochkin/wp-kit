@@ -36,11 +36,27 @@ class AbstractThemeTest extends \WP_UnitTestCase
 
     public function testGetDir()
     {
-        $this->assertEquals('/tmp/wordpress/wp-content/themes/twentyfourteen', $this->stub->getDir());
+        global $wp_version;
+
+        if ($wp_version == '4.0') {
+            $path = '/tmp/wordpress/wp-content/themes/twentyfourteen';
+        } else {
+            $path = '/tmp/wordpress-tests-lib/includes/../data/themedir1/default';
+        }
+
+        $this->assertEquals($path, $this->stub->getDir());
     }
 
     public function testGetUrl()
     {
-        $this->assertEquals('http://example.org/wp-content/themes/twentyfourteen', $this->stub->getUrl());
+        global $wp_version;
+
+        if ($wp_version == '4.0') {
+            $url = 'http://example.org/wp-content/themes/twentyfourteen';
+        } else {
+            $url = '/tmp/wordpress-tests-lib/includes/../data/themedir1/default';
+        }
+
+        $this->assertEquals($url, $this->stub->getUrl());
     }
 }

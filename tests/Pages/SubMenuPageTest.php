@@ -67,5 +67,4 @@ class SubMenuPageTest extends \WP_UnitTestCase
         $this->assertEquals($this->stub, $this->stub->setParentPage($value));
         $this->assertEquals($value, $this->stub->getParentPage());
     }
-
 }

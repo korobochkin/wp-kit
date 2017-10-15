@@ -41,14 +41,14 @@ class MenuPageTest extends \WP_UnitTestCase
         try {
             $this->stub->unRegister();
         } catch (\Exception $exception) {
-            $this->assertTrue(is_a($exception,\Exception::class));
+            $this->assertTrue(is_a($exception, \Exception::class));
         }
     }
 
     public function testGetURL()
     {
         $this->assertEquals(
-            'http://example.com/wp-admin/options-general.php?page=test-menu-slug',
+            'http://example.org/wp-admin/options-general.php?page=test-menu-slug',
             $this->stub->getURL()
         );
     }

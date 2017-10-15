@@ -22,7 +22,7 @@ class SubMenuPageTest extends \WP_UnitTestCase
             ->setParentSlug('tools.php')
             ->setPageTitle('Test Page Title')
             ->setMenuTitle('Test Menu Title')
-            ->setCapability('test_capability')
+            ->setCapability('manage_options')
             ->setMenuSlug('test-menu-slug');
     }
 

@@ -37,7 +37,7 @@ class SubMenuPageTest extends \WP_UnitTestCase
     public function testUnRegister()
     {
         $this->markTestSkipped();
-        // TODO: cant pass this test right now
+        // Can't pass this test right now.
         $this->assertEquals($this->stub, $this->stub->unRegister());
 
         try {

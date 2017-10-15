@@ -1,6 +1,8 @@
 <?php
 namespace Korobochkin\WPKit\Themes;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 /**
  * Class AbstractTheme
  * @package Korobochkin\WPKit\Themes

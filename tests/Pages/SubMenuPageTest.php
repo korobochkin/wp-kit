@@ -28,7 +28,10 @@ class SubMenuPageTest extends \WP_UnitTestCase
 
     public function testRegister()
     {
+        global $submenu;
+        var_dump($submenu);
         $this->assertEquals($this->stub, $this->stub->register());
+        var_dump($submenu);
     }
 
     /**

@@ -1,8 +1,10 @@
 <?php
 namespace Korobochkin\WPKit\Tests\AlmostControllers;
 
+use Korobochkin\WPKit\AlmostControllers\Exceptions\ActionNotFoundException;
 use Korobochkin\WPKit\AlmostControllers\Stack;
 use Korobochkin\WPKit\Tests\DataSets\AlmostControllers\TestAction;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -73,6 +75,32 @@ class StackTest extends \WP_UnitTestCase
 
     public function testHandleRequest()
     {
-        //$this->
+        $actions = array(
+            new TestAction(),
+        );
+
+        $request = new Request(array(
+            'actionName' => TestAction::class,
+        ));
+
+        $response = new JsonResponse();
+
+        $this->stub
+            ->setActions($actions)
+            ->setRequest($request)
+            ->setResponse($response)
+            ->handleRequest();
+
+        $request = new Request(array(
+            'actionName' => 'uknown-action-name',
+        ));
+
+        $this->setExpectedException(ActionNotFoundException::class);
+
+        $this->stub
+            ->setActions($actions)
+            ->setRequest($request)
+            ->setResponse($response)
+            ->handleRequest();
     }
 }

@@ -13,7 +13,10 @@ class TestAction extends AbstractAction
      */
     public function __construct()
     {
-        $this->setName(self::class);
+        $this
+            ->setName(self::class)
+            ->setEnabledForNotLoggedIn(true)
+            ->setEnabledForLoggedIn(true);
     }
 
     /**

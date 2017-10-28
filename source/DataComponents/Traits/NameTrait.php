@@ -3,7 +3,6 @@ namespace Korobochkin\WPKit\DataComponents\Traits;
 
 trait NameTrait
 {
-
     /**
      * @var string The node name which used for access the node. Must be unique.
      */

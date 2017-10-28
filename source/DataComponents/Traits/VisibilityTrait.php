@@ -3,7 +3,6 @@ namespace Korobochkin\WPKit\DataComponents\Traits;
 
 trait VisibilityTrait
 {
-
     /**
      * @var bool True if visible, false if not.
      */

@@ -130,6 +130,9 @@ interface NodeInterface
      *
      * May returns empty array if validation was successful.
      *
+     * @throws \Exception Different exceptions can be throw by Symfony Validator. Usually this happens if value
+     * have a non expected variable type.
+     *
      * @return ConstraintViolationInterface[] Array of validation results.
      */
     public function validate();

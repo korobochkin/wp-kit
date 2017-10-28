@@ -113,11 +113,11 @@ class StackTest extends \WP_UnitTestCase
     public function get()
     {
         $container = new ContainerBuilder();
-        $container->register(StackTest::class)
+        $container->register(Stack::class)
             ->addArgument(array())
             ->addArgument('test');
 
         $this->stub->setContainer($container);
-        $this->assertTrue(is_a($this->stub->get(StackTest::class), StackTest::class));
+        $this->assertTrue(is_a($this->stub->get(Stack::class), Stack::class));
     }
 }

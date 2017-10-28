@@ -10,7 +10,12 @@ trait ValidateTrait
     /**
      * Returns violations list.
      *
-     * @return ConstraintViolationList
+     * Call this method only in try-catch statements.
+     *
+     * @throws \Exception Different exceptions can be throw by Symfony Validator. Usually this happens if value
+     * have a non expected variable type.
+     *
+     * @return ConstraintViolationList Violations list.
      */
     public function validate()
     {
@@ -42,9 +47,14 @@ trait ValidateTrait
     /**
      * Returns violations list.
      *
+     * Call this method only in try-catch statements.
+     *
      * @param $value mixed Value which you want to validate.
      *
-     * @return ConstraintViolationList
+     * @throws \Exception Different exceptions can be throw by Symfony Validator. Usually this happens if value
+     * have a non expected variable type.
+     *
+     * @return ConstraintViolationList Violations list.
      */
     public function validateValue($value)
     {

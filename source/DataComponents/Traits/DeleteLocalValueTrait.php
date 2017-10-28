@@ -5,7 +5,6 @@ use Korobochkin\WPKit\DataComponents\NodeInterface;
 
 trait DeleteLocalValueTrait
 {
-
     public function deleteLocal()
     {
         /**

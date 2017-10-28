@@ -28,3 +28,9 @@
 * Refactored Pages interfaces and classes.
 * Added tests for Pages classes.
 * Added Runners which can help if you use DependencyInjection (+ tests).
+
+## 0.4.2 - October 28, 2017
+
+* Fixed unexpected Exceptions in `isValid` method ([#11](https://github.com/korobochkin/wp-kit/issues/11)).
+    * Added more PHP docs.
+    * Improved Data Components tests.

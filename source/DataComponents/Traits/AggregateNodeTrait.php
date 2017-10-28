@@ -6,7 +6,6 @@ use Korobochkin\WPKit\DataComponents\NodeInterface;
 
 trait AggregateNodeTrait
 {
-
     /**
      * @var NodeInterface[]|AggregateNodeInterface[]
      */

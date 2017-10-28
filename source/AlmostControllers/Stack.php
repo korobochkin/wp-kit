@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationList;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class Stack
@@ -39,15 +40,22 @@ class Stack implements StackInterface
     protected $response;
 
     /**
+     * @var ValidatorInterface Validator.
+     */
+    protected $validator;
+
+    /**
      * Stack constructor.
      *
      * @param ActionInterface[] $actions
      * @param string $actionName
+     * @param $validator ValidatorInterface
      */
-    public function __construct(array $actions, $actionName)
+    public function __construct(array $actions, $actionName, ValidatorInterface $validator)
     {
         $this->actions    = $actions;
         $this->actionName = $actionName;
+        $this->validator  = $validator;
     }
 
     /**
@@ -128,6 +136,24 @@ class Stack implements StackInterface
     public function setResponse(Response $response)
     {
         $this->response = $response;
+
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getValidator()
+    {
+        return $this->validator;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setValidator(ValidatorInterface $validator)
+    {
+        $this->validator = $validator;
 
         return $this;
     }

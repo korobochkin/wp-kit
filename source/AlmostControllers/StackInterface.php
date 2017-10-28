@@ -3,6 +3,7 @@ namespace Korobochkin\WPKit\AlmostControllers;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 interface StackInterface
 {
@@ -78,6 +79,22 @@ interface StackInterface
      * @return $this For chain calls.
      */
     public function setResponse(Response $response);
+
+    /**
+     * Returns Validator.
+     *
+     * @return ValidatorInterface Validator.
+     */
+    public function getValidator();
+
+    /**
+     * Sets Validator.
+     *
+     * @param ValidatorInterface $validator Validator.
+     *
+     * @return $this For chain calls.
+     */
+    public function setValidator(ValidatorInterface $validator);
 
     /**
      * Register current actions from $this->actions variable.

@@ -3,7 +3,6 @@ namespace Korobochkin\WPKit\DataComponents\Traits;
 
 trait ExpirationTrait
 {
-
     /**
      * @var int The maximum of seconds to keep the data before refreshing.
      */

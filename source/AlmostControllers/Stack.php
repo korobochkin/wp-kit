@@ -234,7 +234,6 @@ class Stack implements StackInterface
                 ->handleRequest();
 
             return $this;
-
         } else {
             // Not supported action or action name invalid (null).
             throw new ActionNotFoundException();

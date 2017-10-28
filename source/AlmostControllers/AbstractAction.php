@@ -22,7 +22,8 @@ abstract class AbstractAction implements ActionInterface
     protected $enabledForNotLoggedIn = false;
 
     /**
-     * @var string Name of this action. Used in WordPress add_action function. Must be unique. You can store here the name of class.
+     * @var string Name of this action. Used in WordPress add_action function.
+     * Must be unique. You can store here the name of class.
      */
     protected $name;
 

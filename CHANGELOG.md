@@ -34,4 +34,3 @@
 * Fixed unexpected Exceptions in `isValid` method ([#11](https://github.com/korobochkin/wp-kit/issues/11)).
     * Added more PHP docs.
     * Improved Data Components tests.
- 

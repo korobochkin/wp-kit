@@ -4,7 +4,6 @@ namespace Korobochkin\WPKit\AlmostControllers;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 interface StackInterface extends ContainerAwareInterface
 {

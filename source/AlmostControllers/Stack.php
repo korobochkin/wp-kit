@@ -4,9 +4,11 @@ namespace Korobochkin\WPKit\AlmostControllers;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class Stack
+ */
 class Stack implements StackInterface
 {
-
     /**
      * @var ActionInterface[]
      */
@@ -33,7 +35,7 @@ class Stack implements StackInterface
     /**
      * @inheritdoc
      */
-    public function setActions($actions)
+    public function setActions(array $actions)
     {
         $this->actions = $actions;
 

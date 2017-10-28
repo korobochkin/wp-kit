@@ -1,12 +1,11 @@
 <?php
 namespace Korobochkin\WPKit\AlmostControllers;
 
-use Symfony\Component\Validator\ConstraintViolationInterface;
-use Symfony\Component\Validator\ConstraintViolationList;
-
+/**
+ * Class ActionAbstract
+ */
 abstract class ActionAbstract implements ActionInterface
 {
-
     /**
      * @var bool Should we use this action for logged in users or not?
      */
@@ -25,12 +24,7 @@ abstract class ActionAbstract implements ActionInterface
     /**
      * @var StackInterface
      */
-    protected $api;
-
-    /**
-     * @var ConstraintViolationList
-     */
-    protected $violationList;
+    protected $stack;
 
     /**
      * @inheritdoc
@@ -45,7 +39,7 @@ abstract class ActionAbstract implements ActionInterface
      */
     public function setEnabledForLoggedIn($enabledForLoggedIn)
     {
-        $this->enabledForLoggedIn = (bool)$enabledForLoggedIn;
+        $this->enabledForLoggedIn = (bool) $enabledForLoggedIn;
 
         return $this;
     }
@@ -63,7 +57,7 @@ abstract class ActionAbstract implements ActionInterface
      */
     public function setEnabledForNotLoggedIn($enabledForNotLoggedIn)
     {
-        $this->enabledForNotLoggedIn = (bool)$enabledForNotLoggedIn;
+        $this->enabledForNotLoggedIn = (bool) $enabledForNotLoggedIn;
 
         return $this;
     }
@@ -89,17 +83,17 @@ abstract class ActionAbstract implements ActionInterface
     /**
      * @inheritdoc
      */
-    public function getApi()
+    public function getStack()
     {
-        return $this->api;
+        return $this->stack;
     }
 
     /**
      * @inheritdoc
      */
-    public function setApi(StackInterface $api)
+    public function setStack(StackInterface $stack)
     {
-        $this->api = $api;
+        $this->stack = $stack;
 
         return $this;
     }
@@ -109,7 +103,7 @@ abstract class ActionAbstract implements ActionInterface
      */
     public function getRequest()
     {
-        return $this->api->getRequest();
+        return $this->stack->getRequest();
     }
 
     /**
@@ -117,37 +111,6 @@ abstract class ActionAbstract implements ActionInterface
      */
     public function getResponse()
     {
-        return $this->api->getResponse();
+        return $this->stack->getResponse();
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function getViolationList()
-    {
-        return $this->violationList;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setViolationList($violationList)
-    {
-        $this->violationList = $violationList;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function addViolation(ConstraintViolationInterface $violation)
-    {
-        $this->violationList->add($violation);
-
-        return $this;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    abstract public function handleRequest();
 }

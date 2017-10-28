@@ -20,7 +20,7 @@ interface StackInterface
      *
      * @return $this For chain calls.
      */
-    public function setActions($actions);
+    public function setActions(array $actions);
 
     /**
      * Adds single action instance to the list.
@@ -34,14 +34,14 @@ interface StackInterface
     /**
      * Returns the Request instance.
      *
-     * @return Request
+     * @return Request HTTP request instance.
      */
     public function getRequest();
 
     /**
      * Sets the Request instance.
      *
-     * @param Request $request
+     * @param Request $request HTTP request instance.
      *
      * @return $this For chain calls.
      */
@@ -50,14 +50,14 @@ interface StackInterface
     /**
      * Returns Response instance.
      *
-     * @return Response
+     * @return Response HTTP response instance.
      */
     public function getResponse();
 
     /**
      * Sets Response instance.
      *
-     * @param Response $response
+     * @param Response $response HTTP response instance.
      *
      * @return $this For chain calls.
      */
@@ -68,10 +68,10 @@ interface StackInterface
      *
      * @return $this For chain calls.
      */
-    public function load();
+    public function register();
 
     /**
-     * Handling HTTP requests and send Response back
+     * Handling HTTP requests.
      *
      * @see $this->send()
      */
@@ -79,8 +79,6 @@ interface StackInterface
 
     /**
      * Actually sends the headers and response body to the client.
-     *
-     * @see wp_send_json()
      */
     public function send();
 }

@@ -3,6 +3,7 @@ namespace Korobochkin\WPKit\AlmostControllers;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\ConstraintViolationList;
 
 /**
  * Interface ActionInterface
@@ -72,6 +73,22 @@ interface ActionInterface
      * @return $this For chain calls.
      */
     public function setStack(StackInterface $stack);
+
+    /**
+     * Returns a list of errors.
+     *
+     * @return ConstraintViolationList
+     */
+    public function getViolationsList();
+
+    /**
+     * Sets a list of errors.
+     *
+     * @param ConstraintViolationList $violationsList A list of errors during this action execute.
+     *
+     * @return $this For chain calls.
+     */
+    public function setViolationsList(ConstraintViolationList $violationsList);
 
     /**
      * Returns HTTP Request.

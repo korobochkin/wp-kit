@@ -6,6 +6,7 @@ use Korobochkin\WPKit\AlmostControllers\Exceptions\UnauthorizedException;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\ConstraintViolationList;
 
 /**
  * Class Stack
@@ -222,7 +223,7 @@ class Stack implements StackInterface
 
             // Action should not overwrite response object.
             $this->currentAction
-                //->setViolations(new ConstraintViolationList())
+                ->setViolations(new ConstraintViolationList())
                 ->setRequest($this->request)
                 ->setResponse($this->response)
                 ->handleRequest();

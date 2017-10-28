@@ -1,6 +1,8 @@
 <?php
 namespace Korobochkin\WPKit\AlmostControllers;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationList;
 
 /**
@@ -27,6 +29,16 @@ abstract class AbstractAction implements ActionInterface
      * @var StackInterface
      */
     protected $stack;
+
+    /**
+     * @var Request HTTP Request.
+     */
+    protected $request;
+
+    /**
+     * @var Response HTTP Response.
+     */
+    protected $response;
 
     /**
      * @var ConstraintViolationList A list of errors during this action execute.
@@ -106,9 +118,7 @@ abstract class AbstractAction implements ActionInterface
     }
 
     /**
-     * Returns a list of errors.
-     *
-     * @return ConstraintViolationList
+     * @inheritdoc
      */
     public function getViolationsList()
     {
@@ -116,11 +126,7 @@ abstract class AbstractAction implements ActionInterface
     }
 
     /**
-     * Sets a list of errors.
-     *
-     * @param ConstraintViolationList $violationsList A list of errors during this action execute.
-     *
-     * @return $this For chain calls.
+     * @inheritdoc
      */
     public function setViolationsList(ConstraintViolationList $violationsList)
     {
@@ -134,7 +140,17 @@ abstract class AbstractAction implements ActionInterface
      */
     public function getRequest()
     {
-        return $this->stack->getRequest();
+        return $this->request;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setRequest(Request $request)
+    {
+        $this->request = $request;
+
+        return $this;
     }
 
     /**
@@ -142,6 +158,16 @@ abstract class AbstractAction implements ActionInterface
      */
     public function getResponse()
     {
-        return $this->stack->getResponse();
+        return $this->response;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setResponse(Response $response)
+    {
+        $this->response = $response;
+
+        return $this;
     }
 }

@@ -34,3 +34,7 @@
 * Fixed unexpected Exceptions in `isValid` method ([#11](https://github.com/korobochkin/wp-kit/issues/11)).
     * Added more PHP docs.
     * Improved Data Components tests.
+
+## 0.5.0 - October 28, 2017
+
+Introducing AlmostControllers components which can be used for webhooks and ajax requests.

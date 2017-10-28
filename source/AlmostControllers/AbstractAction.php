@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\AlmostControllers;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationList;
@@ -44,6 +45,11 @@ abstract class AbstractAction implements ActionInterface
      * @var ConstraintViolationList A list of errors during this action execute.
      */
     protected $violationsList;
+
+    /**
+     * @var ContainerInterface DI Container.
+     */
+    protected $container;
 
     /**
      * @inheritdoc
@@ -169,5 +175,23 @@ abstract class AbstractAction implements ActionInterface
         $this->response = $response;
 
         return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function get($id)
+    {
+        return $this->container->get($id);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\AlmostControllers;
 
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationList;
@@ -8,7 +9,7 @@ use Symfony\Component\Validator\ConstraintViolationList;
 /**
  * Interface ActionInterface
  */
-interface ActionInterface
+interface ActionInterface extends ContainerAwareInterface
 {
     /**
      * Returns the flag which indicate availability of this action for user.
@@ -128,4 +129,13 @@ interface ActionInterface
      * @return $this For chain calls.
      */
     public function handleRequest();
+
+    /**
+     * Returns a container service by its id.
+     *
+     * @param string $id The service id
+     *
+     * @return object The service
+     */
+    public function get($id);
 }

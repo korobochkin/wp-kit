@@ -1,11 +1,12 @@
 <?php
 namespace Korobochkin\WPKit\AlmostControllers;
 
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-interface StackInterface
+interface StackInterface extends ContainerAwareInterface
 {
     /**
      * Returns actions instances in array.
@@ -81,22 +82,6 @@ interface StackInterface
     public function setResponse(Response $response);
 
     /**
-     * Returns Validator.
-     *
-     * @return ValidatorInterface Validator.
-     */
-    public function getValidator();
-
-    /**
-     * Sets Validator.
-     *
-     * @param ValidatorInterface $validator Validator.
-     *
-     * @return $this For chain calls.
-     */
-    public function setValidator(ValidatorInterface $validator);
-
-    /**
      * Register current actions from $this->actions variable.
      *
      * @return $this For chain calls.
@@ -114,4 +99,13 @@ interface StackInterface
      * Actually sends the headers and response body to the client.
      */
     public function send();
+
+    /**
+     * Returns a container service by its id.
+     *
+     * @param string $id The service id
+     *
+     * @return object The service
+     */
+    public function get($id);
 }

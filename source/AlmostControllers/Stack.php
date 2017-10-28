@@ -3,6 +3,7 @@ namespace Korobochkin\WPKit\AlmostControllers;
 
 use Korobochkin\WPKit\AlmostControllers\Exceptions\ActionNotFoundException;
 use Korobochkin\WPKit\AlmostControllers\Exceptions\UnauthorizedException;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,22 +41,20 @@ class Stack implements StackInterface
     protected $response;
 
     /**
-     * @var ValidatorInterface Validator.
+     * @var ContainerInterface DI Container.
      */
-    protected $validator;
+    protected $container;
 
     /**
      * Stack constructor.
      *
      * @param ActionInterface[] $actions
      * @param string $actionName
-     * @param $validator ValidatorInterface
      */
-    public function __construct(array $actions, $actionName, ValidatorInterface $validator)
+    public function __construct(array $actions, $actionName)
     {
         $this->actions    = $actions;
         $this->actionName = $actionName;
-        $this->validator  = $validator;
     }
 
     /**
@@ -136,24 +135,6 @@ class Stack implements StackInterface
     public function setResponse(Response $response)
     {
         $this->response = $response;
-
-        return $this;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getValidator()
-    {
-        return $this->validator;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setValidator(ValidatorInterface $validator)
-    {
-        $this->validator = $validator;
 
         return $this;
     }
@@ -249,6 +230,9 @@ class Stack implements StackInterface
 
             // Action should not overwrite response object.
             $this->currentAction
+                ->setContainer($this->container);
+
+            $this->currentAction
                 ->setViolations(new ConstraintViolationList())
                 ->setRequest($this->request)
                 ->setResponse($this->response)
@@ -275,5 +259,23 @@ class Stack implements StackInterface
         } else {
             die;
         }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function get($id)
+    {
+        return $this->container->get($id);
     }
 }

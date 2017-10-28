@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\WPKit\AJAX;
+namespace Korobochkin\WPKit\AlmostControllers;
 
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\ConstraintViolationList;
@@ -23,16 +23,16 @@ interface ActionInterface
     public function setName($name);
 
     /**
-     * @return AJAXInterface
+     * @return StackInterface
      */
     public function getApi();
 
     /**
-     * @param AJAXInterface $api
+     * @param StackInterface $api
      *
      * @return $this For chain calls.
      */
-    public function setApi(AJAXInterface $api);
+    public function setApi(StackInterface $api);
 
     public function getRequest();
 

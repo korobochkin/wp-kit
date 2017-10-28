@@ -1,10 +1,10 @@
 <?php
-namespace Korobochkin\WPKit\AJAX;
+namespace Korobochkin\WPKit\AlmostControllers;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AJAX implements AJAXInterface
+class Stack implements StackInterface
 {
 
     /**

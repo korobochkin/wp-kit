@@ -1,10 +1,10 @@
 <?php
-namespace Korobochkin\WPKit\AJAX;
+namespace Korobochkin\WPKit\AlmostControllers;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-interface AJAXInterface
+interface StackInterface
 {
     /**
      * Returns actions instances in array.

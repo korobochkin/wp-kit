@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\WPKit\AJAX;
+namespace Korobochkin\WPKit\AlmostControllers;
 
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\ConstraintViolationList;
@@ -23,7 +23,7 @@ abstract class ActionAbstract implements ActionInterface
     protected $name;
 
     /**
-     * @var AJAXInterface
+     * @var StackInterface
      */
     protected $api;
 
@@ -97,7 +97,7 @@ abstract class ActionAbstract implements ActionInterface
     /**
      * @inheritdoc
      */
-    public function setApi(AJAXInterface $api)
+    public function setApi(StackInterface $api)
     {
         $this->api = $api;
 

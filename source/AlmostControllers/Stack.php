@@ -241,5 +241,12 @@ class Stack implements StackInterface
     public function send()
     {
         $this->response->send();
+
+        // This code part of wp_send_json() function.
+        if (defined('DOING_AJAX') && DOING_AJAX) {
+            wp_die();
+        } else {
+            die;
+        }
     }
 }

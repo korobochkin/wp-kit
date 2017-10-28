@@ -58,6 +58,16 @@ class ValidateSet extends AbstractDataSet
             false,
         );
 
+        $variants[] = array(
+            'wp_kit_test_value',
+            new Constraints\Choice(array(
+                'choices' => array(1, 2, 3),
+                'multiple' => true,
+                'strict' => true,
+            )),
+            false,
+        );
+
         $this->variants = $variants;
         $this->position = 0;
     }

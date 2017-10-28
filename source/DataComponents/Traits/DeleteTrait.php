@@ -3,7 +3,6 @@ namespace Korobochkin\WPKit\DataComponents\Traits;
 
 trait DeleteTrait
 {
-
     /**
      * @inheritdoc
      */

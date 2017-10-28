@@ -20,11 +20,20 @@ trait ValidateTrait
         return $this->getValidator()->validate($this->get(), $this->getConstraint());
     }
 
+    /**
+     * Validates the value and returns boolean.
+     *
+     * @return bool True if value valid. False otherwise.
+     */
     public function isValid()
     {
-        $errors = $this->validate();
-        if (count($errors) === 0) {
-            return true;
+        try {
+            $errors = $this->validate();
+            if (count($errors) === 0) {
+                return true;
+            }
+        } catch (\Exception $exception) {
+            return false;
         }
 
         return false;

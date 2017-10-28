@@ -6,7 +6,7 @@ use Symfony\Component\Validator\ConstraintViolationList;
 /**
  * Class ActionAbstract
  */
-abstract class ActionAbstract implements ActionInterface
+abstract class AbstractAction implements ActionInterface
 {
     /**
      * @var bool Should we use this action for logged in users or not?

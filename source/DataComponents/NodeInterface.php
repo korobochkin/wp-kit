@@ -165,7 +165,7 @@ interface NodeInterface
     public function getDataTransformer();
 
     /**
-     * Set the data transformer.
+     * Sets the data transformer.
      *
      * @param DataTransformerInterface $transformer
      *

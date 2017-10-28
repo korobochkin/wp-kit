@@ -4,6 +4,9 @@ namespace Korobochkin\WPKit\DataComponents\Traits;
 use Korobochkin\WPKit\DataComponents\NodeInterface;
 use Symfony\Component\Validator\ConstraintViolationList;
 
+/**
+ * Trait ValidateTrait
+ */
 trait ValidateTrait
 {
 

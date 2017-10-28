@@ -160,20 +160,16 @@ class Stack implements StackInterface
     {
         try {
             $this->requestManager();
-        }
-        catch (ActionNotFoundException $exception) {
+        } catch (ActionNotFoundException $exception) {
             $this->response->setStatusCode(Response::HTTP_NOT_FOUND);
-        }
-        catch (UnauthorizedException $exception) {
+        } catch (UnauthorizedException $exception) {
             $this->response->setStatusCode(Response::HTTP_FORBIDDEN);
-        }
-        catch (\Exception $exception) {
+        } catch (\Exception $exception) {
             if ($this->response->getStatusCode() < 300) {
                 // Status code for unknown exceptions.
                 $this->response->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
             }
-        }
-        finally {
+        } finally {
             $this->currentAction = null;
         }
 

@@ -1,6 +1,8 @@
 <?php
 namespace Korobochkin\WPKit\AlmostControllers;
 
+use Symfony\Component\Validator\ConstraintViolationList;
+
 /**
  * Class ActionAbstract
  */
@@ -25,6 +27,11 @@ abstract class ActionAbstract implements ActionInterface
      * @var StackInterface
      */
     protected $stack;
+
+    /**
+     * @var ConstraintViolationList A list of errors during this action execute.
+     */
+    protected $violationsList;
 
     /**
      * @inheritdoc
@@ -94,6 +101,30 @@ abstract class ActionAbstract implements ActionInterface
     public function setStack(StackInterface $stack)
     {
         $this->stack = $stack;
+
+        return $this;
+    }
+
+    /**
+     * Returns a list of errors.
+     *
+     * @return ConstraintViolationList
+     */
+    public function getViolationsList()
+    {
+        return $this->violationsList;
+    }
+
+    /**
+     * Sets a list of errors.
+     *
+     * @param ConstraintViolationList $violationsList A list of errors during this action execute.
+     *
+     * @return $this For chain calls.
+     */
+    public function setViolationsList(ConstraintViolationList $violationsList)
+    {
+        $this->violationsList = $violationsList;
 
         return $this;
     }

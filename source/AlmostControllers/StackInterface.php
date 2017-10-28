@@ -32,6 +32,22 @@ interface StackInterface
     public function addAction(ActionInterface $action);
 
     /**
+     * Returns WordPress action name.
+     *
+     * @return string WordPress action name.
+     */
+    public function getActionName();
+
+    /**
+     * Sets WordPress action name.
+     *
+     * @param string $actionName
+     *
+     * @return $this For chain calls.
+     */
+    public function setActionName($actionName);
+
+    /**
      * Returns the Request instance.
      *
      * @return Request HTTP request instance.

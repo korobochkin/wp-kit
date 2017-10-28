@@ -1,6 +1,9 @@
 <?php
 namespace Korobochkin\WPKit\AlmostControllers;
 
+use Korobochkin\WPKit\AlmostControllers\Exceptions\ActionNotFoundException;
+use Korobochkin\WPKit\AlmostControllers\Exceptions\UnauthorizedException;
+use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -15,6 +18,16 @@ class Stack implements StackInterface
     protected $actions;
 
     /**
+     * @var string WordPress action name.
+     */
+    protected $actionName;
+
+    /**
+     * @var ActionInterface Current action.
+     */
+    protected $currentAction;
+
+    /**
      * @var \Symfony\Component\HttpFoundation\Request
      */
     protected $request;
@@ -23,6 +36,18 @@ class Stack implements StackInterface
      * @var \Symfony\Component\HttpFoundation\Response
      */
     protected $response;
+
+    /**
+     * Stack constructor.
+     *
+     * @param ActionInterface[] $actions
+     * @param string $actionName
+     */
+    public function __construct(array $actions, $actionName)
+    {
+        $this->actions    = $actions;
+        $this->actionName = $actionName;
+    }
 
     /**
      * @inheritdoc
@@ -47,8 +72,25 @@ class Stack implements StackInterface
      */
     public function addAction(ActionInterface $action)
     {
-        $actionName                 = get_class($action);
-        $this->actions[$actionName] = $action;
+        $this->actions[$action->getName()] = $action;
+
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getActionName()
+    {
+        return $this->actionName;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setActionName($actionName)
+    {
+        $this->actionName = $actionName;
 
         return $this;
     }
@@ -92,22 +134,14 @@ class Stack implements StackInterface
     /**
      * @inheritdoc
      */
-    public function load()
+    public function register()
     {
         if (empty($this->actions)) {
-            return $this;
+            throw new \LogicException('You need set actions before call register method.');
         }
 
-        foreach ($this->actions as $action) {
-            if ($action->isEnabledForLoggedIn()) {
-                add_action('wp_ajax_'.$action->getName(), array($this, 'handleRequest'));
-            }
-            if ($action->isEnabledForNotLoggedIn()) {
-                add_action('wp_ajax_nopriv_'.$action->getName(), array($this, 'handleRequest'));
-            }
-
-            $action->setApi($this);
-        }
+        add_action('wp_ajax_'        . $this->actionName, array($this, 'handleRequest'));
+        add_action('wp_ajax_nopriv_' . $this->actionName, array($this, 'handleRequest'));
 
         return $this;
     }
@@ -117,10 +151,88 @@ class Stack implements StackInterface
      */
     public function handleRequest()
     {
-        if (isset($this->actions[$_REQUEST['action']])) {
-            $this->actions[$_REQUEST['action']]->handleRequest();
+        try {
+            $this->requestManager();
         }
-        $this->send();
+        catch (ActionNotFoundException $exception) {
+            $this->response->setStatusCode(Response::HTTP_NOT_FOUND);
+        }
+        catch (UnauthorizedException $exception) {
+            $this->response->setStatusCode(Response::HTTP_FORBIDDEN);
+        }
+        catch (\Exception $exception) {
+            if ($this->response->getStatusCode() < 300) {
+                // Status code for unknown exceptions.
+                $this->response->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+        }
+        finally {
+            $this->currentAction = null;
+        }
+
+        if ($this->response) {
+            // Send response.
+            $this->send();
+        }
+    }
+
+    /**
+     * Util for managing request.
+     *
+     * @throws UnauthorizedException If user not allowed to use this action.
+     * @throws  ActionNotFoundException If requested action not exists.
+     *
+     * @return $this For chain calls.
+     */
+    protected function requestManager()
+    {
+        // Remove slashes (added by WordPress).
+        if (isset($_POST)) {
+            $post = $_POST;
+            if (is_array($post)) {
+                foreach ($post as &$fragment) {
+                    $fragment = stripslashes($fragment);
+                }
+                $this->request->request = new ParameterBag($post);
+            }
+            unset($post, $fragment);
+        }
+
+        // Find the requested action.
+        $action = $this->request->request->get('actionName');
+        if (!is_null($action) && isset($this->actions[$action])) {
+            // Initialize the action.
+            if (is_string($this->actions[$action])) {
+                $this->actions[$action] = new $this->actions[$action]();
+            }
+
+            $this->currentAction = $this->actions[$action];
+
+            if (is_user_logged_in()) {
+                // For signed in users.
+                if (!$this->currentAction->isEnabledForLoggedIn()) {
+                    throw new UnauthorizedException();
+                }
+            } else {
+                // For not signed in users
+                if (!$this->currentAction->isEnabledForNotLoggedIn()) {
+                    throw new UnauthorizedException();
+                }
+            }
+
+            // Action should not overwrite response object.
+            $this->currentAction
+                //->setViolations(new ConstraintViolationList())
+                ->setRequest($this->request)
+                ->setResponse($this->response)
+                ->handleRequest();
+
+            return $this;
+
+        } else {
+            // Not supported action or action name invalid (null).
+            throw new ActionNotFoundException();
+        }
     }
 
     /**
@@ -129,12 +241,5 @@ class Stack implements StackInterface
     public function send()
     {
         $this->response->send();
-
-        // This part grabbed from wp_send_json()
-        if (defined('DOING_AJAX') && DOING_AJAX) {
-            wp_die();
-        } else {
-            die;
-        }
     }
 }

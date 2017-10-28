@@ -367,6 +367,10 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
     {
         $validator = Validation::createValidator();
         $this->stub->setValidator($validator);
+
+
+        // Validate primitive scenario with valid value.
+
         $this->stub->set('wp_kit_test_value');
         $this->stub->setConstraint(
             array(
@@ -380,6 +384,22 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
         );
 
         $this->assertInstanceOf(ConstraintViolationList::class, $this->stub->validate());
+
+
+        // Validate other type of value. Expected exception.
+
+        $this->stub->setConstraint(
+            array(
+                new Constraints\Choice(array(
+                    'choices' => array(1, 2, 3),
+                    'multiple' => true,
+                    'strict' => true,
+                ))
+            )
+        );
+
+        $this->setExpectedException(\Exception::class);
+        $this->stub->validate();
     }
 
     /**

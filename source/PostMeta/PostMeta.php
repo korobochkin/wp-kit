@@ -3,7 +3,12 @@ namespace Korobochkin\WPKit\PostMeta;
 
 use Korobochkin\WPKit\DataComponents\Traits\DummyBuildConstraintTrait;
 
-class PostMeta extends AbstractPostMeta {
+/**
+ * Class PostMeta
+ * @package Korobochkin\WPKit\PostMeta
+ */
+class PostMeta extends AbstractPostMeta
+{
 
-	use DummyBuildConstraintTrait;
+    use DummyBuildConstraintTrait;
 }

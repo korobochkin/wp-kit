@@ -5,9 +5,13 @@ use Korobochkin\WPKit\DataComponents\Traits\Special\Bool\BoolBuildConstraintTrai
 use Korobochkin\WPKit\DataComponents\Traits\Special\Bool\BoolConstructorTrait;
 use Korobochkin\WPKit\PostMeta\AbstractPostMeta;
 
-class BoolPostMeta extends AbstractPostMeta {
+/**
+ * Class BoolPostMeta
+ * @package Korobochkin\WPKit\PostMeta\Special
+ */
+class BoolPostMeta extends AbstractPostMeta
+{
+    use BoolConstructorTrait;
 
-	use BoolConstructorTrait;
-
-	use BoolBuildConstraintTrait;
+    use BoolBuildConstraintTrait;
 }

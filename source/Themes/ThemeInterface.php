@@ -1,9 +1,10 @@
 <?php
 namespace Korobochkin\WPKit\Themes;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-interface ThemeInterface
+interface ThemeInterface extends ContainerAwareInterface
 {
     /**
      * Define const NAME here with plugin name as 'my-plugin-name-'.
@@ -19,20 +20,20 @@ interface ThemeInterface
     public function run();
 
     /**
-     * Returns the ContainerBuilder instance used to store services.
+     * Returns the ContainerInterface instance used to store services.
      *
-     * @return ContainerBuilder Dependency Injection container with services.
+     * @return ContainerInterface Dependency Injection container with services.
      */
     public function getContainer();
 
     /**
-     * Sets the ContainerBuilder instance used to store services.
+     * Sets the ContainerInterface instance used to store services.
      *
-     * @param ContainerBuilder $container Dependency Injection container with services.
+     * @param ContainerInterface $container Dependency Injection container with services.
      *
      * @return $this For chain calls.
      */
-    public function setContainer(ContainerBuilder $container);
+    public function setContainer(ContainerInterface $container = null);
 
     /**
      * The theme folder path.

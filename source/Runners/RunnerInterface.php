@@ -1,7 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Runners;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Interface RunnerInterface can be used for actions and filters.
@@ -20,23 +20,23 @@ interface RunnerInterface
     /**
      * Returns the ContainerBuilder with services.
      *
-     * @return ContainerBuilder Container with services.
+     * @return ContainerInterface Container with services.
      */
     public static function getContainer();
 
     /**
      * Sets the ContainerBuilder with services.
      *
-     * @param ContainerBuilder $container Container with services.
+     * @param ContainerInterface $container Container with services.
      */
-    public static function setContainer(ContainerBuilder $container);
+    public static function setContainer(ContainerInterface $container = null);
 
     /**
      * Should run desired service.
      *
      * This method usually should have only few lines of code to accomplish
      * two single actions.
-     * 1. Get the service from ContainerBuilder.
+     * 1. Get the service from ContainerInterface.
      * 2. Run the service (call any method from it).
      */
     public static function run();

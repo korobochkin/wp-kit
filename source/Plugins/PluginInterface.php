@@ -1,9 +1,10 @@
 <?php
 namespace Korobochkin\WPKit\Plugins;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-interface PluginInterface
+interface PluginInterface extends ContainerAwareInterface
 {
     /**
      * Define const NAME here with plugin name as 'my-plugin-name-'.
@@ -42,18 +43,18 @@ interface PluginInterface
     /**
      * Returns the ContainerBuilder instance used to store services.
      *
-     * @return ContainerBuilder Dependency Injection container with services.
+     * @return ContainerInterface Dependency Injection container with services.
      */
     public function getContainer();
 
     /**
      * Sets the ContainerBuilder instance used to store services.
      *
-     * @param ContainerBuilder $container Dependency Injection container with services.
+     * @param ContainerInterface $container Dependency Injection container with services.
      *
      * @return $this For chain calls.
      */
-    public function setContainer(ContainerBuilder $container);
+    public function setContainer(ContainerInterface $container = null);
 
     /**
      * @return string A path to plugin root folder (where your bootstrap file located).

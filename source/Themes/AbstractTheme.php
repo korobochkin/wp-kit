@@ -1,7 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Themes;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class AbstractTheme
@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 abstract class AbstractTheme implements ThemeInterface
 {
     /**
-     * @var ContainerBuilder
+     * @var ContainerInterface
      */
     protected $container;
 
@@ -25,7 +25,7 @@ abstract class AbstractTheme implements ThemeInterface
     /**
      * @inheritdoc
      */
-    public function setContainer(ContainerBuilder $container)
+    public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
         return $this;

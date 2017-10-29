@@ -1,7 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Runners;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class AbstractRunner
@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 abstract class AbstractRunner implements RunnerInterface
 {
     /**
-     * @var ContainerBuilder Container with services.
+     * @var ContainerInterface Container with services.
      */
     protected static $container;
 
@@ -24,7 +24,7 @@ abstract class AbstractRunner implements RunnerInterface
     /**
      * @inheritdoc
      */
-    public static function setContainer(ContainerBuilder $container)
+    public static function setContainer(ContainerInterface $container = null)
     {
         self::$container = $container;
     }

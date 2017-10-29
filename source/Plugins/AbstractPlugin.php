@@ -1,7 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Plugins;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class AbstractPlugin
@@ -15,7 +15,7 @@ abstract class AbstractPlugin implements PluginInterface
     protected $file;
 
     /**
-     * @var ContainerBuilder
+     * @var ContainerInterface
      */
     protected $container;
 
@@ -61,7 +61,7 @@ abstract class AbstractPlugin implements PluginInterface
     /**
      * @inheritdoc
      */
-    public function setContainer(ContainerBuilder $container)
+    public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
         return $this;

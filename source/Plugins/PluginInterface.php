@@ -57,14 +57,25 @@ interface PluginInterface extends ContainerAwareInterface
     public function setContainer(ContainerInterface $container = null);
 
     /**
+     * Returns the plugin folder name.
+     *
      * @return string A path to plugin root folder (where your bootstrap file located).
      */
     public function getDir();
 
     /**
+     * Returns the plugin folder url.
+     *
      * @return string An URL to plugin root folder (where you can place your assets folder for example).
      */
     public function getUrl();
+
+    /**
+     * Returns the plugin basename.
+     *
+     * @return string Plugin basename (the plugin name in plugins directory).
+     */
+    public function getBasename();
 
     /**
      * Returns plugin version as a string which you can parse.

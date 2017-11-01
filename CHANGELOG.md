@@ -38,3 +38,11 @@
 ## 0.5.0 - October 28, 2017
 
 Introducing AlmostControllers components which can be used for webhooks and ajax requests.
+
+## 0.5.1 - October 30, 2017
+
+The `Plugin` and `Theme` classes implements `ContainerAwareInterface`.
+
+## 0.5.2 - November 1, 2017
+
+Added `getBasename` method in `Plugin` class. 

@@ -56,4 +56,26 @@ class AbstractPluginTest extends \WP_UnitTestCase
     {
         $this->assertEquals(plugin_dir_url(__FILE__), $this->stub->getUrl());
     }
+
+    /**
+     * @dataProvider casesGetBasename
+     *
+     * @param $plugin string Plugin path.
+     */
+    public function testGetBasename($plugin)
+    {
+        $this->stub->setFile(path_join(WP_PLUGIN_DIR, 'hello.php'));
+
+        $this->assertEquals($plugin, $this->stub->getBaseName());
+    }
+
+    public function casesGetBasename()
+    {
+        return array(
+            array(
+                'hello.php',
+                'akismet/akismet.php',
+            ),
+        );
+    }
 }

@@ -82,4 +82,12 @@ abstract class AbstractPlugin implements PluginInterface
     {
         return plugin_dir_url($this->getFile());
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function getBasename()
+    {
+        return plugin_basename($this->getFile());
+    }
 }

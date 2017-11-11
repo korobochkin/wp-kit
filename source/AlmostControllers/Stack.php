@@ -149,6 +149,7 @@ class Stack implements StackInterface
 
         add_action('wp_ajax_'        . $this->actionName, array($this, 'handleRequest'));
         add_action('wp_ajax_nopriv_' . $this->actionName, array($this, 'handleRequest'));
+        // TODO: make available for ajax and webhooks
 
         return $this;
     }

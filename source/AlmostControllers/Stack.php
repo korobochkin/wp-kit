@@ -190,6 +190,7 @@ class Stack implements StackInterface
     protected function requestManager()
     {
         // Remove slashes (added by WordPress).
+        //TODO: check if $fragment is string here
         if (isset($_POST)) {
             $post = $_POST;
             if (is_array($post)) {

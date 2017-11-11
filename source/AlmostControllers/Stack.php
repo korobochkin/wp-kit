@@ -183,7 +183,7 @@ class Stack implements StackInterface
      * Util for managing request.
      *
      * @throws UnauthorizedException If user not allowed to use this action.
-     * @throws  ActionNotFoundException If requested action not exists.
+     * @throws ActionNotFoundException If requested action not exists.
      *
      * @return $this For chain calls.
      */

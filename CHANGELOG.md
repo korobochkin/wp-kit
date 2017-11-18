@@ -46,3 +46,7 @@ The `Plugin` and `Theme` classes implements `ContainerAwareInterface`.
 ## 0.5.2 - November 1, 2017
 
 Added `getBasename` method in `Plugin` class. 
+
+## 0.5.3 - November 18, 2017
+
+Improved AlmostControllers classes. Allow to use it for Ajax and simple HTTP requests. Fixed a bug with parsing request ([#15](https://github.com/korobochkin/wp-kit/issues/15)).

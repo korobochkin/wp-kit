@@ -33,7 +33,7 @@ class AjaxStackTest extends \WP_UnitTestCase
             ->setActions($actions)
             ->register();
 
-        $this->assertTrue(has_filter('wp_ajax_wp_kit_test_action_name',        array($this->stub, 'handleRequest')));
+        $this->assertTrue(has_filter('wp_ajax_wp_kit_test_action_name', array($this->stub, 'handleRequest')));
         $this->assertTrue(has_filter('wp_ajax_nopriv_wp_kit_test_action_name', array($this->stub, 'handleRequest')));
     }
 }

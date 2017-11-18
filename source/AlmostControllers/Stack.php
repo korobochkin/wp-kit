@@ -147,10 +147,6 @@ class Stack implements StackInterface
             throw new \LogicException('You need set actions before call register method.');
         }
 
-        add_action('wp_ajax_'        . $this->actionName, array($this, 'handleRequest'));
-        add_action('wp_ajax_nopriv_' . $this->actionName, array($this, 'handleRequest'));
-        // TODO: make available for ajax and webhooks
-
         return $this;
     }
 

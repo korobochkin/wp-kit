@@ -3,6 +3,7 @@ namespace Korobochkin\WPKit\AlmostControllers;
 
 use Korobochkin\WPKit\AlmostControllers\Exceptions\ActionNotFoundException;
 use Korobochkin\WPKit\AlmostControllers\Exceptions\UnauthorizedException;
+use Korobochkin\WPKit\Utils\RequestFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
@@ -179,6 +180,8 @@ class Stack implements StackInterface
     /**
      * Util for managing request.
      *
+     * @see wp_magic_quotes
+     *
      * @throws UnauthorizedException If user not allowed to use this action.
      * @throws ActionNotFoundException If requested action not exists.
      *
@@ -186,18 +189,8 @@ class Stack implements StackInterface
      */
     protected function requestManager()
     {
-        // Remove slashes (added by WordPress).
-        //TODO: check if $fragment is string here
-        if (isset($_POST)) {
-            $post = $_POST;
-            if (is_array($post)) {
-                foreach ($post as &$fragment) {
-                    $fragment = stripslashes($fragment);
-                }
-                $this->request->request = new ParameterBag($post);
-            }
-            unset($post, $fragment);
-        }
+        // Remove escaping (added by WordPress by wp_magic_quotes()).
+        $this->setRequest(RequestFactory::create());
 
         // Find the requested action.
         $action = $this->request->request->get('actionName');

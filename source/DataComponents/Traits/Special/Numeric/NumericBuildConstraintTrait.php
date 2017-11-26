@@ -3,14 +3,25 @@ namespace Korobochkin\WPKit\DataComponents\Traits\Special\Numeric;
 
 use Symfony\Component\Validator\Constraints;
 
-trait NumericBuildConstraintTrait {
+/**
+ * Trait NumericBuildConstraintTrait
+ * @package Korobochkin\WPKit\DataComponents\Traits\Special\Numeric
+ */
+trait NumericBuildConstraintTrait
+{
 
-	public function buildConstraint() {
-		return array(
-			new Constraints\NotBlank(),
-			new Constraints\Type(array(
-				'type' => 'float',
-			)),
-		);
-	}
+    /**
+     * @return array
+     */
+    public function buildConstraint()
+    {
+        return array(
+            new Constraints\NotBlank(),
+            new Constraints\Type(
+                array(
+                    'type' => 'float',
+                )
+            ),
+        );
+    }
 }

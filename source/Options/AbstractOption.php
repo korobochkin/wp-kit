@@ -4,89 +4,109 @@ namespace Korobochkin\WPKit\Options;
 use Korobochkin\WPKit\DataComponents\AbstractNode;
 use Korobochkin\WPKit\DataComponents\Traits\DeleteTrait;
 
-abstract class AbstractOption extends AbstractNode implements OptionInterface {
+/**
+ * Class AbstractOption
+ * @package Korobochkin\WPKit\Options
+ */
+abstract class AbstractOption extends AbstractNode implements OptionInterface
+{
 
-	use DeleteTrait;
+    use DeleteTrait;
 
-	/**
-	 * @var $autoload bool Flag which define how option should be loaded by WordPress.
-	 */
-	protected $autoload = true;
+    /**
+     * @var $autoload bool Flag which define how option should be loaded by WordPress.
+     */
+    protected $autoload = true;
 
-	/**
-	 * @inheritdoc
-	 */
-	public function getValueFromWordPress() {
-		$name = $this->getName();
+    /**
+     * @inheritdoc
+     */
+    public function getValueFromWordPress()
+    {
+        $name = $this->getName();
 
-		if(!$name) {
-			throw new \LogicException('You must specify the name of option before calling any methods using name of option.');
-		}
+        if (!$name) {
+            throw new \LogicException(
+                'You must specify the name of option before calling any methods using name of option.'
+            );
+        }
 
-		return get_option($name);
-	}
+        return get_option($name);
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function isAutoload() {
-		return $this->autoload;
-	}
+    /**
+     * @inheritdoc
+     */
+    public function isAutoload()
+    {
+        return $this->autoload;
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function setAutoload($autoload) {
-		$this->autoload = (bool) $autoload;
-		return $this;
-	}
+    /**
+     * @inheritdoc
+     */
+    public function setAutoload($autoload)
+    {
+        $this->autoload = (bool) $autoload;
 
-	/**
-	 * @inheritdoc
-	 */
-	public function deleteFromWP() {
-		$name = $this->getName();
+        return $this;
+    }
 
-		if(!$name) {
-			throw new \LogicException('You must specify the name of option before calling any methods using name of option.');
-		}
-		
-		return delete_option($name);
-	}
+    /**
+     * @inheritdoc
+     */
+    public function deleteFromWP()
+    {
+        $name = $this->getName();
 
-	/**
-	 * @inheritdoc
-	 */
-	public function flush() {
-			if($this->getDataTransformer()) {
-				$raw = $this->getDataTransformer()->transform($this->localValue);
-			} else {
-				$raw =& $this->localValue;
-			}
+        if (!$name) {
+            throw new \LogicException(
+                'You must specify the name of option before calling any methods using name of option.'
+            );
+        }
 
-			$name = $this->getName();
+        return delete_option($name);
+    }
 
-			if(!$name) {
-				throw new \LogicException('You must specify the name of option before calling any methods using name of option.');
-			}
+    /**
+     * @inheritdoc
+     */
+    public function flush()
+    {
+        if ($this->getDataTransformer()) {
+            $raw = $this->getDataTransformer()->transform($this->localValue);
+        } else {
+            $raw =& $this->localValue;
+        }
 
-			$result = update_option($name, $raw, $this->isAutoload());
+        $name = $this->getName();
 
-			if($result)
-				$this->setLocalValue(null);
+        if (!$name) {
+            throw new \LogicException(
+                'You must specify the name of option before calling any methods using name of option.'
+            );
+        }
 
-			return $result;
-	}
+        $result = update_option($name, $raw, $this->isAutoload());
 
-	/**
-	 * @inheritdoc
-	 */
-	public function updateValue($value, $autoload = null) {
-		$this->setLocalValue($value);
+        if ($result) {
+            $this->setLocalValue(null);
+        }
 
-		if(!is_null($autoload))
-			$this->setAutoload($autoload);
+        return $result;
+    }
 
-		return $this->flush();
-	}
+    /**
+     * @inheritdoc
+     */
+    public function updateValue($value, $autoload = null)
+    {
+        $this->setLocalValue($value);
+
+        if (!is_null($autoload)) {
+            $this->setAutoload($autoload);
+        }
+
+        return $this->flush();
+    }
 }

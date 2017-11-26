@@ -5,9 +5,13 @@ use Korobochkin\WPKit\DataComponents\Traits\Special\DateTime\DateTimeBuildConstr
 use Korobochkin\WPKit\DataComponents\Traits\Special\DateTime\DateTimeConstructorTrait;
 use Korobochkin\WPKit\PostMeta\AbstractPostMeta;
 
-class DateTimePostMeta extends AbstractPostMeta {
+/**
+ * Class DateTimePostMeta
+ * @package Korobochkin\WPKit\PostMeta\Special
+ */
+class DateTimePostMeta extends AbstractPostMeta
+{
+    use DateTimeConstructorTrait;
 
-	use DateTimeConstructorTrait;
-
-	use DateTimeBuildConstraintTrait;
+    use DateTimeBuildConstraintTrait;
 }

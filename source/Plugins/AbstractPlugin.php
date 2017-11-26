@@ -1,51 +1,93 @@
 <?php
 namespace Korobochkin\WPKit\Plugins;
 
-abstract class AbstractPlugin implements PluginInterface {
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-	/**
-	 * @var string A path to plugin bootstrap file.
-	 */
-	protected $file;
+/**
+ * Class AbstractPlugin
+ * @package Korobochkin\WPKit\Plugins
+ */
+abstract class AbstractPlugin implements PluginInterface
+{
+    /**
+     * @var string A path to plugin bootstrap file.
+     */
+    protected $file;
 
-	/**
-	 * @inheritdoc
-	 */
-	public function __construct($file) {
-		$this->setFile($file);
-	}
+    /**
+     * @var ContainerInterface
+     */
+    protected $container;
 
-	/**
-	 * @inheritdoc
-	 */
-	abstract public function run();
+    /**
+     * @inheritdoc
+     */
+    public function __construct($file)
+    {
+        $this->setFile($file);
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function getFile() {
-		return $this->file;
-	}
+    /**
+     * @inheritdoc
+     */
+    abstract public function run();
 
-	/**
-	 * @inheritdoc
-	 */
-	public function setFile($file) {
-		$this->file = $file;
-		return $this;
-	}
+    /**
+     * @inheritdoc
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function getDir() {
-		return plugin_dir_path($this->getFile());
-	}
+    /**
+     * @inheritdoc
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
 
-	/**
-	 * @inheritdoc
-	 */
-	public function getUrl() {
-		return plugin_dir_url($this->getFile());
-	}
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getContainer()
+    {
+        return $this->container;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getDir()
+    {
+        return plugin_dir_path($this->getFile());
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getUrl()
+    {
+        return plugin_dir_url($this->getFile());
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getBasename()
+    {
+        return plugin_basename($this->getFile());
+    }
 }

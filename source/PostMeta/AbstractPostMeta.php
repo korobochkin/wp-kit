@@ -4,101 +4,129 @@ namespace Korobochkin\WPKit\PostMeta;
 use Korobochkin\WPKit\DataComponents\AbstractNode;
 use Korobochkin\WPKit\DataComponents\Traits\DeleteTrait;
 use Korobochkin\WPKit\DataComponents\Traits\PostIdTrait;
+use Korobochkin\WPKit\DataComponents\Traits\PostMeta\GetNameWithVisibilityTrait;
+use Korobochkin\WPKit\DataComponents\Traits\VisibilityTrait;
 
-abstract class AbstractPostMeta extends AbstractNode implements PostMetaInterface {
+/**
+ * Class AbstractPostMeta
+ * @package Korobochkin\WPKit\PostMeta
+ */
+abstract class AbstractPostMeta extends AbstractNode implements PostMetaInterface
+{
+    use DeleteTrait;
 
-	use DeleteTrait;
+    use PostIdTrait;
 
-	use PostIdTrait;
+    use VisibilityTrait;
 
-	/**
-	 * @inheritdoc
-	 */
-	public function getValueFromWordPress() {
-		$name = $this->getName();
+    use GetNameWithVisibilityTrait;
 
-		if(!$name) {
-			throw new \LogicException('You must specify the name of post meta before calling any methods using name of post meta.');
-		}
+    /**
+     * @inheritdoc
+     */
+    public function getValueFromWordPress()
+    {
+        $name = $this->getName();
 
-		$id = $this->getPostId();
+        if (!$name) {
+            throw new \LogicException(
+                'You must specify the name of post meta before calling any methods using name of post meta.'
+            );
+        }
 
-		if(!$id) {
-			throw new \LogicException('You must specify the ID of post meta before calling any methods using ID of post meta.');
-		}
+        $id = $this->getPostId();
 
-		$value = get_post_meta($id, $name, true);
+        if (!$id) {
+            throw new \LogicException(
+                'You must specify the ID of post meta before calling any methods using ID of post meta.'
+            );
+        }
 
-		// If value is empty string this can means that value not exists at all.
-		// This strange behaviour peculiar only for Post Meta (not Options or Transients).
-		if($value === '' && !metadata_exists('post', $id, $name)) {
-			return false;
-		}
+        $value = get_post_meta($id, $name, true);
 
-		return $value;
-	}
+        // If value is empty string this can means that value not exists at all.
+        // This strange behaviour peculiar only for Post Meta (not Options or Transients).
+        if ($value === '' && ! metadata_exists('post', $id, $name)) {
+            return false;
+        }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function deleteFromWP() {
-		$name = $this->getName();
+        return $value;
+    }
 
-		if(!$name) {
-			throw new \LogicException('You must specify the name of post meta before calling any methods using name of post meta.');
-		}
+    /**
+     * @inheritdoc
+     */
+    public function deleteFromWP()
+    {
+        $name = $this->getName();
 
-		$id = $this->getPostId();
+        if (!$name) {
+            throw new \LogicException(
+                'You must specify the name of post meta before calling any methods using name of post meta.'
+            );
+        }
 
-		if(!$id) {
-			throw new \LogicException('You must specify the ID of post meta before calling any methods using ID of post meta.');
-		}
+        $id = $this->getPostId();
 
-		return delete_post_meta($id, $name);
-	}
+        if (!$id) {
+            throw new \LogicException(
+                'You must specify the ID of post meta before calling any methods using ID of post meta.'
+            );
+        }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function flush() {
-		if($this->getDataTransformer()) {
-			$raw = $this->getDataTransformer()->transform($this->localValue);
-		} else {
-			$raw =& $this->localValue;
-		}
+        return delete_post_meta($id, $name);
+    }
 
-		$name = $this->getName();
+    /**
+     * @inheritdoc
+     */
+    public function flush()
+    {
+        if ($this->getDataTransformer()) {
+            $raw = $this->getDataTransformer()->transform($this->localValue);
+        } else {
+            $raw =& $this->localValue;
+        }
 
-		if(!$name) {
-			throw new \LogicException('You must specify the name of post meta before calling any methods using name of post meta.');
-		}
+        $name = $this->getName();
 
-		$id = $this->getPostId();
+        if (!$name) {
+            throw new \LogicException(
+                'You must specify the name of post meta before calling any methods using name of post meta.'
+            );
+        }
 
-		if(!$id) {
-			throw new \LogicException('You must specify the ID of post meta before calling any methods using ID of post meta.');
-		}
+        $id = $this->getPostId();
 
-		// Do not save (bool) false values :)
-		// since DataTransformer must convert it to '0' or other similar string.
-		// This check needed to fully identity with Options and Transients.
-		if($raw === false) {
-			return $raw;
-		}
+        if (!$id) {
+            throw new \LogicException(
+                'You must specify the ID of post meta before calling any methods using ID of post meta.'
+            );
+        }
 
-		$result = update_post_meta($id, $name, $raw);
+        // Do not save (bool) false values :)
+        // since DataTransformer must convert it to '0' or other similar string.
+        // This check needed to fully identity with Options and Transients.
+        if ($raw === false) {
+            return $raw;
+        }
 
-		if($result)
-			$this->setLocalValue(null);
+        $result = update_post_meta($id, $name, $raw);
 
-		return $result;
-	}
+        if ($result) {
+            $this->setLocalValue(null);
+        }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function updateValue($value) {
-		$this->setLocalValue($value);
-		return $this->flush();
-	}
+        return $result;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function updateValue($value)
+    {
+        $this->setLocalValue($value);
+
+        return $this->flush();
+    }
 }

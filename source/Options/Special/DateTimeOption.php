@@ -5,9 +5,14 @@ use Korobochkin\WPKit\DataComponents\Traits\Special\DateTime\DateTimeBuildConstr
 use Korobochkin\WPKit\DataComponents\Traits\Special\DateTime\DateTimeConstructorTrait;
 use Korobochkin\WPKit\Options\AbstractOption;
 
-class DateTimeOption extends AbstractOption {
+/**
+ * Class DateTimeOption
+ * @package Korobochkin\WPKit\Options\Special
+ */
+class DateTimeOption extends AbstractOption
+{
 
-	use DateTimeConstructorTrait;
+    use DateTimeConstructorTrait;
 
-	use DateTimeBuildConstraintTrait;
+    use DateTimeBuildConstraintTrait;
 }

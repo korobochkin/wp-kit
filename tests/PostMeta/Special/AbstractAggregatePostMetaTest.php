@@ -1,15 +1,21 @@
 <?php
-namespace Korobochkin\WPKit\Tests\Options\Special;
+namespace Korobochkin\WPKit\Tests\PostMeta\Special;
 
-use Korobochkin\WPKit\Options\Special\AbstractAggregateOption;
+use Korobochkin\WPKit\PostMeta\Special\AbstractAggregatePostMeta;
 use Korobochkin\WPKit\Tests\DataSets\AggregateDataSet;
 
-class AbstractAggregateOptionTest extends \WP_UnitTestCase
+class AbstractAggregatePostMetaTest extends \WP_UnitTestCase
 {
+
     /**
-     * @var AbstractAggregateOption
+     * @var AbstractAggregatePostMeta
      */
     protected $stub;
+
+    /**
+     * @var int Post ID for accessing post meta.
+     */
+    protected $postId;
 
     /**
      * Prepare option for tests.
@@ -18,8 +24,18 @@ class AbstractAggregateOptionTest extends \WP_UnitTestCase
     {
         parent::setUp();
 
-        $this->stub = $this->getMockForAbstractClass(AbstractAggregateOption::class);
-        $this->stub->setName('wp_kit_AbstractAggregateOption');
+        $this->stub = $this->getMockForAbstractClass(AbstractAggregatePostMeta::class);
+
+        $this->postId = wp_insert_post(
+            array(
+                'post_content' => 'WP Kit demo post.',
+                'post_title'   => 'WP Kit demo title',
+            )
+        );
+
+        $this->stub
+            ->setName('wp_kit_AbstractAggregatePostMeta')
+            ->setPostId($this->postId);
     }
 
     /**

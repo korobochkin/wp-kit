@@ -1,13 +1,13 @@
 <?php
-namespace Korobochkin\WPKit\Tests\Options\Special;
+namespace Korobochkin\WPKit\Tests\Transients\Special;
 
-use Korobochkin\WPKit\Options\Special\AbstractAggregateOption;
 use Korobochkin\WPKit\Tests\DataSets\AggregateDataSet;
+use Korobochkin\WPKit\Transients\Special\AbstractAggregateTransient;
 
-class AbstractAggregateOptionTest extends \WP_UnitTestCase
+class AbstractAggregateTransientTest extends \WP_UnitTestCase
 {
     /**
-     * @var AbstractAggregateOption
+     * @var AbstractAggregateTransient
      */
     protected $stub;
 
@@ -18,8 +18,8 @@ class AbstractAggregateOptionTest extends \WP_UnitTestCase
     {
         parent::setUp();
 
-        $this->stub = $this->getMockForAbstractClass(AbstractAggregateOption::class);
-        $this->stub->setName('wp_kit_AbstractAggregateOption');
+        $this->stub = $this->getMockForAbstractClass(AbstractAggregateTransient::class);
+        $this->stub->setName('wp_kit_AbstractAggregateTransient');
     }
 
     /**

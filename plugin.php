@@ -14,5 +14,5 @@ License: GPLv2 or later
 */
 
 if (!interface_exists('Korobochkin\WPKit\Plugins\PluginInterface')) {
-    require_once 'vendor/autoload.php';
+    require_once __DIR__ . '/vendor/autoload.php';
 }

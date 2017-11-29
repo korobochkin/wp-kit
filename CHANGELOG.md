@@ -50,3 +50,9 @@ Added `getBasename` method in `Plugin` class.
 ## 0.5.3 - November 18, 2017
 
 Improved AlmostControllers classes. Allow to use it for Ajax and simple HTTP requests. Fixed a bug with parsing request ([#15](https://github.com/korobochkin/wp-kit/issues/15)).
+
+## 0.6.0 - November 29, 2017
+
+* Added support of Aggregate Options, PostMetas, TermMetas, Transients ([#4](https://github.com/korobochkin/wp-kit/issues/4)).
+* Added MetaBoxes classes and interfaces (also for Dashboard widgets) ([#16](https://github.com/korobochkin/wp-kit/issues/16)).
+* Improved requiring Composer autoloader.

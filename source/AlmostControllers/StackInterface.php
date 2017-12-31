@@ -102,9 +102,9 @@ interface StackInterface extends ContainerAwareInterface
     /**
      * Returns a container service by its id.
      *
-     * @param string $id The service id
+     * @param string $id The service id.
      *
-     * @return object The service
+     * @return object The service.
      */
     public function get($id);
 }

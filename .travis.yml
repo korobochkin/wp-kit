@@ -32,4 +32,4 @@ before_script:
 
 script:
   - vendor/bin/phpcs --standard=phpcs.ruleset.xml
-  - phpunit
+  - phpunit --configuration=phpunit.xml.dist

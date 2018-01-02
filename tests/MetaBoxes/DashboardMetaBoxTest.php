@@ -23,7 +23,7 @@ class DashboardMetaBoxTest extends \WP_UnitTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->stub = $this->getMockForAbstractClass(DashboardMetaBox::class);
+        $this->stub = new DashboardMetaBox();
     }
 
     public function testRegister()

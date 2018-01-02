@@ -29,7 +29,7 @@ class MetaBoxTest extends \WP_UnitTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->stub = $this->getMockForAbstractClass(MetaBox::class);
+        $this->stub = new MetaBox();
     }
 
     public function testRegister()
@@ -55,7 +55,7 @@ class MetaBoxTest extends \WP_UnitTestCase
         /**
          * @var $stub MetaBox
          */
-        $stub = $this->getMockForAbstractClass(MetaBox::class);
+        $stub = new MetaBox();
 
         $this->assertEquals(null, $stub->getId());
 
@@ -70,7 +70,7 @@ class MetaBoxTest extends \WP_UnitTestCase
         /**
          * @var $stub MetaBox
          */
-        $stub = $this->getMockForAbstractClass(MetaBox::class);
+        $stub = new MetaBox();
 
         $this->assertEquals(null, $stub->getTitle());
 
@@ -85,7 +85,7 @@ class MetaBoxTest extends \WP_UnitTestCase
         /**
          * @var $stub MetaBox
          */
-        $stub = $this->getMockForAbstractClass(MetaBox::class);
+        $stub = new MetaBox();
 
         $this->assertEquals(null, $stub->getView());
 
@@ -100,7 +100,7 @@ class MetaBoxTest extends \WP_UnitTestCase
         /**
          * @var $stub MetaBox
          */
-        $stub = $this->getMockForAbstractClass(MetaBox::class);
+        $stub = new MetaBox();
 
         $this->assertEquals(null, $stub->getScreen());
 
@@ -115,7 +115,7 @@ class MetaBoxTest extends \WP_UnitTestCase
         /**
          * @var $stub MetaBox
          */
-        $stub = $this->getMockForAbstractClass(MetaBox::class);
+        $stub = new MetaBox();
 
         $this->assertEquals(null, $stub->getContext());
 
@@ -130,7 +130,7 @@ class MetaBoxTest extends \WP_UnitTestCase
         /**
          * @var $stub MetaBox
          */
-        $stub = $this->getMockForAbstractClass(MetaBox::class);
+        $stub = new MetaBox();
 
         $this->assertEquals('default', $stub->getPriority());
 
@@ -169,7 +169,7 @@ class MetaBoxTest extends \WP_UnitTestCase
         /**
          * @var $stub MetaBox
          */
-        $stub = $this->getMockForAbstractClass(MetaBox::class);
+        $stub = new MetaBox();
 
         $this->assertNull($stub->getRequest());
 

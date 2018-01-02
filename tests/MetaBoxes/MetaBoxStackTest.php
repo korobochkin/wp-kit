@@ -70,7 +70,7 @@ class MetaBoxStackTest extends \WP_UnitTestCase
 
     public function testGet()
     {
-        $stub = new MetaBoxStack();
+        $stub      = new MetaBoxStack();
         $container = new ContainerBuilder();
         $stub->setContainer($container);
 

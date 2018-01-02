@@ -34,6 +34,7 @@ class MetaBoxTwigViewTest extends \WP_UnitTestCase
         $stub->setTemplate('min');
         $stub->render($metaBox);
         $this->assertEquals('hello', ob_get_clean());
+        $this->assertEquals(1, 2);
     }
 
     public function testGetterAndSetterTemplate()

@@ -65,10 +65,13 @@ class MetaBoxStack implements MetaBoxStackInterface
 
     /**
      * @inheritdoc
+     *
+     * @return $this For chain calls.
      */
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
+        return $this;
     }
 
     /**

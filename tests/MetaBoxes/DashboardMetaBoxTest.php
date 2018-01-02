@@ -1,19 +1,19 @@
 <?php
 namespace Korobochkin\WPKit\Tests\MetaBoxes;
 
-use Korobochkin\WPKit\MetaBoxes\AbstractDashboardMetaBox;
+use Korobochkin\WPKit\MetaBoxes\DashboardMetaBox;
 
 /**
  * Class AbstractDashboardMetaBoxTest
  */
-class AbstractDashboardMetaBoxTest extends \WP_UnitTestCase
+class DashboardMetaBoxTest extends \WP_UnitTestCase
 {
     const META_BOX_ID = 'wp_kit_test_dashboard_meta_box_id';
 
     const META_BOX_TITLE = 'WP Kit Dashboard Meta Box Test Title';
 
     /**
-     * @var AbstractDashboardMetaBox
+     * @var DashboardMetaBox
      */
     protected $stub;
 
@@ -23,7 +23,7 @@ class AbstractDashboardMetaBoxTest extends \WP_UnitTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->stub = $this->getMockForAbstractClass(AbstractDashboardMetaBox::class);
+        $this->stub = $this->getMockForAbstractClass(DashboardMetaBox::class);
     }
 
     public function testRegister()

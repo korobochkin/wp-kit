@@ -1,12 +1,12 @@
 <?php
 namespace Korobochkin\WPKit\Tests\MetaBoxes;
 
-use Korobochkin\WPKit\MetaBoxes\AbstractMetaBox;
+use Korobochkin\WPKit\MetaBoxes\MetaBox;
 use Korobochkin\WPKit\MetaBoxes\MetaBoxTwigView;
 use Symfony\Component\Form\FormFactoryBuilder;
 use Symfony\Component\HttpFoundation\Request;
 
-class AbstractMetaBoxTest extends \WP_UnitTestCase
+class MetaBoxTest extends \WP_UnitTestCase
 {
     const META_BOX_ID = 'wp_kit_test_meta_box_id';
 
@@ -19,7 +19,7 @@ class AbstractMetaBoxTest extends \WP_UnitTestCase
     const META_BOX_PRIORITY = 'high';
 
     /**
-     * @var AbstractMetaBox
+     * @var MetaBox
      */
     protected $stub;
 
@@ -29,7 +29,7 @@ class AbstractMetaBoxTest extends \WP_UnitTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->stub = $this->getMockForAbstractClass(AbstractMetaBox::class);
+        $this->stub = $this->getMockForAbstractClass(MetaBox::class);
     }
 
     public function testRegister()
@@ -53,9 +53,9 @@ class AbstractMetaBoxTest extends \WP_UnitTestCase
     public function testGetterAndSetterId()
     {
         /**
-         * @var $stub AbstractMetaBox
+         * @var $stub MetaBox
          */
-        $stub = $this->getMockForAbstractClass(AbstractMetaBox::class);
+        $stub = $this->getMockForAbstractClass(MetaBox::class);
 
         $this->assertEquals(null, $stub->getId());
 
@@ -68,9 +68,9 @@ class AbstractMetaBoxTest extends \WP_UnitTestCase
     public function testGetterAndSetterTitle()
     {
         /**
-         * @var $stub AbstractMetaBox
+         * @var $stub MetaBox
          */
-        $stub = $this->getMockForAbstractClass(AbstractMetaBox::class);
+        $stub = $this->getMockForAbstractClass(MetaBox::class);
 
         $this->assertEquals(null, $stub->getTitle());
 
@@ -83,9 +83,9 @@ class AbstractMetaBoxTest extends \WP_UnitTestCase
     public function testGetterAndSetterView()
     {
         /**
-         * @var $stub AbstractMetaBox
+         * @var $stub MetaBox
          */
-        $stub = $this->getMockForAbstractClass(AbstractMetaBox::class);
+        $stub = $this->getMockForAbstractClass(MetaBox::class);
 
         $this->assertEquals(null, $stub->getView());
 
@@ -98,9 +98,9 @@ class AbstractMetaBoxTest extends \WP_UnitTestCase
     public function testGetterAndSetterScreen()
     {
         /**
-         * @var $stub AbstractMetaBox
+         * @var $stub MetaBox
          */
-        $stub = $this->getMockForAbstractClass(AbstractMetaBox::class);
+        $stub = $this->getMockForAbstractClass(MetaBox::class);
 
         $this->assertEquals(null, $stub->getScreen());
 
@@ -113,9 +113,9 @@ class AbstractMetaBoxTest extends \WP_UnitTestCase
     public function testGetterAndSetterContext()
     {
         /**
-         * @var $stub AbstractMetaBox
+         * @var $stub MetaBox
          */
-        $stub = $this->getMockForAbstractClass(AbstractMetaBox::class);
+        $stub = $this->getMockForAbstractClass(MetaBox::class);
 
         $this->assertEquals(null, $stub->getContext());
 
@@ -128,9 +128,9 @@ class AbstractMetaBoxTest extends \WP_UnitTestCase
     public function testGetterAndSetterPriority()
     {
         /**
-         * @var $stub AbstractMetaBox
+         * @var $stub MetaBox
          */
-        $stub = $this->getMockForAbstractClass(AbstractMetaBox::class);
+        $stub = $this->getMockForAbstractClass(MetaBox::class);
 
         $this->assertEquals('default', $stub->getPriority());
 
@@ -167,9 +167,9 @@ class AbstractMetaBoxTest extends \WP_UnitTestCase
     public function testGetterAndSetterRequest()
     {
         /**
-         * @var $stub AbstractMetaBox
+         * @var $stub MetaBox
          */
-        $stub = $this->getMockForAbstractClass(AbstractMetaBox::class);
+        $stub = $this->getMockForAbstractClass(MetaBox::class);
 
         $this->assertNull($stub->getRequest());
 

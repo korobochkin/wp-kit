@@ -3,6 +3,8 @@ namespace Korobochkin\WPKit\Tests\MetaBoxes;
 
 use Korobochkin\WPKit\MetaBoxes\AbstractMetaBox;
 use Korobochkin\WPKit\MetaBoxes\MetaBoxTwigView;
+use Symfony\Component\Form\FormFactoryBuilder;
+use Symfony\Component\HttpFoundation\Request;
 
 class AbstractMetaBoxTest extends \WP_UnitTestCase
 {
@@ -136,5 +138,44 @@ class AbstractMetaBoxTest extends \WP_UnitTestCase
 
         $this->assertEquals($stub, $stub->setPriority($value));
         $this->assertEquals($value, $stub->getPriority());
+    }
+
+    public function testGetterAndSetterFormFactory()
+    {
+        $value = new FormFactoryBuilder();
+        $value = $value->getFormFactory();
+
+        $this->assertNull($this->stub->getFormFactory());
+        $this->assertEquals($this->stub, $this->stub->setFormFactory($value));
+        $this->assertEquals($value, $this->stub->getFormFactory());
+    }
+
+    public function testGetterAndSetterForm()
+    {
+        $this->assertNull($this->stub->getForm());
+    }
+
+    public function testGetterAndSetterFormEntity()
+    {
+        $value = new \stdClass();
+
+        $this->assertNull($this->stub->getFormEntity());
+        $this->assertEquals($this->stub, $this->stub->setFormEntity($value));
+        $this->assertEquals($value, $this->stub->getFormEntity());
+    }
+
+    public function testGetterAndSetterRequest()
+    {
+        /**
+         * @var $stub AbstractMetaBox
+         */
+        $stub = $this->getMockForAbstractClass(AbstractMetaBox::class);
+
+        $this->assertNull($stub->getRequest());
+
+        $value = new Request();
+
+        $this->assertEquals($stub, $stub->setRequest($value));
+        $this->assertEquals($value, $stub->getRequest());
     }
 }

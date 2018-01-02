@@ -14,7 +14,7 @@ class MetaBoxTwigViewTest extends \WP_UnitTestCase
         /**
          * @var $stub MetaBoxTwigView
          */
-        $stub = new MetaBoxTwigView();
+        $stub    = new MetaBoxTwigView();
         $metaBox = new MetaBox();
 
         $value = new \Twig_Environment(

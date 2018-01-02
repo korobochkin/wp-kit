@@ -4,7 +4,7 @@ namespace Korobochkin\WPKit\MetaBoxes;
 /**
  * Interface MetaBoxTwigViewInterface
  */
-interface MetaBoxTwigViewInterface
+interface MetaBoxTwigViewInterface extends MetaBoxViewInterface
 {
     /**
      * Returns template name (path).

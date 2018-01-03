@@ -15,7 +15,7 @@ class MetaBoxStackTest extends \WP_UnitTestCase
     {
         $stub = new MetaBoxStack();
 
-        $this->assertEquals(null, $stub->getMetaBoxes());
+        $this->assertEquals(array(), $stub->getMetaBoxes());
 
         $value = array(
             new MetaBox(),

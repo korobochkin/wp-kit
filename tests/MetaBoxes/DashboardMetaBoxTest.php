@@ -23,6 +23,7 @@ class DashboardMetaBoxTest extends \WP_UnitTestCase
     public function setUp()
     {
         parent::setUp();
+        require_once(ABSPATH . 'wp-admin/includes/dashboard.php');
         $this->stub = new DashboardMetaBox();
     }
 
@@ -34,6 +35,6 @@ class DashboardMetaBoxTest extends \WP_UnitTestCase
 
         $this->assertEquals($this->stub, $this->stub->register());
 
-        $this->assertTrue(has_action('load-index.php', array($this->stub, 'lateConstruct')));
+        $this->assertInternalType('int', has_action('load-index.php', array($this->stub, 'lateConstruct')));
     }
 }

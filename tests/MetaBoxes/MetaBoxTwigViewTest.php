@@ -29,12 +29,14 @@ class MetaBoxTwigViewTest extends \WP_UnitTestCase
         ob_start();
         $stub->setTemplate('title');
         $stub->render($metaBox);
-        $this->assertEquals('My first car', ob_get_clean());
+        $this->assertEquals('My First Car', ob_get_contents());
+        ob_end_clean();
 
+        ob_start();
         $stub->setTemplate('min');
         $stub->render($metaBox);
-        $this->assertEquals('hello', ob_get_clean());
-        $this->assertEquals(1, 2);
+        $this->assertEquals('1', ob_get_contents());
+        ob_end_clean();
     }
 
     public function testGetterAndSetterTemplate()

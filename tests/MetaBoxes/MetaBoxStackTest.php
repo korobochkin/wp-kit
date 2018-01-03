@@ -40,6 +40,8 @@ class MetaBoxStackTest extends \WP_UnitTestCase
     public function testRegister()
     {
         $stub = new MetaBoxStack();
+        $screen = \WP_Screen::get('post');
+        var_dump($screen);
 
         $metaBox = new MetaBox();
         $metaBox

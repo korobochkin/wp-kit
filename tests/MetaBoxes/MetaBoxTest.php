@@ -41,8 +41,8 @@ class MetaBoxTest extends \WP_UnitTestCase
 
         $this->assertEquals($this->stub, $this->stub->register());
 
-        $this->assertTrue(has_action('load-post-new.php', array($this->stub, 'lateConstruct')));
-        $this->assertTrue(has_action('load-post.php', array($this->stub, 'lateConstruct')));
+        $this->assertInternalType('int', has_action('load-post-new.php', array($this->stub, 'lateConstruct')));
+        $this->assertInternalType('int', has_action('load-post.php', array($this->stub, 'lateConstruct')));
     }
 
     public function testLateConstruct()

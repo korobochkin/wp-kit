@@ -15,7 +15,7 @@ class MetaBoxStackTest extends \WP_UnitTestCase
     {
         $stub = new MetaBoxStack();
 
-        $this->assertEquals(null, $stub->getMetaBoxes());
+        $this->assertEquals(array(), $stub->getMetaBoxes());
 
         $value = array(
             new MetaBox(),
@@ -45,6 +45,7 @@ class MetaBoxStackTest extends \WP_UnitTestCase
         $metaBox
             ->setId('wp_kit_test_1')
             ->setTitle('Test Title')
+            ->setScreen(\WP_Screen::get('post'))
             ->setContext('side');
 
         $stub->addMetaBox($metaBox);
@@ -53,6 +54,7 @@ class MetaBoxStackTest extends \WP_UnitTestCase
         $metaBox
             ->setId('wp_kit_test_2')
             ->setTitle('Test Title 2')
+            ->setScreen(\WP_Screen::get('post'))
             ->setContext('side');
 
         $stub->addMetaBox($metaBox);

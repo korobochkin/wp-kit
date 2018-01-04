@@ -8,7 +8,7 @@ class RequestFactoryTest extends \WP_UnitTestCase
 {
     public function testCreate()
     {
-        $request = new RequestFactory();
-        $this->assertTrue(is_a($request, Request::class));
+        $request = RequestFactory::create();
+        $this->assertInstanceOf(Request::class, $request);
     }
 }

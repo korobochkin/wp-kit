@@ -1,13 +1,16 @@
 <?php
 namespace Korobochkin\WPKit\Tests\DataSets\Runners;
 
-use Korobochkin\WPKit\Runners\AbstractRunner;
+use Korobochkin\WPKit\Runners\ContainerTrait;
+use Korobochkin\WPKit\Runners\RunnerInterface;
 
 /**
  * Class SecondRunner
  */
-class SecondRunner extends AbstractRunner
+class SecondRunner implements RunnerInterface
 {
+    use ContainerTrait;
+
     /**
      * @inheritdoc
      */

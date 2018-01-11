@@ -26,7 +26,7 @@ class AbstractRunnerTest extends \WP_UnitTestCase
         $this->assertNull($stub::getContainer());
 
         $containerBuilder = new ContainerBuilder();
-        $stub::setContainer($containerBuilder);
+        $this->assertNull($stub::setContainer($containerBuilder));
 
         $this->assertEquals($containerBuilder, $stub::getContainer());
     }

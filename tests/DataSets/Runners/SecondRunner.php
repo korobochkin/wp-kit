@@ -12,6 +12,11 @@ class SecondRunner implements RunnerInterface
     use ContainerTrait;
 
     /**
+     * @var ContainerInterface Container with services.
+     */
+    protected static $container;
+
+    /**
      * @inheritdoc
      */
     public static function run()

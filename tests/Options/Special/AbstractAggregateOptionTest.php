@@ -23,7 +23,7 @@ class AbstractAggregateOptionTest extends \WP_UnitTestCase
     }
 
     /**
-     * @dataProvider
+     * @dataProvider casesGet
      *
      * @param $defaultValue array
      * @param $valueToSave array

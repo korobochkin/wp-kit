@@ -1,6 +1,8 @@
 <?php
 namespace Korobochkin\WPKit\AlmostControllers;
 
+use Korobochkin\WPKit\AlmostControllers\Exceptions\ActionNotFoundException;
+use Korobochkin\WPKit\AlmostControllers\Exceptions\UnauthorizedException;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -95,6 +97,18 @@ interface StackInterface extends ContainerAwareInterface
     public function handleRequest();
 
     /**
+     * Util for managing request.
+     *
+     * @see wp_magic_quotes
+     *
+     * @throws UnauthorizedException If user not allowed to use this action.
+     * @throws ActionNotFoundException If requested action not exists.
+     *
+     * @return $this For chain calls.
+     */
+    public function requestManager();
+
+    /**
      * Actually sends the headers and response body to the client.
      */
     public function send();
@@ -102,9 +116,9 @@ interface StackInterface extends ContainerAwareInterface
     /**
      * Returns a container service by its id.
      *
-     * @param string $id The service id
+     * @param string $id The service id.
      *
-     * @return object The service
+     * @return object The service.
      */
     public function get($id);
 }

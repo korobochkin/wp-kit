@@ -4,7 +4,7 @@ namespace Korobochkin\WPKit\MetaBoxes;
 /**
  * Class TwigMetaBoxView
  */
-class TwigMetaBoxView implements MetaBoxViewInterface
+class MetaBoxTwigView implements MetaBoxTwigViewInterface
 {
     /**
      * @var string Twig template (path).
@@ -74,7 +74,7 @@ class TwigMetaBoxView implements MetaBoxViewInterface
     /**
      * @inheritdoc
      */
-    public function setTwigEnvironment($twigEnvironment)
+    public function setTwigEnvironment(\Twig_Environment $twigEnvironment)
     {
         $this->twigEnvironment = $twigEnvironment;
         return $this;

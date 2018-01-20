@@ -22,7 +22,6 @@ class AbstractRunnerTest extends \WP_UnitTestCase
 
     public function testGetterAndSetter()
     {
-        $this->markTestSkipped();
         $stub = $this->stub;
         $this->assertNull($stub::getContainer());
 

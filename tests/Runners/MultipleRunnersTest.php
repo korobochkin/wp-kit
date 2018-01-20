@@ -17,7 +17,6 @@ class MultipleRunnersTest extends \WP_UnitTestCase
      */
     public function testMultipleRunners()
     {
-        $this->markTestSkipped();
         $firstContainer = new ContainerBuilder();
 
         $this->assertNotEquals(FirstRunner::class, SecondRunner::class);

@@ -1,7 +1,6 @@
 <?php
 namespace Korobochkin\WPKit\Tests\DataSets\Runners;
 
-use Korobochkin\WPKit\Runners\ContainerTrait;
 use Korobochkin\WPKit\Runners\RunnerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

@@ -25,7 +25,7 @@ abstract class AbstractScriptsStyles implements ScriptsStylesInterface
     public function __construct($baseUrl, $dev)
     {
         $this->baseUrl = $baseUrl;
-        $this->dev = $dev;
+        $this->dev     = $dev;
     }
 
     /**

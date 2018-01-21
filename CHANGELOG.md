@@ -1,5 +1,12 @@
 # Changelog
 
+## DEV
+
+* Fixed issue with Runners and static variables ([#20](https://github.com/korobochkin/wp-kit/issues/20)).
+* Added tests and docs for Meta Boxes ([#17](https://github.com/korobochkin/wp-kit/issues/17)).
+* Fixed PHP Unit tests ([#19](https://github.com/korobochkin/wp-kit/issues/19)).
+* Reordered versions in changelog.
+
 ## 0.6.0 - November 29, 2017
 
 * Added support of Aggregate Options, PostMetas, TermMetas, Transients ([#4](https://github.com/korobochkin/wp-kit/issues/4)).

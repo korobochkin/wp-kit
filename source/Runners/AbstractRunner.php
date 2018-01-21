@@ -37,5 +37,4 @@ abstract class AbstractRunner implements RunnerInterface
     {
         self::$container = $container;
     }
-
 }

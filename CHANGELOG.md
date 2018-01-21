@@ -1,12 +1,13 @@
 # Changelog
 
-## DEV
+## 0.7.0 - January 22, 2017
 
 * Fixed issue with Runners and static variables ([#20](https://github.com/korobochkin/wp-kit/issues/20)).
 * Added tests and docs for Meta Boxes ([#17](https://github.com/korobochkin/wp-kit/issues/17)).
 * Fixed PHP Unit tests ([#19](https://github.com/korobochkin/wp-kit/issues/19)).
 * Added new services: Translations, Scripts and Styles, Uninstall and more ([#18](https://github.com/korobochkin/wp-kit/issues/18)).
 * Reordered versions in changelog.
+* Fixed license field in composer.json.
 
 ## 0.6.0 - November 29, 2017
 

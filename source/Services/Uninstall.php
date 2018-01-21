@@ -1,4 +1,5 @@
 <?php
+
 namespace Korobochkin\WPKit\Services;
 
 use Korobochkin\WPKit\Cron\CronEventInterface;
@@ -214,7 +215,7 @@ class Uninstall
             // Flush all cache.
             wp_cache_flush();
         } catch (\Exception $exception) {
-            if(!$this->isSuppressExceptions()) {
+            if (!$this->isSuppressExceptions()) {
                 throw $exception;
             }
         }
@@ -234,7 +235,7 @@ class Uninstall
             try {
                 $event->unScheduleAll();
             } catch (\Exception $exception) {
-                if(!$this->isSuppressExceptions()) {
+                if (!$this->isSuppressExceptions()) {
                     throw $exception;
                 }
             }
@@ -255,7 +256,7 @@ class Uninstall
             try {
                 $option->delete();
             } catch (\Exception $exception) {
-                if(!$this->isSuppressExceptions()) {
+                if (!$this->isSuppressExceptions()) {
                     throw $exception;
                 }
             }
@@ -284,7 +285,7 @@ class Uninstall
             WHERE meta_key = %s
             ";
 
-        foreach($this->termMetas as $termMeta) {
+        foreach ($this->termMetas as $termMeta) {
             try {
                 $query = $wpdb->prepare(
                     $queryTemplate,
@@ -292,7 +293,7 @@ class Uninstall
                 );
                 $wpdb->get_results($query);
             } catch (\Exception $exception) {
-                if(!$this->isSuppressExceptions()) {
+                if (!$this->isSuppressExceptions()) {
                     throw $exception;
                 }
             }
@@ -323,7 +324,7 @@ class Uninstall
             WHERE meta_key = %s
             ";
 
-        foreach($this->termMetas as $termMeta) {
+        foreach ($this->termMetas as $termMeta) {
             try {
                 $query = $wpdb->prepare(
                     $queryTemplate,
@@ -331,7 +332,7 @@ class Uninstall
                 );
                 $wpdb->get_results($query);
             } catch (\Exception $exception) {
-                if(!$this->isSuppressExceptions()) {
+                if (!$this->isSuppressExceptions()) {
                     throw $exception;
                 }
             }
@@ -353,7 +354,7 @@ class Uninstall
             try {
                 $transient->delete();
             } catch (\Exception $exception) {
-                if(!$this->isSuppressExceptions()) {
+                if (!$this->isSuppressExceptions()) {
                     throw $exception;
                 }
             }

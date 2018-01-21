@@ -8,7 +8,7 @@ trait ContainerTrait
     /**
      * @var ContainerInterface Container with services.
      */
-    //protected static $container;
+    protected static $container;
 
     /**
      * Returns the ContainerBuilder with services.

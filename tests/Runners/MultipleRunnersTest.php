@@ -18,6 +18,7 @@ class MultipleRunnersTest extends \WP_UnitTestCase
     public function testMultipleRunners()
     {
         $firstContainer = new ContainerBuilder();
+        $firstContainer->setParameter('test_param', 'test/value');
 
         $this->assertNotEquals(FirstRunner::class, SecondRunner::class);
 

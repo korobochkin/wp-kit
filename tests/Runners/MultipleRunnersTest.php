@@ -41,5 +41,9 @@ class MultipleRunnersTest extends \WP_UnitTestCase
         $this->assertEmpty(SecondRunner::getContainer());
 
         $this->assertNotEquals($firstContainer, $secondContainer);
+
+        $thirdContainer = new ContainerBuilder();
+        $this->assertNotEquals($firstContainer, $thirdContainer);
+        $this->assertEquals($secondContainer, $thirdContainer);
     }
 }

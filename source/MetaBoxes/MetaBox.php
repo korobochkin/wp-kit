@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Class AbstractMetaBox
  */
-class AbstractMetaBox implements MetaBoxInterface
+class MetaBox implements MetaBoxInterface
 {
     /**
      * @var string Meta Box ID.

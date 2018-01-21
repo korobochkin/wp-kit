@@ -157,6 +157,9 @@ class Stack implements StackInterface
     public function handleRequest()
     {
         try {
+            // Remove escaping slashes in RequestFactory (added by WordPress by wp_magic_quotes()).
+            $this->setRequest(RequestFactory::create());
+            // Process request
             $this->requestManager();
         } catch (ActionNotFoundException $exception) {
             $this->response->setStatusCode(Response::HTTP_NOT_FOUND);
@@ -178,22 +181,16 @@ class Stack implements StackInterface
     }
 
     /**
-     * Util for managing request.
-     *
-     * @see wp_magic_quotes
-     *
-     * @throws UnauthorizedException If user not allowed to use this action.
-     * @throws ActionNotFoundException If requested action not exists.
-     *
-     * @return $this For chain calls.
+     * @inheritdoc
      */
-    protected function requestManager()
+    public function requestManager()
     {
-        // Remove escaping (added by WordPress by wp_magic_quotes()).
-        $this->setRequest(RequestFactory::create());
-
         // Find the requested action.
         $action = $this->request->request->get('actionName');
+        if (is_null($action)) {
+            $action = $this->request->query->get('actionName');
+        }
+
         if (!is_null($action) && isset($this->actions[$action])) {
             // Initialize the action.
             if (is_string($this->actions[$action])) {
@@ -219,7 +216,7 @@ class Stack implements StackInterface
                 ->setContainer($this->container);
 
             $this->currentAction
-                ->setViolations(new ConstraintViolationList())
+                ->setViolationsList(new ConstraintViolationList())
                 ->setRequest($this->request)
                 ->setResponse($this->response)
                 ->handleRequest();

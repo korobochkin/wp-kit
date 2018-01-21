@@ -4,7 +4,7 @@ namespace Korobochkin\WPKit\MetaBoxes;
 /**
  * Class AbstractDashboardMetaBox
  */
-class AbstractDashboardMetaBox extends AbstractMetaBox
+class DashboardMetaBox extends MetaBox
 {
     /**
      * @inheritdoc

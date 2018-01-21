@@ -192,53 +192,13 @@ class Uninstall
      */
     public function run()
     {
-        try {
-            $this->deleteCronEvents();
-        } catch (\Exception $exception) {
-            if(!$this->isSuppressExceptions()) {
-                throw $exception;
-            }
-        }
-
-        try {
-            $this->deleteOptions();
-        } catch (\Exception $exception) {
-            if(!$this->isSuppressExceptions()) {
-                throw $exception;
-            }
-        }
-
-        try {
-            $this->deletePostMetas();
-        } catch (\Exception $exception) {
-            if(!$this->isSuppressExceptions()) {
-                throw $exception;
-            }
-        }
-
-        try {
-            $this->deleteTermMetas();
-        } catch (\Exception $exception) {
-            if(!$this->isSuppressExceptions()) {
-                throw $exception;
-            }
-        }
-
-        try {
-            $this->deleteTransients();
-        } catch (\Exception $exception) {
-            if(!$this->isSuppressExceptions()) {
-                throw $exception;
-            }
-        }
-
-        try {
-            $this->flushAfterRun();
-        } catch (\Exception $exception) {
-            if(!$this->isSuppressExceptions()) {
-                throw $exception;
-            }
-        }
+        $this
+            ->deleteCronEvents()
+            ->deleteOptions()
+            ->deletePostMetas()
+            ->deleteTermMetas()
+            ->deleteTransients()
+            ->flushAfterRun();
 
         return $this;
     }
@@ -250,9 +210,14 @@ class Uninstall
      */
     public function flushAfterRun()
     {
-        // Flush all cache.
-        wp_cache_flush();
-
+        try {
+            // Flush all cache.
+            wp_cache_flush();
+        } catch (\Exception $exception) {
+            if(!$this->isSuppressExceptions()) {
+                throw $exception;
+            }
+        }
         return $this;
     }
 
@@ -266,7 +231,13 @@ class Uninstall
     public function deleteCronEvents()
     {
         foreach ($this->cronEvents as $event) {
-            $event->unScheduleAll();
+            try {
+                $event->unScheduleAll();
+            } catch (\Exception $exception) {
+                if(!$this->isSuppressExceptions()) {
+                    throw $exception;
+                }
+            }
         }
         return $this;
     }
@@ -281,7 +252,13 @@ class Uninstall
     public function deleteOptions()
     {
         foreach ($this->options as $option) {
-            $option->delete();
+            try {
+                $option->delete();
+            } catch (\Exception $exception) {
+                if(!$this->isSuppressExceptions()) {
+                    throw $exception;
+                }
+            }
         }
         return $this;
     }
@@ -308,11 +285,17 @@ class Uninstall
             ";
 
         foreach($this->termMetas as $termMeta) {
-            $query = $wpdb->prepare(
-                $queryTemplate,
-                $termMeta->getName()
-            );
-            $wpdb->get_results($query);
+            try {
+                $query = $wpdb->prepare(
+                    $queryTemplate,
+                    $termMeta->getName()
+                );
+                $wpdb->get_results($query);
+            } catch (\Exception $exception) {
+                if(!$this->isSuppressExceptions()) {
+                    throw $exception;
+                }
+            }
         }
 
         return $this;
@@ -341,11 +324,17 @@ class Uninstall
             ";
 
         foreach($this->termMetas as $termMeta) {
-            $query = $wpdb->prepare(
-                $queryTemplate,
-                $termMeta->getName()
-            );
-            $wpdb->get_results($query);
+            try {
+                $query = $wpdb->prepare(
+                    $queryTemplate,
+                    $termMeta->getName()
+                );
+                $wpdb->get_results($query);
+            } catch (\Exception $exception) {
+                if(!$this->isSuppressExceptions()) {
+                    throw $exception;
+                }
+            }
         }
 
         return $this;
@@ -361,7 +350,13 @@ class Uninstall
     public function deleteTransients()
     {
         foreach ($this->transients as $transient) {
-            $transient->delete();
+            try {
+                $transient->delete();
+            } catch (\Exception $exception) {
+                if(!$this->isSuppressExceptions()) {
+                    throw $exception;
+                }
+            }
         }
         return $this;
     }

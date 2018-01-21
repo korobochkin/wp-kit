@@ -207,6 +207,8 @@ class Uninstall
     /**
      * Flush object cache after remove everything.
      *
+     * @throws \Exception If suppress exceptions is not enabled.
+     *
      * @return $this For chain calls.
      */
     public function flushAfterRun()
@@ -266,6 +268,7 @@ class Uninstall
 
     /**
      * Delete all post metas.
+     *
      * @throws \Exception Different exceptions in case of error.
      *
      * @return $this For chain calls.

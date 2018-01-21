@@ -1,0 +1,181 @@
+<?php
+namespace Korobochkin\WPKit\Tests\MetaBoxes;
+
+use Korobochkin\WPKit\MetaBoxes\MetaBox;
+use Korobochkin\WPKit\MetaBoxes\MetaBoxTwigView;
+use Symfony\Component\Form\FormFactoryBuilder;
+use Symfony\Component\HttpFoundation\Request;
+
+class MetaBoxTest extends \WP_UnitTestCase
+{
+    const META_BOX_ID = 'wp_kit_test_meta_box_id';
+
+    const META_BOX_TITLE = 'WP Kit Meta Box Test Title';
+
+    const META_BOX_SCREEN = 'post';
+
+    const META_BOX_CONTEXT = 'normal';
+
+    const META_BOX_PRIORITY = 'high';
+
+    /**
+     * @var MetaBox
+     */
+    protected $stub;
+
+    /**
+     * Prepare stub for tests.
+     */
+    public function setUp()
+    {
+        parent::setUp();
+        $this->stub = new MetaBox();
+    }
+
+    public function testRegister()
+    {
+        $this->stub
+            ->setId(self::META_BOX_ID)
+            ->setTitle(self::META_BOX_TITLE)
+            ->setContext('side');
+
+        $this->assertEquals($this->stub, $this->stub->register());
+
+        $this->assertInternalType('int', has_action('load-post-new.php', array($this->stub, 'lateConstruct')));
+        $this->assertInternalType('int', has_action('load-post.php', array($this->stub, 'lateConstruct')));
+    }
+
+    public function testLateConstruct()
+    {
+        $this->assertEquals($this->stub, $this->stub->lateConstruct());
+    }
+
+    public function testGetterAndSetterId()
+    {
+        /**
+         * @var $stub MetaBox
+         */
+        $stub = new MetaBox();
+
+        $this->assertEquals(null, $stub->getId());
+
+        $value = self::META_BOX_ID;
+
+        $this->assertEquals($stub, $stub->setId($value));
+        $this->assertEquals($value, $stub->getId());
+    }
+
+    public function testGetterAndSetterTitle()
+    {
+        /**
+         * @var $stub MetaBox
+         */
+        $stub = new MetaBox();
+
+        $this->assertEquals(null, $stub->getTitle());
+
+        $value = self::META_BOX_TITLE;
+
+        $this->assertEquals($stub, $stub->setTitle($value));
+        $this->assertEquals($value, $stub->getTitle());
+    }
+
+    public function testGetterAndSetterView()
+    {
+        /**
+         * @var $stub MetaBox
+         */
+        $stub = new MetaBox();
+
+        $this->assertEquals(null, $stub->getView());
+
+        $value = new MetaBoxTwigView();
+
+        $this->assertEquals($stub, $stub->setView($value));
+        $this->assertEquals($value, $stub->getView());
+    }
+
+    public function testGetterAndSetterScreen()
+    {
+        /**
+         * @var $stub MetaBox
+         */
+        $stub = new MetaBox();
+
+        $this->assertEquals(null, $stub->getScreen());
+
+        $value = self::META_BOX_SCREEN;
+
+        $this->assertEquals($stub, $stub->setScreen($value));
+        $this->assertEquals($value, $stub->getScreen());
+    }
+
+    public function testGetterAndSetterContext()
+    {
+        /**
+         * @var $stub MetaBox
+         */
+        $stub = new MetaBox();
+
+        $this->assertEquals(null, $stub->getContext());
+
+        $value = self::META_BOX_CONTEXT;
+
+        $this->assertEquals($stub, $stub->setContext($value));
+        $this->assertEquals($value, $stub->getContext());
+    }
+
+    public function testGetterAndSetterPriority()
+    {
+        /**
+         * @var $stub MetaBox
+         */
+        $stub = new MetaBox();
+
+        $this->assertEquals('default', $stub->getPriority());
+
+        $value = self::META_BOX_PRIORITY;
+
+        $this->assertEquals($stub, $stub->setPriority($value));
+        $this->assertEquals($value, $stub->getPriority());
+    }
+
+    public function testGetterAndSetterFormFactory()
+    {
+        $value = new FormFactoryBuilder();
+        $value = $value->getFormFactory();
+
+        $this->assertNull($this->stub->getFormFactory());
+        $this->assertEquals($this->stub, $this->stub->setFormFactory($value));
+        $this->assertEquals($value, $this->stub->getFormFactory());
+    }
+
+    public function testGetterAndSetterForm()
+    {
+        $this->assertNull($this->stub->getForm());
+    }
+
+    public function testGetterAndSetterFormEntity()
+    {
+        $value = new \stdClass();
+
+        $this->assertNull($this->stub->getFormEntity());
+        $this->assertEquals($this->stub, $this->stub->setFormEntity($value));
+        $this->assertEquals($value, $this->stub->getFormEntity());
+    }
+
+    public function testGetterAndSetterRequest()
+    {
+        /**
+         * @var $stub MetaBox
+         */
+        $stub = new MetaBox();
+
+        $this->assertNull($stub->getRequest());
+
+        $value = new Request();
+
+        $this->assertEquals($stub, $stub->setRequest($value));
+        $this->assertEquals($value, $stub->getRequest());
+    }
+}

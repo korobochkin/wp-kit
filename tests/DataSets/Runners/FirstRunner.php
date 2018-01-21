@@ -1,17 +1,13 @@
 <?php
-namespace Korobochkin\WPKit\Runners;
+namespace Korobochkin\WPKit\Tests\DataSets\Runners;
 
+use Korobochkin\WPKit\Runners\RunnerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class AbstractRunner.
- *
- * WARNING: do not use this class to extend your own classes because all extended classes share
- * static self::$container variable with each other. This can breaks your or 3rd party code.
- *
- * @deprecated Do not use this class.
+ * Class FirstRunner
  */
-abstract class AbstractRunner implements RunnerInterface
+class FirstRunner implements RunnerInterface
 {
     /**
      * @var ContainerInterface Container with services.
@@ -36,5 +32,13 @@ abstract class AbstractRunner implements RunnerInterface
     public static function setContainer(ContainerInterface $container = null)
     {
         self::$container = $container;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function run()
+    {
+        return true;
     }
 }

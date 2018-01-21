@@ -1,5 +1,4 @@
 <?php
-
 namespace Korobochkin\WPKit\Services;
 
 use Korobochkin\WPKit\Cron\CronEventInterface;

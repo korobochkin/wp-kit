@@ -1,19 +1,22 @@
 <?php
 namespace Korobochkin\WPKit\DataComponents\Traits;
 
-trait NameTrait {
+trait NameTrait
+{
+    /**
+     * @var string The node name which used for access the node. Must be unique.
+     */
+    protected $name;
 
-	/**
-	 * @var string The node name which is used to access the node must be unique.
-	 */
-	protected $name;
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	public function getName() {
-		return $this->name;
-	}
+    public function setName($name)
+    {
+        $this->name = $name;
 
-	public function setName($name) {
-		$this->name = $name;
-		return $this;
-	}
+        return $this;
+    }
 }

@@ -2,17 +2,20 @@
     "name": "korobochkin/wp-kit",
     "description": "Tools for WordPress developers",
     "type": "library",
-    "license": "GPLv2 or later",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Kolya Korobochkin",
             "email": "me@korobochkin.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
-        "symfony/validator": "3.2",
-        "symfony/form": "^3.2"
+        "symfony/validator": "^3.3",
+        "symfony/form": "^3.3",
+        "symfony/http-foundation": "^3.3",
+        "symfony/twig-bridge": "^3.3",
+        "symfony/dependency-injection": "^3.3"
     },
     "autoload": {
         "psr-4": {
@@ -23,5 +26,8 @@
         "psr-4": {
             "Korobochkin\\WPKit\\Tests\\": "tests/"
         }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.1"
     }
 }

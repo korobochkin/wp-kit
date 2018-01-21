@@ -28,10 +28,8 @@ before_script:
       composer global require "phpunit/phpunit=4.8.*"
     fi
   - |
-    composer global require wp-coding-standards/wpcs
-    phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
   - composer install --no-ansi --no-interaction --no-progress --no-scripts --optimize-autoloader --classmap-authoritative
 
 script:
-  #- phpcs --standard=phpcs.ruleset.xml $(find . -name '*.php')
-  - phpunit
+  - vendor/bin/phpcs --standard=phpcs.ruleset.xml
+  - phpunit --config=phpunit.xml.dist

@@ -11,6 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 interface MetaBoxInterface
 {
     /**
+     * Register Meta Box in WordPress.
+     *
+     * WARNING: In WordPress bellow 4.4 you cannot register one Meta Box instance
+     * for multiple screens. This means that you cannot pass array in setScreen() method.
+     *
+     * @see add_meta_box
+     *
      * @return $this For chain calls.
      */
     public function register();
@@ -81,6 +88,11 @@ interface MetaBoxInterface
 
     /**
      * Sets list of screens where Meta Box should shown.
+     *
+     * WARNING: In WordPress bellow 4.4 you cannot register one Meta Box instance
+     * for multiple screens. This means that you cannot pass array in setScreen() method.
+     *
+     * @see add_meta_box
      *
      * @param string|string[] $screen List of screens.
      *

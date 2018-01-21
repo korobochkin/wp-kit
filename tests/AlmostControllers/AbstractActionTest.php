@@ -23,7 +23,7 @@ class AbstractActionTest extends \WP_UnitTestCase
 
     public function testGetterAndSetterEnabledForLoggedIn()
     {
-        $this->assertNull($this->stub->isEnabledForLoggedIn());
+        $this->assertTrue($this->stub->isEnabledForLoggedIn());
 
         $value = true;
 
@@ -33,7 +33,7 @@ class AbstractActionTest extends \WP_UnitTestCase
 
     public function testGetterAndSetterEnabledForNotLoggedIn()
     {
-        $this->assertNull($this->stub->isEnabledForNotLoggedIn());
+        $this->assertFalse($this->stub->isEnabledForNotLoggedIn());
 
         $value = true;
 

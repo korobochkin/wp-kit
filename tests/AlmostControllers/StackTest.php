@@ -74,10 +74,10 @@ class StackTest extends \WP_UnitTestCase
             ->register();
     }
 
-    public function testHandleRequest()
+    public function testRequestManager()
     {
         $actions = array(
-            new TestAction(),
+            TestAction::class => new TestAction(),
         );
 
         $request = new Request(array(
@@ -90,7 +90,7 @@ class StackTest extends \WP_UnitTestCase
             ->setActions($actions)
             ->setRequest($request)
             ->setResponse($response)
-            ->handleRequest();
+            ->requestManager();
 
         $request = new Request(array(
             'actionName' => 'uknown-action-name',
@@ -102,7 +102,7 @@ class StackTest extends \WP_UnitTestCase
             ->setActions($actions)
             ->setRequest($request)
             ->setResponse($response)
-            ->handleRequest();
+            ->requestManager();
     }
 
     public function testSetContainer()

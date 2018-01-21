@@ -9,7 +9,8 @@ class ThemeTranslations extends AbstractTranslations
     /**
      * @inheritdoc
      */
-    public function loadTranslations() {
+    public function loadTranslations()
+    {
         $result = load_theme_textdomain(
             $this->textDomain,
             $this->translationsPath

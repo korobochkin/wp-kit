@@ -9,7 +9,8 @@ class PluginTranslations extends AbstractTranslations
     /**
      * @inheritdoc
      */
-    public function loadTranslations() {
+    public function loadTranslations()
+    {
         $result = load_plugin_textdomain(
             $this->textDomain,
             false,

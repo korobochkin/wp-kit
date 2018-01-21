@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\WPKit\Services;
+namespace Korobochkin\WPKit\Services\ScriptsStyles;
 
 /**
  * Interface ScriptsStylesInterface

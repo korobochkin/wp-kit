@@ -8,7 +8,7 @@ class ThemeTranslationsTest extends \WP_UnitTestCase
 {
     public function testLoadTranslations()
     {
-        $path = get_theme_roots();
+        $path = get_template_directory();
         var_dump($path);
         //'/test-plugin-domain/';
         //$stub = new PluginTranslations('test-plugin-domain', $path);

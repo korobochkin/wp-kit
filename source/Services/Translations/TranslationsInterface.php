@@ -9,8 +9,6 @@ interface TranslationsInterface
     /**
      * Load translations.
      *
-     * @throws \Exception If translations not loaded.
-     *
      * @return $this For chain calls.
      */
     public function loadTranslations();

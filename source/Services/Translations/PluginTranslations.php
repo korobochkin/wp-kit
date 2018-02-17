@@ -11,15 +11,11 @@ class PluginTranslations extends AbstractTranslations
      */
     public function loadTranslations()
     {
-        $result = load_plugin_textdomain(
+        load_plugin_textdomain(
             $this->textDomain,
             false,
             $this->translationsPath
         );
-
-        if (true !== $result) {
-            throw new \Exception();
-        }
 
         return $this;
     }

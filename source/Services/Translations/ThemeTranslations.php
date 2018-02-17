@@ -11,14 +11,10 @@ class ThemeTranslations extends AbstractTranslations
      */
     public function loadTranslations()
     {
-        $result = load_theme_textdomain(
+        load_theme_textdomain(
             $this->textDomain,
             $this->translationsPath
         );
-
-        if (true !== $result) {
-            throw new \Exception();
-        }
 
         return $this;
     }

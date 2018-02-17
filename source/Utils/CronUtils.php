@@ -18,7 +18,7 @@ class CronUtils
     public static function unscheduleHook($hook)
     {
         // WordPress >= 4.9.0
-        if(function_exists('wp_unschedule_hook')) {
+        if (function_exists('wp_unschedule_hook')) {
             wp_unschedule_hook($hook);
             return;
         }
@@ -27,10 +27,10 @@ class CronUtils
 
         $crons = _get_cron_array();
 
-        foreach($crons as $timestamp => $args) {
+        foreach ($crons as $timestamp => $args) {
             unset($crons[$timestamp][$hook]);
 
-            if(empty($crons[$timestamp])) {
+            if (empty($crons[$timestamp])) {
                 unset($crons[$timestamp]);
             }
         }

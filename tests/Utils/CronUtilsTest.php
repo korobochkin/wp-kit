@@ -1,5 +1,6 @@
 <?php
 namespace Korobochkin\WPKit\Tests\Utils;
+
 use Korobochkin\WPKit\Utils\CronUtils;
 
 /**

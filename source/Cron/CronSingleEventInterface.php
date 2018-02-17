@@ -52,14 +52,14 @@ interface CronSingleEventInterface
      *
      * @return mixed
      */
-    public function unSchedule();
+    public function unschedule();
 
     /**
      * Delete all events in WordPress with event name.
      *
-     * @return mixed
+     * @return $this For chain calls.
      */
-    public function unScheduleAll();
+    public function unscheduleAll();
 
     /**
      * Returns the timestamp.

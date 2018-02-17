@@ -1,5 +1,6 @@
 <?php
 namespace Korobochkin\WPKit\Cron;
+use Korobochkin\WPKit\Utils\CronUtils;
 
 /**
  * Class AbstractCronSingleEvent
@@ -34,7 +35,7 @@ abstract class AbstractCronSingleEvent implements CronSingleEventInterface
     /**
      * @inheritdoc
      */
-    public function unSchedule()
+    public function unschedule()
     {
         if (!is_int($this->timestamp) || $this->timestamp <= 0) {
             throw new \LogicException('You must specify valid timestamp of event before un schedule.');
@@ -50,9 +51,10 @@ abstract class AbstractCronSingleEvent implements CronSingleEventInterface
     /**
      * @inheritdoc
      */
-    public function unScheduleAll()
+    public function unscheduleAll()
     {
-        return wp_clear_scheduled_hook($this->getName(), $this->getArgs());
+        CronUtils::unscheduleHook($this->getName());
+        return $this;
     }
 
     /**

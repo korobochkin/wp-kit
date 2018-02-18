@@ -67,4 +67,22 @@ abstract class AbstractCronSingleEvent implements CronSingleEventInterface
 
         return $this;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function isScheduled()
+    {
+        $result = wp_next_scheduled($this->getName(), $this->getArgs());
+
+        if (is_bool($result)) {
+            return $result;
+        }
+
+        if (is_int($result) && $result > 0) {
+            return true;
+        }
+
+        return false;
+    }
 }

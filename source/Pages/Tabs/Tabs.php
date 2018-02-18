@@ -21,9 +21,9 @@ class Tabs implements TabsInterface
     /**
      * @inheritdoc
      */
-    public function addTab(TabInterface $tab) {
-
-        if(empty($tab->getName())) {
+    public function addTab(TabInterface $tab)
+    {
+        if (empty($tab->getName())) {
             throw new \LogicException();
         }
 
@@ -34,8 +34,9 @@ class Tabs implements TabsInterface
     /**
      * @inheritdoc
      */
-    public function getTab($name) {
-        if($this->hasTab($name)) {
+    public function getTab($name)
+    {
+        if ($this->hasTab($name)) {
             return $this->tabs[$name];
         }
         throw new \InvalidArgumentException();
@@ -44,8 +45,9 @@ class Tabs implements TabsInterface
     /**
      * @inheritdoc
      */
-    public function hasTab($name) {
-        if(isset($this->tabs[$name])) {
+    public function hasTab($name)
+    {
+        if (isset($this->tabs[$name])) {
             return true;
         }
         return false;

@@ -17,10 +17,13 @@ class CronUtilsTest extends \WP_UnitTestCase
         $time2 = $time + WEEK_IN_SECONDS;
         wp_schedule_event($time2, 'daily', 'wp_kit_test_event');
 
+        wp_schedule_single_event($time, 'wp_kit_test_event', array('test' => 'test'));
+
         $crons = _get_cron_array();
 
         $this->assertArrayHasKey($time, $crons);
         $this->assertArrayHasKey($time2, $crons);
+        $this->assertArrayHasKey($time, $crons);
 
         CronUtils::unscheduleHook('wp_kit_test_event');
 

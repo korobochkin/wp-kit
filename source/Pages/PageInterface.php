@@ -218,6 +218,16 @@ interface PageInterface
     public function setForm(FormInterface $form);
 
     /**
+     * @return Tabs\TabsInterface
+     */
+    public function getTabs();
+
+    /**
+     * @param Tabs\TabsInterface $tabs
+     */
+    public function setTabs(Tabs\TabsInterface $tabs);
+
+    /**
      * Returns the form data entity.
      *
      * @return object Form entity.

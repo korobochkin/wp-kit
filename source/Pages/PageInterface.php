@@ -234,6 +234,22 @@ interface PageInterface
     public function setFormEntity($formEntity);
 
     /**
+     * Returns tabs.
+     *
+     * @return Tabs\TabsInterface Tabs for page.
+     */
+    public function getTabs();
+
+    /**
+     * Sets tabs.
+     *
+     * @param Tabs\TabsInterface $tabs Tabs for page.
+     *
+     * @return $this For chain calls.
+     */
+    public function setTabs(Tabs\TabsInterface $tabs);
+
+    /**
      * Be sure to call it only from $this->lateConstruct()
      * to prevent illegal access to the page handling.
      */

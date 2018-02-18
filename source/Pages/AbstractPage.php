@@ -259,14 +259,16 @@ abstract class AbstractPage implements PageInterface
     /**
      * @inheritdoc
      */
-    public function getTabs() {
+    public function getTabs()
+    {
         return $this->tabs;
     }
 
     /**
      * @inheritdoc
      */
-    public function setTabs(Tabs\TabsInterface $tabs) {
+    public function setTabs(Tabs\TabsInterface $tabs)
+    {
         $this->tabs = $tabs;
         return $this;
     }

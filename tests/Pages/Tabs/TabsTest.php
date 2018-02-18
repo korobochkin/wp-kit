@@ -21,7 +21,7 @@ class TabsTest extends \WP_UnitTestCase
         $tab2->setName('test_2');
         $tabs->addTab($tab2);
 
-        $this->assertEquals(2, count($tabs));
+        $this->assertEquals(2, count($tabs->getTabs()));
 
         /*foreach($tabs as $tabName => $tabInstance) {
 

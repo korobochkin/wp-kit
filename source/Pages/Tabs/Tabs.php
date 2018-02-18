@@ -14,7 +14,8 @@ class Tabs implements TabsInterface
     /**
      * @inheritdoc
      */
-    public function getTabs() {
+    public function getTabs()
+    {
         return $this->tabs;
     }
 

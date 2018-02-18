@@ -1,6 +1,6 @@
 # Changelog
 
-## DEV
+## 0.8.0 - February 19, 2018
 
 * Fixed method which removes all cron tasks by name ([#22](https://github.com/korobochkin/wp-kit/issues/22)).
 * Fixed exception throwing in Translations ([#25](https://github.com/korobochkin/wp-kit/issues/25)).

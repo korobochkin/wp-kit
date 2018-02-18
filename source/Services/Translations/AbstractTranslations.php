@@ -27,4 +27,50 @@ abstract class AbstractTranslations implements TranslationsInterface
         $this->textDomain       = $textDomain;
         $this->translationsPath = $translationsPath;
     }
+
+    /**
+     * Returns text domain.
+     *
+     * @return string Text domain.
+     */
+    public function getTextDomain()
+    {
+        return $this->textDomain;
+    }
+
+    /**
+     * Sets text domain.
+     *
+     * @param string $textDomain Text domain.
+     *
+     * @return $this For chain calls.
+     */
+    public function setTextDomain($textDomain)
+    {
+        $this->textDomain = $textDomain;
+        return $this;
+    }
+
+    /**
+     * Returns path to files (*.mo) with translations.
+     *
+     * @return string Path to files.
+     */
+    public function getTranslationsPath()
+    {
+        return $this->translationsPath;
+    }
+
+    /**
+     * Sets path to files (*.mo) with translations.
+     *
+     * @param string $translationsPath Path to files.
+     *
+     * @return $this For chain calls.
+     */
+    public function setTranslationsPath($translationsPath)
+    {
+        $this->translationsPath = $translationsPath;
+        return $this;
+    }
 }

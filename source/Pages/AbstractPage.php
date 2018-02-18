@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Pages;
 
+use Korobochkin\WPKit\Pages\Tabs\TabsInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,6 +57,11 @@ abstract class AbstractPage implements PageInterface
      * @var object An object (instance) which holds the form data.
      */
     protected $formEntity;
+
+    /**
+     * @var TabsInterface Tabs.
+     */
+    protected $tabs;
 
     /**
      * @inheritdoc
@@ -247,6 +253,23 @@ abstract class AbstractPage implements PageInterface
     public function setFormEntity($formEntity)
     {
         $this->formEntity = $formEntity;
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getTabs()
+    {
+        return $this->tabs;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setTabs(Tabs\TabsInterface $tabs)
+    {
+        $this->tabs = $tabs;
         return $this;
     }
 

@@ -101,4 +101,11 @@ interface CronSingleEventInterface
      * @return $this For chain calls.
      */
     public function setArgs(array $args);
+
+    /**
+     * Returns flag which show existing event.
+     *
+     * @return boolean True if scheduled, false if not.
+     */
+    public function isScheduled();
 }

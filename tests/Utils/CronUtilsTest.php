@@ -11,13 +11,13 @@ class CronUtilsTest extends \WP_UnitTestCase
     public function testUnscheduleHook()
     {
         $time = time();
-        wp_schedule_event($time, 'daily', 'wp_kit_test_event');
-        wp_schedule_event($time, 'daily', 'wp_kit_test_event', array('wp_kit' => 'test'));
+        $this->assertNull(wp_schedule_event($time, 'daily', 'wp_kit_test_event'));
+        $this->assertNull(wp_schedule_event($time, 'daily', 'wp_kit_test_event', array('wp_kit' => 'test')));
 
         $time2 = $time + WEEK_IN_SECONDS;
-        wp_schedule_event($time2, 'daily', 'wp_kit_test_event');
+        $this->assertNull(wp_schedule_event($time2, 'daily', 'wp_kit_test_event'));
 
-        wp_schedule_single_event($time, 'wp_kit_test_event', array('test' => 'test'));
+        $this->assertTrue(wp_schedule_single_event($time, 'wp_kit_test_event', array('test' => 'test')));
 
         $crons = _get_cron_array();
 

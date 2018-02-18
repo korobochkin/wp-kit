@@ -17,7 +17,7 @@ class CronUtilsTest extends \WP_UnitTestCase
         $time2 = $time + WEEK_IN_SECONDS;
         $this->assertNull(wp_schedule_event($time2, 'daily', 'wp_kit_test_event'));
 
-        $this->assertTrue(wp_schedule_single_event($time, 'wp_kit_test_event', array('test' => 'test')));
+        $this->assertNull(wp_schedule_single_event($time, 'wp_kit_test_event', array('test' => 'test')));
 
         $crons = _get_cron_array();
 

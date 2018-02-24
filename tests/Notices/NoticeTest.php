@@ -2,6 +2,7 @@
 namespace Korobochkin\WPKit\Tests\Notices;
 
 use Korobochkin\WPKit\Notices\Notice;
+use Korobochkin\WPKit\Notices\NoticeView;
 
 /**
  * Class NoticeTest
@@ -17,9 +18,6 @@ class NoticeTest extends \WP_UnitTestCase
 
     public function testGetterAndSetterName()
     {
-        /**
-         * @var $stub Notice
-         */
         $stub = new Notice();
 
         $this->assertEquals(null, $stub->getName());
@@ -32,9 +30,6 @@ class NoticeTest extends \WP_UnitTestCase
 
     public function testGetterAndSetterTitle()
     {
-        /**
-         * @var $stub Notice
-         */
         $stub = new Notice();
 
         $this->assertEquals(null, $stub->getTitle());
@@ -52,9 +47,6 @@ class NoticeTest extends \WP_UnitTestCase
 
     public function testGetterAndSetterContent()
     {
-        /**
-         * @var $stub Notice
-         */
         $stub = new Notice();
 
         $this->assertEquals(null, $stub->getContent());
@@ -72,9 +64,6 @@ class NoticeTest extends \WP_UnitTestCase
 
     public function testGetterAndSetterDismissible()
     {
-        /**
-         * @var $stub Notice
-         */
         $stub = new Notice();
 
         $this->assertFalse($stub->isDismissible());
@@ -92,9 +81,6 @@ class NoticeTest extends \WP_UnitTestCase
 
     public function testDisable()
     {
-        /**
-         * @var $stub Notice
-         */
         $stub            = new Notice();
         $relevantStorage = new RelevantStorageForTestsOption();
         $stub->setRelevantStorage($relevantStorage);
@@ -104,9 +90,6 @@ class NoticeTest extends \WP_UnitTestCase
 
     public function testEnable()
     {
-        /**
-         * @var $stub Notice
-         */
         $stub            = new Notice();
         $relevantStorage = new RelevantStorageForTestsOption();
         $stub->setRelevantStorage($relevantStorage);
@@ -116,9 +99,6 @@ class NoticeTest extends \WP_UnitTestCase
 
     public function testGetterAndSetterRelevantStorage()
     {
-        /**
-         * @var $stub Notice
-         */
         $stub = new Notice();
 
         $this->assertNull($stub->getRelevantStorage());
@@ -145,5 +125,26 @@ class NoticeTest extends \WP_UnitTestCase
         $value->updateValue(false);
 
         $this->assertFalse($stub->isRelevant());
+    }
+
+    public function testGetterAndSetterView()
+    {
+        $stub = new Notice();
+
+        $this->assertNull($stub->getView());
+
+        $value = new NoticeView();
+
+        $this->assertEquals($stub, $stub->setView($value));
+        $this->assertEquals($value, $stub->getView());
+    }
+
+    public function testRender()
+    {
+        $stub = new Notice();
+        $view = new NoticeView();
+        $stub->setView($view);
+
+        $this->assertInternalType('string', $stub->render());
     }
 }

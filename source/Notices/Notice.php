@@ -14,6 +14,16 @@ class Notice implements NoticeInterface
     protected $name;
 
     /**
+     * @var string Notice title.
+     */
+    protected $title;
+
+    /**
+     * @var string Notice content.
+     */
+    protected $content;
+
+    /**
      * @var boolean Can this notice be disabled?
      */
     protected $dismissible = false;
@@ -50,6 +60,40 @@ class Notice implements NoticeInterface
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
         return $this;
     }
 

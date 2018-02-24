@@ -3,6 +3,7 @@ namespace Korobochkin\WPKit\Tests\Notices;
 
 use Korobochkin\WPKit\Notices\Notice;
 use Korobochkin\WPKit\Notices\NoticesStack;
+use Korobochkin\WPKit\Notices\NoticeSuccessView;
 use Korobochkin\WPKit\Tests\DataSets\Notices\SomeTestNotice;
 
 /**
@@ -59,5 +60,26 @@ class NoticesStackTest extends \WP_UnitTestCase
         $stub->removeNoticeByClassName(SomeTestNotice::class);
 
         $this->assertEmpty($stub->getNotices());
+    }
+
+    public function testRun()
+    {
+        $stub = new NoticesStack();
+        $notice = new Notice();
+        $notice
+            ->setName('my_plugin_test_name')
+            ->setTitle('Test title')
+            ->setContent('<p>Test content</p>')
+            ->setView(new NoticeSuccessView());
+        $stub->addNotice($notice);
+
+        ob_start();
+        $stub->run();
+        $content = ob_get_contents();
+        ob_end_clean();
+
+        $expected = '<div class="notice notice-success wp-kit-notice wp-kit-notice-success"><p class="notice-title">Test title</p><p>Test content</p></div>';
+
+        $this->assertEquals($expected, $content);
     }
 }

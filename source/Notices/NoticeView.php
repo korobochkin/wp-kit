@@ -14,7 +14,7 @@ class NoticeView implements NoticeViewInterface
     /**
      * @var array
      */
-    protected $cssClasses = array('notice');
+    protected $cssClasses = array('notice', 'wp-kit-notice');
 
     /**
      * @inheritdoc
@@ -46,6 +46,8 @@ class NoticeView implements NoticeViewInterface
         if ($this->notice->isDismissible()) {
             $classes[] = 'is-dismissible';
         }
+
+        $classes[] = 'wp-kit-notice-' . $this->notice->getName();
 
         $this->cssClasses = $classes;
     }

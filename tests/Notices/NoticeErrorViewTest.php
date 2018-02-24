@@ -13,6 +13,6 @@ class NoticeErrorViewTest extends \WP_UnitTestCase
         $stub = new NoticeErrorView();
         $rp   = new \ReflectionProperty(NoticeErrorView::class, 'cssClasses');
         $rp->setAccessible(true);
-        $this->assertEquals(array('notice', 'notice-error'), $rp->getValue($stub));
+        $this->assertEquals(array('notice', 'notice-error', 'wp-kit-notice', 'wp-kit-notice-error'), $rp->getValue($stub));
     }
 }

@@ -28,7 +28,7 @@ class NoticeViewTest extends \WP_UnitTestCase
         ob_end_clean();
 
         //@codingStandardsIgnoreStart
-        $expected = '<div class="notice wp-kit-notice wp-kit-notice-my_plugin_test_name"><p class="notice-title">Test title</p><p>Test content</p></div>';
+        $expected = '<div class="notice wp-kit-notice is-dismissible wp-kit-notice-my_plugin_test_name"><p class="notice-title">Test title</p><p>Test content</p></div>';
         //@codingStandardsIgnoreEnd
 
         $this->assertEquals($expected, $content);

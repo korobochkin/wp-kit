@@ -113,4 +113,37 @@ class NoticeTest extends \WP_UnitTestCase
         $this->assertEquals($stub, $stub->enable());
         $this->assertTrue($relevantStorage->get());
     }
+
+    public function testGetterAndSetterRelevantStorage()
+    {
+        /**
+         * @var $stub Notice
+         */
+        $stub = new Notice();
+
+        $this->assertNull($stub->getRelevantStorage());
+
+        $value = new RelevantStorageForTestsOption();
+
+        $this->assertEquals($stub, $stub->setRelevantStorage($value));
+        $this->assertEquals($value, $stub->getRelevantStorage());
+    }
+
+    public function testIsRelevant()
+    {
+        /**
+         * @var $stub Notice
+         */
+        $stub = new Notice();
+        $this->assertTrue($stub->isRelevant());
+
+        $value = new RelevantStorageForTestsOption();
+        $stub->setRelevantStorage($value);
+
+        $this->assertTrue($stub->isRelevant());
+
+        $value->updateValue(false);
+
+        $this->assertFalse($stub->isRelevant());
+    }
 }

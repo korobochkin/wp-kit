@@ -145,6 +145,10 @@ class NoticeTest extends \WP_UnitTestCase
         $view = new NoticeView();
         $stub->setView($view);
 
-        $this->assertInternalType('string', $stub->render());
+        ob_start();
+        $stub->render();
+        $content = ob_get_contents();
+        ob_end_clean();
+        $this->assertInternalType('string', $content);
     }
 }

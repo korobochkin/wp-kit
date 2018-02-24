@@ -82,11 +82,11 @@ class NoticesStack implements NoticesStackInterface
      */
     public function run()
     {
-       foreach ($this->notices as $notice) {
-           if ($notice->isRelevant()) {
-               $notice->lateConstruct();
-               $notice->render();
-           }
-       }
+        foreach ($this->notices as $notice){
+            if ($notice->isRelevant()) {
+                $notice->lateConstruct();
+                $notice->render();
+            }
+        }
     }
 }

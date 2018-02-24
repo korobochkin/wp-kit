@@ -64,7 +64,7 @@ class NoticesStackTest extends \WP_UnitTestCase
 
     public function testRun()
     {
-        $stub = new NoticesStack();
+        $stub   = new NoticesStack();
         $notice = new Notice();
         $notice
             ->setName('my_plugin_test_name')
@@ -78,7 +78,9 @@ class NoticesStackTest extends \WP_UnitTestCase
         $content = ob_get_contents();
         ob_end_clean();
 
-        $expected = '<div class="notice notice-success wp-kit-notice wp-kit-notice-success"><p class="notice-title">Test title</p><p>Test content</p></div>';
+        //@codingStandardsIgnoreStart
+        $expected = '<div class="notice notice-success wp-kit-notice wp-kit-notice-success wp-kit-notice-my_plugin_test_name"><p class="notice-title">Test title</p><p>Test content</p></div>';
+        //@codingStandardsIgnoreEnd
 
         $this->assertEquals($expected, $content);
     }

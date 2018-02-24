@@ -46,7 +46,7 @@ class NoticeTwigViewTest extends \WP_UnitTestCase
          */
         $stub = new NoticeTwigView();
 
-        $this->assertNull($stub->getTemplate());
+        $this->assertEquals('', $stub->getTemplate());
 
         $value = 'test-template.twig.html';
 

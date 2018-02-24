@@ -95,7 +95,7 @@ class NoticeTest extends \WP_UnitTestCase
         /**
          * @var $stub Notice
          */
-        $stub = new Notice();
+        $stub            = new Notice();
         $relevantStorage = new RelevantStorageForTestsOption();
         $stub->setRelevantStorage($relevantStorage);
         $this->assertEquals($stub, $stub->disable());
@@ -107,7 +107,7 @@ class NoticeTest extends \WP_UnitTestCase
         /**
          * @var $stub Notice
          */
-        $stub = new Notice();
+        $stub            = new Notice();
         $relevantStorage = new RelevantStorageForTestsOption();
         $stub->setRelevantStorage($relevantStorage);
         $this->assertEquals($stub, $stub->enable());

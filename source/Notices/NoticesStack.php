@@ -50,7 +50,7 @@ class NoticesStack implements NoticesStackInterface
             }
         }
 
-        if($notices !== $this->notices) {
+        if ($notices !== $this->notices) {
             $this->notices = $notices;
         }
 
@@ -70,7 +70,7 @@ class NoticesStack implements NoticesStackInterface
             }
         }
 
-        if($notices !== $this->notices) {
+        if ($notices !== $this->notices) {
             $this->notices = $notices;
         }
 
@@ -83,7 +83,7 @@ class NoticesStack implements NoticesStackInterface
     public function run()
     {
        foreach ($this->notices as $notice) {
-           if($notice->isRelevant()) {
+           if ($notice->isRelevant()) {
                $notice->lateConstruct();
                $notice->render();
            }

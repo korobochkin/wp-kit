@@ -6,5 +6,8 @@ namespace Korobochkin\WPKit\Notices;
  */
 class NoticeSuccessView extends NoticeView
 {
+    /**
+     * @var array CSS classes.
+     */
     protected $cssClasses = array('notice', 'notice-success');
 }

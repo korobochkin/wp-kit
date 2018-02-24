@@ -1,6 +1,8 @@
 <?php
 namespace Korobochkin\WPKit\Tests\Notices;
 
+use Korobochkin\WPKit\Notices\NoticeErrorView;
+
 /**
  * Class NoticeInfoViewTest
  */

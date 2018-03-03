@@ -3,6 +3,7 @@
 ## DEV
 
 * Added notices ([#24](https://github.com/korobochkin/wp-kit/issues/24)).
+* Relocated services to their own folders ([#26](https://github.com/korobochkin/wp-kit/issues/26)).
 
 ## 0.8.0 - February 19, 2018
 

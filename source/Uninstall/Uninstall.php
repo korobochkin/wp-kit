@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\WPKit\Services\Uninstall;
+namespace Korobochkin\WPKit\Uninstall;
 
 use Korobochkin\WPKit\Cron\CronEventInterface;
 use Korobochkin\WPKit\Options\OptionInterface;

@@ -10,7 +10,7 @@ use Korobochkin\WPKit\Transients\TransientInterface;
 /**
  * Class Uninstall delete everything data used by your product.
  */
-class Uninstall
+class Uninstall implements UninstallInterface
 {
     /**
      * @var CronEventInterface[]

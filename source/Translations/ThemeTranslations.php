@@ -1,19 +1,18 @@
 <?php
-namespace Korobochkin\WPKit\Services\Translations;
+namespace Korobochkin\WPKit\Translations;
 
 /**
- * Class PluginTranslations
+ * Class ThemeTranslations
  */
-class PluginTranslations extends AbstractTranslations
+class ThemeTranslations extends AbstractTranslations
 {
     /**
      * @inheritdoc
      */
     public function loadTranslations()
     {
-        load_plugin_textdomain(
+        load_theme_textdomain(
             $this->textDomain,
-            false,
             $this->translationsPath
         );
 

@@ -1,6 +1,6 @@
 # Changelog
 
-## DEV
+## 0.9.0 - March 4, 2018
 
 * Added notices ([#24](https://github.com/korobochkin/wp-kit/issues/24)).
 * Relocated services to their own folders ([#26](https://github.com/korobochkin/wp-kit/issues/26)).

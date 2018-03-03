@@ -1,7 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Tests\Services\Translations;
 
-use Korobochkin\WPKit\Services\Translations\AbstractTranslations;
+use Korobochkin\WPKit\Translations\AbstractTranslations;
 
 /**
  * Class AbstractTranslationsTest

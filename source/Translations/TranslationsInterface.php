@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\WPKit\Services\Translations;
+namespace Korobochkin\WPKit\Translations;
 
 /**
  * Interface TranslationsInterface

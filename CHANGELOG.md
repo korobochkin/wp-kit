@@ -1,11 +1,16 @@
 # Changelog
 
+## 0.9.0 - March 4, 2018
+
+* Added notices ([#24](https://github.com/korobochkin/wp-kit/issues/24)).
+* Relocated services to their own folders ([#26](https://github.com/korobochkin/wp-kit/issues/26)).
+
 ## 0.8.0 - February 19, 2018
 
 * Fixed method which removes all cron tasks by name ([#22](https://github.com/korobochkin/wp-kit/issues/22)).
 * Fixed exception throwing in Translations ([#25](https://github.com/korobochkin/wp-kit/issues/25)).
 * Improved Cron Events interfaces ([#21](https://github.com/korobochkin/wp-kit/issues/21)).
-* Added Tabs for Pages ([#23](https://github.com/korobochkin/wp-kit/issues/23)). 
+* Added Tabs for Pages ([#23](https://github.com/korobochkin/wp-kit/issues/23)).
 
 ## 0.7.0 - January 22, 2017
 

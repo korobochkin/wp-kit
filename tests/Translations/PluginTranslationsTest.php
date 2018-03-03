@@ -1,7 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Tests\Services\Translations;
 
-use Korobochkin\WPKit\Services\Translations\PluginTranslations;
+use Korobochkin\WPKit\Translations\PluginTranslations;
 
 /**
  * Class PluginTranslationsTest

@@ -1,5 +1,5 @@
 <?php
-namespace Korobochkin\WPKit\Services\Uninstall;
+namespace Korobochkin\WPKit\Uninstall;
 
 use Korobochkin\WPKit\Cron\CronEventInterface;
 use Korobochkin\WPKit\Options\OptionInterface;
@@ -10,7 +10,7 @@ use Korobochkin\WPKit\Transients\TransientInterface;
 /**
  * Class Uninstall delete everything data used by your product.
  */
-class Uninstall
+class Uninstall implements UninstallInterface
 {
     /**
      * @var CronEventInterface[]

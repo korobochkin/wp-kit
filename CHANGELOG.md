@@ -1,5 +1,9 @@
 # Changelog
 
+## DEV
+
+* Added notices ([#24](https://github.com/korobochkin/wp-kit/issues/24)).
+
 ## 0.8.0 - February 19, 2018
 
 * Fixed method which removes all cron tasks by name ([#22](https://github.com/korobochkin/wp-kit/issues/22)).

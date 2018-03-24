@@ -46,7 +46,7 @@ class IntegerOptionTest extends \WP_UnitTestCase
             }
         } else {
             $this->stub->flush();
-            $this->assertEquals($expected, $this->stub->get());
+            $this->assertSame($expected, $this->stub->get());
         }
     }
 
@@ -57,6 +57,6 @@ class IntegerOptionTest extends \WP_UnitTestCase
 
     public function testDefaultValue()
     {
-        $this->assertEquals(0, $this->stub->get());
+        $this->assertSame(0, $this->stub->get());
     }
 }

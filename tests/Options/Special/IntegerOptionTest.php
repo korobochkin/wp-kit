@@ -48,6 +48,8 @@ class IntegerOptionTest extends \WP_UnitTestCase
             }
         } else {
             $this->stub->flush();
+            var_dump($this->stub->getValueFromWordPress());
+            var_dump($this->stub->getDataTransformer()->reverseTransform($this->stub->getValueFromWordPress()));
             $this->assertSame($expected, $this->stub->get());
         }
     }

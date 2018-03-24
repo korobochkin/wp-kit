@@ -20,10 +20,10 @@ class IntegerTransformationSet extends AbstractDataSet
             array(-1234,       -1234),
 
             array(1.234,       1),
-            array(1.2e3,       1),
+            array(1.2e3,       1200),
             array(7E-10,       0),
             array(-1.234,      -1),
-            array(-1.2e3,      -1),
+            array(-1.2e3,      -1200),
             array(-7E-10,      0),
 
             array('1',         1),

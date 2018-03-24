@@ -32,6 +32,7 @@ class IntegerOptionTest extends \WP_UnitTestCase
         $this->stub
             ->set($value);
 
+        // In case if we expect Exception from DataTransformer
         if (class_exists($expected)) {
             if (PHP_VERSION_ID >= 70000) {
                 $this->expectException($expected);

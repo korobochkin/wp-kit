@@ -41,9 +41,9 @@ class IntegerOptionTest extends \WP_UnitTestCase
                 try {
                     $this->stub->flush();
                 } catch (\Exception $exception) {
-                    $this->assertInstanceOf($exception, $expected);
+                    $this->assertInstanceOf($expected, $exception);
                 } finally {
-                    $this->assertInstanceOf($exception, $expected);
+                    $this->assertInstanceOf($expected, $exception);
                 }
             }
         } else {

@@ -18,8 +18,6 @@ class IntegerTransformationSet extends AbstractDataSet
             array(1234,        1234),
             array(0,           0),
             array(-1234,       -1234),
-            //array(PHP_INT_MAX, TransformationFailedException::class), // this case throwing error but PHP 7 not catching it
-            //array(PHP_INT_MIN, true),
 
             array(1.234,       1),
             array(1.2e3,       1),
@@ -45,7 +43,7 @@ class IntegerTransformationSet extends AbstractDataSet
             array(new \stdClass(), TransformationFailedException::class),
             array(new \WP_Query(), TransformationFailedException::class),
 
-            array(NULL,        0),
+            array(null,        0),
         );
 
         // Only for PHP 7 or later.

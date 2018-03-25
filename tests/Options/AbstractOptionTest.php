@@ -1,7 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Tests\Options;
 
-use Korobochkin\WPKit\Options\Option;
+use Korobochkin\WPKit\Options\AbstractOption;
 use Korobochkin\WPKit\Tests\DataSets\DifferentTypesSet;
 use Korobochkin\WPKit\Tests\DataSets\EverythingSet;
 use Korobochkin\WPKit\Tests\DataSets\ValidateSet;
@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Validation;
 class AbstractOptionTest extends \WP_UnitTestCase
 {
     /**
-     * @var Option
+     * @var AbstractOption
      */
     protected $stub;
 
@@ -31,7 +31,7 @@ class AbstractOptionTest extends \WP_UnitTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->stub = $this->getMockForAbstractClass(Option::class);
+        $this->stub = $this->getMockForAbstractClass(AbstractOption::class);
     }
 
     /**

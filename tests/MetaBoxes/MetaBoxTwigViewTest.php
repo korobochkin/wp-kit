@@ -46,7 +46,7 @@ class MetaBoxTwigViewTest extends \WP_UnitTestCase
          */
         $stub = new MetaBoxTwigView();
 
-        $this->assertSame(null, $stub->getTemplate());
+        $this->assertSame('', $stub->getTemplate());
 
         $value = 'test-template.twig.html';
 

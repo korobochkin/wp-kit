@@ -22,7 +22,7 @@ class TabsTest extends \WP_UnitTestCase
         $tab2->setName('test_2');
         $tabs->addTab($tab2);
 
-        $this->assertEquals(2, count($tabs->getTabs()));
+        $this->assertSame(2, count($tabs->getTabs()));
 
         foreach ($tabs as $tabName => $tabInstance) {
             $this->assertInstanceOf(TabInterface::class, $tabInstance);

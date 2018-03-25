@@ -39,7 +39,7 @@ class DateTimeTransientTest extends \WP_UnitTestCase
 
         if (is_a($expected, \DateTime::class)) {
             $this->stub->flush();
-            $this->assertEquals($expected, $this->stub->get());
+            $this->assertSame($expected, $this->stub->get());
         } else {
             if (PHP_VERSION_ID >= 70000) {
                 $this->expectException($expected);
@@ -62,6 +62,6 @@ class DateTimeTransientTest extends \WP_UnitTestCase
     public function testNull()
     {
         $this->stub->set(null);
-        $this->assertEquals('', $this->stub->get());
+        $this->assertSame('', $this->stub->get());
     }
 }

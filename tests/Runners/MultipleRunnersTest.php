@@ -24,7 +24,7 @@ class MultipleRunnersTest extends \WP_UnitTestCase
 
         $this->assertEmpty(FirstRunner::getContainer());
         FirstRunner::setContainer($firstContainer);
-        $this->assertEquals($firstContainer, FirstRunner::getContainer());
+        $this->assertSame($firstContainer, FirstRunner::getContainer());
         $this->assertEmpty(SecondRunner::getContainer());
 
         FirstRunner::setContainer(null);
@@ -34,7 +34,7 @@ class MultipleRunnersTest extends \WP_UnitTestCase
 
         $this->assertEmpty(SecondRunner::getContainer());
         SecondRunner::setContainer($secondContainer);
-        $this->assertEquals($secondContainer, SecondRunner::getContainer());
+        $this->assertSame($secondContainer, SecondRunner::getContainer());
         $this->assertEmpty(FirstRunner::getContainer());
 
         SecondRunner::setContainer(null);
@@ -44,6 +44,6 @@ class MultipleRunnersTest extends \WP_UnitTestCase
 
         $thirdContainer = new ContainerBuilder();
         $this->assertNotEquals($firstContainer, $thirdContainer);
-        $this->assertEquals($secondContainer, $thirdContainer);
+        $this->assertSame($secondContainer, $thirdContainer);
     }
 }

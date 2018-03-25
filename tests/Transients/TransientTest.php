@@ -30,6 +30,6 @@ class TransientTest extends \WP_UnitTestCase
      */
     public function testBuildConstraint()
     {
-        $this->assertEquals(null, $this->transient->buildConstraint());
+        $this->assertSame(null, $this->transient->buildConstraint());
     }
 }

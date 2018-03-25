@@ -27,12 +27,12 @@ class HookTraitTest extends \WP_UnitTestCase
     {
         $defaultValue = 'execute';
 
-        $this->assertEquals($defaultValue, $this->stub->getHook());
+        $this->assertSame($defaultValue, $this->stub->getHook());
 
         $value = 'custom_callback';
 
-        $this->assertEquals($this->stub, $this->stub->setHook($value));
+        $this->assertSame($this->stub, $this->stub->setHook($value));
 
-        $this->assertEquals($value, $this->stub->getHook());
+        $this->assertSame($value, $this->stub->getHook());
     }
 }

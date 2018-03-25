@@ -27,12 +27,12 @@ class RecurrenceTraitTest extends \WP_UnitTestCase
     {
         $defaultValue = 'hourly';
 
-        $this->assertEquals($defaultValue, $this->stub->getRecurrence());
+        $this->assertSame($defaultValue, $this->stub->getRecurrence());
 
         $value = 'daily';
 
-        $this->assertEquals($this->stub, $this->stub->setRecurrence($value));
+        $this->assertSame($this->stub, $this->stub->setRecurrence($value));
 
-        $this->assertEquals($value, $this->stub->getRecurrence());
+        $this->assertSame($value, $this->stub->getRecurrence());
     }
 }

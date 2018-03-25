@@ -13,6 +13,6 @@ class ThemeTranslationsTest extends \WP_UnitTestCase
         $path = get_template_directory() . '/test-theme-domain/';
         $stub = new ThemeTranslations('test-theme-domain', $path);
 
-        $this->assertEquals($stub, $stub->loadTranslations());
+        $this->assertSame($stub, $stub->loadTranslations());
     }
 }

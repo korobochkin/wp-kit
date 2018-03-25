@@ -72,7 +72,7 @@ class NumericTermMetaTest extends \WP_UnitTestCase
             }
         } else {
             $this->stub->flush();
-            $this->assertEquals($expected, $this->stub->get());
+            $this->assertSame($expected, $this->stub->get());
         }
     }
 
@@ -92,9 +92,9 @@ class NumericTermMetaTest extends \WP_UnitTestCase
         $this->stub->set($value);
 
         if (class_exists($expected)) {
-            $this->assertEquals($value, $this->stub->get());
+            $this->assertSame($value, $this->stub->get());
         } else {
-            $this->assertEquals($expected, $this->stub->get());
+            $this->assertSame($expected, $this->stub->get());
         }
     }
 
@@ -105,6 +105,6 @@ class NumericTermMetaTest extends \WP_UnitTestCase
 
     public function testDefaultValue()
     {
-        $this->assertEquals(0.0, $this->stub->get());
+        $this->assertSame(0.0, $this->stub->get());
     }
 }

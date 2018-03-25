@@ -72,11 +72,11 @@ class AbstractTransientTest extends \WP_UnitTestCase
         $this->stub->updateValue('hello');
 
         // Check that successful pushed into DB.
-        $this->assertEquals('hello', $this->stub->getValueFromWordPress());
+        $this->assertSame('hello', $this->stub->getValueFromWordPress());
 
         // Check that successful remove from DB.
         $this->assertTrue($this->stub->deleteFromWP());
-        $this->assertEquals(false, $this->stub->getValueFromWordPress());
+        $this->assertSame(false, $this->stub->getValueFromWordPress());
     }
 
     /**
@@ -85,7 +85,7 @@ class AbstractTransientTest extends \WP_UnitTestCase
     public function testFlush($value, $expected)
     {
         $this->stub->setName('wp_kit_abstract_trait');
-        $this->assertEquals($expected, $this->stub->set($value)->flush());
+        $this->assertSame($expected, $this->stub->set($value)->flush());
     }
 
     public function flushCases()
@@ -137,7 +137,7 @@ class AbstractTransientTest extends \WP_UnitTestCase
             ->setName('wp_kit_abstract_trait')
             ->set($value)
             ->flush();
-        $this->assertEquals($expected, $this->stub->get());
+        $this->assertSame($expected, $this->stub->get());
     }
 
     public function flushValueCases()

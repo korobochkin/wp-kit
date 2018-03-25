@@ -13,7 +13,7 @@ class NoticeSuccessViewTest extends \WP_UnitTestCase
         $stub = new NoticeSuccessView();
         $rp   = new \ReflectionProperty(NoticeSuccessView::class, 'cssClasses');
         $rp->setAccessible(true);
-        $this->assertEquals(
+        $this->assertSame(
             array(
                 'notice',
                 'notice-success',

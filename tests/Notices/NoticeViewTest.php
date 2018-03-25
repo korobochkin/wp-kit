@@ -31,7 +31,7 @@ class NoticeViewTest extends \WP_UnitTestCase
         $expected = '<div class="notice wp-kit-notice is-dismissible wp-kit-notice-my_plugin_test_name"><p class="notice-title">Test title</p><p>Test content</p></div>';
         //@codingStandardsIgnoreEnd
 
-        $this->assertEquals($expected, $content);
+        $this->assertSame($expected, $content);
     }
 
     public function testCssClasses()
@@ -39,7 +39,7 @@ class NoticeViewTest extends \WP_UnitTestCase
         $stub = new NoticeView();
         $rp   = new \ReflectionProperty(NoticeView::class, 'cssClasses');
         $rp->setAccessible(true);
-        $this->assertEquals(
+        $this->assertSame(
             array(
                 'notice',
                 'wp-kit-notice',

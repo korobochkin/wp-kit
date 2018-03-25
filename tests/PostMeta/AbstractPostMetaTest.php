@@ -97,7 +97,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
             ->updateValue($value);
 
         // Check that successful remove from DB.
-        $this->assertEquals($expectedResultOfSavingOrDeletion, $this->stub->deleteFromWP());
+        $this->assertSame($expectedResultOfSavingOrDeletion, $this->stub->deleteFromWP());
         $this->assertFalse($this->stub->getValueFromWordPress());
     }
 
@@ -136,13 +136,13 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
         $this->stub->setPostId($this->postId);
 
         // Successful saved.
-        $this->assertEquals($expectedResultOfSavingOrDeletion, $this->stub->flush());
+        $this->assertSame($expectedResultOfSavingOrDeletion, $this->stub->flush());
 
         // Retrieve value back.
-        $this->assertEquals($expectedValueFromWP, $this->stub->get());
+        $this->assertSame($expectedValueFromWP, $this->stub->get());
 
         // Local value deleted.
-        $this->assertEquals(null, $this->stub->getLocalValue());
+        $this->assertSame(null, $this->stub->getLocalValue());
     }
 
     public function casesFlush()
@@ -167,13 +167,13 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
             ->set($value);
 
         // Successful saved.
-        $this->assertEquals($expectedResultOfSavingOrDeletion, $this->stub->flush());
+        $this->assertSame($expectedResultOfSavingOrDeletion, $this->stub->flush());
 
         // Retrieve value back.
-        $this->assertEquals($expectedValueFromWP, $this->stub->get());
+        $this->assertSame($expectedValueFromWP, $this->stub->get());
 
         // Local value deleted.
-        $this->assertEquals(null, $this->stub->getLocalValue());
+        $this->assertSame(null, $this->stub->getLocalValue());
     }
 
     public function casesUpdateValue()
@@ -201,7 +201,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
         // Test that local value returned.
         $this->stub->setLocalValue($value);
-        $this->assertEquals($value, $this->stub->get());
+        $this->assertSame($value, $this->stub->get());
 
         // Reset local value.
         $this->stub->setLocalValue(null);
@@ -209,24 +209,24 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
         $this->stub->setName('wp_kit_abstract_post_meta');
 
         // Check default value.
-        $this->assertEquals(null, $this->stub->get());
+        $this->assertSame(null, $this->stub->get());
 
         // Check Default value again.
         $this->stub->setDefaultValue($value);
-        $this->assertEquals($value, $this->stub->get());
+        $this->assertSame($value, $this->stub->get());
 
         // Check returning local value.
         $this->stub->setDefaultValue(uniqid('wp_kit', true));
         $this->stub->setLocalValue($value);
         if ($value === null) {
-            $this->assertEquals($this->stub->getDefaultValue(), $this->stub->get());
+            $this->assertSame($this->stub->getDefaultValue(), $this->stub->get());
         } else {
-            $this->assertEquals($value, $this->stub->get());
+            $this->assertSame($value, $this->stub->get());
         }
 
         // Check value from WordPress after saving.
         $this->stub->flush();
-        $this->assertEquals($expectedValueFromWP, $this->stub->get());
+        $this->assertSame($expectedValueFromWP, $this->stub->get());
     }
 
     public function casesGet()
@@ -249,9 +249,9 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
         $this->stub->setName('wp_kit_abstract_post_meta');
         $this->stub->setPostId($this->postId);
 
-        $this->assertEquals($this->stub, $this->stub->set($value));
-        $this->assertEquals($value, $this->stub->get());
-        $this->assertEquals($value, $this->stub->getLocalValue());
+        $this->assertSame($this->stub, $this->stub->set($value));
+        $this->assertSame($value, $this->stub->get());
+        $this->assertSame($value, $this->stub->getLocalValue());
     }
 
     public function casesSet()
@@ -261,10 +261,10 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
     public function testName()
     {
-        $this->assertEquals('_', $this->stub->getName());
+        $this->assertSame('_', $this->stub->getName());
 
-        $this->assertEquals($this->stub, $this->stub->setName('wp_kit_dummy_name'));
-        $this->assertEquals('_wp_kit_dummy_name', $this->stub->getName());
+        $this->assertSame($this->stub, $this->stub->setName('wp_kit_dummy_name'));
+        $this->assertSame('_wp_kit_dummy_name', $this->stub->getName());
     }
 
     /**
@@ -279,8 +279,8 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
     public function testLocalValue($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP)
     {
         $this->assertNull($this->stub->getLocalValue());
-        $this->assertEquals($this->stub, $this->stub->setLocalValue($value));
-        $this->assertEquals($value, $this->stub->getLocalValue());
+        $this->assertSame($this->stub, $this->stub->setLocalValue($value));
+        $this->assertSame($value, $this->stub->getLocalValue());
     }
 
     public function casesLocalValue()
@@ -298,8 +298,8 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
     public function testDefaultValue($value)
     {
         $this->assertNull($this->stub->getDefaultValue());
-        $this->assertEquals($this->stub, $this->stub->setDefaultValue($value));
-        $this->assertEquals($value, $this->stub->getDefaultValue());
+        $this->assertSame($this->stub, $this->stub->setDefaultValue($value));
+        $this->assertSame($value, $this->stub->getDefaultValue());
     }
 
     public function casesDefaultValue()
@@ -316,7 +316,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
      */
     public function testDeleteLocalValue($value)
     {
-        $this->assertEquals($this->stub, $this->stub->setLocalValue($value));
+        $this->assertSame($this->stub, $this->stub->setLocalValue($value));
         $this->assertTrue($this->stub->deleteLocal());
         $this->assertNull($this->stub->getLocalValue());
     }
@@ -336,8 +336,8 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
     public function testConstraint($value)
     {
         $this->assertNull($this->stub->getConstraint());
-        $this->assertEquals($this->stub, $this->stub->setConstraint($value));
-        $this->assertEquals($value, $this->stub->getConstraint());
+        $this->assertSame($this->stub, $this->stub->setConstraint($value));
+        $this->assertSame($value, $this->stub->getConstraint());
     }
 
     public function casesConstraint()
@@ -359,8 +359,8 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
         $validator = Validation::createValidator();
 
         $this->assertNull($this->stub->getValidator());
-        $this->assertEquals($this->stub, $this->stub->setValidator($validator));
-        $this->assertEquals($validator, $this->stub->getValidator());
+        $this->assertSame($this->stub, $this->stub->setValidator($validator));
+        $this->assertSame($validator, $this->stub->getValidator());
     }
 
     public function testValidate()
@@ -418,7 +418,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
         $this->stub->set($value);
         $this->stub->setConstraint($constraints);
-        $this->assertEquals($expectedValidOrNot, $this->stub->isValid());
+        $this->assertSame($expectedValidOrNot, $this->stub->isValid());
     }
 
     public function casesIsValid()
@@ -453,8 +453,8 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
      */
     public function testTransformer($value)
     {
-        $this->assertEquals($this->stub, $this->stub->setDataTransformer($value));
-        $this->assertEquals($value, $this->stub->getDataTransformer());
+        $this->assertSame($this->stub, $this->stub->setDataTransformer($value));
+        $this->assertSame($value, $this->stub->getDataTransformer());
     }
 
     public function casesTransformer()

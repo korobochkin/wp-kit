@@ -67,7 +67,9 @@ class NumericTermMetaTest extends \WP_UnitTestCase
                 try {
                     $this->stub->flush();
                 } catch (\Exception $exception) {
-                    $this->assertTrue(is_a($exception, $expected));
+                    $this->assertInstanceOf($expected, $exception);
+                } finally {
+                    $this->assertInstanceOf($expected, $exception);
                 }
             }
         } else {

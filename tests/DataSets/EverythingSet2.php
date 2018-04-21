@@ -236,7 +236,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
             new \stdClass(),
             true,
         );
-        
+
         $variants['24'] = array(
             new \WP_Query(),
             true,

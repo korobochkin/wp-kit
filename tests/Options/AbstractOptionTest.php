@@ -41,15 +41,15 @@ class AbstractOptionTest extends \WP_UnitTestCase
     public function testGetValueFromWordPress()
     {
         if (PHP_VERSION_ID >= 70000) {
-            // PHP 7.
             $this->expectException(\LogicException::class);
             $this->stub->getValueFromWordPress();
         } else {
-            // PHP 5.
             try {
                 $this->stub->getValueFromWordPress();
             } catch (\Exception $exception) {
-                $this->assertTrue(is_a($exception, \LogicException::class));
+                $this->assertInstanceOf(\LogicException::class, $exception);
+            } finally {
+                $this->assertInstanceOf(\LogicException::class, $exception);
             }
         }
 

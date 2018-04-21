@@ -12,181 +12,214 @@ class EverythingSet2 extends AbstractAssociativeDataSet
 {
     public function __construct()
     {
-        $variants = array(
-            '1' => array(
-                null, // Value
-                true, // Result of saving in WordPress
-                '',   // What WordPress returns after saving
-                true, // What WordPress returns after deleting
-            ),
-            '2' => array(
-                true,
-                true,
-                '1',
-                true,
-            ),
-            '3' => array(
-                false,
-                false,
-                false,
-                false,
-            ),
-            '4' => array(
-                1234,
-                true,
-                '1234',
-                true,
-            ),
-            '5' => array(
-                0,
-                true,
-                '0',
-                true,
-            ),
-            '6' => array(
-                -1234,
-                true,
-                '-1234',
-                true,
-            ),
-            '7' => array(
-                PHP_INT_MAX,
-                true,
-                (string) PHP_INT_MAX,
-                true,
-            ),
-            '8' => array(
-                1.234,
-                true,
-                '1.234',
-                true,
-            ),
-            '8.2' => array(
-                -1.234,
-                true,
-                '-1.234',
-                true,
-            ),
-            '9' => array(
-                1.2e3,
-                true,
-                '1.2e3',
-                true,
-            ),
-            '9.2' => array(
-                -1.2e3,
-                true,
-                '-1.2e3',
-                true,
-            ),
-            '10' => array(
-                7E-10,
-                true,
-                '7E-10',
-                true,
-            ),
-            '10.2' => array(
-                -7E-10,
-                true,
-                '-7E-10',
-                true,
-            ),
-            '11' => array(
-                '1',
-                true,
-                '1',
-                true,
-            ),
-            '12' => array(
-                'VALUE',
-                true,
-                'VALUE',
-                true,
-            ),
-            '13' => array(
-                'true',
-                true,
-                'true',
-                true,
-            ),
-            '14' => array(
-                'false',
-                true,
-                'false',
-                true,
-            ),
-            '15' => array(
-                '',
-                true,
-                '',
-                true,
-            ),
-            '16' => array(
-                '0',
-                true,
-                '0',
-                true,
-            ),
-            '17' => array(
-                array(),
-                true,
-                array(),
-                true,
-            ),
-            '18' => array(
-                array(1),
-                true,
-                array(1),
-                true,
-            ),
-            '19' => array(
-                array(1, 2),
-                true,
-                array(1, 2),
-                true,
-            ),
-            '20' => array(
-                array(''),
-                true,
-                array(''),
-                true,
-            ),
-            '21' => array(
-                array('1'),
-                true,
-                array('1'),
-                true,
-            ),
-            '22' => array(
-                array('0'),
-                true,
-                array('0'),
-                true,
-            ),
-            '23' => array(
-                new \stdClass(),
-                true,
-                new \stdClass(),
-                true,
-            ),
-            '24' => array(
-                new \WP_Query(),
-                true,
-                new \WP_Query(),
-                true,
-            ),
+        $variants = array();
+
+        $variants['1'] = array(
+            null, // Value
+            true, // Result of saving in WordPress
+            '',   // What WordPress returns after saving
+            true, // What WordPress returns after deleting
+        );
+        $variants['2'] = array(
+            true,
+            true,
+            '1',
+            true,
+        );
+        $variants['3'] = array(
+            false,
+            false,
+            false,
+            false,
+        );
+        $variants['4'] = array(
+            1234,
+            true,
+            '1234',
+            true,
+        );
+        $variants['5'] = array(
+            0,
+            true,
+            '0',
+            true,
+        );
+        $variants['6'] = array(
+            -1234,
+            true,
+            '-1234',
+            true,
+        );
+        $variants['7'] = array(
+            PHP_INT_MAX,
+            true,
+            (string)PHP_INT_MAX,
+            true,
         );
 
-        // Only for PHP 7.
         if (PHP_VERSION_ID >= 70000) {
             $variants['7.2'] = array(
                 PHP_INT_MIN,
                 true,
-                (string) PHP_INT_MIN,
+                (string)PHP_INT_MIN,
                 true,
             );
         }
 
+        $variants['8'] = array(
+            1.234,
+            true,
+            '1.234',
+            true,
+        );
+        $variants['8.2'] = array(
+            -1.234,
+            true,
+            '-1.234',
+            true,
+        );
+
+        if (PHP_VERSION_ID >= 70000) {
+            $variants['9'] = array(
+                1.2e3,
+                true,
+                '1.2e3',
+                true,
+            );
+            $variants['9.2'] = array(
+                -1.2e3,
+                true,
+                '-1.2e3',
+                true,
+            );
+        } else {
+            $variants['9'] = array(
+                1.2e3,
+                true,
+                '1200',
+                true,
+            );
+            $variants['9.2'] = array(
+                -1.2e3,
+                true,
+                '-1200',
+                true,
+            );
+        }
+
+        if (PHP_VERSION_ID >= 70000) {
+            $variants['10'] = array(
+                7E-10,
+                true,
+                '7E-10',
+                true,
+            );
+            $variants['10.2'] = array(
+                -7E-10,
+                true,
+                '-7E-10',
+                true,
+            );
+        } else {
+            $variants['10'] = array(
+                7E-10,
+                true,
+                '7.0E-10',
+                true,
+            );
+            $variants['10.2'] = array(
+                -7E-10,
+                true,
+                '-7.0E-10',
+                true,
+            );
+        }
+
+        $variants['11'] = array(
+            '1',
+            true,
+            '1',
+            true,
+        );
+        $variants['12'] = array(
+            'VALUE',
+            true,
+            'VALUE',
+            true,
+        );
+        $variants['13'] = array(
+            'true',
+            true,
+            'true',
+            true,
+        );
+        $variants['14'] = array(
+            'false',
+            true,
+            'false',
+            true,
+        );
+        $variants['15'] = array(
+            '',
+            true,
+            '',
+            true,
+        );
+        $variants['16'] = array(
+            '0',
+            true,
+            '0',
+            true,
+        );
+        $variants['17'] = array(
+            array(),
+            true,
+            array(),
+            true,
+        );
+        $variants['18'] = array(
+            array(1),
+            true,
+            array(1),
+            true,
+        );
+        $variants['19'] = array(
+            array(1, 2),
+            true,
+            array(1, 2),
+            true,
+        );
+        $variants['20'] = array(
+            array(''),
+            true,
+            array(''),
+            true,
+        );
+        $variants['21'] = array(
+            array('1'),
+            true,
+            array('1'),
+            true,
+        );
+        $variants['22'] = array(
+            array('0'),
+            true,
+            array('0'),
+            true,
+        );
+        $variants['23'] = array(
+            new \stdClass(),
+            true,
+            new \stdClass(),
+            true,
+        );
+        $variants['24'] = array(
+            new \WP_Query(),
+            true,
+            new \WP_Query(),
+            true,
+        );
+        
         $this->values = $variants;
     }
 }

@@ -20,40 +20,46 @@ class EverythingSet2 extends AbstractAssociativeDataSet
             '',   // What WordPress returns after saving
             true, // What WordPress returns after deleting
         );
+
         $variants['2'] = array(
             true,
             true,
             '1',
             true,
         );
+
         $variants['3'] = array(
             false,
             false,
             false,
             false,
         );
+
         $variants['4'] = array(
             1234,
             true,
             '1234',
             true,
         );
+
         $variants['5'] = array(
             0,
             true,
             '0',
             true,
         );
+
         $variants['6'] = array(
             -1234,
             true,
             '-1234',
             true,
         );
+
         $variants['7'] = array(
             PHP_INT_MAX,
             true,
-            (string)PHP_INT_MAX,
+            (string) PHP_INT_MAX,
             true,
         );
 
@@ -61,7 +67,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
             $variants['7.2'] = array(
                 PHP_INT_MIN,
                 true,
-                (string)PHP_INT_MIN,
+                (string) PHP_INT_MIN,
                 true,
             );
         }
@@ -72,6 +78,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
             '1.234',
             true,
         );
+
         $variants['8.2'] = array(
             -1.234,
             true,
@@ -86,6 +93,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
                 '1.2e3',
                 true,
             );
+
             $variants['9.2'] = array(
                 -1.2e3,
                 true,
@@ -99,6 +107,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
                 '1200',
                 true,
             );
+
             $variants['9.2'] = array(
                 -1.2e3,
                 true,
@@ -114,6 +123,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
                 '7E-10',
                 true,
             );
+
             $variants['10.2'] = array(
                 -7E-10,
                 true,
@@ -127,6 +137,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
                 '7.0E-10',
                 true,
             );
+
             $variants['10.2'] = array(
                 -7E-10,
                 true,
@@ -141,85 +152,98 @@ class EverythingSet2 extends AbstractAssociativeDataSet
             '1',
             true,
         );
+
         $variants['12'] = array(
             'VALUE',
             true,
             'VALUE',
             true,
         );
+
         $variants['13'] = array(
             'true',
             true,
             'true',
             true,
         );
+
         $variants['14'] = array(
             'false',
             true,
             'false',
             true,
         );
+
         $variants['15'] = array(
             '',
             true,
             '',
             true,
         );
+
         $variants['16'] = array(
             '0',
             true,
             '0',
             true,
         );
+
         $variants['17'] = array(
             array(),
             true,
             array(),
             true,
         );
+
         $variants['18'] = array(
             array(1),
             true,
             array(1),
             true,
         );
+
         $variants['19'] = array(
             array(1, 2),
             true,
             array(1, 2),
             true,
         );
+
         $variants['20'] = array(
             array(''),
             true,
             array(''),
             true,
         );
+
         $variants['21'] = array(
             array('1'),
             true,
             array('1'),
             true,
         );
+
         $variants['22'] = array(
             array('0'),
             true,
             array('0'),
             true,
         );
+
         $variants['23'] = array(
             new \stdClass(),
             true,
             new \stdClass(),
             true,
         );
+        
         $variants['24'] = array(
             new \WP_Query(),
             true,
             new \WP_Query(),
             true,
         );
-        
+
         $this->values = $variants;
     }
 }

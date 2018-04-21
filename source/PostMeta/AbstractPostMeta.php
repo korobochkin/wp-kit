@@ -45,9 +45,11 @@ abstract class AbstractPostMeta extends AbstractNode implements PostMetaInterfac
         $value = get_post_meta($id, $name, true);
 
         // If value is empty string this can means that value not exists at all.
-        // This strange behaviour peculiar only for Post Meta (not Options or Transients).
-        if ($value === '' && ! metadata_exists('post', $id, $name)) {
-            return false;
+        // This strange behaviour only for Post Meta (not Options or Transients).
+        if ($value === '' || $value === array()) {
+            if(!metadata_exists('post', $id, $name)) {
+                return false;
+            }
         }
 
         return $value;

@@ -2,8 +2,6 @@
 namespace Korobochkin\WPKit\Tests\Options;
 
 use Korobochkin\WPKit\Options\AbstractOption;
-use Korobochkin\WPKit\Tests\DataSets\DifferentTypesSet;
-use Korobochkin\WPKit\Tests\DataSets\EverythingSet;
 use Korobochkin\WPKit\Tests\DataSets\EverythingSet2;
 use Korobochkin\WPKit\Tests\DataSets\ValidateSet;
 use Symfony\Component\Validator\Constraint;
@@ -212,29 +210,27 @@ class AbstractOptionTest extends \WP_UnitTestCase
      *
      * @dataProvider casesUpdateValue
      *
-     * @param $value                            mixed Any variable types.
-     * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
-     * @param $expectedValueFromWP              mixed Value after saving which will return WP
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool
+     * @param $valueResult mixed
+     * @param $deleteResult bool
      */
-    public function testUpdateValue($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP)
+    public function testUpdateValue($value, $saveResult, $valueResult, $deleteResult)
     {
         $this->stub
             ->setName('wp_kit_abstract_option')
             ->set($value);
 
-        // Successful saved.
-        $this->assertSame($expectedResultOfSavingOrDeletion, $this->stub->flush());
+        $this->assertSame($saveResult, $this->stub->flush());
 
-        // Retrieve value back.
-        $this->assertSame($expectedValueFromWP, $this->stub->get());
+        $this->assertSame($valueResult, $this->stub->get());
 
-        // Local value deleted.
         $this->assertSame(null, $this->stub->getLocalValue());
     }
 
     public function casesUpdateValue()
     {
-        return new EverythingSet();
+        return new EverythingSet2();
     }
 
     /* The tests bellow for methods inherited from AbstractNode class */
@@ -244,11 +240,12 @@ class AbstractOptionTest extends \WP_UnitTestCase
      *
      * @dataProvider casesGet
      *
-     * @param $value                            mixed Any variable types.
-     * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
-     * @param $expectedValueFromWP              mixed Value after saving which will return WP
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool
+     * @param $valueResult mixed
+     * @param $deleteResult bool
      */
-    public function testGet($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP)
+    public function testGet($value, $saveResult, $valueResult, $deleteResult)
     {
         // Set name to prevent triggering exceptions.
         $this->stub->setName('wp_kit_abstract_option');
@@ -259,8 +256,6 @@ class AbstractOptionTest extends \WP_UnitTestCase
 
         // Reset local value.
         $this->stub->setLocalValue(null);
-
-        $this->stub->setName('wp_kit_abstract_option');
 
         // Check default value.
         $this->assertSame(null, $this->stub->get());
@@ -280,12 +275,12 @@ class AbstractOptionTest extends \WP_UnitTestCase
 
         // Check value from WordPress after saving.
         $this->stub->flush();
-        $this->assertSame($expectedValueFromWP, $this->stub->get());
+        $this->assertSame($valueResult, $this->stub->get());
     }
 
     public function casesGet()
     {
-        return new EverythingSet();
+        return new EverythingSet2();
     }
 
     /**
@@ -293,13 +288,13 @@ class AbstractOptionTest extends \WP_UnitTestCase
      *
      * @dataProvider casesSet
      *
-     * @param $value                            mixed Any variable types.
-     * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
-     * @param $expectedValueFromWP              mixed Value after saving which will return WP
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool
+     * @param $valueResult mixed
+     * @param $deleteResult bool
      */
-    public function testSet($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP)
+    public function testSet($value, $saveResult, $valueResult, $deleteResult)
     {
-        // Set name to prevent triggering exceptions.
         $this->stub->setName('wp_kit_abstract_option');
 
         $this->assertSame($this->stub, $this->stub->set($value));
@@ -309,7 +304,7 @@ class AbstractOptionTest extends \WP_UnitTestCase
 
     public function casesSet()
     {
-        return new EverythingSet();
+        return new EverythingSet2();
     }
 
     public function testName()
@@ -325,11 +320,12 @@ class AbstractOptionTest extends \WP_UnitTestCase
      *
      * @dataProvider casesLocalValue
      *
-     * @param $value                            mixed Any variable types.
-     * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
-     * @param $expectedValueFromWP              mixed Value after saving which will return WP
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool
+     * @param $valueResult mixed
+     * @param $deleteResult bool
      */
-    public function testLocalValue($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP)
+    public function testLocalValue($value, $saveResult, $valueResult, $deleteResult)
     {
         $this->assertNull($this->stub->getLocalValue());
         $this->assertSame($this->stub, $this->stub->setLocalValue($value));
@@ -338,7 +334,7 @@ class AbstractOptionTest extends \WP_UnitTestCase
 
     public function casesLocalValue()
     {
-        return new EverythingSet();
+        return new EverythingSet2();
     }
 
     /**
@@ -347,8 +343,11 @@ class AbstractOptionTest extends \WP_UnitTestCase
      * @dataProvider casesDefaultValue
      *
      * @param $value mixed Any variable types.
+     * @param $saveResult bool
+     * @param $valueResult mixed
+     * @param $deleteResult bool
      */
-    public function testDefaultValue($value)
+    public function testDefaultValue($value, $saveResult, $valueResult, $deleteResult)
     {
         $this->assertNull($this->stub->getDefaultValue());
         $this->assertSame($this->stub, $this->stub->setDefaultValue($value));
@@ -357,7 +356,7 @@ class AbstractOptionTest extends \WP_UnitTestCase
 
     public function casesDefaultValue()
     {
-        return new DifferentTypesSet();
+        return new EverythingSet2();
     }
 
     /**
@@ -366,8 +365,11 @@ class AbstractOptionTest extends \WP_UnitTestCase
      * @dataProvider casesDeleteLocalValue
      *
      * @param $value mixed Any variable types.
+     * @param $saveResult bool
+     * @param $valueResult mixed
+     * @param $deleteResult bool
      */
-    public function testDeleteLocalValue($value)
+    public function testDeleteLocalValue($value, $saveResult, $valueResult, $deleteResult)
     {
         $this->assertSame($this->stub, $this->stub->setLocalValue($value));
         $this->assertTrue($this->stub->deleteLocal());
@@ -376,7 +378,7 @@ class AbstractOptionTest extends \WP_UnitTestCase
 
     public function casesDeleteLocalValue()
     {
-        return new DifferentTypesSet();
+        return new EverythingSet2();
     }
 
     /**
@@ -437,7 +439,6 @@ class AbstractOptionTest extends \WP_UnitTestCase
         );
 
         $this->assertInstanceOf(ConstraintViolationList::class, $this->stub->validate());
-
 
         // Validate other type of value. Expected exception.
 

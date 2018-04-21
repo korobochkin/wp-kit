@@ -22,7 +22,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
             '2' => array(
                 true,
                 true,
-                true,
+                '1',
                 true,
             ),
             '3' => array(
@@ -164,15 +164,15 @@ class EverythingSet2 extends AbstractAssociativeDataSet
                 true,
             ),
             '23' => array(
-                $std = new \stdClass(),
+                new \stdClass(),
                 true,
-                $std,
+                new \stdClass(),
                 true,
             ),
             '24' => array(
-                $query = new \WP_Query(),
+                new \WP_Query(),
                 true,
-                $query,
+                new \WP_Query(),
                 true,
             ),
         );

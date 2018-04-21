@@ -87,28 +87,28 @@ class EverythingSet2 extends AbstractAssociativeDataSet
         );
 
         if (PHP_VERSION_ID >= 70000) {
-            $variants['9'] = array(
+            $variants['9 (PHP 7)'] = array(
                 1.2e3,
                 true,
                 '1.2e3',
                 true,
             );
 
-            $variants['9.2'] = array(
+            $variants['9.2 (PHP 7)'] = array(
                 -1.2e3,
                 true,
                 '-1.2e3',
                 true,
             );
         } else {
-            $variants['9'] = array(
+            $variants['9 (PHP lower than 7)'] = array(
                 1.2e3,
                 true,
                 '1200',
                 true,
             );
 
-            $variants['9.2'] = array(
+            $variants['9.2 (PHP lower than 7)'] = array(
                 -1.2e3,
                 true,
                 '-1200',
@@ -117,28 +117,28 @@ class EverythingSet2 extends AbstractAssociativeDataSet
         }
 
         if (PHP_VERSION_ID >= 70000) {
-            $variants['10'] = array(
+            $variants['10 (PHP 7)'] = array(
                 7E-10,
                 true,
                 '7E-10',
                 true,
             );
 
-            $variants['10.2'] = array(
+            $variants['10.2 (PHP 7)'] = array(
                 -7E-10,
                 true,
                 '-7E-10',
                 true,
             );
         } else {
-            $variants['10'] = array(
+            $variants['10 (PHP lower than 7)'] = array(
                 7E-10,
                 true,
                 '7.0E-10',
                 true,
             );
 
-            $variants['10.2'] = array(
+            $variants['10.2 (PHP lower than 7)'] = array(
                 -7E-10,
                 true,
                 '-7.0E-10',

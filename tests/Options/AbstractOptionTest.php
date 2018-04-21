@@ -4,6 +4,7 @@ namespace Korobochkin\WPKit\Tests\Options;
 use Korobochkin\WPKit\Options\AbstractOption;
 use Korobochkin\WPKit\Tests\DataSets\DifferentTypesSet;
 use Korobochkin\WPKit\Tests\DataSets\EverythingSet;
+use Korobochkin\WPKit\Tests\DataSets\EverythingSet2;
 use Korobochkin\WPKit\Tests\DataSets\ValidateSet;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints;
@@ -159,42 +160,48 @@ class AbstractOptionTest extends \WP_UnitTestCase
      *
      * @dataProvider casesFlush
      *
-     * @param $value                            mixed Any variable types.
-     * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
-     * @param $expectedValueFromWP              mixed Value after saving which will return WP
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool
+     * @param $valueResult mixed
+     * @param $deleteResult bool
      */
-    public function testFlush($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP)
+    public function testFlush($value, $saveResult, $valueResult, $deleteResult)
     {
         $this->stub->set($value);
 
+        // Catch \LogicException if name was not specified.
         if (PHP_VERSION_ID >= 70000) {
-            // PHP 7.
             $this->expectException(\LogicException::class);
             $this->stub->flush();
         } else {
-            // PHP 5.
             try {
                 $this->stub->flush();
             } catch (\Exception $exception) {
-                $this->assertTrue(is_a($exception, \LogicException::class));
+                $this->assertInstanceOf(\LogicException::class, $exception);
+            } finally {
+                $this->assertInstanceOf(\LogicException::class, $exception);
             }
+        }
+
+        if(null !== $value) {
+            $this->assertSame($value, $this->stub->get());
         }
 
         $this->stub->setName('wp_kit_abstract_option');
 
-        // Successful saved.
-        $this->assertSame($expectedResultOfSavingOrDeletion, $this->stub->flush());
-
-        // Retrieve value back.
-        $this->assertSame($expectedValueFromWP, $this->stub->get());
-
-        // Local value deleted.
-        $this->assertSame(null, $this->stub->getLocalValue());
+        $this->assertSame($saveResult, $this->stub->flush());
+        if(true === $saveResult) {
+            $this->assertSame($valueResult, $this->stub->getValueFromWordPress());
+            $this->assertSame(null, $this->stub->getLocalValue());
+        } else {
+            $this->assertSame(false, $this->stub->getValueFromWordPress());
+            $this->assertSame($value, $this->stub->getLocalValue());
+        }
     }
 
     public function casesFlush()
     {
-        return new EverythingSet();
+        return new EverythingSet2();
     }
 
     /**

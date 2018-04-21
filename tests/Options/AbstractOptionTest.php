@@ -183,14 +183,14 @@ class AbstractOptionTest extends \WP_UnitTestCase
             }
         }
 
-        if(null !== $value) {
+        if (null !== $value) {
             $this->assertSame($value, $this->stub->get());
         }
 
         $this->stub->setName('wp_kit_abstract_option');
 
         $this->assertSame($saveResult, $this->stub->flush());
-        if(true === $saveResult) {
+        if (true === $saveResult) {
             $this->assertSame($valueResult, $this->stub->getValueFromWordPress());
             $this->assertSame(null, $this->stub->getLocalValue());
         } else {

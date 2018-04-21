@@ -14,7 +14,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
     {
         $variants = array(
             '1' => array(
-                NULL, // Value
+                null, // Value
                 true, // Result of saving in WordPress
                 '',   // What WordPress returns after saving
                 true, // What WordPress returns after deleting
@@ -52,7 +52,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
             '7' => array(
                 PHP_INT_MAX,
                 true,
-                (string)PHP_INT_MAX,
+                (string) PHP_INT_MAX,
                 true,
             ),
             '8' => array(
@@ -181,8 +181,8 @@ class EverythingSet2 extends AbstractAssociativeDataSet
         if (PHP_VERSION_ID >= 70000) {
             $variants['7.2'] = array(
                 PHP_INT_MIN,
-                true, (string)
-                PHP_INT_MIN,
+                true,
+                (string) PHP_INT_MIN,
                 true,
             );
         }

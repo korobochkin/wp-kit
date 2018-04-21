@@ -86,12 +86,7 @@ class NumericPostMetaTest extends \WP_UnitTestCase
     public function testTypesWithoutSaving($value, $expected)
     {
         $this->stub->set($value);
-
-        if (class_exists($expected)) {
-            $this->assertSame($value, $this->stub->get());
-        } else {
-            $this->assertSame($expected, $this->stub->get());
-        }
+        $this->assertSame($value, $this->stub->get());
     }
 
     public function casesTypesWithoutSaving()

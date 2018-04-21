@@ -86,7 +86,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
             true,
         );
 
-        if (PHP_VERSION_ID >= 70000) {
+        /*if (PHP_VERSION_ID >= 70000) {
             $variants['9 (PHP 7)'] = array(
                 1.2e3,
                 true,
@@ -100,7 +100,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
                 '-1.2e3',
                 true,
             );
-        } else {
+        } else {*/
             $variants['9 (PHP lower than 7)'] = array(
                 1.2e3,
                 true,
@@ -114,10 +114,10 @@ class EverythingSet2 extends AbstractAssociativeDataSet
                 '-1200',
                 true,
             );
-        }
+        //}
 
-        if (PHP_VERSION_ID >= 70000) {
-            $variants['10 (PHP 7)'] = array(
+        //if (PHP_VERSION_ID >= 70000) {
+            /*$variants['10 (PHP 7)'] = array(
                 7E-10,
                 true,
                 '7E-10',
@@ -129,8 +129,8 @@ class EverythingSet2 extends AbstractAssociativeDataSet
                 true,
                 '-7E-10',
                 true,
-            );
-        } else {
+            );*/
+        //} else {
             $variants['10 (PHP lower than 7)'] = array(
                 7E-10,
                 true,
@@ -144,7 +144,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
                 '-7.0E-10',
                 true,
             );
-        }
+        //}
 
         $variants['11'] = array(
             '1',

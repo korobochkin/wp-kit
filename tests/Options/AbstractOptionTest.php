@@ -78,7 +78,6 @@ class AbstractOptionTest extends \WP_UnitTestCase
             array(0, false),
             array(-1234, true),
             array(PHP_INT_MAX, true),
-            //array(PHP_INT_MIN, true),
 
             array(1.234, true),
             array(1.2e3, true),
@@ -107,7 +106,6 @@ class AbstractOptionTest extends \WP_UnitTestCase
             array(null, false),
         );
 
-        // Only for PHP 7
         if (PHP_VERSION_ID >= 70000) {
             $values[] = array(PHP_INT_MIN, true);
         }
@@ -120,39 +118,37 @@ class AbstractOptionTest extends \WP_UnitTestCase
      *
      * @dataProvider casesDeleteFromWP
      *
-     * @param $value                            mixed Any variable types.
-     * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
-     * @param $expectedValueFromWP              mixed Value after saving which will return WP
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool
+     * @param $valueResult mixed
+     * @param $deleteResult bool
      */
-    public function testDeleteFromWP($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP)
+    public function testDeleteFromWP($value, $saveResult, $valueResult, $deleteResult)
     {
-        // Without name throwing an error.
         if (PHP_VERSION_ID >= 70000) {
-            // PHP 7.
             $this->expectException(\LogicException::class);
             $this->stub->deleteFromWP();
         } else {
-            // PHP 5.
             try {
                 $this->stub->deleteFromWP();
             } catch (\Exception $exception) {
-                $this->assertTrue(is_a($exception, \LogicException::class));
+                $this->assertInstanceOf(\LogicException::class, $exception);
+            } finally {
+                $this->assertInstanceOf(\LogicException::class, $exception);
             }
         }
 
-        // Load value into WordPress.
         $this->stub
             ->setName('wp_kit_abstract_option')
             ->updateValue($value);
 
-        // Check that successful remove from DB.
-        $this->assertSame($expectedResultOfSavingOrDeletion, $this->stub->deleteFromWP());
+        $this->assertSame($deleteResult, $this->stub->deleteFromWP());
         $this->assertFalse($this->stub->getValueFromWordPress());
     }
 
     public function casesDeleteFromWP()
     {
-        return new EverythingSet();
+        return new EverythingSet2();
     }
 
     /**

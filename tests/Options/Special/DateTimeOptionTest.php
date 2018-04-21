@@ -38,7 +38,7 @@ class DateTimeOptionTest extends \WP_UnitTestCase
 
         if (is_a($expected, \DateTime::class)) {
             $this->stub->flush();
-            $this->assertSame($expected, $this->stub->get());
+            $this->assertEquals($expected, $this->stub->get());
         } else {
             if (PHP_VERSION_ID >= 70000) {
                 $this->expectException($expected);
@@ -47,7 +47,9 @@ class DateTimeOptionTest extends \WP_UnitTestCase
                 try {
                     $this->stub->flush();
                 } catch (\Exception $exception) {
-                    $this->assertTrue(is_a($exception, $expected));
+                    $this->assertInstanceOf($expected, $exception);
+                } finally {
+                    $this->assertInstanceOf($expected, $exception);
                 }
             }
         }
@@ -61,6 +63,6 @@ class DateTimeOptionTest extends \WP_UnitTestCase
     public function testNull()
     {
         $this->stub->set(null);
-        $this->assertSame('', $this->stub->get());
+        $this->assertNull($this->stub->get());
     }
 }

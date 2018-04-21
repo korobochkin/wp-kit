@@ -71,7 +71,12 @@ class NumericOptionTest extends \WP_UnitTestCase
     public function testTypesWithoutSaving($value, $expected)
     {
         $this->stub->set($value);
-        $this->assertSame($value, $this->stub->get());
+        if (is_null($value)) {
+            // Default value (null is not caught via $this->hasLocalValue())
+            $this->assertSame(0.0, $this->stub->get());
+        } else {
+            $this->assertSame($value, $this->stub->get());
+        }
     }
 
     public function casesTypesWithoutSaving()

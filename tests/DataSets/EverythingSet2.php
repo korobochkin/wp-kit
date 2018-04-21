@@ -10,16 +10,32 @@ namespace Korobochkin\WPKit\Tests\DataSets;
  */
 class EverythingSet2 extends AbstractAssociativeDataSet
 {
-    public function __construct()
+    /**
+     * EverythingSet2 constructor.
+     * @param bool $meta True if Data component is meta-a-like (post or term meta).
+     */
+    public function __construct($meta = false)
     {
+        /**
+         * If $meta = true then null values actually not saved in WordPress.
+         */
         $variants = array();
 
-        $variants['1'] = array(
-            null, // Value
-            true, // Result of saving in WordPress (update_option())
-            '',   // What WordPress returns after saving (get_option())
-            true, // What WordPress returns after deleting (delete_option())
-        );
+        if ($meta) {
+            $variants['1'] = array(
+                null, // Value
+                true, // Result of saving in WordPress (update_option())
+                '',   // What WordPress returns after saving (get_option())
+                true, // What WordPress returns after deleting (delete_option())
+            );
+        } else {
+            $variants['1'] = array(
+                null,
+                true,
+                null,
+                true,
+            );
+        }
 
         $variants['2'] = array(
             true,

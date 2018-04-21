@@ -100,7 +100,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
     public function casesDeleteFromWP()
     {
-        return new EverythingSet2();
+        return new EverythingSet2(true);
     }
 
     /**
@@ -152,7 +152,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
     public function casesFlush()
     {
-        return new EverythingSet2();
+        return new EverythingSet2(true);
     }
 
     /**
@@ -193,7 +193,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
     public function casesUpdateValue()
     {
-        return new EverythingSet2();
+        return new EverythingSet2(true);
     }
 
     /* The tests bellow for methods inherited from AbstractNode class */
@@ -255,7 +255,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
     public function casesGet()
     {
-        return new EverythingSet2();
+        return new EverythingSet2(true);
     }
 
     /**
@@ -280,7 +280,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
     public function casesSet()
     {
-        return new EverythingSet2();
+        return new EverythingSet2(true);
     }
 
     public function testName()
@@ -310,7 +310,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
     public function casesLocalValue()
     {
-        return new EverythingSet2();
+        return new EverythingSet2(true);
     }
 
     /**
@@ -332,7 +332,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
     public function casesDefaultValue()
     {
-        return new EverythingSet2();
+        return new EverythingSet2(true);
     }
 
     /**
@@ -354,7 +354,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
     public function casesDeleteLocalValue()
     {
-        return new EverythingSet2();
+        return new EverythingSet2(true);
     }
 
     /**

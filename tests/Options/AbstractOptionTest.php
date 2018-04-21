@@ -223,10 +223,6 @@ class AbstractOptionTest extends \WP_UnitTestCase
         $this->assertSame($saveResult, $this->stub->updateValue($value));
         wp_cache_flush();
 
-        if (null !== $value) {
-            $this->assertSame($value, $this->stub->get());
-        }
-
         if (true === $saveResult) {
             if (is_object($value)) {
                 $this->assertEquals($valueResult, $this->stub->getValueFromWordPress());

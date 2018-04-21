@@ -117,9 +117,9 @@ class AbstractOptionTest extends \WP_UnitTestCase
      * @dataProvider casesDeleteFromWP
      *
      * @param $value mixed Any variable types.
-     * @param $saveResult bool
-     * @param $valueResult mixed
-     * @param $deleteResult bool
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
     public function testDeleteFromWP($value, $saveResult, $valueResult, $deleteResult)
     {
@@ -155,9 +155,9 @@ class AbstractOptionTest extends \WP_UnitTestCase
      * @dataProvider casesFlush
      *
      * @param $value mixed Any variable types.
-     * @param $saveResult bool
-     * @param $valueResult mixed
-     * @param $deleteResult bool
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
     public function testFlush($value, $saveResult, $valueResult, $deleteResult)
     {
@@ -211,9 +211,9 @@ class AbstractOptionTest extends \WP_UnitTestCase
      * @dataProvider casesUpdateValue
      *
      * @param $value mixed Any variable types.
-     * @param $saveResult bool
-     * @param $valueResult mixed
-     * @param $deleteResult bool
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
     public function testUpdateValue($value, $saveResult, $valueResult, $deleteResult)
     {
@@ -249,9 +249,9 @@ class AbstractOptionTest extends \WP_UnitTestCase
      * @dataProvider casesGet
      *
      * @param $value mixed Any variable types.
-     * @param $saveResult bool
-     * @param $valueResult mixed
-     * @param $deleteResult bool
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
     public function testGet($value, $saveResult, $valueResult, $deleteResult)
     {
@@ -307,9 +307,9 @@ class AbstractOptionTest extends \WP_UnitTestCase
      * @dataProvider casesSet
      *
      * @param $value mixed Any variable types.
-     * @param $saveResult bool
-     * @param $valueResult mixed
-     * @param $deleteResult bool
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
     public function testSet($value, $saveResult, $valueResult, $deleteResult)
     {
@@ -339,9 +339,9 @@ class AbstractOptionTest extends \WP_UnitTestCase
      * @dataProvider casesLocalValue
      *
      * @param $value mixed Any variable types.
-     * @param $saveResult bool
-     * @param $valueResult mixed
-     * @param $deleteResult bool
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
     public function testLocalValue($value, $saveResult, $valueResult, $deleteResult)
     {
@@ -361,9 +361,9 @@ class AbstractOptionTest extends \WP_UnitTestCase
      * @dataProvider casesDefaultValue
      *
      * @param $value mixed Any variable types.
-     * @param $saveResult bool
-     * @param $valueResult mixed
-     * @param $deleteResult bool
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
     public function testDefaultValue($value, $saveResult, $valueResult, $deleteResult)
     {
@@ -383,9 +383,9 @@ class AbstractOptionTest extends \WP_UnitTestCase
      * @dataProvider casesDeleteLocalValue
      *
      * @param $value mixed Any variable types.
-     * @param $saveResult bool
-     * @param $valueResult mixed
-     * @param $deleteResult bool
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
     public function testDeleteLocalValue($value, $saveResult, $valueResult, $deleteResult)
     {

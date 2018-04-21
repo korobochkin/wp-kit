@@ -171,7 +171,11 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
             ->setName('wp_kit_abstract_post_meta')
             ->setPostId($this->postId);
 
-        $this->assertSame($saveResult, $this->stub->updateValue($value));
+        $updateValueCallReturn = $this->stub->updateValue($value);
+        if (is_int($updateValueCallReturn)) {
+            $updateValueCallReturn = true;
+        }
+        $this->assertSame($saveResult, $updateValueCallReturn);
         wp_cache_flush();
 
         if (true === $saveResult) {

@@ -76,7 +76,7 @@ abstract class AbstractTransient extends AbstractNode implements TransientInterf
      */
     public function flush()
     {
-        if (isset($this->localValue)) {
+        //if (isset($this->localValue)) {
             if ($this->getDataTransformer()) {
                 $raw = $this->getDataTransformer()->transform($this->localValue);
             } else {
@@ -98,9 +98,9 @@ abstract class AbstractTransient extends AbstractNode implements TransientInterf
             }
 
             return $result;
-        }
+        //}
 
-        return true;
+        //return true;
     }
 
     /**

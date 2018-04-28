@@ -32,7 +32,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
             $variants['1'] = array(
                 null, // Value
                 true, // Result of saving in WordPress (update_option())
-                false,   // What WordPress returns after saving (get_option())
+                '',   // What WordPress returns after saving (get_option())
                 true, // What WordPress returns after deleting (delete_option())
             );
         }

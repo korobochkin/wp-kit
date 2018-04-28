@@ -175,7 +175,7 @@ class AbstractTransientTest extends \WP_UnitTestCase
 
     public function casesUpdateValue()
     {
-        return new EverythingSet2();
+        return new EverythingSet2(false, true);
     }
 
     /**

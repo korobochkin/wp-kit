@@ -12,9 +12,14 @@ class EverythingSet2 extends AbstractAssociativeDataSet
 {
     /**
      * EverythingSet2 constructor.
+     *
+     * Transients can be stored in object cache (Radis-Memcached) and this becomes the reason
+     * of different result of set_transient() call (returns true instead of false).
+     *
      * @param bool $meta True if Data component is meta-a-like (post or term meta).
+     * @param bool $transient True if set for Transients.
      */
-    public function __construct($meta = false)
+    public function __construct($meta = false, $transient = false)
     {
         /**
          * If $meta = true then null values actually not saved in WordPress.
@@ -44,12 +49,21 @@ class EverythingSet2 extends AbstractAssociativeDataSet
             true,
         );
 
-        $variants['3'] = array(
-            false,
-            false,
-            false,
-            false,
-        );
+        if($transient && wp_using_ext_object_cache()) {
+            $variants['3'] = array(
+                false,
+                true, // If object cache enabled then false values will be saved.
+                false,
+                false,
+            );
+        } else {
+            $variants['3'] = array(
+                false,
+                false,
+                false,
+                false,
+            );
+        }
 
         $variants['4'] = array(
             1234,

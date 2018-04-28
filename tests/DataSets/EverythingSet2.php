@@ -53,7 +53,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
             $variants['3'] = array(
                 false,
                 true, // If object cache enabled then false values will be saved.
-                false,
+                '',
                 false,
             );
         } else {

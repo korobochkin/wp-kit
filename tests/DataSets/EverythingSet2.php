@@ -1,5 +1,6 @@
 <?php
 namespace Korobochkin\WPKit\Tests\DataSets;
+
 use Korobochkin\WPKit\Utils\Compatibility;
 
 /**

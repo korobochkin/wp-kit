@@ -28,6 +28,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
          */
         $variants = array();
 
+        // TODO: try to decrease WP version
         if ($meta && Compatibility::checkWordPress('4.9')) {
             $variants['1'] = array(
                 null,

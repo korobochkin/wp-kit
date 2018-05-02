@@ -1,5 +1,8 @@
 # Changelog
 
+## DEV
+* Replaced `assertEquals` to `assertSame` in Php Unit tests ([#31](https://github.com/korobochkin/wp-kit/issues/31)).
+
 ## 0.9.0 - March 4, 2018
 
 * Added notices ([#24](https://github.com/korobochkin/wp-kit/issues/24)).

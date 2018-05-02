@@ -21,9 +21,9 @@ class NumericTransformationSet extends AbstractDataSet
             array(true,        TransformationFailedException::class),
             array(false,       TransformationFailedException::class),
 
-            array(1234,        1234.0),
-            array(0,           0.0),
-            array(-1234,       -1234.0),
+            array(1234,        (float) 1234),
+            array(0,           (float) 0),
+            array(-1234,       (float) -1234),
             //array(PHP_INT_MAX, TransformationFailedException::class), // this case throwing error but PHP 7 not catching it
             //array(PHP_INT_MIN, true),
 
@@ -34,12 +34,12 @@ class NumericTransformationSet extends AbstractDataSet
             array(-1.2e3,      -1.2e3),
             array(-7E-10,      -7E-10),
 
-            array('1',         1.0),
+            array('1',         (float) 1),
             array('VALUE',     TransformationFailedException::class),
             array('true',      TransformationFailedException::class),
             array('false',     TransformationFailedException::class),
             array('',          TransformationFailedException::class),
-            array('0',         0.0),
+            array('0',         (float) 0),
 
             array(array(),     TransformationFailedException::class),
             array(array(1),    TransformationFailedException::class),
@@ -51,7 +51,7 @@ class NumericTransformationSet extends AbstractDataSet
             array(new \stdClass(), TransformationFailedException::class),
             array(new \WP_Query(), TransformationFailedException::class),
 
-            array(NULL,        0.0),
+            array(null,        null),
             // @codingStandardsIgnoreEnd
         );
 

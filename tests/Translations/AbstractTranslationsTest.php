@@ -27,8 +27,8 @@ class AbstractTranslationsTest extends \WP_UnitTestCase
 
     public function testConstructor()
     {
-        $this->assertEquals('test-textdomain', $this->stub->getTextDomain());
-        $this->assertEquals(
+        $this->assertSame('test-textdomain', $this->stub->getTextDomain());
+        $this->assertSame(
             '/var/www/www-test/wp-content/plugins/test-plugin/translations/',
             $this->stub->getTranslationsPath()
         );
@@ -38,15 +38,15 @@ class AbstractTranslationsTest extends \WP_UnitTestCase
     {
         $value = 'test-wp-kit-text-domain';
 
-        $this->assertEquals($this->stub, $this->stub->setTextDomain($value));
-        $this->assertEquals($value, $this->stub->getTextDomain());
+        $this->assertSame($this->stub, $this->stub->setTextDomain($value));
+        $this->assertSame($value, $this->stub->getTextDomain());
     }
 
     public function testGetterAndSetterTranslationsPath()
     {
         $value = '/var/www/wp-kit/wp-content/plugins/test-plugin/translations/';
 
-        $this->assertEquals($this->stub, $this->stub->setTranslationsPath($value));
-        $this->assertEquals($value, $this->stub->getTranslationsPath());
+        $this->assertSame($this->stub, $this->stub->setTranslationsPath($value));
+        $this->assertSame($value, $this->stub->getTranslationsPath());
     }
 }

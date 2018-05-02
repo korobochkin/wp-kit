@@ -25,12 +25,12 @@ class AbstractPluginTest extends \WP_UnitTestCase
 
     public function testGetFile()
     {
-        $this->assertEquals(__FILE__, $this->stub->getFile());
+        $this->assertSame(__FILE__, $this->stub->getFile());
     }
 
     public function testSetFile()
     {
-        $this->assertEquals($this->stub, $this->stub->setFile(__FILE__));
+        $this->assertSame($this->stub, $this->stub->setFile(__FILE__));
     }
 
     public function testGetContainer()
@@ -43,18 +43,18 @@ class AbstractPluginTest extends \WP_UnitTestCase
     public function testSetContainer()
     {
         $container = new ContainerBuilder();
-        $this->assertEquals($this->stub, $this->stub->setContainer($container));
-        $this->assertEquals($container, $this->stub->getContainer());
+        $this->assertSame($this->stub, $this->stub->setContainer($container));
+        $this->assertSame($container, $this->stub->getContainer());
     }
 
     public function testGetDir()
     {
-        $this->assertEquals(plugin_dir_path(__FILE__), $this->stub->getDir());
+        $this->assertSame(plugin_dir_path(__FILE__), $this->stub->getDir());
     }
 
     public function testGetUrl()
     {
-        $this->assertEquals(plugin_dir_url(__FILE__), $this->stub->getUrl());
+        $this->assertSame(plugin_dir_url(__FILE__), $this->stub->getUrl());
     }
 
     /**
@@ -66,7 +66,7 @@ class AbstractPluginTest extends \WP_UnitTestCase
     {
         $this->stub->setFile(path_join(WP_PLUGIN_DIR, 'hello.php'));
 
-        $this->assertEquals($plugin, $this->stub->getBaseName());
+        $this->assertSame($plugin, $this->stub->getBaseName());
     }
 
     public function casesGetBasename()

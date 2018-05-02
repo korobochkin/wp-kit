@@ -28,7 +28,7 @@ class MenuPageTest extends \WP_UnitTestCase
 
     public function testRegister()
     {
-        $this->assertEquals($this->stub, $this->stub->register());
+        $this->assertSame($this->stub, $this->stub->register());
     }
 
     /**
@@ -36,7 +36,7 @@ class MenuPageTest extends \WP_UnitTestCase
      */
     public function testUnRegister()
     {
-        $this->assertEquals($this->stub, $this->stub->unRegister());
+        $this->assertSame($this->stub, $this->stub->unRegister());
 
         try {
             $this->stub->unRegister();
@@ -47,7 +47,7 @@ class MenuPageTest extends \WP_UnitTestCase
 
     public function testGetURL()
     {
-        $this->assertEquals(
+        $this->assertSame(
             'http://example.org/wp-admin/options-general.php?page=test-menu-slug',
             $this->stub->getURL()
         );
@@ -55,13 +55,13 @@ class MenuPageTest extends \WP_UnitTestCase
 
     public function testGetterAndSetterIcon()
     {
-        $this->assertEquals('dashicons-admin-site', $this->stub->getIcon());
-        $this->assertEquals($this->stub, $this->stub->setIcon('dashicons-admin-site'));
+        $this->assertSame('dashicons-admin-site', $this->stub->getIcon());
+        $this->assertSame($this->stub, $this->stub->setIcon('dashicons-admin-site'));
     }
 
     public function testGetterAndSetterPosition()
     {
-        $this->assertEquals(100, $this->stub->getPosition());
-        $this->assertEquals($this->stub, $this->stub->setPosition(100));
+        $this->assertSame(100, $this->stub->getPosition());
+        $this->assertSame($this->stub, $this->stub->setPosition(100));
     }
 }

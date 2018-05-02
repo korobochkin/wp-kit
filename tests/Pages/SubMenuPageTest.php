@@ -28,7 +28,7 @@ class SubMenuPageTest extends \WP_UnitTestCase
 
     public function testRegister()
     {
-        $this->assertEquals($this->stub, $this->stub->register());
+        $this->assertSame($this->stub, $this->stub->register());
     }
 
     /**
@@ -38,7 +38,7 @@ class SubMenuPageTest extends \WP_UnitTestCase
     {
         $this->markTestSkipped();
         // Can't pass this test right now.
-        $this->assertEquals($this->stub, $this->stub->unRegister());
+        $this->assertSame($this->stub, $this->stub->unRegister());
 
         try {
             $this->stub->unRegister();
@@ -49,7 +49,7 @@ class SubMenuPageTest extends \WP_UnitTestCase
 
     public function testGetURL()
     {
-        $this->assertEquals(
+        $this->assertSame(
             'http://example.org/wp-admin/admin.php?page=test-menu-slug',
             $this->stub->getURL()
         );
@@ -57,8 +57,8 @@ class SubMenuPageTest extends \WP_UnitTestCase
 
     public function testGetterAndSetterParentSlug()
     {
-        $this->assertEquals('tools.php', $this->stub->getParentSlug());
-        $this->assertEquals($this->stub, $this->stub->setParentSlug('tools.php'));
+        $this->assertSame('tools.php', $this->stub->getParentSlug());
+        $this->assertSame($this->stub, $this->stub->setParentSlug('tools.php'));
     }
 
     public function testGetterAndSetterParentPage()
@@ -66,7 +66,7 @@ class SubMenuPageTest extends \WP_UnitTestCase
         $value = new MenuPage();
 
         $this->assertNull($this->stub->getParentPage());
-        $this->assertEquals($this->stub, $this->stub->setParentPage($value));
-        $this->assertEquals($value, $this->stub->getParentPage());
+        $this->assertSame($this->stub, $this->stub->setParentPage($value));
+        $this->assertSame($value, $this->stub->getParentPage());
     }
 }

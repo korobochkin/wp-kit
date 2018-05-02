@@ -15,26 +15,26 @@ class MetaBoxStackTest extends \WP_UnitTestCase
     {
         $stub = new MetaBoxStack();
 
-        $this->assertEquals(array(), $stub->getMetaBoxes());
+        $this->assertSame(array(), $stub->getMetaBoxes());
 
         $value = array(
             new MetaBox(),
             new MetaBox(),
         );
 
-        $this->assertEquals($stub, $stub->setMetaBoxes($value));
-        $this->assertEquals($value, $stub->getMetaBoxes());
+        $this->assertSame($stub, $stub->setMetaBoxes($value));
+        $this->assertSame($value, $stub->getMetaBoxes());
 
         $value[] = new MetaBox();
 
-        $this->assertEquals($stub, $stub->addMetaBox($value[2]));
-        $this->assertEquals($value, $stub->getMetaBoxes());
+        $this->assertSame($stub, $stub->addMetaBox($value[2]));
+        $this->assertSame($value, $stub->getMetaBoxes());
     }
 
     public function testInitialize()
     {
         $stub = new MetaBoxStack();
-        $this->assertEquals($stub, $stub->initialize());
+        $this->assertSame($stub, $stub->initialize());
     }
 
     public function testRegister()
@@ -59,7 +59,7 @@ class MetaBoxStackTest extends \WP_UnitTestCase
 
         $stub->addMetaBox($metaBox);
 
-        $this->assertEquals($stub, $stub->register());
+        $this->assertSame($stub, $stub->register());
     }
 
     public function testSetContainer()
@@ -67,7 +67,7 @@ class MetaBoxStackTest extends \WP_UnitTestCase
         $stub = new MetaBoxStack();
 
         $container = new ContainerBuilder();
-        $this->assertEquals($stub, $stub->setContainer($container));
+        $this->assertSame($stub, $stub->setContainer($container));
     }
 
     public function testGet()

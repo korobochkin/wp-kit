@@ -29,13 +29,13 @@ class NoticeTwigViewTest extends \WP_UnitTestCase
         ob_start();
         $stub->setTemplate('title');
         $stub->render($notice);
-        $this->assertEquals('My First Car', ob_get_contents());
+        $this->assertSame('My First Car', ob_get_contents());
         ob_end_clean();
 
         ob_start();
         $stub->setTemplate('min');
         $stub->render($notice);
-        $this->assertEquals('1', ob_get_contents());
+        $this->assertSame('1', ob_get_contents());
         ob_end_clean();
     }
 
@@ -46,12 +46,12 @@ class NoticeTwigViewTest extends \WP_UnitTestCase
          */
         $stub = new NoticeTwigView();
 
-        $this->assertEquals('', $stub->getTemplate());
+        $this->assertSame('', $stub->getTemplate());
 
         $value = 'test-template.twig.html';
 
-        $this->assertEquals($stub, $stub->setTemplate($value));
-        $this->assertEquals($value, $stub->getTemplate());
+        $this->assertSame($stub, $stub->setTemplate($value));
+        $this->assertSame($value, $stub->getTemplate());
     }
 
     public function testGetterAndSetterContext()
@@ -61,14 +61,14 @@ class NoticeTwigViewTest extends \WP_UnitTestCase
          */
         $stub = new NoticeTwigView();
 
-        $this->assertEquals(array(), $stub->getContext());
+        $this->assertSame(array(), $stub->getContext());
 
         $value = array(
             'some_key' => 'some value',
         );
 
-        $this->assertEquals($stub, $stub->setContext($value));
-        $this->assertEquals($value, $stub->getContext());
+        $this->assertSame($stub, $stub->setContext($value));
+        $this->assertSame($value, $stub->getContext());
     }
 
     public function testGetterAndSetterTwigEnvironment()
@@ -86,7 +86,7 @@ class NoticeTwigViewTest extends \WP_UnitTestCase
             ))
         );
 
-        $this->assertEquals($stub, $stub->setTwigEnvironment(($value)));
-        $this->assertEquals($value, $stub->getTwigEnvironment());
+        $this->assertSame($stub, $stub->setTwigEnvironment(($value)));
+        $this->assertSame($value, $stub->getTwigEnvironment());
     }
 }

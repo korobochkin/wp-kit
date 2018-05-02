@@ -27,12 +27,12 @@ class TimestampTraitTest extends \WP_UnitTestCase
     {
         $defaultValue = 1;
 
-        $this->assertEquals($defaultValue, $this->stub->getTimestamp());
+        $this->assertSame($defaultValue, $this->stub->getTimestamp());
 
         $value = time();
 
-        $this->assertEquals($this->stub, $this->stub->setTimestamp($value));
+        $this->assertSame($this->stub, $this->stub->setTimestamp($value));
 
-        $this->assertEquals($value, $this->stub->getTimestamp());
+        $this->assertSame($value, $this->stub->getTimestamp());
     }
 }

@@ -28,34 +28,34 @@ class StackTest extends \WP_UnitTestCase
 
     public function testGetterAndSetterActions()
     {
-        $this->assertEquals(array(), $this->stub->getActions());
-        $this->assertEquals($this->stub, $this->stub->setActions(array()));
+        $this->assertSame(array(), $this->stub->getActions());
+        $this->assertSame($this->stub, $this->stub->setActions(array()));
     }
 
     public function testGetterAndSetterActionName()
     {
-        $this->assertEquals('wp_kit_test_action_name', $this->stub->getActionName());
-        $this->assertEquals($this->stub, $this->stub->setActionName('wp_kit_test_action_name'));
+        $this->assertSame('wp_kit_test_action_name', $this->stub->getActionName());
+        $this->assertSame($this->stub, $this->stub->setActionName('wp_kit_test_action_name'));
     }
 
     public function testGetterAndSetterRequest()
     {
-        $this->assertEquals(null, $this->stub->getRequest());
+        $this->assertSame(null, $this->stub->getRequest());
 
         $value = new Request();
 
-        $this->assertEquals($this->stub, $this->stub->setRequest($value));
-        $this->assertEquals($value, $this->stub->getRequest());
+        $this->assertSame($this->stub, $this->stub->setRequest($value));
+        $this->assertSame($value, $this->stub->getRequest());
     }
 
     public function testGetterAndSetterResponse()
     {
-        $this->assertEquals(null, $this->stub->getResponse());
+        $this->assertSame(null, $this->stub->getResponse());
 
         $value = new Response();
 
-        $this->assertEquals($this->stub, $this->stub->setResponse($value));
-        $this->assertEquals($value, $this->stub->getResponse());
+        $this->assertSame($this->stub, $this->stub->setResponse($value));
+        $this->assertSame($value, $this->stub->getResponse());
     }
 
     public function testRegister()
@@ -107,7 +107,7 @@ class StackTest extends \WP_UnitTestCase
 
     public function testSetContainer()
     {
-        $this->assertEquals($this->stub, $this->stub->setContainer(new ContainerBuilder()));
+        $this->assertSame($this->stub, $this->stub->setContainer(new ContainerBuilder()));
     }
 
     public function get()

@@ -27,8 +27,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
          * If $meta = true then null values actually not saved in WordPress.
          */
         $variants = array();
-
-        // TODO: try to decrease WP version
+        
         if ($meta && Compatibility::checkWordPress('4.9')) {
             $variants['1'] = array(
                 null,
@@ -53,13 +52,13 @@ class EverythingSet2 extends AbstractAssociativeDataSet
         );
 
         if ($transient) {
+            if (PHP_VERSION_ID >= 70000) {
                 $variants['3'] = array(
                     false,
                     true, // If object cache enabled then false values will be saved.
                     '',
                     false,
                 );
-            /*if (PHP_VERSION_ID >= 70000) {
             } else {
                 $variants['3'] = array(
                     false,
@@ -67,7 +66,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
                     '',
                     true, // In old PHP deleting the result of non exists transients unexpected returns "true".
                 );
-            }*/
+            }
         } else {
             $variants['3'] = array(
                 false,

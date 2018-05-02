@@ -83,7 +83,7 @@ class AbstractTransientTest extends \WP_UnitTestCase
 
     public function casesDeleteFromWP()
     {
-        return new EverythingSet2();
+        return new EverythingSet2(false, true);
     }
 
     /**
@@ -139,7 +139,7 @@ class AbstractTransientTest extends \WP_UnitTestCase
 
     public function casesFlush()
     {
-        return new EverythingSet2();
+        return new EverythingSet2(false, true);
     }
 
     /**
@@ -257,7 +257,7 @@ class AbstractTransientTest extends \WP_UnitTestCase
 
     public function casesSet()
     {
-        return new EverythingSet2();
+        return new EverythingSet2(false, true);
     }
 
     public function testName()
@@ -287,7 +287,7 @@ class AbstractTransientTest extends \WP_UnitTestCase
 
     public function casesLocalValue()
     {
-        return new EverythingSet2();
+        return new EverythingSet2(false, true);
     }
 
     /**
@@ -309,7 +309,7 @@ class AbstractTransientTest extends \WP_UnitTestCase
 
     public function casesDefaultValue()
     {
-        return new EverythingSet2();
+        return new EverythingSet2(false, true);
     }
 
     /**
@@ -331,6 +331,6 @@ class AbstractTransientTest extends \WP_UnitTestCase
 
     public function casesDeleteLocalValue()
     {
-        return new EverythingSet2();
+        return new EverythingSet2(false, true);
     }
 }

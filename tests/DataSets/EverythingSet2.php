@@ -53,13 +53,13 @@ class EverythingSet2 extends AbstractAssociativeDataSet
         );
 
         if ($transient) {
-            if (PHP_VERSION_ID >= 70000) {
                 $variants['3'] = array(
                     false,
                     true, // If object cache enabled then false values will be saved.
                     '',
                     false,
                 );
+            /*if (PHP_VERSION_ID >= 70000) {
             } else {
                 $variants['3'] = array(
                     false,
@@ -67,7 +67,7 @@ class EverythingSet2 extends AbstractAssociativeDataSet
                     '',
                     true, // In old PHP deleting the result of non exists transients unexpected returns "true".
                 );
-            }
+            }*/
         } else {
             $variants['3'] = array(
                 false,

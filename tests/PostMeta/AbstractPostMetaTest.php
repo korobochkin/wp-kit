@@ -136,6 +136,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
         $this->stub->setName('wp_kit_abstract_post_meta');
         $this->stub->setPostId($this->postId);
+        $this->stub->flush();
 
         if (true === $saveResult) {
             if (is_object($value)) {

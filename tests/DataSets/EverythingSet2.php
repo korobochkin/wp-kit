@@ -27,21 +27,21 @@ class EverythingSet2 extends AbstractAssociativeDataSet
          */
         $variants = array();
 
-        /*if ($meta && Compatibility::checkWordPress()) {
+        if ($meta && Compatibility::checkWordPress('4.9')) {
             $variants['1'] = array(
                 null,
                 true,
                 null,
                 true,
             );
-        } else {*/
+        } else {
             $variants['1'] = array(
                 null, // Value
                 true, // Result of saving in WordPress (update_option())
                 '',   // What WordPress returns after saving (get_option())
                 true, // What WordPress returns after deleting (delete_option())
             );
-        //}
+        }
 
         $variants['2'] = array(
             true,

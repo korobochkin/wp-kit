@@ -141,6 +141,7 @@ class AbstractTermMetaTest extends \WP_UnitTestCase
 
         $this->stub->setName('wp_kit_abstract_term_meta');
         $this->stub->setTermId($this->termId);
+        $this->stub->flush();
 
         if (true === $saveResult) {
             if (is_object($value)) {

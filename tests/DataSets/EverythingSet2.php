@@ -27,8 +27,8 @@ class EverythingSet2 extends AbstractAssociativeDataSet
          * If $meta = true then null values actually not saved in WordPress.
          */
         $variants = array();
-        
-        if ($meta && Compatibility::checkWordPress('4.9')) {
+
+        if ($meta && Compatibility::checkWordPress('4.5')) {
             $variants['1'] = array(
                 null,
                 true,

@@ -28,7 +28,7 @@ class NoticeViewTest extends \WP_UnitTestCase
         ob_end_clean();
 
         //@codingStandardsIgnoreStart
-        $expected = '<div class="notice wp-kit-notice is-dismissible wp-kit-notice-my_plugin_test_name"><p class="notice-title">Test title</p><p>Test content</p></div>';
+        $expected = '<div id="wp-kit-notice-my_plugin_test_name" class="notice wp-kit-notice is-dismissible wp-kit-notice-my_plugin_test_name"><p class="notice-title">Test title</p><p>Test content</p></div>';
         //@codingStandardsIgnoreEnd
 
         $this->assertSame($expected, $content);
@@ -46,5 +46,22 @@ class NoticeViewTest extends \WP_UnitTestCase
             ),
             $rp->getValue($stub)
         );
+    }
+
+    public function testGetterAndSetter()
+    {
+        $stub = new NoticeView();
+
+        $this->assertSame(
+            array(
+                'notice',
+                'wp-kit-notice',
+            ),
+            $stub->getCssClasses()
+        );
+
+        $this->assertSame($stub, $stub->setCssClasses(array('test', 'test-2')));
+
+        $this->assertSame(array('test', 'test-2'), $stub->getCssClasses());
     }
 }

@@ -79,7 +79,7 @@ class NoticesStackTest extends \WP_UnitTestCase
         ob_end_clean();
 
         //@codingStandardsIgnoreStart
-        $expected = '<div class="notice notice-success wp-kit-notice wp-kit-notice-success wp-kit-notice-my_plugin_test_name"><p class="notice-title">Test title</p><p>Test content</p></div>';
+        $expected = '<div id="wp-kit-notice-my_plugin_test_name" class="notice notice-success wp-kit-notice wp-kit-notice-success wp-kit-notice-my_plugin_test_name"><p class="notice-title">Test title</p><p>Test content</p></div>';
         //@codingStandardsIgnoreEnd
 
         $this->assertSame($expected, $content);

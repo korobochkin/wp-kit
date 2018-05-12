@@ -24,7 +24,7 @@ class VirtualMenuPageTest extends \WP_UnitTestCase
     {
         $value = new MenuPage();
         $this->assertNull($this->stub->getVirtualPage());
-        $this->assertEquals($this->stub, $this->stub->setVirtualPage($value));
-        $this->assertEquals($value, $this->stub->getVirtualPage());
+        $this->assertSame($this->stub, $this->stub->setVirtualPage($value));
+        $this->assertSame($value, $this->stub->getVirtualPage());
     }
 }

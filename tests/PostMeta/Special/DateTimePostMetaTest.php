@@ -61,7 +61,9 @@ class DateTimePostMetaTest extends \WP_UnitTestCase
                 try {
                     $this->stub->flush();
                 } catch (\Exception $exception) {
-                    $this->assertTrue(is_a($exception, $expected));
+                    $this->assertInstanceOf($expected, $exception);
+                } finally {
+                    $this->assertInstanceOf($expected, $exception);
                 }
             }
         }
@@ -75,6 +77,6 @@ class DateTimePostMetaTest extends \WP_UnitTestCase
     public function testNull()
     {
         $this->stub->set(null);
-        $this->assertEquals('', $this->stub->get());
+        $this->assertNull($this->stub->get());
     }
 }

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.1 - May 12, 2018
+
+* Replaced `assertEquals` to `assertSame` in Php Unit tests ([#31](https://github.com/korobochkin/wp-kit/issues/31)).
+* Extended `NoticeView` (added ID attribute and getters and setters for CSS classes) ([#32](https://github.com/korobochkin/wp-kit/issues/32)).
+
 ## 0.9.0 - March 4, 2018
 
 * Added notices ([#24](https://github.com/korobochkin/wp-kit/issues/24)).

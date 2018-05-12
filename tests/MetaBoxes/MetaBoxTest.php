@@ -39,7 +39,7 @@ class MetaBoxTest extends \WP_UnitTestCase
             ->setTitle(self::META_BOX_TITLE)
             ->setContext('side');
 
-        $this->assertEquals($this->stub, $this->stub->register());
+        $this->assertSame($this->stub, $this->stub->register());
 
         $this->assertInternalType('int', has_action('load-post-new.php', array($this->stub, 'lateConstruct')));
         $this->assertInternalType('int', has_action('load-post.php', array($this->stub, 'lateConstruct')));
@@ -47,7 +47,7 @@ class MetaBoxTest extends \WP_UnitTestCase
 
     public function testLateConstruct()
     {
-        $this->assertEquals($this->stub, $this->stub->lateConstruct());
+        $this->assertSame($this->stub, $this->stub->lateConstruct());
     }
 
     public function testGetterAndSetterId()
@@ -57,12 +57,12 @@ class MetaBoxTest extends \WP_UnitTestCase
          */
         $stub = new MetaBox();
 
-        $this->assertEquals(null, $stub->getId());
+        $this->assertSame(null, $stub->getId());
 
         $value = self::META_BOX_ID;
 
-        $this->assertEquals($stub, $stub->setId($value));
-        $this->assertEquals($value, $stub->getId());
+        $this->assertSame($stub, $stub->setId($value));
+        $this->assertSame($value, $stub->getId());
     }
 
     public function testGetterAndSetterTitle()
@@ -72,12 +72,12 @@ class MetaBoxTest extends \WP_UnitTestCase
          */
         $stub = new MetaBox();
 
-        $this->assertEquals(null, $stub->getTitle());
+        $this->assertSame(null, $stub->getTitle());
 
         $value = self::META_BOX_TITLE;
 
-        $this->assertEquals($stub, $stub->setTitle($value));
-        $this->assertEquals($value, $stub->getTitle());
+        $this->assertSame($stub, $stub->setTitle($value));
+        $this->assertSame($value, $stub->getTitle());
     }
 
     public function testGetterAndSetterView()
@@ -87,12 +87,12 @@ class MetaBoxTest extends \WP_UnitTestCase
          */
         $stub = new MetaBox();
 
-        $this->assertEquals(null, $stub->getView());
+        $this->assertSame(null, $stub->getView());
 
         $value = new MetaBoxTwigView();
 
-        $this->assertEquals($stub, $stub->setView($value));
-        $this->assertEquals($value, $stub->getView());
+        $this->assertSame($stub, $stub->setView($value));
+        $this->assertSame($value, $stub->getView());
     }
 
     public function testGetterAndSetterScreen()
@@ -102,12 +102,12 @@ class MetaBoxTest extends \WP_UnitTestCase
          */
         $stub = new MetaBox();
 
-        $this->assertEquals(null, $stub->getScreen());
+        $this->assertSame(null, $stub->getScreen());
 
         $value = self::META_BOX_SCREEN;
 
-        $this->assertEquals($stub, $stub->setScreen($value));
-        $this->assertEquals($value, $stub->getScreen());
+        $this->assertSame($stub, $stub->setScreen($value));
+        $this->assertSame($value, $stub->getScreen());
     }
 
     public function testGetterAndSetterContext()
@@ -117,12 +117,12 @@ class MetaBoxTest extends \WP_UnitTestCase
          */
         $stub = new MetaBox();
 
-        $this->assertEquals(null, $stub->getContext());
+        $this->assertSame(null, $stub->getContext());
 
         $value = self::META_BOX_CONTEXT;
 
-        $this->assertEquals($stub, $stub->setContext($value));
-        $this->assertEquals($value, $stub->getContext());
+        $this->assertSame($stub, $stub->setContext($value));
+        $this->assertSame($value, $stub->getContext());
     }
 
     public function testGetterAndSetterPriority()
@@ -132,12 +132,12 @@ class MetaBoxTest extends \WP_UnitTestCase
          */
         $stub = new MetaBox();
 
-        $this->assertEquals('default', $stub->getPriority());
+        $this->assertSame('default', $stub->getPriority());
 
         $value = self::META_BOX_PRIORITY;
 
-        $this->assertEquals($stub, $stub->setPriority($value));
-        $this->assertEquals($value, $stub->getPriority());
+        $this->assertSame($stub, $stub->setPriority($value));
+        $this->assertSame($value, $stub->getPriority());
     }
 
     public function testGetterAndSetterFormFactory()
@@ -146,8 +146,8 @@ class MetaBoxTest extends \WP_UnitTestCase
         $value = $value->getFormFactory();
 
         $this->assertNull($this->stub->getFormFactory());
-        $this->assertEquals($this->stub, $this->stub->setFormFactory($value));
-        $this->assertEquals($value, $this->stub->getFormFactory());
+        $this->assertSame($this->stub, $this->stub->setFormFactory($value));
+        $this->assertSame($value, $this->stub->getFormFactory());
     }
 
     public function testGetterAndSetterForm()
@@ -160,8 +160,8 @@ class MetaBoxTest extends \WP_UnitTestCase
         $value = new \stdClass();
 
         $this->assertNull($this->stub->getFormEntity());
-        $this->assertEquals($this->stub, $this->stub->setFormEntity($value));
-        $this->assertEquals($value, $this->stub->getFormEntity());
+        $this->assertSame($this->stub, $this->stub->setFormEntity($value));
+        $this->assertSame($value, $this->stub->getFormEntity());
     }
 
     public function testGetterAndSetterRequest()
@@ -175,7 +175,7 @@ class MetaBoxTest extends \WP_UnitTestCase
 
         $value = new Request();
 
-        $this->assertEquals($stub, $stub->setRequest($value));
-        $this->assertEquals($value, $stub->getRequest());
+        $this->assertSame($stub, $stub->setRequest($value));
+        $this->assertSame($value, $stub->getRequest());
     }
 }

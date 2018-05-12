@@ -12,7 +12,7 @@ class NoticeTest extends \WP_UnitTestCase
     public function testLateConstruct()
     {
         $stub = new Notice();
-        $this->assertEquals($stub, $stub->lateConstruct());
+        $this->assertSame($stub, $stub->lateConstruct());
         $this->assertInstanceOf(Notice::class, $stub->lateConstruct());
     }
 
@@ -20,46 +20,46 @@ class NoticeTest extends \WP_UnitTestCase
     {
         $stub = new Notice();
 
-        $this->assertEquals(null, $stub->getName());
+        $this->assertSame(null, $stub->getName());
 
         $value = 'wp_kit_test_notice_name';
 
-        $this->assertEquals($stub, $stub->setName($value));
-        $this->assertEquals($value, $stub->getName());
+        $this->assertSame($stub, $stub->setName($value));
+        $this->assertSame($value, $stub->getName());
     }
 
     public function testGetterAndSetterTitle()
     {
         $stub = new Notice();
 
-        $this->assertEquals(null, $stub->getTitle());
+        $this->assertSame(null, $stub->getTitle());
 
         $value = 'WP Kit Test Title';
 
-        $this->assertEquals($stub, $stub->setTitle($value));
-        $this->assertEquals($value, $stub->getTitle());
+        $this->assertSame($stub, $stub->setTitle($value));
+        $this->assertSame($value, $stub->getTitle());
 
         $value = 'WP Kit <b>Test Title</b>';
 
-        $this->assertEquals($stub, $stub->setTitle($value));
-        $this->assertEquals($value, $stub->getTitle());
+        $this->assertSame($stub, $stub->setTitle($value));
+        $this->assertSame($value, $stub->getTitle());
     }
 
     public function testGetterAndSetterContent()
     {
         $stub = new Notice();
 
-        $this->assertEquals(null, $stub->getContent());
+        $this->assertSame(null, $stub->getContent());
 
         $value = 'WP Kit Test Content';
 
-        $this->assertEquals($stub, $stub->setContent($value));
-        $this->assertEquals($value, $stub->getContent());
+        $this->assertSame($stub, $stub->setContent($value));
+        $this->assertSame($value, $stub->getContent());
 
         $value = '<p>WP Kit <b>Test Content</b></p>';
 
-        $this->assertEquals($stub, $stub->setContent($value));
-        $this->assertEquals($value, $stub->getContent());
+        $this->assertSame($stub, $stub->setContent($value));
+        $this->assertSame($value, $stub->getContent());
     }
 
     public function testGetterAndSetterDismissible()
@@ -70,13 +70,13 @@ class NoticeTest extends \WP_UnitTestCase
 
         $value = true;
 
-        $this->assertEquals($stub, $stub->setDismissible($value));
-        $this->assertEquals($value, $stub->isDismissible());
+        $this->assertSame($stub, $stub->setDismissible($value));
+        $this->assertSame($value, $stub->isDismissible());
 
         $value = false;
 
-        $this->assertEquals($stub, $stub->setDismissible($value));
-        $this->assertEquals($value, $stub->isDismissible());
+        $this->assertSame($stub, $stub->setDismissible($value));
+        $this->assertSame($value, $stub->isDismissible());
     }
 
     public function testDisable()
@@ -84,7 +84,7 @@ class NoticeTest extends \WP_UnitTestCase
         $stub            = new Notice();
         $relevantStorage = new RelevantStorageForTestsOption();
         $stub->setRelevantStorage($relevantStorage);
-        $this->assertEquals($stub, $stub->disable());
+        $this->assertSame($stub, $stub->disable());
         $this->assertFalse($relevantStorage->get());
     }
 
@@ -93,7 +93,7 @@ class NoticeTest extends \WP_UnitTestCase
         $stub            = new Notice();
         $relevantStorage = new RelevantStorageForTestsOption();
         $stub->setRelevantStorage($relevantStorage);
-        $this->assertEquals($stub, $stub->enable());
+        $this->assertSame($stub, $stub->enable());
         $this->assertTrue($relevantStorage->get());
     }
 
@@ -105,8 +105,8 @@ class NoticeTest extends \WP_UnitTestCase
 
         $value = new RelevantStorageForTestsOption();
 
-        $this->assertEquals($stub, $stub->setRelevantStorage($value));
-        $this->assertEquals($value, $stub->getRelevantStorage());
+        $this->assertSame($stub, $stub->setRelevantStorage($value));
+        $this->assertSame($value, $stub->getRelevantStorage());
     }
 
     public function testIsRelevant()
@@ -135,8 +135,8 @@ class NoticeTest extends \WP_UnitTestCase
 
         $value = new NoticeView();
 
-        $this->assertEquals($stub, $stub->setView($value));
-        $this->assertEquals($value, $stub->getView());
+        $this->assertSame($stub, $stub->setView($value));
+        $this->assertSame($value, $stub->getView());
     }
 
     public function testRender()

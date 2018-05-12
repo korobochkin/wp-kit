@@ -16,7 +16,7 @@ class EverythingSet extends AbstractDataSet
             //   |Local value     |or result of deletion              |which will return WP      |
             //   |                |                                   |                          |
             array(NULL,            true,                               '',                        ), // 0
-            array(true,            true,                               '1',                       ), // 1
+            array(true,            true,                               true,                      ), // 1
             array(false,           false,                              false,                     ), // 2
 
             array(1234,            true,                               '1234'                     ), // 3

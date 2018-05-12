@@ -27,8 +27,8 @@ class AbstractActionTest extends \WP_UnitTestCase
 
         $value = true;
 
-        $this->assertEquals($this->stub, $this->stub->setEnabledForLoggedIn($value));
-        $this->assertEquals($value, $this->stub->isEnabledForLoggedIn());
+        $this->assertSame($this->stub, $this->stub->setEnabledForLoggedIn($value));
+        $this->assertSame($value, $this->stub->isEnabledForLoggedIn());
     }
 
     public function testGetterAndSetterEnabledForNotLoggedIn()
@@ -37,8 +37,8 @@ class AbstractActionTest extends \WP_UnitTestCase
 
         $value = true;
 
-        $this->assertEquals($this->stub, $this->stub->setEnabledForNotLoggedIn($value));
-        $this->assertEquals($value, $this->stub->isEnabledForNotLoggedIn());
+        $this->assertSame($this->stub, $this->stub->setEnabledForNotLoggedIn($value));
+        $this->assertSame($value, $this->stub->isEnabledForNotLoggedIn());
     }
 
     public function testGetterAndSetterName()
@@ -47,8 +47,8 @@ class AbstractActionTest extends \WP_UnitTestCase
 
         $value = 'wp-kit-test-name';
 
-        $this->assertEquals($this->stub, $this->stub->setName($value));
-        $this->assertEquals($value, $this->stub->getName());
+        $this->assertSame($this->stub, $this->stub->setName($value));
+        $this->assertSame($value, $this->stub->getName());
     }
 
     public function testGetterAndSetterStack()
@@ -57,8 +57,8 @@ class AbstractActionTest extends \WP_UnitTestCase
 
         $value = new Stack(array(), 'test');
 
-        $this->assertEquals($this->stub, $this->stub->setStack($value));
-        $this->assertEquals($value, $this->stub->getStack());
+        $this->assertSame($this->stub, $this->stub->setStack($value));
+        $this->assertSame($value, $this->stub->getStack());
     }
 
     public function testGetterAndSetterViolationsList()
@@ -67,8 +67,8 @@ class AbstractActionTest extends \WP_UnitTestCase
 
         $value = new ConstraintViolationList();
 
-        $this->assertEquals($this->stub, $this->stub->setViolationsList($value));
-        $this->assertEquals($value, $this->stub->getViolationsList());
+        $this->assertSame($this->stub, $this->stub->setViolationsList($value));
+        $this->assertSame($value, $this->stub->getViolationsList());
     }
 
     public function testGetterAndSetterRequest()
@@ -77,8 +77,8 @@ class AbstractActionTest extends \WP_UnitTestCase
 
         $value = new Request();
 
-        $this->assertEquals($this->stub, $this->stub->setRequest($value));
-        $this->assertEquals($value, $this->stub->getRequest());
+        $this->assertSame($this->stub, $this->stub->setRequest($value));
+        $this->assertSame($value, $this->stub->getRequest());
     }
 
     public function testGetterAndSetterResponse()
@@ -87,13 +87,13 @@ class AbstractActionTest extends \WP_UnitTestCase
 
         $value = new Response();
 
-        $this->assertEquals($this->stub, $this->stub->setResponse($value));
-        $this->assertEquals($value, $this->stub->getResponse());
+        $this->assertSame($this->stub, $this->stub->setResponse($value));
+        $this->assertSame($value, $this->stub->getResponse());
     }
 
     public function testSetContainer()
     {
-        $this->assertEquals($this->stub, $this->stub->setContainer(new ContainerBuilder()));
+        $this->assertSame($this->stub, $this->stub->setContainer(new ContainerBuilder()));
     }
 
     public function get()

@@ -27,12 +27,12 @@ class ArgsTraitTest extends \WP_UnitTestCase
     {
         $defaultValue = array();
 
-        $this->assertEquals($defaultValue, $this->stub->getArgs());
+        $this->assertSame($defaultValue, $this->stub->getArgs());
 
         $value = array(1, 2, 3);
 
-        $this->assertEquals($this->stub, $this->stub->setArgs($value));
+        $this->assertSame($this->stub, $this->stub->setArgs($value));
 
-        $this->assertEquals($value, $this->stub->getArgs());
+        $this->assertSame($value, $this->stub->getArgs());
     }
 }

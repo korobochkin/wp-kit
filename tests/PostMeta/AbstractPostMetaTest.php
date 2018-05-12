@@ -2,8 +2,7 @@
 namespace Korobochkin\WPKit\Tests\PostMeta;
 
 use Korobochkin\WPKit\PostMeta\AbstractPostMeta;
-use Korobochkin\WPKit\Tests\DataSets\DifferentTypesSet;
-use Korobochkin\WPKit\Tests\DataSets\EverythingSet;
+use Korobochkin\WPKit\Tests\DataSets\EverythingSet2;
 use Korobochkin\WPKit\Tests\DataSets\ValidateSet;
 use Symfony\Component\Form\Extension\Core\DataTransformer\BooleanToStringTransformer;
 use Symfony\Component\Form\ReversedTransformer;
@@ -48,15 +47,15 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
     public function testGetValueFromWordPress()
     {
         if (PHP_VERSION_ID >= 70000) {
-            // PHP 7
             $this->expectException(\LogicException::class);
             $this->stub->getValueFromWordPress();
         } else {
-            // PHP 5
             try {
                 $this->stub->getValueFromWordPress();
             } catch (\Exception $exception) {
-                $this->assertTrue(is_a($exception, \LogicException::class));
+                $this->assertInstanceOf(\LogicException::class, $exception);
+            } finally {
+                $this->assertInstanceOf(\LogicException::class, $exception);
             }
         }
 
@@ -70,40 +69,38 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
      *
      * @dataProvider casesDeleteFromWP
      *
-     * @param $value                            mixed Any variable types.
-     * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
-     * @param $expectedValueFromWP              mixed Value after saving which will return WP
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
-    public function testDeleteFromWP($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP)
+    public function testDeleteFromWP($value, $saveResult, $valueResult, $deleteResult)
     {
-        // Without name throwing an error.
         if (PHP_VERSION_ID >= 70000) {
-            // PHP 7.
             $this->expectException(\LogicException::class);
             $this->stub->deleteFromWP();
         } else {
-            // PHP 5.
             try {
                 $this->stub->deleteFromWP();
             } catch (\Exception $exception) {
-                $this->assertTrue(is_a($exception, \LogicException::class));
+                $this->assertInstanceOf(\LogicException::class, $exception);
+            } finally {
+                $this->assertInstanceOf(\LogicException::class, $exception);
             }
         }
 
-        // Load value into WordPress.
         $this->stub
             ->setName('wp_kit_abstract_post_meta')
             ->setPostId($this->postId)
             ->updateValue($value);
 
-        // Check that successful remove from DB.
-        $this->assertEquals($expectedResultOfSavingOrDeletion, $this->stub->deleteFromWP());
+        $this->assertSame($deleteResult, $this->stub->deleteFromWP());
         $this->assertFalse($this->stub->getValueFromWordPress());
     }
 
     public function casesDeleteFromWP()
     {
-        return new EverythingSet();
+        return new EverythingSet2(true);
     }
 
     /**
@@ -111,43 +108,52 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
      *
      * @dataProvider casesFlush
      *
-     * @param $value                            mixed Any variable types.
-     * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
-     * @param $expectedValueFromWP              mixed Value after saving which will return WP
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
-    public function testFlush($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP)
+    public function testFlush($value, $saveResult, $valueResult, $deleteResult)
     {
         $this->stub->set($value);
 
         if (PHP_VERSION_ID >= 70000) {
-            // PHP 7.
             $this->expectException(\LogicException::class);
             $this->stub->flush();
         } else {
-            // PHP 5.
             try {
                 $this->stub->flush();
             } catch (\Exception $exception) {
-                $this->assertTrue(is_a($exception, \LogicException::class));
+                $this->assertInstanceOf(\LogicException::class, $exception);
+            } finally {
+                $this->assertInstanceOf(\LogicException::class, $exception);
             }
+        }
+
+        if (null !== $value) {
+            $this->assertSame($value, $this->stub->get());
         }
 
         $this->stub->setName('wp_kit_abstract_post_meta');
         $this->stub->setPostId($this->postId);
+        $this->stub->flush();
 
-        // Successful saved.
-        $this->assertEquals($expectedResultOfSavingOrDeletion, $this->stub->flush());
-
-        // Retrieve value back.
-        $this->assertEquals($expectedValueFromWP, $this->stub->get());
-
-        // Local value deleted.
-        $this->assertEquals(null, $this->stub->getLocalValue());
+        if (true === $saveResult) {
+            if (is_object($value)) {
+                $this->assertEquals($valueResult, $this->stub->getValueFromWordPress());
+            } else {
+                $this->assertSame($valueResult, $this->stub->getValueFromWordPress());
+            }
+            $this->assertSame(null, $this->stub->getLocalValue());
+        } else {
+            $this->assertSame(false, $this->stub->getValueFromWordPress());
+            $this->assertSame($value, $this->stub->getLocalValue());
+        }
     }
 
     public function casesFlush()
     {
-        return new EverythingSet();
+        return new EverythingSet2(true);
     }
 
     /**
@@ -155,30 +161,40 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
      *
      * @dataProvider casesUpdateValue
      *
-     * @param $value                            mixed Any variable types.
-     * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
-     * @param $expectedValueFromWP              mixed Value after saving which will return WP
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
-    public function testUpdateValue($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP)
+    public function testUpdateValue($value, $saveResult, $valueResult, $deleteResult)
     {
         $this->stub
             ->setName('wp_kit_abstract_post_meta')
-            ->setPostId($this->postId)
-            ->set($value);
+            ->setPostId($this->postId);
 
-        // Successful saved.
-        $this->assertEquals($expectedResultOfSavingOrDeletion, $this->stub->flush());
+        $updateValueCallReturn = $this->stub->updateValue($value);
+        if (is_int($updateValueCallReturn)) {
+            $updateValueCallReturn = true;
+        }
+        $this->assertSame($saveResult, $updateValueCallReturn);
+        wp_cache_flush();
 
-        // Retrieve value back.
-        $this->assertEquals($expectedValueFromWP, $this->stub->get());
-
-        // Local value deleted.
-        $this->assertEquals(null, $this->stub->getLocalValue());
+        if (true === $saveResult) {
+            if (is_object($value)) {
+                $this->assertEquals($valueResult, $this->stub->getValueFromWordPress());
+            } else {
+                $this->assertSame($valueResult, $this->stub->getValueFromWordPress());
+            }
+            $this->assertSame(null, $this->stub->getLocalValue());
+        } else {
+            $this->assertSame(false, $this->stub->getValueFromWordPress());
+            $this->assertSame($value, $this->stub->getLocalValue());
+        }
     }
 
     public function casesUpdateValue()
     {
-        return new EverythingSet();
+        return new EverythingSet2(true);
     }
 
     /* The tests bellow for methods inherited from AbstractNode class */
@@ -188,11 +204,12 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
      *
      * @dataProvider casesGet
      *
-     * @param $value                            mixed Any variable types.
-     * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
-     * @param $expectedValueFromWP              mixed Value after saving which will return WP
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
-    public function testGet($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP)
+    public function testGet($value, $saveResult, $valueResult, $deleteResult)
     {
         // Set name to prevent triggering exceptions.
         $this->stub->setName('wp_kit_abstract_post_meta');
@@ -201,37 +218,45 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
         // Test that local value returned.
         $this->stub->setLocalValue($value);
-        $this->assertEquals($value, $this->stub->get());
+        $this->assertSame($value, $this->stub->get());
 
         // Reset local value.
         $this->stub->setLocalValue(null);
 
-        $this->stub->setName('wp_kit_abstract_post_meta');
-
         // Check default value.
-        $this->assertEquals(null, $this->stub->get());
+        $this->assertSame(null, $this->stub->get());
 
         // Check Default value again.
         $this->stub->setDefaultValue($value);
-        $this->assertEquals($value, $this->stub->get());
+        $this->assertSame($value, $this->stub->get());
 
         // Check returning local value.
         $this->stub->setDefaultValue(uniqid('wp_kit', true));
         $this->stub->setLocalValue($value);
         if ($value === null) {
-            $this->assertEquals($this->stub->getDefaultValue(), $this->stub->get());
+            $this->assertSame($this->stub->getDefaultValue(), $this->stub->get());
         } else {
-            $this->assertEquals($value, $this->stub->get());
+            $this->assertSame($value, $this->stub->get());
         }
 
         // Check value from WordPress after saving.
         $this->stub->flush();
-        $this->assertEquals($expectedValueFromWP, $this->stub->get());
+        wp_cache_flush();
+        if (true === $saveResult) {
+            if (is_object($value)) {
+                $this->assertEquals($valueResult, $this->stub->get());
+            } else {
+                $this->assertSame($valueResult, $this->stub->get());
+            }
+        } else {
+            $this->assertSame($value, $this->stub->get());
+            $this->assertSame($value, $this->stub->getLocalValue());
+        }
     }
 
     public function casesGet()
     {
-        return new EverythingSet();
+        return new EverythingSet2(true);
     }
 
     /**
@@ -239,32 +264,32 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
      *
      * @dataProvider casesSet
      *
-     * @param $value                            mixed Any variable types.
-     * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
-     * @param $expectedValueFromWP              mixed Value after saving which will return WP
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
-    public function testSet($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP)
+    public function testSet($value, $saveResult, $valueResult, $deleteResult)
     {
-        // Set name to prevent triggering exceptions.
         $this->stub->setName('wp_kit_abstract_post_meta');
         $this->stub->setPostId($this->postId);
 
-        $this->assertEquals($this->stub, $this->stub->set($value));
-        $this->assertEquals($value, $this->stub->get());
-        $this->assertEquals($value, $this->stub->getLocalValue());
+        $this->assertSame($this->stub, $this->stub->set($value));
+        $this->assertSame($value, $this->stub->get());
+        $this->assertSame($value, $this->stub->getLocalValue());
     }
 
     public function casesSet()
     {
-        return new EverythingSet();
+        return new EverythingSet2(true);
     }
 
     public function testName()
     {
-        $this->assertEquals('_', $this->stub->getName());
+        $this->assertSame('_', $this->stub->getName());
 
-        $this->assertEquals($this->stub, $this->stub->setName('wp_kit_dummy_name'));
-        $this->assertEquals('_wp_kit_dummy_name', $this->stub->getName());
+        $this->assertSame($this->stub, $this->stub->setName('wp_kit_dummy_name'));
+        $this->assertSame('_wp_kit_dummy_name', $this->stub->getName());
     }
 
     /**
@@ -272,20 +297,21 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
      *
      * @dataProvider casesLocalValue
      *
-     * @param $value                            mixed Any variable types.
-     * @param $expectedResultOfSavingOrDeletion bool  Result of deleting operation.
-     * @param $expectedValueFromWP              mixed Value after saving which will return WP
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
-    public function testLocalValue($value, $expectedResultOfSavingOrDeletion, $expectedValueFromWP)
+    public function testLocalValue($value, $saveResult, $valueResult, $deleteResult)
     {
         $this->assertNull($this->stub->getLocalValue());
-        $this->assertEquals($this->stub, $this->stub->setLocalValue($value));
-        $this->assertEquals($value, $this->stub->getLocalValue());
+        $this->assertSame($this->stub, $this->stub->setLocalValue($value));
+        $this->assertSame($value, $this->stub->getLocalValue());
     }
 
     public function casesLocalValue()
     {
-        return new EverythingSet();
+        return new EverythingSet2(true);
     }
 
     /**
@@ -294,17 +320,20 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
      * @dataProvider casesDefaultValue
      *
      * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
-    public function testDefaultValue($value)
+    public function testDefaultValue($value, $saveResult, $valueResult, $deleteResult)
     {
         $this->assertNull($this->stub->getDefaultValue());
-        $this->assertEquals($this->stub, $this->stub->setDefaultValue($value));
-        $this->assertEquals($value, $this->stub->getDefaultValue());
+        $this->assertSame($this->stub, $this->stub->setDefaultValue($value));
+        $this->assertSame($value, $this->stub->getDefaultValue());
     }
 
     public function casesDefaultValue()
     {
-        return new DifferentTypesSet();
+        return new EverythingSet2(true);
     }
 
     /**
@@ -313,17 +342,20 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
      * @dataProvider casesDeleteLocalValue
      *
      * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
      */
-    public function testDeleteLocalValue($value)
+    public function testDeleteLocalValue($value, $saveResult, $valueResult, $deleteResult)
     {
-        $this->assertEquals($this->stub, $this->stub->setLocalValue($value));
+        $this->assertSame($this->stub, $this->stub->setLocalValue($value));
         $this->assertTrue($this->stub->deleteLocal());
         $this->assertNull($this->stub->getLocalValue());
     }
 
     public function casesDeleteLocalValue()
     {
-        return new DifferentTypesSet();
+        return new EverythingSet2(true);
     }
 
     /**
@@ -336,8 +368,8 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
     public function testConstraint($value)
     {
         $this->assertNull($this->stub->getConstraint());
-        $this->assertEquals($this->stub, $this->stub->setConstraint($value));
-        $this->assertEquals($value, $this->stub->getConstraint());
+        $this->assertSame($this->stub, $this->stub->setConstraint($value));
+        $this->assertSame($value, $this->stub->getConstraint());
     }
 
     public function casesConstraint()
@@ -359,8 +391,8 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
         $validator = Validation::createValidator();
 
         $this->assertNull($this->stub->getValidator());
-        $this->assertEquals($this->stub, $this->stub->setValidator($validator));
-        $this->assertEquals($validator, $this->stub->getValidator());
+        $this->assertSame($this->stub, $this->stub->setValidator($validator));
+        $this->assertSame($validator, $this->stub->getValidator());
     }
 
     public function testValidate()
@@ -418,7 +450,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
         $this->stub->set($value);
         $this->stub->setConstraint($constraints);
-        $this->assertEquals($expectedValidOrNot, $this->stub->isValid());
+        $this->assertSame($expectedValidOrNot, $this->stub->isValid());
     }
 
     public function casesIsValid()
@@ -453,8 +485,8 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
      */
     public function testTransformer($value)
     {
-        $this->assertEquals($this->stub, $this->stub->setDataTransformer($value));
-        $this->assertEquals($value, $this->stub->getDataTransformer());
+        $this->assertSame($this->stub, $this->stub->setDataTransformer($value));
+        $this->assertSame($value, $this->stub->getDataTransformer());
     }
 
     public function casesTransformer()

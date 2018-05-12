@@ -30,8 +30,8 @@ class AbstractThemeTest extends \WP_UnitTestCase
     public function testSetContainer()
     {
         $container = new ContainerBuilder();
-        $this->assertEquals($this->stub, $this->stub->setContainer($container));
-        $this->assertEquals($container, $this->stub->getContainer());
+        $this->assertSame($this->stub, $this->stub->setContainer($container));
+        $this->assertSame($container, $this->stub->getContainer());
     }
 
     public function testGetDir()
@@ -44,7 +44,7 @@ class AbstractThemeTest extends \WP_UnitTestCase
             $path = '/tmp/wordpress-tests-lib/includes/../data/themedir1/default';
         }
 
-        $this->assertEquals($path, $this->stub->getDir());
+        $this->assertSame($path, $this->stub->getDir());
     }
 
     public function testGetUrl()
@@ -57,6 +57,6 @@ class AbstractThemeTest extends \WP_UnitTestCase
             $url = '/tmp/wordpress-tests-lib/includes/../data/themedir1/default';
         }
 
-        $this->assertEquals($url, $this->stub->getUrl());
+        $this->assertSame($url, $this->stub->getUrl());
     }
 }

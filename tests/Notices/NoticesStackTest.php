@@ -15,15 +15,15 @@ class NoticesStackTest extends \WP_UnitTestCase
     {
         $stub = new NoticesStack();
 
-        $this->assertEquals(array(), $stub->getNotices());
+        $this->assertSame(array(), $stub->getNotices());
 
         $value = array(
             new Notice(),
             new Notice(),
         );
 
-        $this->assertEquals($stub, $stub->setNotices($value));
-        $this->assertEquals($value, $stub->getNotices());
+        $this->assertSame($stub, $stub->setNotices($value));
+        $this->assertSame($value, $stub->getNotices());
     }
 
     public function testAddNotice()
@@ -31,8 +31,8 @@ class NoticesStackTest extends \WP_UnitTestCase
         $stub   = new NoticesStack();
         $notice = new Notice();
 
-        $this->assertEquals($stub, $stub->addNotice($notice));
-        $this->assertEquals(array($notice), $stub->getNotices());
+        $this->assertSame($stub, $stub->addNotice($notice));
+        $this->assertSame(array($notice), $stub->getNotices());
     }
 
     public function testRemoveNoticeByName()
@@ -79,9 +79,9 @@ class NoticesStackTest extends \WP_UnitTestCase
         ob_end_clean();
 
         //@codingStandardsIgnoreStart
-        $expected = '<div class="notice notice-success wp-kit-notice wp-kit-notice-success wp-kit-notice-my_plugin_test_name"><p class="notice-title">Test title</p><p>Test content</p></div>';
+        $expected = '<div id="wp-kit-notice-my_plugin_test_name" class="notice notice-success wp-kit-notice wp-kit-notice-success wp-kit-notice-my_plugin_test_name"><p class="notice-title">Test title</p><p>Test content</p></div>';
         //@codingStandardsIgnoreEnd
 
-        $this->assertEquals($expected, $content);
+        $this->assertSame($expected, $content);
     }
 }

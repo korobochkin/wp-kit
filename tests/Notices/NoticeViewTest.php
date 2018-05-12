@@ -47,4 +47,21 @@ class NoticeViewTest extends \WP_UnitTestCase
             $rp->getValue($stub)
         );
     }
+
+    public function testGetterAndSetter()
+    {
+        $stub = new NoticeView();
+
+        $this->assertSame(
+            array(
+                'notice',
+                'wp-kit-notice',
+            ),
+            $stub->getCssClasses()
+        );
+
+        $this->assertSame($stub, $stub->setCssClasses(array('test', 'test-2')));
+
+        $this->assertSame(array('test', 'test-2'), $stub->getCssClasses());
+    }
 }

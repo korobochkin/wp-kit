@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.0 - May 14, 2018
+
+* Added `NodeFactory` class for building Options, Transients, Post Meta, Term Meta ([#29](https://github.com/korobochkin/wp-kit/issues/29)).
+
 ## 0.9.1 - May 12, 2018
 
 * Replaced `assertEquals` to `assertSame` in Php Unit tests ([#31](https://github.com/korobochkin/wp-kit/issues/31)).

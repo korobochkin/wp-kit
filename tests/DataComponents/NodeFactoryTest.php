@@ -37,15 +37,6 @@ class NodeFactoryTest extends \WP_UnitTestCase
         $validator = Validation::createValidator();
         $stub      = new NodeFactory($validator);
 
-        $constraints = array(
-            new Constraints\NotNull(),
-            new Constraints\Type(
-                array(
-                    'type' => 'bool',
-                )
-            ),
-        );
-
         $boolOption = $stub->create(BoolOption::class);
         $this->assertSame($validator, $boolOption->getValidator());
         $this->verifyConstraintsList($boolOption->getConstraint());

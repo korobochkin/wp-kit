@@ -17,7 +17,7 @@ class NodeFactoryTest extends \WP_UnitTestCase
     public function testConstructor()
     {
         $validator = Validation::createValidator();
-        $stub = new NodeFactory($validator);
+        $stub      = new NodeFactory($validator);
         $this->assertSame($validator, $stub->getValidator());
     }
 
@@ -35,7 +35,7 @@ class NodeFactoryTest extends \WP_UnitTestCase
     public function testCreate()
     {
         $validator = Validation::createValidator();
-        $stub = new NodeFactory($validator);
+        $stub      = new NodeFactory($validator);
 
         $constraints = array(
             new Constraints\NotNull(),

@@ -47,21 +47,37 @@ class NodeFactoryTest extends \WP_UnitTestCase
         );
 
         $boolOption = $stub->create(BoolOption::class);
-
         $this->assertSame($validator, $boolOption->getValidator());
-        $this->assertSame($constraints, $boolOption->getConstraint());
+        $this->verifyConstraintsList($boolOption->getConstraint());
 
         $boolPostMeta = $stub->create(BoolPostMeta::class);
-
         $this->assertSame($validator, $boolPostMeta->getValidator());
-        $this->assertSame($constraints, $boolPostMeta->getConstraint());
+        $this->verifyConstraintsList($boolPostMeta->getConstraint());
 
         $boolTermMeta = $stub->create(BoolTermMeta::class);
         $this->assertSame($validator, $boolTermMeta->getValidator());
-        $this->assertSame($constraints, $boolTermMeta->getConstraint());
+        $this->verifyConstraintsList($boolTermMeta->getConstraint());
 
         $boolTransient = $stub->create(BoolTransient::class);
         $this->assertSame($validator, $boolTransient->getValidator());
-        $this->assertSame($constraints, $boolTransient->getConstraint());
+        $this->verifyConstraintsList($boolTransient->getConstraint());
+    }
+
+    protected function verifyConstraintsList($testConstraints)
+    {
+        $constraints = array(
+            new Constraints\NotNull(),
+            new Constraints\Type(
+                array(
+                    'type' => 'bool',
+                )
+            ),
+        );
+
+        $this->assertInternalType('array', $testConstraints);
+        $this->assertSameSize($constraints, $testConstraints);
+        foreach ($constraints as $constraintKey => $constraint) {
+            $this->assertInstanceOf($constraint, $testConstraints[$constraintKey]);
+        }
     }
 }

@@ -77,7 +77,7 @@ class NodeFactoryTest extends \WP_UnitTestCase
         $this->assertInternalType('array', $testConstraints);
         $this->assertSameSize($constraints, $testConstraints);
         foreach ($constraints as $constraintKey => $constraint) {
-            $this->assertInstanceOf($constraint, $testConstraints[$constraintKey]);
+            $this->assertInstanceOf(get_class($constraint), $testConstraints[$constraintKey]);
         }
     }
 }

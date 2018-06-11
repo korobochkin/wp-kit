@@ -15,7 +15,7 @@ class CompatibilityTest extends \WP_UnitTestCase
      */
     public function testCheckForMinimalVersion($currentVersion, $minimalVersion, $result)
     {
-        $this->assertEquals($result, Compatibility::checkForMinimalVersion($currentVersion, $minimalVersion));
+        $this->assertSame($result, Compatibility::checkForMinimalVersion($currentVersion, $minimalVersion));
     }
 
     public function casesCheckForMinimalVersion()

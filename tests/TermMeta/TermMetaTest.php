@@ -36,6 +36,6 @@ class TermMetaTest extends \WP_UnitTestCase
      */
     public function testBuildConstraint()
     {
-        $this->assertEquals(null, $this->stub->buildConstraint());
+        $this->assertSame(null, $this->stub->buildConstraint());
     }
 }

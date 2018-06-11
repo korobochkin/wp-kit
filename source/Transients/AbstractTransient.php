@@ -76,31 +76,27 @@ abstract class AbstractTransient extends AbstractNode implements TransientInterf
      */
     public function flush()
     {
-        if (isset($this->localValue)) {
-            if ($this->getDataTransformer()) {
-                $raw = $this->getDataTransformer()->transform($this->localValue);
-            } else {
-                $raw =& $this->localValue;
-            }
-
-            $name = $this->getName();
-
-            if (!$name) {
-                throw new \LogicException(
-                    'You must specify the name of option before calling any methods using name of option.'
-                );
-            }
-
-            $result = set_transient($name, $raw, $this->getExpiration());
-
-            if ($result) {
-                $this->setLocalValue(null);
-            }
-
-            return $result;
+        if ($this->getDataTransformer()) {
+            $raw = $this->getDataTransformer()->transform($this->localValue);
+        } else {
+            $raw =& $this->localValue;
         }
 
-        return true;
+        $name = $this->getName();
+
+        if (!$name) {
+            throw new \LogicException(
+                'You must specify the name of option before calling any methods using name of option.'
+            );
+        }
+
+        $result = set_transient($name, $raw, $this->getExpiration());
+
+        if ($result) {
+            $this->setLocalValue(null);
+        }
+
+        return $result;
     }
 
     /**

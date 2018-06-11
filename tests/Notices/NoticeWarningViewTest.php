@@ -13,7 +13,7 @@ class NoticeWarningViewTest extends \WP_UnitTestCase
         $stub = new NoticeWarningView();
         $rp   = new \ReflectionProperty(NoticeWarningView::class, 'cssClasses');
         $rp->setAccessible(true);
-        $this->assertEquals(
+        $this->assertSame(
             array(
                 'notice',
                 'notice-warning',

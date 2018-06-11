@@ -13,6 +13,6 @@ class PluginTranslationsTest extends \WP_UnitTestCase
         $path = WP_PLUGIN_DIR . '/test-plugin-domain/';
         $stub = new PluginTranslations('test-plugin-domain', $path);
 
-        $this->assertEquals($stub, $stub->loadTranslations());
+        $this->assertSame($stub, $stub->loadTranslations());
     }
 }

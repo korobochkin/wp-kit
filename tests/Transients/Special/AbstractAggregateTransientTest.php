@@ -32,12 +32,12 @@ class AbstractAggregateTransientTest extends \WP_UnitTestCase
     public function testGet($defaultValue, $valueToSave, $valueToGet)
     {
         $this->stub->setDefaultValue($defaultValue);
-        $this->assertEquals($defaultValue, $this->stub->get());
+        $this->assertSame($defaultValue, $this->stub->get());
 
         $this->stub->updateValue($valueToSave);
         $this->assertNull($this->stub->getLocalValue());
-        $this->assertEquals($valueToSave, $this->stub->getValueFromWordPress());
-        $this->assertEquals($valueToGet, $this->stub->get());
+        $this->assertSame($valueToSave, $this->stub->getValueFromWordPress());
+        $this->assertSame($valueToGet, $this->stub->get());
     }
 
     public function casesGet()

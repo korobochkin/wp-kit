@@ -71,14 +71,14 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase
         }
 
         $this->stub->setName($name);
-        $this->assertEquals($resultOfScheduling, $this->stub->schedule());
-        $this->assertEquals($name, $this->stub->getName());
+        $this->assertSame($resultOfScheduling, $this->stub->schedule());
+        $this->assertSame($name, $this->stub->getName());
 
         // And finally validate that this event added to WordPress.
         $tasks = _get_cron_array();
         $this->assertTrue(isset($tasks[$time][$name]));
         $this->assertNotEmpty($tasks[$time][$name]);
-        $this->assertEquals(1, count($tasks[$time][$name]));
+        $this->assertSame(1, count($tasks[$time][$name]));
     }
 
     public function casesSchedule()
@@ -140,7 +140,7 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase
 
         $this->stub->setName($name);
 
-        $this->assertEquals($resultOfScheduling, $this->stub->unSchedule());
+        $this->assertSame($resultOfScheduling, $this->stub->unSchedule());
 
         $tasks = _get_cron_array();
         $this->assertFalse(isset($tasks[$time][$name]));
@@ -215,7 +215,7 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase
     public function testImmediately()
     {
         $time = time();
-        $this->assertEquals($this->stub, $this->stub->immediately());
-        $this->assertEquals($time, $this->stub->getTimestamp());
+        $this->assertSame($this->stub, $this->stub->immediately());
+        $this->assertSame($time, $this->stub->getTimestamp());
     }
 }

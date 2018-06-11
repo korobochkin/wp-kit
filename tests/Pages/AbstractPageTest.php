@@ -24,7 +24,7 @@ class AbstractPageTest extends \WP_UnitTestCase
 
     public function testLateConstruct()
     {
-        $this->assertEquals($this->stub, $this->stub->lateConstruct());
+        $this->assertSame($this->stub, $this->stub->lateConstruct());
     }
 
     public function testGetterAndSetterName()
@@ -32,8 +32,8 @@ class AbstractPageTest extends \WP_UnitTestCase
         $value = 'test-name';
 
         $this->assertNull($this->stub->getName());
-        $this->assertEquals($this->stub, $this->stub->setName($value));
-        $this->assertEquals($value, $this->stub->getName());
+        $this->assertSame($this->stub, $this->stub->setName($value));
+        $this->assertSame($value, $this->stub->getName());
     }
 
     public function testGetterAndSetterPageTitle()
@@ -41,8 +41,8 @@ class AbstractPageTest extends \WP_UnitTestCase
         $value = 'Test Page Title';
 
         $this->assertNull($this->stub->getPageTitle());
-        $this->assertEquals($this->stub, $this->stub->setPageTitle($value));
-        $this->assertEquals($value, $this->stub->getPageTitle());
+        $this->assertSame($this->stub, $this->stub->setPageTitle($value));
+        $this->assertSame($value, $this->stub->getPageTitle());
     }
 
     public function testGetterAndSetterMenuTitle()
@@ -50,8 +50,8 @@ class AbstractPageTest extends \WP_UnitTestCase
         $value = 'Test Menu Title';
 
         $this->assertNull($this->stub->getMenuTitle());
-        $this->assertEquals($this->stub, $this->stub->setMenuTitle($value));
-        $this->assertEquals($value, $this->stub->getMenuTitle());
+        $this->assertSame($this->stub, $this->stub->setMenuTitle($value));
+        $this->assertSame($value, $this->stub->getMenuTitle());
     }
 
     public function testGetterAndSetterCapability()
@@ -59,8 +59,8 @@ class AbstractPageTest extends \WP_UnitTestCase
         $value = 'test_manage_options';
 
         $this->assertNull($this->stub->getCapability());
-        $this->assertEquals($this->stub, $this->stub->setCapability($value));
-        $this->assertEquals($value, $this->stub->getCapability());
+        $this->assertSame($this->stub, $this->stub->setCapability($value));
+        $this->assertSame($value, $this->stub->getCapability());
     }
 
     public function testGetterAndSetterMenuSlug()
@@ -68,8 +68,8 @@ class AbstractPageTest extends \WP_UnitTestCase
         $value = 'test-menu-slug';
 
         $this->assertNull($this->stub->getMenuSlug());
-        $this->assertEquals($this->stub, $this->stub->setMenuSlug($value));
-        $this->assertEquals($value, $this->stub->getMenuSlug());
+        $this->assertSame($this->stub, $this->stub->setMenuSlug($value));
+        $this->assertSame($value, $this->stub->getMenuSlug());
     }
 
     public function testGetterAndSetterView()
@@ -77,8 +77,8 @@ class AbstractPageTest extends \WP_UnitTestCase
         $value = new TwigPageView();
 
         $this->assertNull($this->stub->getView());
-        $this->assertEquals($this->stub, $this->stub->setView($value));
-        $this->assertEquals($value, $this->stub->getView());
+        $this->assertSame($this->stub, $this->stub->setView($value));
+        $this->assertSame($value, $this->stub->getView());
     }
 
     public function testGetterAndSetterRequest()
@@ -86,8 +86,8 @@ class AbstractPageTest extends \WP_UnitTestCase
         $value = new Request();
 
         $this->assertNull($this->stub->getRequest());
-        $this->assertEquals($this->stub, $this->stub->setRequest($value));
-        $this->assertEquals($value, $this->stub->getRequest());
+        $this->assertSame($this->stub, $this->stub->setRequest($value));
+        $this->assertSame($value, $this->stub->getRequest());
     }
 
     public function testGetterAndSetterFormFactory()
@@ -96,15 +96,15 @@ class AbstractPageTest extends \WP_UnitTestCase
         $value = $value->getFormFactory();
 
         $this->assertNull($this->stub->getFormFactory());
-        $this->assertEquals($this->stub, $this->stub->setFormFactory($value));
-        $this->assertEquals($value, $this->stub->getFormFactory());
+        $this->assertSame($this->stub, $this->stub->setFormFactory($value));
+        $this->assertSame($value, $this->stub->getFormFactory());
     }
 
     public function testGetterAndSetterForm()
     {
         $this->assertNull($this->stub->getForm());
-        //$this->assertEquals($this->stub, $this->stub->setForm($value));
-        //$this->assertEquals($value, $this->stub->getForm());
+        //$this->assertSame($this->stub, $this->stub->setForm($value));
+        //$this->assertSame($value, $this->stub->getForm());
     }
 
     public function testGetterAndSetterFormEntity()
@@ -112,8 +112,8 @@ class AbstractPageTest extends \WP_UnitTestCase
         $value = new \stdClass();
 
         $this->assertNull($this->stub->getFormEntity());
-        $this->assertEquals($this->stub, $this->stub->setFormEntity($value));
-        $this->assertEquals($value, $this->stub->getFormEntity());
+        $this->assertSame($this->stub, $this->stub->setFormEntity($value));
+        $this->assertSame($value, $this->stub->getFormEntity());
     }
 
     public function testHandleRequest()

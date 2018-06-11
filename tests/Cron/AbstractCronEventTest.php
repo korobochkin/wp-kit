@@ -81,16 +81,16 @@ class AbstractCronEventTest extends \WP_UnitTestCase
 
         $this->stub->setName($name);
         $this->assertNull($this->stub->schedule());
-        $this->assertEquals($name, $this->stub->getName());
+        $this->assertSame($name, $this->stub->getName());
 
         // And finally validate that this event added to WordPress.
         $tasks = _get_cron_array();
         $this->assertTrue(isset($tasks[$time][$name]));
         $this->assertNotEmpty($tasks[$time][$name]);
-        $this->assertEquals(1, count($tasks[$time][$name]));
+        $this->assertSame(1, count($tasks[$time][$name]));
 
         reset($tasks);
         $firstIndex = key($tasks[$time][$name]);
-        $this->assertEquals($recurrence, $tasks[$time][$name][$firstIndex]['schedule']);
+        $this->assertSame($recurrence, $tasks[$time][$name][$firstIndex]['schedule']);
     }
 }

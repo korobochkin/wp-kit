@@ -27,12 +27,12 @@ class NameTraitTest extends \WP_UnitTestCase
     {
         $defaultValue = null;
 
-        $this->assertEquals($defaultValue, $this->stub->getName());
+        $this->assertSame($defaultValue, $this->stub->getName());
 
         $value = 'wp_kit_test_name';
 
-        $this->assertEquals($this->stub, $this->stub->setName($value));
+        $this->assertSame($this->stub, $this->stub->setName($value));
 
-        $this->assertEquals($value, $this->stub->getName());
+        $this->assertSame($value, $this->stub->getName());
     }
 }

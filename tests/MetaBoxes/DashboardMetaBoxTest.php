@@ -37,7 +37,7 @@ class DashboardMetaBoxTest extends \WP_UnitTestCase
 
         $current_screen = \WP_Screen::get('dashboard');
 
-        $this->assertEquals($this->stub, $this->stub->register());
+        $this->assertSame($this->stub, $this->stub->register());
 
         $this->assertInternalType('int', has_action('load-index.php', array($this->stub, 'lateConstruct')));
     }

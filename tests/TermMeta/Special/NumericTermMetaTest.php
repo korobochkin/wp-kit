@@ -67,12 +67,14 @@ class NumericTermMetaTest extends \WP_UnitTestCase
                 try {
                     $this->stub->flush();
                 } catch (\Exception $exception) {
-                    $this->assertTrue(is_a($exception, $expected));
+                    $this->assertInstanceOf($expected, $exception);
+                } finally {
+                    $this->assertInstanceOf($expected, $exception);
                 }
             }
         } else {
             $this->stub->flush();
-            $this->assertEquals($expected, $this->stub->get());
+            $this->assertSame($expected, $this->stub->get());
         }
     }
 
@@ -90,11 +92,11 @@ class NumericTermMetaTest extends \WP_UnitTestCase
     public function testTypesWithoutSaving($value, $expected)
     {
         $this->stub->set($value);
-
-        if (class_exists($expected)) {
-            $this->assertEquals($value, $this->stub->get());
+        if (is_null($value)) {
+            // Default value (null is not caught via $this->hasLocalValue())
+            $this->assertSame(0.0, $this->stub->get());
         } else {
-            $this->assertEquals($expected, $this->stub->get());
+            $this->assertSame($value, $this->stub->get());
         }
     }
 
@@ -105,6 +107,6 @@ class NumericTermMetaTest extends \WP_UnitTestCase
 
     public function testDefaultValue()
     {
-        $this->assertEquals(0.0, $this->stub->get());
+        $this->assertSame(0.0, $this->stub->get());
     }
 }

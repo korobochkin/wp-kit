@@ -19,7 +19,7 @@ class IntegerToStringTransformer implements DataTransformerInterface
             throw new TransformationFailedException('Expected a numeric.');
         }
 
-        return (string)(int) $value;
+        return (string) (int) $value;
     }
 
     /**

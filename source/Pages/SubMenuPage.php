@@ -45,7 +45,6 @@ class SubMenuPage extends AbstractPage implements SubMenuPageInterface
     public function unRegister()
     {
         $result = remove_submenu_page($this->getParentSlug(), $this->getMenuSlug());
-        var_dump($result);
         if (!$result) {
             throw new \Exception();
         }

@@ -46,7 +46,6 @@ class IntegerTransformationSet extends AbstractDataSet
             array(null,        0),
         );
 
-        // Only for PHP 7 or later.
         if (PHP_VERSION_ID >= 70000) {
             $values[] = array(PHP_INT_MIN, TransformationFailedException::class);
         }

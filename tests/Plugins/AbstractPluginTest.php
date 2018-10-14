@@ -23,6 +23,11 @@ class AbstractPluginTest extends \WP_UnitTestCase
         );
     }
 
+    public function testRunAdmin()
+    {
+        $this->assertSame($this->stub, $this->stub->runAdmin());
+    }
+
     public function testGetFile()
     {
         $this->assertSame(__FILE__, $this->stub->getFile());

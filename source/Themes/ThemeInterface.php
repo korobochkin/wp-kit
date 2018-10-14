@@ -12,12 +12,12 @@ interface ThemeInterface extends ContainerAwareInterface
      * Define const VERSION here with plugin version as '1.2.3-beta-1'.
      */
 
-     /**
-      * Place here any action and filters which initialize plugin.
-      *
-      * @return $this For chain calls.
-      */
-     public function run();
+    /**
+     * Place here any action and filters which initialize plugin.
+     *
+     * @return $this For chain calls.
+     */
+    public function run();
 
     /**
      * Place here any actions and filters for WordPress admin area only.

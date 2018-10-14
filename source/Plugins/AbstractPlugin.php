@@ -30,11 +30,6 @@ abstract class AbstractPlugin implements PluginInterface
     /**
      * @inheritdoc
      */
-    abstract public function run();
-
-    /**
-     * @inheritdoc
-     */
     public function runAdmin()
     {
         return $this;
@@ -72,6 +67,7 @@ abstract class AbstractPlugin implements PluginInterface
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
+
         return $this;
     }
 

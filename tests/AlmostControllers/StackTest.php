@@ -60,7 +60,7 @@ class StackTest extends \WP_UnitTestCase
 
     public function testRegister()
     {
-        $this->setExpectedException(\LogicException::class);
+        $this->setExpectedException(\LogicException::class, 'You need set actions before call register method.');
         $this->stub->register();
 
         $this->setExpectedException(null);

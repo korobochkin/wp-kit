@@ -23,4 +23,4 @@ before_script:
 
 script:
   - vendor/bin/phpcs --standard=phpcs.ruleset.xml
-  - phpunit --config=phpunit.xml.dist
+  - vendor/bin/phpunit --config=phpunit.xml.dist

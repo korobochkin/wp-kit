@@ -22,11 +22,18 @@ interface PluginInterface extends ContainerAwareInterface
     public function __construct($file);
 
     /**
-     * The main function which runs everything. Place your add_action() or other functions call here.
+     * Place here any action and filters which initialize plugin.
      *
      * @return $this For chain calls.
      */
     public function run();
+
+    /**
+     * Place here any actions and filters for WordPress admin area only.
+     *
+     * @return $this For chain calls.
+     */
+    public function runAdmin();
 
     /**
      * @return string A path to plugin bootstrap file.

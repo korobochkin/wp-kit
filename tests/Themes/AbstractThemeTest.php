@@ -20,6 +20,11 @@ class AbstractThemeTest extends \WP_UnitTestCase
         $this->stub = $this->getMockForAbstractClass(AbstractTheme::class);
     }
 
+    public function testRun()
+    {
+        $this->assertSame($this->stub, $this->stub->run());
+    }
+
     public function testRunAdmin()
     {
         $this->assertSame($this->stub, $this->stub->runAdmin());

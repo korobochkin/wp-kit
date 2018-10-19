@@ -17,6 +17,14 @@ abstract class AbstractTheme implements ThemeInterface
     /**
      * @inheritdoc
      */
+    public function run()
+    {
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function runAdmin()
     {
         return $this;

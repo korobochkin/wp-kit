@@ -30,6 +30,14 @@ abstract class AbstractPlugin implements PluginInterface
     /**
      * @inheritdoc
      */
+    public function run()
+    {
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function runAdmin()
     {
         return $this;

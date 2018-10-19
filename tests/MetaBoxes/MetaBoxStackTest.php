@@ -79,7 +79,10 @@ class MetaBoxStackTest extends \WP_UnitTestCase
         $container->register('wp_kit_test', \stdClass::class);
         $this->assertInstanceOf(\stdClass::class, $stub->get('wp_kit_test'));
 
-        $this->setExpectedException(ServiceNotFoundException::class);
+        $this->setExpectedException(
+            ServiceNotFoundException::class,
+            'You have requested a non-existent service "wp_kit_test_unknown".'
+        );
 
         $stub->get('wp_kit_test_unknown');
     }

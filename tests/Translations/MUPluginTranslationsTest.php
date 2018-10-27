@@ -39,9 +39,10 @@ class MUPluginTranslationsTest extends \WP_UnitTestCase
         $destination = WPMU_PLUGIN_DIR . '/wp-kit-example/translations/';
         var_dump($source, $destination);
         mkdir($destination, 0777, true);
-        copy($source, $destination);
 
-        $stub = new MUPluginTranslations('wp-kit-example', $destination);
+        copy($source, $destination . 'wp-kit-example-ru_RU.mo');
+
+        $stub = new MUPluginTranslations('wp-kit-example', '/wp-kit-example/translations/');
         $stub->loadTranslations();
 
         $this->assertSame('Привет', __('Hi', 'wp-kit-example'));

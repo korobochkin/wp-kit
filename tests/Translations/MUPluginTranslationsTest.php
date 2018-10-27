@@ -37,17 +37,15 @@ class MUPluginTranslationsTest extends \WP_UnitTestCase
         $reflection  = new \ReflectionClass(EverythingSet::class);
         $source      = dirname($reflection->getFileName()) . '/Translations/wp-kit-example-ru_RU.mo';
         $destination = WPMU_PLUGIN_DIR . '/wp-kit-example/translations/';
-        var_dump($source, $destination);
         mkdir($destination, 0777, true);
-
         copy($source, $destination . 'wp-kit-example-ru_RU.mo');
 
         $stub = new MUPluginTranslations('wp-kit-example', '/wp-kit-example/translations/');
         $stub->loadTranslations();
 
         $this->assertSame('Привет', __('Hi', 'wp-kit-example'));
-        $this->assertSame('Коментарий', _n('Comment', 'Comments', 1, 'wp-kit-example'));
-        $this->assertSame('Коментария', _n('Comment', 'Comments', 2, 'wp-kit-example'));
-        $this->assertSame('Коментариев', _n('Comment', 'Comments', 5, 'wp-kit-example'));
+        $this->assertSame('Комментарий', _n('Comment', 'Comments', 1, 'wp-kit-example'));
+        $this->assertSame('Комментария', _n('Comment', 'Comments', 2, 'wp-kit-example'));
+        $this->assertSame('Комментариев', _n('Comment', 'Comments', 5, 'wp-kit-example'));
     }
 }

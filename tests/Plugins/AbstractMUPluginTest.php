@@ -22,6 +22,7 @@ class AbstractMUPluginTest extends \WP_UnitTestCase
 
     public function testGetDir()
     {
+        $this->stub->setFile('/srv/www/wordpress/wp-content/mu-plugins/wp-kit-example/plugin.php');
         var_dump(array(
             'getDir' => $this->stub->getDir(),
         ));
@@ -30,6 +31,7 @@ class AbstractMUPluginTest extends \WP_UnitTestCase
 
     public function testGetUrl()
     {
+        $this->stub->setFile('/srv/www/wordpress/wp-content/mu-plugins/wp-kit-example/plugin.php');
         var_dump(array(
             'getUrl' => $this->stub->getUrl(),
         ));

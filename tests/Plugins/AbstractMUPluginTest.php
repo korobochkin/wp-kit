@@ -20,6 +20,22 @@ class AbstractMUPluginTest extends \WP_UnitTestCase
         );
     }
 
+    public function testGetDir()
+    {
+        var_dump(array(
+            'getDir' => $this->stub->getDir(),
+        ));
+        $this->assertSame(plugin_dir_path(__FILE__), $this->stub->getDir());
+    }
+
+    public function testGetUrl()
+    {
+        var_dump(array(
+            'getUrl' => $this->stub->getUrl(),
+        ));
+        $this->assertSame(plugin_dir_url(__FILE__), $this->stub->getUrl());
+    }
+
     /**
      * @dataProvider casesGetBasename
      *
@@ -28,12 +44,6 @@ class AbstractMUPluginTest extends \WP_UnitTestCase
     public function testGetBasename($plugin)
     {
         $this->stub->setFile(path_join(WPMU_PLUGIN_DIR, $plugin));
-        $a = array(
-            'input' => $plugin,
-            'path_join' => path_join(WPMU_PLUGIN_DIR, $plugin),
-            'getBasename' => $this->stub->getBasename(),
-        );
-        var_dump($a);
 
         $this->assertSame($plugin, $this->stub->getBaseName());
     }

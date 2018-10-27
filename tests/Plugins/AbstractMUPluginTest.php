@@ -27,13 +27,13 @@ class AbstractMUPluginTest extends \WP_UnitTestCase
      */
     public function testGetBasename($plugin)
     {
+        $this->stub->setFile(path_join(WPMU_PLUGIN_DIR, $plugin));
         $a = array(
             'input' => $plugin,
             'path_join' => path_join(WPMU_PLUGIN_DIR, $plugin),
             'getBasename' => $this->stub->getBasename(),
         );
         var_dump($a);
-        $this->stub->setFile(path_join(WPMU_PLUGIN_DIR, $plugin));
 
         $this->assertSame($plugin, $this->stub->getBaseName());
     }

@@ -37,6 +37,7 @@ class MUPluginTranslationsTest extends \WP_UnitTestCase
         $reflection  = new \ReflectionClass(EverythingSet::class);
         $source      = dirname($reflection->getFileName()) . '/Translations/wp-kit-example-ru_RU.mo';
         $destination = WPMU_PLUGIN_DIR . '/wp-kit-example/translations/';
+        var_dump($source, $destination);
         copy($source, $destination);
 
         $stub = new MUPluginTranslations('wp-kit-example', $destination);

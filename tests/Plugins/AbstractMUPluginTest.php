@@ -22,24 +22,20 @@ class AbstractMUPluginTest extends \WP_UnitTestCase
 
     public function testGetDir()
     {
-        $file = '/srv/www/wordpress/wp-content/mu-plugins/wp-kit-example/plugin.php';
-        $this->stub->setFile($file);
-        var_dump(array(
-            'getDir' => $this->stub->getDir(),
-        ));
-        $this->assertSame(plugin_dir_path($file), $this->stub->getDir());
+        $input    = '/tmp/wordpress/wp-content/mu-plugins/wp-kit-example/plugin.php';
+        $expected = '/tmp/wordpress/wp-content/mu-plugins/wp-kit-example';
+        $this->stub->setFile($input);
+
+        $this->assertSame($expected, $this->stub->getDir());
     }
 
     public function testGetUrl()
     {
-        $file = '/tmp/wordpress/wp-content/mu-plugins/wp-kit-example/plugin.php';
-        $this->stub->setFile($file);
-        var_dump(array(
-            'getUrl' => $this->stub->getUrl(),
-            'WPMU_PLUGIN_DIR' => WPMU_PLUGIN_DIR,
-            'plugin_dir_url' => plugin_dir_url($file),
-        ));
-        $this->assertSame(plugin_dir_url($file), $this->stub->getUrl());
+        $input    = '/tmp/wordpress/wp-content/mu-plugins/wp-kit-example/plugin.php';
+        $expected = 'http://example.org/wp-content/mu-plugins/wp-kit-example/';
+        $this->stub->setFile($input);
+
+        $this->assertSame($expected, $this->stub->getUrl());
     }
 
     /**

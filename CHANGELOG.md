@@ -1,5 +1,9 @@
 # Changelog
 
+## ON DEVELOP BRANCH
+
+* Added classes for MU plugins (AbstractMUPlugin, MUPluginTranslations) ([#35](https://github.com/korobochkin/wp-kit/issues/35))
+
 ## 0.10.1 - October 19, 2018
 
 * Added runAdmin method for plugins and themes ([#36](https://github.com/korobochkin/wp-kit/issues/36)).

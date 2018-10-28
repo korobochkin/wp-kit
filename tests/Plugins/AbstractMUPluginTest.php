@@ -23,7 +23,7 @@ class AbstractMUPluginTest extends \WP_UnitTestCase
     public function testGetDir()
     {
         $input    = '/tmp/wordpress/wp-content/mu-plugins/wp-kit-example/plugin.php';
-        $expected = '/tmp/wordpress/wp-content/mu-plugins/wp-kit-example';
+        $expected = '/tmp/wordpress/wp-content/mu-plugins/wp-kit-example/';
         $this->stub->setFile($input);
 
         $this->assertSame($expected, $this->stub->getDir());

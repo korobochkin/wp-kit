@@ -104,6 +104,7 @@ class AbstractActionTest extends \WP_UnitTestCase
                   ->addArgument('test');
 
         $this->stub->setContainer($container);
-        $this->assertTrue(is_a($this->stub->get(Stack::class), Stack::class));
+        $this->assertInstanceOf(Stack::class, $this->stub->get(Stack::class));
+        $this->assertSame($container->get(Stack::class), $this->stub->get(Stack::class));
     }
 }

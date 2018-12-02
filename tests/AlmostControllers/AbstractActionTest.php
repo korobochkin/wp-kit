@@ -96,7 +96,7 @@ class AbstractActionTest extends \WP_UnitTestCase
         $this->assertSame($this->stub, $this->stub->setContainer(new ContainerBuilder()));
     }
 
-    public function get()
+    public function testGet()
     {
         $container = new ContainerBuilder();
         $container->register(Stack::class)

@@ -6,34 +6,24 @@ use Korobochkin\WPKit\Tests\DataSets\AlmostControllers\TestAction;
 
 class HttpStackTest extends \WP_UnitTestCase
 {
-    /**
-     * @var HttpStack
-     */
-    protected $stub;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->stub = new HttpStack(array(), 'wp_kit_test_action_name');
-    }
-
     public function testRegister()
     {
+        $stub = new HttpStack(array(), 'wp_kit_test_action_name');
         $this->setExpectedException(\LogicException::class, 'You need set actions before call register method.');
-        $this->stub->register();
+        $stub->register();
+    }
 
-        $this->setExpectedException(null);
+    public function testRegisterWithActions()
+    {
+        $stub = new HttpStack(array(), 'wp_kit_test_action_name');
 
         $actions = array(
             new TestAction(),
         );
 
-        $this->stub
-            ->setActions($actions)
-            ->register();
+        $this->assertSame($stub, $stub->setActions($actions)->register());
 
-        $this->assertTrue(has_filter('admin_post_wp_kit_test_action_name', array($this->stub, 'handleRequest')));
-        $this->assertTrue(has_filter('admin_post_nopriv_wp_kit_test_action_name', array($this->stub, 'handleRequest')));
+        $this->assertSame(10, has_filter('admin_post_wp_kit_test_action_name', array($stub, 'handleRequest')));
+        $this->assertSame(10, has_filter('admin_post_nopriv_wp_kit_test_action_name', array($stub, 'handleRequest')));
     }
 }

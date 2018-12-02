@@ -99,12 +99,11 @@ class AbstractActionTest extends \WP_UnitTestCase
     public function testGet()
     {
         $container = new ContainerBuilder();
-        $container->register(Stack::class)
-                  ->addArgument(array())
-                  ->addArgument('test');
+        $container->register('wp_kit_test_service', \stdClass::class);
+        $expected = $container->get('wp_kit_test_service');
 
         $this->stub->setContainer($container);
-        $this->assertInstanceOf(Stack::class, $this->stub->get(Stack::class));
-        $this->assertSame($container->get(Stack::class), $this->stub->get(Stack::class));
+        $this->assertInstanceOf(\stdClass::class, $this->stub->get('wp_kit_test_service'));
+        $this->assertSame($expected, $this->stub->get('wp_kit_test_service'));
     }
 }

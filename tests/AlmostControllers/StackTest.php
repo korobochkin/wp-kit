@@ -32,6 +32,12 @@ class StackTest extends \WP_UnitTestCase
         $this->assertSame($this->stub, $this->stub->setActions(array()));
     }
 
+    public function testAddAction()
+    {
+        $this->assertSame(array(), $this->stub->getActions());
+        $action = new AbstractAction
+    }
+
     public function testGetterAndSetterActionName()
     {
         $this->assertSame('wp_kit_test_action_name', $this->stub->getActionName());

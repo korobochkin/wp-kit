@@ -21,9 +21,7 @@ class AjaxStackTest extends \WP_UnitTestCase
             new TestAction(),
         );
 
-        $stub
-            ->setActions($actions)
-            ->register();
+        $this->assertSame($stub, $stub->setActions($actions)->register());
 
         $this->assertSame(10, has_filter('wp_ajax_wp_kit_test_action_name', array($stub, 'handleRequest')));
         $this->assertSame(10, has_filter('wp_ajax_nopriv_wp_kit_test_action_name', array($stub, 'handleRequest')));

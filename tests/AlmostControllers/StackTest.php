@@ -1,6 +1,7 @@
 <?php
 namespace Korobochkin\WPKit\Tests\AlmostControllers;
 
+use Korobochkin\WPKit\AlmostControllers\AbstractAction;
 use Korobochkin\WPKit\AlmostControllers\Exceptions\ActionNotFoundException;
 use Korobochkin\WPKit\AlmostControllers\Stack;
 use Korobochkin\WPKit\Tests\DataSets\AlmostControllers\TestAction;
@@ -34,8 +35,18 @@ class StackTest extends \WP_UnitTestCase
 
     public function testAddAction()
     {
+        /**
+         * @var $action AbstractAction
+         */
         $this->assertSame(array(), $this->stub->getActions());
-        $action = new AbstractAction
+        $action = $this->getMockForAbstractClass(AbstractAction::class);
+        $action->setName('wp_kit_test_action');
+        $expected = array(
+            'wp_kit_test_action' => $action,
+        );
+
+        $this->assertSame($this->stub, $this->stub->addAction($action));
+        $this->assertSame($expected, $this->stub->getActions());
     }
 
     public function testGetterAndSetterActionName()

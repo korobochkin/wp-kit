@@ -24,3 +24,7 @@ before_script:
 script:
   - vendor/bin/phpcs --standard=phpcs.ruleset.xml
   - vendor/bin/phpunit --config=phpunit.xml.dist
+  - vendor/bin/phpunit --coverage-clover=coverage.xml
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

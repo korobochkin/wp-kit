@@ -44,8 +44,10 @@ class AbstractCronEventTest extends \WP_UnitTestCase
 
     public function testScheduleWrongRecurrence()
     {
-        $this->stub->setTimestamp(time() + HOUR_IN_SECONDS);
-        $this->stub->setName('wp_kit_test_cron_event');
+        $this->stub
+            ->setTimestamp(time() + HOUR_IN_SECONDS)
+            ->setName('wp_kit_test_cron_event')
+            ->setRecurrence('wp_kit_not_exists_recurrence');
         $this->setExpectedException(\LogicException::class, 'Invalid recurrence name. You should register before using.');
         $this->stub->schedule();
     }
@@ -56,7 +58,7 @@ class AbstractCronEventTest extends \WP_UnitTestCase
         $name       = 'wp_kit_test_cron_event';
         $recurrence = 'hourly';
 
-        $this->stub->setTimestamp($time)->setName($name)->setRecurrence($recurrence);
+        $this->stub->setTimestamp($time)->setName($name);
 
         $this->assertTrue($this->stub->schedule());
 

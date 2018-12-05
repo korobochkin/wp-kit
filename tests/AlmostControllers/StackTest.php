@@ -126,14 +126,14 @@ class StackTest extends \WP_UnitTestCase
         $this->assertSame($this->stub, $this->stub->setContainer(new ContainerBuilder()));
     }
 
-    public function get()
+    public function testGet()
     {
         $container = new ContainerBuilder();
-        $container->register(Stack::class)
-            ->addArgument(array())
-            ->addArgument('test');
+        $container->register('wp_kit_test_service', \stdClass::class);
+        $expected = $container->get('wp_kit_test_service');
 
         $this->stub->setContainer($container);
-        $this->assertTrue(is_a($this->stub->get(Stack::class), Stack::class));
+        $this->assertInstanceOf(\stdClass::class, $this->stub->get('wp_kit_test_service'));
+        $this->assertSame($expected, $this->stub->get('wp_kit_test_service'));
     }
 }

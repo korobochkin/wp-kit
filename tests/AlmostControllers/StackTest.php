@@ -90,6 +90,47 @@ class StackTest extends \WP_UnitTestCase
         $this->assertSame($this->stub, $this->stub->setActions($actions)->register());
     }
 
+    public function testRequestManagerWithoutActionName()
+    {
+        $actions = array(
+            TestAction::class => new TestAction(),
+        );
+
+        $request  = new Request();
+        $response = new JsonResponse();
+
+        $this->stub
+            ->setActions($actions)
+            ->setRequest($request)
+            ->setResponse($response);
+
+        $this->setExpectedException(ActionNotFoundException::class);
+
+        $this->stub->requestManager();
+    }
+
+    public function testRequestManagerActionBuilding()
+    {
+        $actions = array(
+            TestAction::class => TestAction::class,
+        );
+
+        $request  = new Request();
+        $response = new JsonResponse();
+
+        $this->stub
+            ->setActions($actions)
+            ->setRequest(clone $request)
+            ->setResponse(clone $response);
+
+        $this->assertSame($this->stub, $this->stub->requestManager());
+        $actions = $this->stub->getActions();
+        $this->assertInstanceOf(TestAction::class, $actions[TestAction::class]);
+        $this->assertInternalType('object', $actions[TestAction::class]);
+        $this->assertEquals($response, $this->stub->getResponse());
+        $this->assertEquals($request, $this->stub->getRequest());
+    }
+
     public function testRequestManager()
     {
         $actions = array(

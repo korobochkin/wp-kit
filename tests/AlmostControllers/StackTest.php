@@ -115,7 +115,7 @@ class StackTest extends \WP_UnitTestCase
             TestAction::class => TestAction::class,
         );
 
-        $request  = new Request();
+        $request  = new Request(array('actionName' => TestAction::class));
         $response = new JsonResponse();
 
         $this->stub
@@ -137,21 +137,8 @@ class StackTest extends \WP_UnitTestCase
             TestAction::class => new TestAction(),
         );
 
-        $request = new Request(array(
-            'actionName' => TestAction::class,
-        ));
-
+        $request  = new Request(array('actionName' => 'unknown-action-name'));
         $response = new JsonResponse();
-
-        $this->stub
-            ->setActions($actions)
-            ->setRequest($request)
-            ->setResponse($response)
-            ->requestManager();
-
-        $request = new Request(array(
-            'actionName' => 'uknown-action-name',
-        ));
 
         $this->setExpectedException(ActionNotFoundException::class);
 

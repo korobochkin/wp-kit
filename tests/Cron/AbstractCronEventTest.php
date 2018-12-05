@@ -31,7 +31,10 @@ class AbstractCronEventTest extends \WP_UnitTestCase
     public function testScheduleWrongTimeStamp()
     {
         $this->stub->setTimestamp('123');
-        $this->setExpectedException(\LogicException::class, 'You must specify valid timestamp of event before schedule.');
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify valid timestamp of event before schedule.'
+        );
         $this->stub->schedule();
     }
 
@@ -48,7 +51,10 @@ class AbstractCronEventTest extends \WP_UnitTestCase
             ->setTimestamp(time() + HOUR_IN_SECONDS)
             ->setName('wp_kit_test_cron_event')
             ->setRecurrence('wp_kit_not_exists_recurrence');
-        $this->setExpectedException(\LogicException::class, 'Invalid recurrence name. You should register before using.');
+        $this->setExpectedException(
+            \LogicException::class,
+            'Invalid recurrence name. You should register before using.'
+        );
         $this->stub->schedule();
     }
 
@@ -60,7 +66,7 @@ class AbstractCronEventTest extends \WP_UnitTestCase
 
         $this->stub->setTimestamp($time)->setName($name);
 
-        $this->assertTrue($this->stub->schedule());
+        $this->assertNull($this->stub->schedule());
 
         $tasks = _get_cron_array();
 

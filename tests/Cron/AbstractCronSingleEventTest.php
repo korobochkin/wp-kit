@@ -64,8 +64,56 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase
     }
 
     /**
-     * Test un-schedule single event with name.
+     * @dataProvider casesUnSchedule
      *
+     * @param $time int Timestamp to test with.
+     * @param $resultOfScheduling mixed Result which returns schedule method.
+     */
+    public function testUnScheduleWrongTimeStamp($time, $resultOfScheduling)
+    {
+        $name  = 'wp_kit_test_cron_event';
+
+        $this->stub
+            ->setTimestamp($time)
+            ->setName($name)
+            ->schedule();
+
+        $this->stub->setTimestamp('123');
+
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify valid timestamp of event before un schedule.'
+        );
+
+        $this->stub->unSchedule();
+    }
+
+    /**
+     * @dataProvider casesUnSchedule
+     *
+     * @param $time int Timestamp to test with.
+     * @param $resultOfScheduling mixed Result which returns schedule method.
+     */
+    public function testUnScheduleWrongName($time, $resultOfScheduling)
+    {
+        $name  = 'wp_kit_test_cron_event';
+
+        $this->stub
+            ->setTimestamp($time)
+            ->setName($name)
+            ->schedule();
+
+        $this->stub->setName(null);
+
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify name for event before un schedule.'
+        );
+
+        $this->stub->unSchedule();
+    }
+
+    /**
      * @dataProvider casesUnSchedule
      *
      * @param $time int Timestamp to test with.
@@ -73,49 +121,12 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase
      */
     public function testUnSchedule($time, $resultOfScheduling)
     {
-        $name  = 'wp_kit_test_cron_event';
-        $tasks = _get_cron_array();
+        $name = 'wp_kit_test_cron_event';
 
-        // Add event.
         $this->stub
             ->setTimestamp($time)
             ->setName($name)
             ->schedule();
-
-        // Reset values of object to default.
-        $this->stub
-            ->setTimestamp('123')
-            ->setName(null);
-
-        if (PHP_VERSION_ID >= 70000) {
-            // PHP 7.
-            $this->expectException(\LogicException::class);
-            $this->stub->unSchedule();
-        } else {
-            // PHP 5.
-            try {
-                $this->stub->unSchedule();
-            } catch (\Exception $exception) {
-                $this->assertTrue(is_a($exception, \LogicException::class));
-            }
-        }
-
-        $this->stub->setTimestamp($time);
-
-        if (PHP_VERSION_ID >= 70000) {
-            // PHP 7.
-            $this->expectException(\LogicException::class);
-            $this->stub->unSchedule();
-        } else {
-            // PHP 5.
-            try {
-                $this->stub->unSchedule();
-            } catch (\Exception $exception) {
-                $this->assertTrue(is_a($exception, \LogicException::class));
-            }
-        }
-
-        $this->stub->setName($name);
 
         $this->assertSame($resultOfScheduling, $this->stub->unSchedule());
 

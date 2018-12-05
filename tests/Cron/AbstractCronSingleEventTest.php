@@ -71,7 +71,7 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase
      */
     public function testUnScheduleWrongTimeStamp($time, $resultOfScheduling)
     {
-        $name  = 'wp_kit_test_cron_event';
+        $name = 'wp_kit_test_cron_event';
 
         $this->stub
             ->setTimestamp($time)
@@ -96,7 +96,7 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase
      */
     public function testUnScheduleWrongName($time, $resultOfScheduling)
     {
-        $name  = 'wp_kit_test_cron_event';
+        $name = 'wp_kit_test_cron_event';
 
         $this->stub
             ->setTimestamp($time)
@@ -205,5 +205,31 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase
         $time = time();
         $this->assertSame($this->stub, $this->stub->immediately());
         $this->assertSame($time, $this->stub->getTimestamp());
+    }
+
+    /**
+     * @dataProvider casesIsScheduled
+     *
+     * @param $time int Timestamp to test with.
+     * @param $resultOfScheduling mixed Result which returns schedule method.
+     */
+    public function testIsScheduled($time, $resultOfScheduling)
+    {
+        $this->stub->setName('wp_kit_test_cron_event')->setTimestamp($time)->schedule();
+        $this->assertTrue($this->stub->isScheduled());
+    }
+
+    /**
+     * @return CronEventDataSet
+     */
+    public function casesIsScheduled()
+    {
+        return new CronEventDataSet();
+    }
+
+    public function testIsScheduledNotScheduled()
+    {
+        $this->stub->setName('wp_kit_test_cron_event');
+        $this->assertFalse($this->stub->isScheduled());
     }
 }

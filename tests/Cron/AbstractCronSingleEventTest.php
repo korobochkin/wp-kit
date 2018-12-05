@@ -4,10 +4,6 @@ namespace Korobochkin\WPKit\Tests\Cron;
 use Korobochkin\WPKit\Cron\AbstractCronSingleEvent;
 use Korobochkin\WPKit\Tests\DataSets\Cron\CronEventDataSet;
 
-/**
- * Class AbstractCronSingleEventTest
- * @package Korobochkin\WPKit\Tests\Cron
- */
 class AbstractCronSingleEventTest extends \WP_UnitTestCase
 {
     /**
@@ -24,66 +20,47 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase
         $this->stub = $this->getMockForAbstractClass(AbstractCronSingleEvent::class);
     }
 
-    /**
-     * Test schedule event.
-     *
-     * @dataProvider casesSchedule
-     *
-     * @param $time int Timestamp to test with.
-     * @param $resultOfScheduling mixed Result which returns schedule method.
-     */
-    public function testSchedule($time, $resultOfScheduling)
+    public function testScheduleInitialState()
     {
+        $time  = time() + HOUR_IN_SECONDS;
         $name  = 'wp_kit_test_cron_event';
         $tasks = _get_cron_array();
 
         $this->assertFalse(isset($tasks[$time][$name]));
+    }
 
-        // Set wrong timestamp.
+    public function testScheduleWrongTimeStamp()
+    {
         $this->stub->setTimestamp('123');
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify valid timestamp of event before schedule.'
+        );
+        $this->stub->schedule();
+    }
 
-        if (PHP_VERSION_ID >= 70000) {
-            // PHP 7.
-            $this->expectException(\LogicException::class);
-            $this->stub->schedule();
-        } else {
-            // PHP 5.
-            try {
-                $this->stub->schedule();
-            } catch (\Exception $exception) {
-                $this->assertTrue(is_a($exception, \LogicException::class));
-            }
-        }
+    public function testScheduleWrongName()
+    {
+        $this->stub->setTimestamp(time() + HOUR_IN_SECONDS);
+        $this->setExpectedException(\LogicException::class, 'You must specify name for event before schedule.');
+        $this->stub->schedule();
+    }
 
-        $this->stub->setTimestamp($time);
+    public function testSchedule()
+    {
+        $time       = time() + HOUR_IN_SECONDS;
+        $name       = 'wp_kit_test_cron_event';
+        $recurrence = 'hourly';
 
-        if (PHP_VERSION_ID >= 70000) {
-            // PHP 7.
-            $this->expectException(\LogicException::class);
-            $this->stub->schedule();
-        } else {
-            // PHP 5.
-            try {
-                $this->stub->schedule();
-            } catch (\Exception $exception) {
-                $this->assertTrue(is_a($exception, \LogicException::class));
-            }
-        }
+        $this->stub->setTimestamp($time)->setName($name);
 
-        $this->stub->setName($name);
-        $this->assertSame($resultOfScheduling, $this->stub->schedule());
-        $this->assertSame($name, $this->stub->getName());
+        $this->assertNull($this->stub->schedule());
 
-        // And finally validate that this event added to WordPress.
         $tasks = _get_cron_array();
+
         $this->assertTrue(isset($tasks[$time][$name]));
         $this->assertNotEmpty($tasks[$time][$name]);
         $this->assertSame(1, count($tasks[$time][$name]));
-    }
-
-    public function casesSchedule()
-    {
-        return new CronEventDataSet();
     }
 
     /**

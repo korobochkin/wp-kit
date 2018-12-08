@@ -241,6 +241,12 @@ class AbstractOptionTest extends \WP_UnitTestCase
         return new EverythingSet2();
     }
 
+    public function testGetLocalValue()
+    {
+        $this->stub->setLocalValue('TEST');
+        $this->assertSame('TEST', $this->stub->get());
+    }
+
     /* The tests bellow for methods inherited from AbstractNode class */
 
     /**

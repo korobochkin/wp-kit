@@ -48,6 +48,39 @@ class AbstractTransientTest extends \WP_UnitTestCase
         $this->assertFalse($this->stub->getValueFromWordPress());
     }
 
+    public function testDeleteWithNoSavedValue()
+    {
+        $this->assertFalse($this->stub->setName('wp_kit_abstract_transient')->delete());
+    }
+
+    /**
+     * @dataProvider casesDeleteFromWP
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
+     */
+    public function testDeleteWithSavedValue($value, $saveResult, $valueResult, $deleteResult)
+    {
+        $this->stub->setName('wp_kit_abstract_transient')->updateValue($value);
+        if ($saveResult) {
+            $this->assertTrue($this->stub->delete());
+            $this->assertNull($this->stub->getLocalValue());
+        } else {
+            $this->assertFalse($this->stub->delete());
+            $this->assertSame($value, $this->stub->getLocalValue());
+        }
+    }
+
+    public function testDeleteFromWPWithoutName()
+    {
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the name of transient before calling any methods using name of transient.'
+        );
+        $this->stub->deleteFromWP();
+    }
+
     /**
      * Test deleting value in WordPress.
      *
@@ -60,22 +93,7 @@ class AbstractTransientTest extends \WP_UnitTestCase
      */
     public function testDeleteFromWP($value, $saveResult, $valueResult, $deleteResult)
     {
-        if (PHP_VERSION_ID >= 70000) {
-            $this->expectException(\LogicException::class);
-            $this->stub->deleteFromWP();
-        } else {
-            try {
-                $this->stub->deleteFromWP();
-            } catch (\Exception $exception) {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            } finally {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            }
-        }
-
-        $this->stub
-            ->setName('wp_kit_abstract_trait')
-            ->updateValue($value);
+        $this->stub->setName('wp_kit_abstract_transient')->updateValue($value);
 
         $this->assertSame($deleteResult, $this->stub->deleteFromWP());
         $this->assertFalse($this->stub->getValueFromWordPress());

@@ -26,7 +26,7 @@ abstract class AbstractTransient extends AbstractNode implements TransientInterf
 
         if (!$name) {
             throw new \LogicException(
-                'You must specify the name of option before calling any methods using name of option.'
+                'You must specify the name of transient before calling any methods using name of transient.'
             );
         }
 
@@ -64,7 +64,7 @@ abstract class AbstractTransient extends AbstractNode implements TransientInterf
 
         if (!$name) {
             throw new \LogicException(
-                'You must specify the name of option before calling any methods using name of option.'
+                'You must specify the name of transient before calling any methods using name of transient.'
             );
         }
 
@@ -86,7 +86,7 @@ abstract class AbstractTransient extends AbstractNode implements TransientInterf
 
         if (!$name) {
             throw new \LogicException(
-                'You must specify the name of option before calling any methods using name of option.'
+                'You must specify the name of transient before calling any methods using name of transient.'
             );
         }
 

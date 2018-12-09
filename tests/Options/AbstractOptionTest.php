@@ -398,7 +398,7 @@ class AbstractOptionTest extends \WP_UnitTestCase
     public function testHasDefaultValue($value, $saveResult, $valueResult, $deleteResult)
     {
         $this->stub->setDefaultValue($value);
-        if(is_null($value)) {
+        if (is_null($value)) {
             $this->assertFalse($this->stub->hasDefaultValue());
         } else {
             $this->assertTrue($this->stub->hasDefaultValue());

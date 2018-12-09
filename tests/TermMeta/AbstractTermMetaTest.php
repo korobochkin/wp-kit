@@ -342,6 +342,28 @@ class AbstractTermMetaTest extends \WP_UnitTestCase
         return new EverythingSet2(true);
     }
 
+    public function testHasDefaultValueNotSetUp()
+    {
+        $this->assertFalse($this->stub->hasDefaultValue());
+    }
+
+    /**
+     * @dataProvider casesDefaultValue
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
+     */
+    public function testHasDefaultValue($value, $saveResult, $valueResult, $deleteResult)
+    {
+        $this->stub->setDefaultValue($value);
+        if(is_null($value)) {
+            $this->assertFalse($this->stub->hasDefaultValue());
+        } else {
+            $this->assertTrue($this->stub->hasDefaultValue());
+        }
+    }
+
     /**
      * Test deleting local value.
      *

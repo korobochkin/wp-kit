@@ -329,11 +329,19 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
     public function testNameWithVisibility()
     {
-        $this->assertSame(
-            $this->stub,
-            $this->stub->setName('wp_kit_dummy_name')->setVisibility(true)
-        );
+        $this->stub->setName('wp_kit_dummy_name')->setVisibility(true);
         $this->assertSame('wp_kit_dummy_name', $this->stub->getName());
+    }
+
+    public function testGetterAndSetterVisibility()
+    {
+        $this->assertFalse($this->stub->isVisible());
+
+        $this->assertSame($this->stub, $this->stub->setVisibility(true));
+        $this->assertTrue($this->stub->isVisible());
+
+        $this->assertSame($this->stub, $this->stub->setVisibility(false));
+        $this->assertFalse($this->stub->isVisible());
     }
 
     /**

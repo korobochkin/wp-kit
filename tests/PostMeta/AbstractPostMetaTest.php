@@ -327,6 +327,15 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
         $this->assertSame('_wp_kit_dummy_name', $this->stub->getName());
     }
 
+    public function testNameWithVisibility()
+    {
+        $this->assertSame(
+            $this->stub,
+            $this->stub->setName('wp_kit_dummy_name')->setVisibility(true)
+        );
+        $this->assertSame('wp_kit_dummy_name', $this->stub->getName());
+    }
+
     /**
      * Testing setLocalValue() and getLocalValue() methods.
      *

@@ -95,6 +95,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
     public function testDeleteFromWPWithoutName()
     {
+        $this->stub->setVisibility(true);
         $this->setExpectedException(
             \LogicException::class,
             'You must specify the name of post meta before calling any methods using name of post meta.'

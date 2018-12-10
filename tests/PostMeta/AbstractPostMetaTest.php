@@ -66,7 +66,8 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
     public function testDeleteWithNoSavedValue()
     {
-        $this->assertFalse($this->stub->setName('wp_kit_abstract_post_meta')->delete());
+        $this->stub->setName('wp_kit_abstract_post_meta')->setPostId($this->postId);
+        $this->assertFalse($this->stub->delete());
     }
 
     /**
@@ -78,7 +79,11 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
      */
     public function testDeleteWithSavedValue($value, $saveResult, $valueResult, $deleteResult)
     {
-        $this->stub->setName('wp_kit_abstract_post_meta')->updateValue($value);
+        $this->stub
+            ->setName('wp_kit_abstract_post_meta')
+            ->setPostId($this->postId)
+            ->updateValue($value);
+
         if ($saveResult) {
             $this->assertTrue($this->stub->delete());
             $this->assertNull($this->stub->getLocalValue());

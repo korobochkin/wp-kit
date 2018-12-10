@@ -373,4 +373,11 @@ class AbstractTransientTest extends \WP_UnitTestCase
     {
         return new EverythingSet2(false, true);
     }
+
+    public function testGetterAndSetterExpiration()
+    {
+        $this->assertSame(1, $this->stub->getExpiration());
+        $this->assertSame($this->stub, $this->stub->setExpiration(123));
+        $this->assertSame(123, $this->stub->getExpiration());
+    }
 }

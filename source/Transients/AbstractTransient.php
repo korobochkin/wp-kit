@@ -3,6 +3,7 @@ namespace Korobochkin\WPKit\Transients;
 
 use Korobochkin\WPKit\DataComponents\AbstractNode;
 use Korobochkin\WPKit\DataComponents\Traits\DeleteTrait;
+use Korobochkin\WPKit\DataComponents\Traits\ExpirationTrait;
 
 /**
  * Class AbstractTransient
@@ -12,10 +13,7 @@ abstract class AbstractTransient extends AbstractNode implements TransientInterf
 {
     use DeleteTrait;
 
-    /**
-     * @var $expiration int Expiration of transient.
-     */
-    protected $expiration = 1;
+    use ExpirationTrait;
 
     /**
      * @inheritdoc
@@ -35,24 +33,6 @@ abstract class AbstractTransient extends AbstractNode implements TransientInterf
 
     public function doIt()
     {
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getExpiration()
-    {
-        return $this->expiration;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setExpiration($expiration)
-    {
-        $this->expiration = $expiration;
-
-        return $this;
     }
 
     /**

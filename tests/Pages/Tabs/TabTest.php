@@ -13,7 +13,7 @@ class TabTest extends \WP_UnitTestCase
     /**
      * @inheritdoc
      */
-    function setUp()
+    public function setUp()
     {
         parent::setUp();
 

@@ -18,7 +18,7 @@ class TabsTest extends \WP_UnitTestCase
     /**
      * @inheritdoc
      */
-    function setUp()
+    public function setUp()
     {
         parent::setUp();
         $this->stub = new Tabs();

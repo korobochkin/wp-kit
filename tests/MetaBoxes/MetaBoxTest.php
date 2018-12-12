@@ -4,7 +4,6 @@ namespace Korobochkin\WPKit\Tests\MetaBoxes;
 use Korobochkin\WPKit\MetaBoxes\MetaBox;
 use Korobochkin\WPKit\MetaBoxes\MetaBoxTwigView;
 use Symfony\Component\Form\FormFactoryBuilder;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\HttpFoundation\Request;
 

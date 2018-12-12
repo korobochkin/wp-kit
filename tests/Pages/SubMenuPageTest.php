@@ -28,23 +28,44 @@ class SubMenuPageTest extends \WP_UnitTestCase
 
     public function testRegister()
     {
+        $id = wp_insert_user(array(
+            array(
+                'user_login' => 'wp_kit_user',
+                'user_email' => 'wp_kit_user@example.org',
+                'user_pass' => '123456',
+                'role' => 'administrator',
+            )
+        ));
+        set_current_user($id);
         $this->assertSame($this->stub, $this->stub->register());
+
+        $page = get_plugin_page_hookname($this->stub->getMenuSlug(), $this->stub->getParentSlug());
+
+        $this->assertSame(10, has_action('load-'.$page, array($this->stub, 'lateConstruct')));
+        $this->assertSame(10, has_action('admin_action_update', array($this->stub, 'lateConstruct')));
     }
 
-    /**
-     * @depends testRegister
-     */
     public function testUnRegister()
     {
-        $this->markTestSkipped();
-        // Can't pass this test right now.
-        $this->assertSame($this->stub, $this->stub->unRegister());
+        $this->setExpectedException(\Exception::class);
+        $this->stub->unRegister();
+    }
 
-        try {
-            $this->stub->unRegister();
-        } catch (\Exception $exception) {
-            $this->assertTrue(is_a($exception, \Exception::class));
-        }
+    public function testUnRegisterRegisteredPage()
+    {
+        $id = wp_insert_user(array(
+            array(
+                'user_login' => 'wp_kit_user',
+                'user_email' => 'wp_kit_user@example.org',
+                'user_pass' => '123456',
+                'role' => 'administrator',
+            )
+        ));
+        set_current_user($id);
+        $this->stub->register();
+
+        $this->assertInternalType('array', $a = $this->stub->unRegister());
+        var_dump($a);
     }
 
     public function testGetURL()

@@ -144,8 +144,8 @@ class AbstractPageTest extends \WP_UnitTestCase
     {
         $value = new Tabs();
         $this->assertNull($this->stub->getTabs());
-        $this->assertSame($this->stub, $this->stub->setFormEntity($value));
-        $this->assertSame($value, $this->stub->getFormEntity());
+        $this->assertSame($this->stub, $this->stub->setTabs($value));
+        $this->assertSame($value, $this->stub->getTabs());
     }
 
     public function testHandleRequest()

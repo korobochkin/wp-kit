@@ -198,7 +198,9 @@ class MetaBoxTest extends \WP_UnitTestCase
         ob_start();
         $this->stub->render();
         $this->assertSame(
-            '<div class="wp-kit-test-meta-box">This is test Meta Box view instance. Title of Meta Box: <code>' . $title . '</code></div>',
+            '<div class="wp-kit-test-meta-box">This is test Meta Box view instance. Title of Meta Box: <code>'
+            . $title
+            . '</code></div>',
             ob_get_contents()
         );
         ob_end_clean();

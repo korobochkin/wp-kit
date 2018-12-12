@@ -29,12 +29,10 @@ class SubMenuPageTest extends \WP_UnitTestCase
     public function testRegister()
     {
         $id = wp_insert_user(array(
-            array(
-                'user_login' => 'wp_kit_user',
-                'user_email' => 'wp_kit_user@example.org',
-                'user_pass' => '123456',
-                'role' => 'administrator',
-            )
+            'user_login' => 'wp_kit_user',
+            'user_email' => 'wp_kit_user@example.org',
+            'user_pass' => '123456',
+            'role' => 'administrator',
         ));
         set_current_user($id);
         $this->assertSame($this->stub, $this->stub->register());
@@ -54,12 +52,10 @@ class SubMenuPageTest extends \WP_UnitTestCase
     public function testUnRegisterRegisteredPage()
     {
         $id = wp_insert_user(array(
-            array(
-                'user_login' => 'wp_kit_user',
-                'user_email' => 'wp_kit_user@example.org',
-                'user_pass' => '123456',
-                'role' => 'administrator',
-            )
+            'user_login' => 'wp_kit_user',
+            'user_email' => 'wp_kit_user@example.org',
+            'user_pass' => '123456',
+            'role' => 'administrator',
         ));
         set_current_user($id);
         $this->stub->register();

@@ -88,7 +88,7 @@ class AbstractPageTest extends \WP_UnitTestCase
         $title = 'WP Kit Test Title';
         $this->stub
             ->setView(new PageTestingPurposesView())
-            ->setTitle($title);
+            ->setPageTitle($title);
 
         ob_start();
         $this->stub->render();

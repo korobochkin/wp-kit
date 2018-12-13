@@ -3,6 +3,8 @@ namespace Korobochkin\WPKit\Tests\Pages;
 
 use Korobochkin\WPKit\Pages\MenuPage;
 use Korobochkin\WPKit\Pages\SubMenuPage;
+use Korobochkin\WPKit\Utils\Compatibility;
+use Korobochkin\WPKit\Utils\WordPressFeatures;
 
 /**
  * Class SubMenuPageTest
@@ -28,6 +30,11 @@ class SubMenuPageTest extends \WP_UnitTestCase
 
     public function testRegister()
     {
+        global $wp_version;
+        if('4.0' === $wp_version && PHP_VERSION_ID >= 70000) {
+            $this->markTestSkipped('wp_insert_user() call triggers error in old WP and new PHP.');
+        }
+
         $id = wp_insert_user(array(
             'user_login' => 'wp_kit_user',
             'user_email' => 'wp_kit_user@example.org',

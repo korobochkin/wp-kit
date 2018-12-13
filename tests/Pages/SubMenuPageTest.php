@@ -49,7 +49,7 @@ class SubMenuPageTest extends \WP_UnitTestCase
         $this->stub->unRegister();
     }
 
-    public function testUnRegisterRegisteredPage()
+    /*public function testUnRegisterRegisteredPage()
     {
         $id = wp_insert_user(array(
             'user_login' => 'wp_kit_user',
@@ -61,7 +61,7 @@ class SubMenuPageTest extends \WP_UnitTestCase
         $this->stub->register();
 
         $this->assertSame($this->stub, $this->stub->unRegister());
-    }
+    }*/
 
     public function testGetURL()
     {

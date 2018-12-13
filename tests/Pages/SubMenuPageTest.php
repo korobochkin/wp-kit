@@ -34,7 +34,7 @@ class SubMenuPageTest extends \WP_UnitTestCase
             'user_pass' => '123456',
             'role' => 'administrator',
         ));
-        set_current_user($id);
+        wp_set_current_user($id);
         $this->assertSame($this->stub, $this->stub->register());
 
         $page = get_plugin_page_hookname($this->stub->getMenuSlug(), $this->stub->getParentSlug());
@@ -57,7 +57,7 @@ class SubMenuPageTest extends \WP_UnitTestCase
             'user_pass' => '123456',
             'role' => 'administrator',
         ));
-        set_current_user($id);
+        wp_set_current_user($id);
         $this->stub->register();
 
         $this->assertSame($this->stub, $this->stub->unRegister());

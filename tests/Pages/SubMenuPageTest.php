@@ -26,9 +26,6 @@ class SubMenuPageTest extends \WP_UnitTestCase
             ->setMenuSlug('test-menu-slug');
     }
 
-    /**
-     * @backupGlobals enabled
-     */
     public function testRegister()
     {
         $id = wp_insert_user(array(
@@ -46,18 +43,12 @@ class SubMenuPageTest extends \WP_UnitTestCase
         $this->assertSame(10, has_action('admin_action_update', array($this->stub, 'lateConstruct')));
     }
 
-    /**
-     * @backupGlobals enabled
-     */
     public function testUnRegister()
     {
         $this->setExpectedException(\Exception::class);
         $this->stub->unRegister();
     }
 
-    /**
-     * @backupGlobals enabled
-     */
     public function testUnRegisterRegisteredPage()
     {
         $id = wp_insert_user(array(

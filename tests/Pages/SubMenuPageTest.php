@@ -41,6 +41,7 @@ class SubMenuPageTest extends \WP_UnitTestCase
 
         $this->assertSame(10, has_action('load-'.$page, array($this->stub, 'lateConstruct')));
         $this->assertSame(10, has_action('admin_action_update', array($this->stub, 'lateConstruct')));
+        $this->stub->unRegister();
     }
 
     public function testUnRegister()

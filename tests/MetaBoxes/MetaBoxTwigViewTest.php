@@ -24,7 +24,7 @@ class MetaBoxTwigViewTest extends \WP_UnitTestCase
             ))
         );
 
-        $stub->setTwigEnvironment(($value));
+        $stub->setTwigEnvironment($value);
 
         ob_start();
         $stub->setTemplate('title');

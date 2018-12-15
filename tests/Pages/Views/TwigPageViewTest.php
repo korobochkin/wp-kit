@@ -72,7 +72,7 @@ class TwigPageViewTest extends \WP_UnitTestCase
             'param1' => 'value1',
             'param2' => 'value2',
         );
-        $this->assertNull(array(), $this->stub->getContext());
+        $this->assertSame(array(), $this->stub->getContext());
         $this->assertSame($this->stub, $this->stub->setContext($value));
         $this->assertSame($value, $this->stub->getContext());
     }

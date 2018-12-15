@@ -10,7 +10,7 @@ class AbstractScriptsStylesTest extends \WP_UnitTestCase
      */
     protected $stub;
 
-    function setUp()
+    public function setUp()
     {
         parent::setUp();
 

@@ -22,7 +22,7 @@ class TwigPageViewTest extends \WP_UnitTestCase
      */
     protected $twig;
 
-    function setUp()
+    public function setUp()
     {
         parent::setUp();
 
@@ -61,7 +61,7 @@ class TwigPageViewTest extends \WP_UnitTestCase
     public function testGetterAndSetterTemplate()
     {
         $value = 'wp-kit-template.html.twig';
-        $this->assertNull($this->stub->getTemplate());
+        $this->assertSame('', $this->stub->getTemplate());
         $this->assertSame($this->stub, $this->stub->setTemplate($value));
         $this->assertSame($value, $this->stub->getTemplate());
     }
@@ -72,7 +72,7 @@ class TwigPageViewTest extends \WP_UnitTestCase
             'param1' => 'value1',
             'param2' => 'value2',
         );
-        $this->assertNull($this->stub->getContext());
+        $this->assertNull(array(), $this->stub->getContext());
         $this->assertSame($this->stub, $this->stub->setContext($value));
         $this->assertSame($value, $this->stub->getContext());
     }

@@ -12,7 +12,7 @@ class WordPressFeaturesTest extends \WP_UnitTestCase
 
     public function testIsDebug()
     {
-        $this->assertFalse(WordPressFeatures::isDebug());
+        $this->assertTrue(WordPressFeatures::isDebug());
     }
 
     public function testIsScriptDebug()

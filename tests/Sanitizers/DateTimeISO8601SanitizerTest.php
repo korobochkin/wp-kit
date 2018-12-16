@@ -13,7 +13,7 @@ class DateTimeISO8601SanitizerTest extends \WP_UnitTestCase
     public function testSanitize($value, $expected)
     {
         $result = DateTimeISO8601Sanitizer::sanitize($value);
-        if(\DateTime::class === $expected) {
+        if (\DateTime::class === $expected) {
             $this->assertInstanceOf($expected, $result);
         } else {
             $this->assertFalse($result);
@@ -25,7 +25,7 @@ class DateTimeISO8601SanitizerTest extends \WP_UnitTestCase
         return array(
             array('2018-12-16T18:30:12+00:00', \DateTime::class),
             array('2018-12-16T18:30:12Z', \DateTime::class),
-            array('20181216T183012Z', \DateTime::class),
+            array('20181216T183012Z', false),
             array('STRING', false)
         );
     }

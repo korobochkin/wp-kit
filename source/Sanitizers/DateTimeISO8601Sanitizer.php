@@ -15,9 +15,4 @@ class DateTimeISO8601Sanitizer implements SanitizerInterface
             return false;
         }
     }
-
-    public static function toString(\DateTime $value)
-    {
-        return $value->format(\DateTime::ISO8601);
-    }
 }

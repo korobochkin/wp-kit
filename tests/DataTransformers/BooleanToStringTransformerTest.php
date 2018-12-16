@@ -22,11 +22,11 @@ class BooleanToStringTransformerTest extends \WP_UnitTestCase
     {
         $stub = new BooleanToStringTransformer('1', '0');
 
-        if(is_a($expected, \Exception::class)) {
+        if (is_a($expected, \Exception::class)) {
             /**
              * @var $expected \Exception
              */
-            $this->setExpectedException($expected, $expected->getMessage());
+            $this->setExpectedException(get_class($expected), $expected->getMessage());
             $stub->transform($value);
         }
 
@@ -52,11 +52,11 @@ class BooleanToStringTransformerTest extends \WP_UnitTestCase
     {
         $stub = new BooleanToStringTransformer('1', '0');
 
-        if(is_a($expected, \Exception::class)) {
+        if (is_a($expected, \Exception::class)) {
             /**
              * @var $expected \Exception
              */
-            $this->setExpectedException($expected, $expected->getMessage());
+            $this->setExpectedException(get_class($expected), $expected->getMessage());
             $stub->reverseTransform($value);
         }
 

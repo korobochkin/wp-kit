@@ -43,7 +43,11 @@ class SettingTest extends \WP_UnitTestCase
 
     public function testRegisterWithoutOption()
     {
-        $this->stub->setOption(null);
+        $reflection = new \ReflectionClass($this->stub);
+        $property   = $reflection->getProperty('option');
+        $property->setAccessible(true);
+
+        $this->stub->option = null;
         $this->setExpectedException(\LogicException::class, 'Set option before call register method.');
         $this->stub->register();
     }
@@ -68,7 +72,12 @@ class SettingTest extends \WP_UnitTestCase
 
     public function testUnRegisterWithoutOption()
     {
-        $this->stub->setOption(null);
+        $reflection = new \ReflectionClass($this->stub);
+        $property   = $reflection->getProperty('option');
+        $property->setAccessible(true);
+
+        $this->stub->option = null;
+
         $this->setExpectedException(\LogicException::class, 'Set option before call register method.');
         $this->stub->unRegister();
     }

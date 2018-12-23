@@ -70,14 +70,17 @@ class Setting implements SettingInterface
      */
     public function register()
     {
-        $option = $this->getOption();
-        if (isset($option)) {
-            register_setting(
-                $option->getGroup(),
-                $option->getName(),
-                array($option, '_sanitize')
-            );
+        if (!isset($this->option)) {
+            throw new \LogicException('Set option before call register method.');
         }
+
+        register_setting(
+            $this->option->getGroup(),
+            $this->option->getName(),
+            array($this->option, 'sanitize')
+        );
+
+        return $this;
     }
 
     /**
@@ -85,9 +88,12 @@ class Setting implements SettingInterface
      */
     public function unRegister()
     {
-        $option = $this->getOption();
-        if (isset($option)) {
-            unregister_setting($option->getGroup(), $option->getName());
+        if (!isset($this->option)) {
+            throw new \LogicException('Set option before calling register method.');
         }
+
+        unregister_setting($this->option->getGroup(), $this->option->getName());
+
+        return $this;
     }
 }

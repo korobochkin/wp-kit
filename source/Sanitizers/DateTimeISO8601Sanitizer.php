@@ -7,12 +7,13 @@ namespace Korobochkin\WPKit\Sanitizers;
  */
 class DateTimeISO8601Sanitizer implements SanitizerInterface
 {
+    /**
+     * @param $value string String representing the time.
+     *
+     * @return bool|\DateTime Instance or false on failure.
+     */
     public static function sanitize($value)
     {
-        try {
-            return \DateTime::createFromFormat(\DateTime::ISO8601, $value);
-        } catch (\Exception $exception) {
-            return false;
-        }
+        return \DateTime::createFromFormat(\DateTime::ISO8601, $value);
     }
 }

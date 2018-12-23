@@ -11,7 +11,7 @@ class SettingTest extends \WP_UnitTestCase
      */
     protected $stub;
 
-    function setUp()
+    public function setUp()
     {
         parent::setUp();
         $option = new Option();
@@ -22,7 +22,7 @@ class SettingTest extends \WP_UnitTestCase
     public function testConstruct()
     {
         $option = new Option();
-        $stub = new Setting($option);
+        $stub   = new Setting($option);
         $this->assertSame($option, $stub->getOption());
     }
 

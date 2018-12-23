@@ -34,7 +34,7 @@ class Setting implements SettingInterface
      */
     public function getOption()
     {
-        return $this->getOption();
+        return $this->option;
     }
 
     /**

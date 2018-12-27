@@ -3,6 +3,7 @@ namespace Korobochkin\WPKit\Tests\Settings;
 
 use Korobochkin\WPKit\Options\Option;
 use Korobochkin\WPKit\Settings\Setting;
+use Korobochkin\WPKit\Utils\Compatibility;
 
 class SettingTest extends \WP_UnitTestCase
 {
@@ -57,19 +58,25 @@ class SettingTest extends \WP_UnitTestCase
         $this->stub->setGroup('wp_kit_test_register_group_name');
         $this->assertSame($this->stub, $this->stub->register());
 
-        $expected = array(
-            'type'              => 'string',
-            'group'             => 'wp_kit_test_register_group_name',
-            'description'       => '',
-            'sanitize_callback' => null,
-            'show_in_rest'      => false,
-            0 => $this->stub->getOption(),
-            1 => 'sanitize',
-        );
+        if(Compatibility::checkWordPress('4.7')) {
+            $expected = array(
+                'type'              => 'string',
+                'group'             => 'wp_kit_test_register_group_name',
+                'description'       => '',
+                'sanitize_callback' => null,
+                'show_in_rest'      => false,
+                0 => $this->stub->getOption(),
+                1 => 'sanitize',
+            );
 
-        global $wp_registered_settings;
-        $this->assertArrayHasKey('wp_kit_test_option', $wp_registered_settings);
-        $this->assertSame($expected, $wp_registered_settings['wp_kit_test_option']);
+            global $wp_registered_settings;
+            $this->assertArrayHasKey('wp_kit_test_option', $wp_registered_settings);
+            $this->assertSame($expected, $wp_registered_settings['wp_kit_test_option']);
+        } else {
+            global $new_whitelist_options;
+            $this->assertSame('wp_kit_test_option', $new_whitelist_options['wp_kit_test_register_group_name'][0]);
+            $this->assertSame(10, has_filter('sanitize_option_wp_kit_test_option', array($this->stub->getOption(), 'sanitize')));
+        }
     }
 
     public function testUnRegisterWithoutOption()

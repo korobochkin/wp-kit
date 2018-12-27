@@ -77,7 +77,7 @@ class SettingTest extends \WP_UnitTestCase
         $property->setAccessible(true);
         $property->setValue($this->stub, null);
 
-        $this->setExpectedException(\LogicException::class, 'Set option before call register method.');
+        $this->setExpectedException(\LogicException::class, 'Set option before call unRegister method.');
         $this->stub->unRegister();
     }
 

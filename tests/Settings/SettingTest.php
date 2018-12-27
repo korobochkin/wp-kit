@@ -58,7 +58,7 @@ class SettingTest extends \WP_UnitTestCase
         $this->stub->setGroup('wp_kit_test_register_group_name');
         $this->assertSame($this->stub, $this->stub->register());
 
-        if(Compatibility::checkWordPress('4.7')) {
+        if (Compatibility::checkWordPress('4.7')) {
             $expected = array(
                 'type'              => 'string',
                 'group'             => 'wp_kit_test_register_group_name',
@@ -75,7 +75,10 @@ class SettingTest extends \WP_UnitTestCase
         } else {
             global $new_whitelist_options;
             $this->assertSame('wp_kit_test_option', $new_whitelist_options['wp_kit_test_register_group_name'][0]);
-            $this->assertSame(10, has_filter('sanitize_option_wp_kit_test_option', array($this->stub->getOption(), 'sanitize')));
+            $this->assertSame(
+                10,
+                has_filter('sanitize_option_wp_kit_test_option', array($this->stub->getOption(), 'sanitize'))
+            );
         }
     }
 
@@ -95,7 +98,15 @@ class SettingTest extends \WP_UnitTestCase
         $this->stub->setGroup('wp_kit_test_unregister_group_name');
         $this->assertSame($this->stub, $this->stub->register()->unRegister());
 
-        global $wp_registered_settings;
-        $this->assertArrayNotHasKey('wp_kit_test_unregister_group_name', $wp_registered_settings);
+        if (Compatibility::checkWordPress('4.7')) {
+            global $wp_registered_settings;
+            $this->assertArrayNotHasKey('wp_kit_test_unregister_group_name', $wp_registered_settings);
+        } else {
+            global $new_whitelist_options;
+            $this->assertArrayNotHasKey('wp_kit_test_register_group_name', $new_whitelist_options);
+            $this->assertFalse(
+                has_filter('sanitize_option_wp_kit_test_option', array($this->stub->getOption(), 'sanitize'))
+            );
+        }
     }
 }

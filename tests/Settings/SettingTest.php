@@ -63,6 +63,8 @@ class SettingTest extends \WP_UnitTestCase
             'description'       => '',
             'sanitize_callback' => null,
             'show_in_rest'      => false,
+            0 => $this->stub->getOption(),
+            1 => 'sanitize',
         );
 
         global $wp_registered_settings;

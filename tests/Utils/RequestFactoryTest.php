@@ -46,7 +46,7 @@ class RequestFactoryTest extends \WP_UnitTestCase
 
         $_SERVER['REQUEST_METHOD'] = $method;
         $_SERVER['CONTENT_TYPE']   = 'application/x-www-form-urlencoded';
-        $request = RequestContentProxy::createFromGlobals();
+        $request                   = RequestContentProxy::createFromGlobals();
         $this->assertEquals($normalizedMethod, $request->getMethod());
         $this->assertEquals('mycontent', $request->request->get('content'));
 

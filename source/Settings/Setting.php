@@ -93,7 +93,7 @@ class Setting implements SettingInterface
             throw new \LogicException('Set option before call unRegister method.');
         }
 
-        if(!Compatibility::checkWordPress('4.7')) {
+        if (!Compatibility::checkWordPress('4.7')) {
             unregister_setting($this->getGroup(), $this->option->getName(), array($this->option, 'sanitize'));
         } else {
             unregister_setting($this->getGroup(), $this->option->getName());

@@ -104,8 +104,7 @@ class SettingTest extends \WP_UnitTestCase
             $this->assertArrayNotHasKey('wp_kit_test_unregister_group_name', $wp_registered_settings);
         } else {
             global $new_whitelist_options;
-            var_dump($new_whitelist_options);
-            $this->assertSame(array('wp_kit_test_unregister_group_name' => array()), $new_whitelist_options);
+            $this->assertSame(array('wp_kit_test_unregister_group_name' => array('wp_kit_test_option')), $new_whitelist_options);
             $this->assertFalse(
                 has_filter('sanitize_option_wp_kit_test_option', array($this->stub->getOption(), 'sanitize'))
             );

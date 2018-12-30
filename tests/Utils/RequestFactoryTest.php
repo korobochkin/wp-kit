@@ -19,7 +19,6 @@ class RequestFactoryTest extends \WP_UnitTestCase
         $this->assertEquals(new ParameterBag(), $request->attributes);
         $this->assertEquals(new ParameterBag(), $request->cookies);
         $this->assertEquals(new FileBag(), $request->files);
-        $this->assertEquals(new ServerBag($_SERVER), $request->server);
     }
 
     /**
@@ -46,7 +45,7 @@ class RequestFactoryTest extends \WP_UnitTestCase
         unset($_GET['foo1'], $_POST['foo2'], $_COOKIE['foo3'], $_FILES['foo4'], $_SERVER['foo5']);
 
         $_SERVER['REQUEST_METHOD'] = $method;
-        $_SERVER['CONTENT_TYPE'] = 'application/x-www-form-urlencoded';
+        $_SERVER['CONTENT_TYPE']   = 'application/x-www-form-urlencoded';
         $request = RequestContentProxy::createFromGlobals();
         $this->assertEquals($normalizedMethod, $request->getMethod());
         $this->assertEquals('mycontent', $request->request->get('content'));

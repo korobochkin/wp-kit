@@ -33,6 +33,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
     {
         parent::setUp();
         $this->stub   = $this->getMockForAbstractClass(AbstractPostMeta::class);
+        $this->stub->setVisibility(true);
         $this->postId = wp_insert_post(
             array(
                 'post_content' => 'WP Kit demo post.',
@@ -41,26 +42,30 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
         );
     }
 
-    /**
-     * Test getting raw value from WordPress
-     */
+    public function testGetValueFromWordPressWithoutName()
+    {
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the name of post meta before calling any methods using name of post meta.'
+        );
+        $this->stub->getValueFromWordPress();
+    }
+
+    public function testGetValueFromWordPressWithoutPostId()
+    {
+        $this->stub->setName('wp_kit_abstract_option');
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the ID of post meta before calling any methods using ID of post meta.'
+        );
+        $this->stub->getValueFromWordPress();
+    }
+
     public function testGetValueFromWordPress()
     {
-        if (PHP_VERSION_ID >= 70000) {
-            $this->expectException(\LogicException::class);
-            $this->stub->getValueFromWordPress();
-        } else {
-            try {
-                $this->stub->getValueFromWordPress();
-            } catch (\Exception $exception) {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            } finally {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            }
-        }
-
-        $this->stub->setName('wp_kit_abstract_option');
-        $this->stub->setPostId($this->postId);
+        $this->stub
+            ->setName('wp_kit_abstract_option')
+            ->setPostId($this->postId);
         $this->assertFalse($this->stub->getValueFromWordPress());
     }
 
@@ -149,30 +154,63 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
      * @param $valueResult mixed $value returned by WordPress.
      * @param $deleteResult bool Result of deleting $value in WordPress.
      */
-    public function testFlush($value, $saveResult, $valueResult, $deleteResult)
+    public function testFlushWithoutName($value, $saveResult, $valueResult, $deleteResult)
     {
         $this->stub->set($value);
 
-        if (PHP_VERSION_ID >= 70000) {
-            $this->expectException(\LogicException::class);
-            $this->stub->flush();
-        } else {
-            try {
-                $this->stub->flush();
-            } catch (\Exception $exception) {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            } finally {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            }
-        }
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the name of post meta before calling any methods using name of post meta.'
+        );
+
+        $this->stub->flush();
+    }
+
+    /**
+     * Test flushing (saving) values into WordPress with flush().
+     *
+     * @dataProvider casesFlush
+     *
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
+     */
+    public function testFlushWithoutPostId($value, $saveResult, $valueResult, $deleteResult)
+    {
+        $this->stub->set($value)->setName('wp_kit_abstract_post_meta');
+
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the ID of post meta before calling any methods using ID of post meta.'
+        );
+
+        $this->stub->flush();
+    }
+
+
+    /**
+     * Test flushing (saving) values into WordPress with flush().
+     *
+     * @dataProvider casesFlush
+     *
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
+     */
+    public function testFlush($value, $saveResult, $valueResult, $deleteResult)
+    {
+        $this->stub->set($value);
 
         if (null !== $value) {
             $this->assertSame($value, $this->stub->get());
         }
 
-        $this->stub->setName('wp_kit_abstract_post_meta');
-        $this->stub->setPostId($this->postId);
-        $this->stub->flush();
+        $this->stub
+            ->setName('wp_kit_abstract_post_meta')
+            ->setPostId($this->postId)
+            ->flush();
 
         if (true === $saveResult) {
             if (is_object($value)) {

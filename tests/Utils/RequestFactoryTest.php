@@ -10,5 +10,6 @@ class RequestFactoryTest extends \WP_UnitTestCase
     {
         $request = RequestFactory::create();
         $this->assertInstanceOf(Request::class, $request);
+        var_dump($_GET, $_POST, $_COOKIE, $_SERVER);
     }
 }

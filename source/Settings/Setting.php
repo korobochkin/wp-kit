@@ -2,6 +2,7 @@
 namespace Korobochkin\WPKit\Settings;
 
 use Korobochkin\WPKit\Options\OptionInterface;
+use Korobochkin\WPKit\Utils\Compatibility;
 
 /**
  * Class Setting
@@ -92,7 +93,11 @@ class Setting implements SettingInterface
             throw new \LogicException('Set option before call unRegister method.');
         }
 
-        unregister_setting($this->getGroup(), $this->option->getName());
+        if(!Compatibility::checkWordPress('4.7')) {
+            unregister_setting($this->getGroup(), $this->option->getName(), array($this->option, 'sanitize'));
+        } else {
+            unregister_setting($this->getGroup(), $this->option->getName());
+        }
 
         return $this;
     }

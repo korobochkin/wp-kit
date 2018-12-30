@@ -79,6 +79,7 @@ class SettingTest extends \WP_UnitTestCase
                 10,
                 has_filter('sanitize_option_wp_kit_test_option', array($this->stub->getOption(), 'sanitize'))
             );
+            unset($new_whitelist_options['wp_kit_test_register_group_name']); // Restore WP variable back.
         }
     }
 
@@ -104,7 +105,7 @@ class SettingTest extends \WP_UnitTestCase
         } else {
             global $new_whitelist_options;
             var_dump($new_whitelist_options);
-            //$this->assertArrayNotHasKey('wp_kit_test_register_group_name', $new_whitelist_options['wp_kit_test_register_group_name']);
+            $this->assertSame(array('wp_kit_test_unregister_group_name' => array()), $new_whitelist_options);
             $this->assertFalse(
                 has_filter('sanitize_option_wp_kit_test_option', array($this->stub->getOption(), 'sanitize'))
             );

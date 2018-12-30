@@ -30,10 +30,10 @@ class RequestFactoryTest extends \WP_UnitTestCase
     {
         $normalizedMethod = strtoupper($method);
 
-        $_GET['foo1'] = 'bar1';
-        $_POST['foo2'] = 'bar2';
+        $_GET['foo1']    = 'bar1';
+        $_POST['foo2']   = 'bar2';
         $_COOKIE['foo3'] = 'bar3';
-        $_FILES['foo4'] = array('bar4');
+        $_FILES['foo4']  = array('bar4');
         $_SERVER['foo5'] = 'bar5';
 
         $request = RequestFactory::create();
@@ -52,19 +52,6 @@ class RequestFactoryTest extends \WP_UnitTestCase
         $this->assertEquals('mycontent', $request->request->get('content'));
 
         unset($_SERVER['REQUEST_METHOD'], $_SERVER['CONTENT_TYPE']);
-
-        RequestFactory::create();
-        Request::enableHttpMethodParameterOverride();
-        $_POST['_method'] = $method;
-        $_POST['foo6'] = 'bar6';
-        $_SERVER['REQUEST_METHOD'] = 'PoSt';
-        $request = RequestFactory::create();
-        $this->assertEquals($normalizedMethod, $request->getMethod());
-        $this->assertEquals('POST', $request->getRealMethod());
-        $this->assertEquals('bar6', $request->request->get('foo6'));
-
-        unset($_POST['_method'], $_POST['foo6'], $_SERVER['REQUEST_METHOD']);
-        $this->disableHttpMethodParameterOverride();
     }
 
     public function provideOverloadedMethods()
@@ -77,13 +64,5 @@ class RequestFactoryTest extends \WP_UnitTestCase
             array('delete'),
             array('patch'),
         );
-    }
-}
-
-class RequestContentProxy extends Request
-{
-    public function getContent($asResource = false)
-    {
-        return http_build_query(array('_method' => 'PUT', 'content' => 'mycontent'));
     }
 }

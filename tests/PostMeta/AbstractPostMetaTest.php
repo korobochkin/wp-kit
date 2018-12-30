@@ -32,7 +32,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->stub   = $this->getMockForAbstractClass(AbstractPostMeta::class);
+        $this->stub = $this->getMockForAbstractClass(AbstractPostMeta::class);
         $this->stub->setVisibility(true);
         $this->postId = wp_insert_post(
             array(
@@ -360,9 +360,12 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
     public function testName()
     {
-        $this->assertSame('_', $this->stub->getName());
+        $this->assertNull($this->stub->getName());
 
         $this->assertSame($this->stub, $this->stub->setName('wp_kit_dummy_name'));
+        $this->assertSame('wp_kit_dummy_name', $this->stub->getName());
+
+        $this->stub->setVisibility(false);
         $this->assertSame('_wp_kit_dummy_name', $this->stub->getName());
     }
 
@@ -374,13 +377,13 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
     public function testGetterAndSetterVisibility()
     {
-        $this->assertFalse($this->stub->isVisible());
-
-        $this->assertSame($this->stub, $this->stub->setVisibility(true));
         $this->assertTrue($this->stub->isVisible());
 
         $this->assertSame($this->stub, $this->stub->setVisibility(false));
         $this->assertFalse($this->stub->isVisible());
+
+        $this->assertSame($this->stub, $this->stub->setVisibility(true));
+        $this->assertTrue($this->stub->isVisible());
     }
 
     /**

@@ -46,26 +46,30 @@ class AbstractTermMetaTest extends \WP_UnitTestCase
         $this->termId = $result['term_id'];
     }
 
-    /**
-     * Test getting raw value from WordPress
-     */
+    public function testGetValueFromWordPressWithoutName()
+    {
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the name of term meta before calling any methods using name of term meta.'
+        );
+        $this->stub->getValueFromWordPress();
+    }
+
+    public function testGetValueFromWordPressWithoutTermId()
+    {
+        $this->stub->setName('wp_kit_abstract_option');
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the ID of term before calling any methods using ID of term.'
+        );
+        $this->stub->getValueFromWordPress();
+    }
+
     public function testGetValueFromWordPress()
     {
-        if (PHP_VERSION_ID >= 70000) {
-            $this->expectException(\LogicException::class);
-            $this->stub->getValueFromWordPress();
-        } else {
-            try {
-                $this->stub->getValueFromWordPress();
-            } catch (\Exception $exception) {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            } finally {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            }
-        }
-
-        $this->stub->setName('wp_kit_abstract_term_meta');
-        $this->stub->setTermId($this->termId);
+        $this->stub
+            ->setName('wp_kit_abstract_term_meta')
+            ->setTermId($this->termId);
         $this->assertFalse($this->stub->getValueFromWordPress());
     }
 
@@ -112,7 +116,7 @@ class AbstractTermMetaTest extends \WP_UnitTestCase
         $this->stub->setName('wp_kit_abstract_term_meta');
         $this->setExpectedException(
             \LogicException::class,
-            'You must specify the ID of term meta before calling any methods using ID of term meta.'
+            'You must specify the ID of term before calling any methods using ID of term.'
         );
         $this->stub->deleteFromWP();
     }
@@ -153,22 +157,53 @@ class AbstractTermMetaTest extends \WP_UnitTestCase
      * @param $valueResult mixed $value returned by WordPress.
      * @param $deleteResult bool Result of deleting $value in WordPress.
      */
-    public function testFlush($value, $saveResult, $valueResult, $deleteResult)
+    public function testFlushWithoutName($value, $saveResult, $valueResult, $deleteResult)
     {
         $this->stub->set($value);
 
-        if (PHP_VERSION_ID >= 70000) {
-            $this->expectException(\LogicException::class);
-            $this->stub->flush();
-        } else {
-            try {
-                $this->stub->flush();
-            } catch (\Exception $exception) {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            } finally {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            }
-        }
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the name of term meta before calling any methods using name of term meta.'
+        );
+
+        $this->stub->flush();
+    }
+
+    /**
+     * Test flushing (saving) values into WordPress with flush().
+     *
+     * @dataProvider casesFlush
+     *
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
+     */
+    public function testFlushWithoutPostId($value, $saveResult, $valueResult, $deleteResult)
+    {
+        $this->stub->set($value)->setName('wp_kit_abstract_term_meta');
+
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the ID of term before calling any methods using ID of term.'
+        );
+
+        $this->stub->flush();
+    }
+
+    /**
+     * Test flushing (saving) values into WordPress with flush().
+     *
+     * @dataProvider casesFlush
+     *
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
+     */
+    public function testFlush($value, $saveResult, $valueResult, $deleteResult)
+    {
+        $this->stub->set($value);
 
         if (null !== $value) {
             $this->assertSame($value, $this->stub->get());

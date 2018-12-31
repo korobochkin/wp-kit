@@ -56,7 +56,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
         $this->stub->setName('wp_kit_abstract_option');
         $this->setExpectedException(
             \LogicException::class,
-            'You must specify the ID of post meta before calling any methods using ID of post meta.'
+            'You must specify the ID of post before calling any methods using ID of post.'
         );
         $this->stub->getValueFromWordPress();
     }
@@ -113,7 +113,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
         $this->stub->setName('wp_kit_abstract_post_meta');
         $this->setExpectedException(
             \LogicException::class,
-            'You must specify the ID of post meta before calling any methods using ID of post meta.'
+            'You must specify the ID of post before calling any methods using ID of post.'
         );
         $this->stub->deleteFromWP();
     }
@@ -182,7 +182,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
         $this->setExpectedException(
             \LogicException::class,
-            'You must specify the ID of post meta before calling any methods using ID of post meta.'
+            'You must specify the ID of post before calling any methods using ID of post.'
         );
 
         $this->stub->flush();

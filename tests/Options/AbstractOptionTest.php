@@ -33,31 +33,22 @@ class AbstractOptionTest extends \WP_UnitTestCase
         $this->stub = $this->getMockForAbstractClass(AbstractOption::class);
     }
 
-    /**
-     * Test getting raw value from WordPress
-     */
+    public function testGetValueFromWordPressWithoutName()
+    {
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the name of option before calling any methods using name of option.'
+        );
+        $this->stub->getValueFromWordPress();
+    }
+
     public function testGetValueFromWordPress()
     {
-        if (PHP_VERSION_ID >= 70000) {
-            $this->expectException(\LogicException::class);
-            $this->stub->getValueFromWordPress();
-        } else {
-            try {
-                $this->stub->getValueFromWordPress();
-            } catch (\Exception $exception) {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            } finally {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            }
-        }
-
         $this->stub->setName('wp_kit_abstract_option');
         $this->assertFalse($this->stub->getValueFromWordPress());
     }
 
     /**
-     * Testing autoload getter and setter.
-     *
      * @dataProvider casesAutoload
      */
     public function testAutoload($value, $expected)
@@ -177,33 +168,39 @@ class AbstractOptionTest extends \WP_UnitTestCase
      * @param $valueResult mixed $value returned by WordPress.
      * @param $deleteResult bool Result of deleting $value in WordPress.
      */
-    public function testFlush($value, $saveResult, $valueResult, $deleteResult)
+    public function testFlushWithoutName($value, $saveResult, $valueResult, $deleteResult)
     {
         $this->stub->set($value);
 
-        // Catch \LogicException if name was not specified.
-        if (PHP_VERSION_ID >= 70000) {
-            $this->expectException(\LogicException::class);
-            $this->stub->flush();
-        } else {
-            try {
-                $this->stub->flush();
-            } catch (\Exception $exception) {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            } finally {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            }
-        }
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the name of option before calling any methods using name of option.'
+        );
+
+        $this->stub->flush();
+    }
+
+    /**
+     * Test flushing (saving) values into WordPress with flush().
+     *
+     * @dataProvider casesFlush
+     *
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
+     */
+    public function testFlush($value, $saveResult, $valueResult, $deleteResult)
+    {
+        $this->stub->set($value);
 
         if (null !== $value) {
             $this->assertSame($value, $this->stub->get());
         }
 
-        $this->stub->setName('wp_kit_abstract_option');
-
-        $this->assertSame($saveResult, $this->stub->flush());
-
-        wp_cache_flush();
+        $this->stub
+            ->setName('wp_kit_abstract_option')
+            ->flush();
 
         if (true === $saveResult) {
             if (is_object($value)) {
@@ -261,7 +258,7 @@ class AbstractOptionTest extends \WP_UnitTestCase
     public function testUpdateValueWithAutoload()
     {
         $this->stub->setName('wp_kit_abstract_option');
-        
+
         $this->stub->updateValue('1', true);
         $this->assertTrue($this->stub->isAutoload());
 

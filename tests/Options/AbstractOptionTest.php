@@ -202,6 +202,8 @@ class AbstractOptionTest extends \WP_UnitTestCase
             ->setName('wp_kit_abstract_option')
             ->flush();
 
+        wp_cache_flush();
+
         if (true === $saveResult) {
             if (is_object($value)) {
                 $this->assertEquals($valueResult, $this->stub->getValueFromWordPress());

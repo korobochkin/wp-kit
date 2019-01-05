@@ -287,11 +287,11 @@ class Uninstall implements UninstallInterface
             WHERE meta_key = %s
             ";
 
-        foreach ($this->termMetas as $termMeta) {
+        foreach ($this->postMetas as $postMeta) {
             try {
                 $query = $wpdb->prepare(
                     $queryTemplate,
-                    $termMeta->getName()
+                    $postMeta->getName()
                 );
                 $wpdb->get_results($query);
             } catch (\Exception $exception) {

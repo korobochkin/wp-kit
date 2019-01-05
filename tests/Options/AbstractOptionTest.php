@@ -235,8 +235,7 @@ class AbstractOptionTest extends \WP_UnitTestCase
      */
     public function testUpdateValue($value, $saveResult, $valueResult, $deleteResult)
     {
-        $this->stub
-            ->setName('wp_kit_abstract_option');
+        $this->stub->setName('wp_kit_abstract_option');
 
         $this->assertSame($saveResult, $this->stub->updateValue($value));
         wp_cache_flush();
@@ -257,6 +256,17 @@ class AbstractOptionTest extends \WP_UnitTestCase
     public function casesUpdateValue()
     {
         return new EverythingSet2();
+    }
+
+    public function testUpdateValueWithAutoload()
+    {
+        $this->stub->setName('wp_kit_abstract_option');
+        
+        $this->stub->updateValue('1', true);
+        $this->assertTrue($this->stub->isAutoload());
+
+        $this->stub->updateValue('2', false);
+        $this->assertFalse($this->stub->isAutoload());
     }
 
     public function testGetLocalValue()

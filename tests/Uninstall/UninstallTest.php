@@ -102,26 +102,31 @@ class UninstallTest extends \WP_UnitTestCase
 
     public function testDeleteCronEventsEmpty()
     {
+        $this->stub->setCronEvents(array());
         $this->assertSame($this->stub, $this->stub->deleteCronEvents());
     }
 
     public function testDeleteOptionsEmpty()
     {
+        $this->stub->setOptions(array());
         $this->assertSame($this->stub, $this->stub->deleteOptions());
     }
 
     public function testDeletePostMetasEmpty()
     {
+        $this->stub->setPostMetas(array());
         $this->assertSame($this->stub, $this->stub->deletePostMetas());
     }
 
     public function testDeleteTermMetasEmpty()
     {
+        $this->stub->setTermMetas(array());
         $this->assertSame($this->stub, $this->stub->deleteTermMetas());
     }
 
     public function testDeleteTransientsEmpty()
     {
+        $this->stub->setTransients(array());
         $this->assertSame($this->stub, $this->stub->deleteTransients());
     }
 

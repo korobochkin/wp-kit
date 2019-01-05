@@ -7,6 +7,7 @@ use Korobochkin\WPKit\PostMeta\PostMeta;
 use Korobochkin\WPKit\TermMeta\TermMeta;
 use Korobochkin\WPKit\Transients\Transient;
 use Korobochkin\WPKit\Uninstall\Uninstall;
+use Korobochkin\WPKit\Utils\WordPressFeatures;
 
 class UninstallTest extends \WP_UnitTestCase
 {
@@ -18,7 +19,7 @@ class UninstallTest extends \WP_UnitTestCase
     /**
      * @inheritdoc
      */
-    function setUp()
+    public function setUp()
     {
         parent::setUp();
         $this->stub = new Uninstall();
@@ -84,6 +85,13 @@ class UninstallTest extends \WP_UnitTestCase
 
     public function testRun()
     {
+        $this->stub
+            ->setCronEvents(array())
+            ->setOptions(array())
+            ->setPostMetas(array())
+            ->setTermMetas(array())
+            ->setTransients(array());
+
         $this->assertSame($this->stub, $this->stub->run());
     }
 
@@ -124,15 +132,19 @@ class UninstallTest extends \WP_UnitTestCase
          * @var $cronEvent2 AbstractCronEvent
          */
         $cronEvent = $this->getMockForAbstractClass(AbstractCronEvent::class);
+        $name      = 'wp_kit_uninstall_service_test_cron_event';
+        $time      = time();
         $cronEvent
-            ->setName($name = 'wp_kit_uninstall_service_test_cron_event')
-            ->setTimestamp($time = time())
+            ->setName($name)
+            ->setTimestamp($time)
             ->schedule();
 
         $cronEvent2 = $this->getMockForAbstractClass(AbstractCronEvent::class);
+        $name2      = 'wp_kit_uninstall_service_test_cron_event_2';
+        $time2      = time();
         $cronEvent2
-            ->setName($name2 = 'wp_kit_uninstall_service_test_cron_event_2')
-            ->setTimestamp($time2 = time())
+            ->setName($name2)
+            ->setTimestamp($time2)
             ->schedule();
 
         $this->stub->setCronEvents(array($cronEvent, $cronEvent2))->deleteCronEvents();
@@ -145,20 +157,21 @@ class UninstallTest extends \WP_UnitTestCase
     public function testDeleteOptions()
     {
         $option = new Option();
+        $name   = 'wp_kit_uninstall_service_test_option';
         $option
-            ->setName($name = 'wp_kit_uninstall_service_test_option')
+            ->setName($name)
             ->updateValue('123');
 
         $option2 = new Option();
+        $name2   = 'wp_kit_uninstall_service_test_option_2';
         $option2
-            ->setName($name2 = 'wp_kit_uninstall_service_test_option_2')
+            ->setName($name2)
             ->updateValue('234');
 
         $this->stub->setOptions(array($option, $option2))->deleteOptions();
 
         $this->assertFalse(get_option($name));
         $this->assertFalse(get_option($name2));
-
     }
 
     public function testDeletePostMetas()
@@ -171,15 +184,17 @@ class UninstallTest extends \WP_UnitTestCase
         );
 
         $postMeta = new PostMeta();
+        $name     = 'wp_kit_uninstall_service_test_post_meta';
         $postMeta
-            ->setName($name = 'wp_kit_uninstall_service_test_post_meta')
+            ->setName($name)
             ->setVisibility(true)
             ->setPostId($postId)
             ->updateValue('123');
 
         $postMeta2 = new PostMeta();
+        $name2     = 'wp_kit_uninstall_service_test_post_meta_2';
         $postMeta2
-            ->setName($name2 = 'wp_kit_uninstall_service_test_post_meta_2')
+            ->setName($name2)
             ->setVisibility(true)
             ->setPostId($postId)
             ->updateValue('234');
@@ -202,14 +217,16 @@ class UninstallTest extends \WP_UnitTestCase
         ));
 
         $termMeta = new TermMeta();
+        $name     = 'wp_kit_uninstall_service_test_term_meta';
         $termMeta
-            ->setName($name = 'wp_kit_uninstall_service_test_term_meta')
+            ->setName($name)
             ->setTermId($term['term_id'])
             ->updateValue('123');
 
         $termMeta2 = new TermMeta();
+        $name2     = 'wp_kit_uninstall_service_test_term_meta_2';
         $termMeta2
-            ->setName($name2 = 'wp_kit_uninstall_service_test_term_meta_2')
+            ->setName($name2)
             ->setTermId($term['term_id'])
             ->updateValue('234');
 
@@ -221,13 +238,15 @@ class UninstallTest extends \WP_UnitTestCase
     public function testDeleteTransients()
     {
         $transient = new Transient();
+        $name      = 'wp_kit_uninstall_service_test_transient';
         $transient
-            ->setName($name = 'wp_kit_uninstall_service_test_transient')
+            ->setName($name)
             ->updateValue('123');
 
         $transient2 = new Transient();
+        $name2      = 'wp_kit_uninstall_service_test_transient_2';
         $transient2
-            ->setName($name2 = 'wp_kit_uninstall_service_test_transient_2')
+            ->setName($name2)
             ->updateValue('234');
 
         $this->stub->setTransients(array($transient, $transient2))->deleteTransients();

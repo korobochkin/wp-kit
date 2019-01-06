@@ -199,7 +199,7 @@ class Uninstall implements UninstallInterface
             ->deletePostMetas()
             ->deleteTransients();
 
-        if(WordPressFeatures::isTermsMetaSupported()) {
+        if (WordPressFeatures::isTermsMetaSupported()) {
             $this->deleteTermMetas();
         }
 

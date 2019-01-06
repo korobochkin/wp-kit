@@ -120,6 +120,11 @@ class UninstallTest extends \WP_UnitTestCase
 
     public function testDeleteTermMetasEmpty()
     {
+        if (!WordPressFeatures::isTermsMetaSupported()) {
+            // Skip tests on WP bellow 4.4 since it doesn't have required functions.
+            $this->markTestSkipped('Term meta features not supported in WordPress bellow 4.4');
+        }
+
         $this->stub->setTermMetas(array());
         $this->assertSame($this->stub, $this->stub->deleteTermMetas());
     }
@@ -205,9 +210,8 @@ class UninstallTest extends \WP_UnitTestCase
             ->updateValue('234');
 
         $this->stub->setPostMetas(array($postMeta, $postMeta2))->deletePostMetas();
-        wp_cache_flush();
-        $this->assertFalse(get_post_meta($postId, $name, true));
-        $this->assertFalse(get_post_meta($postId, $name2, true));
+        $this->assertFalse($postMeta->getValueFromWordPress());
+        $this->assertFalse($postMeta2->getValueFromWordPress());
     }
 
     public function testDeleteTermMetas()
@@ -237,9 +241,8 @@ class UninstallTest extends \WP_UnitTestCase
             ->updateValue('234');
 
         $this->stub->setTermMetas(array($termMeta, $termMeta2))->deleteTermMetas();
-        wp_cache_flush();
-        $this->assertFalse(get_term_meta($term['term_id'], $name, true));
-        $this->assertFalse(get_term_meta($term['term_id'], $name2, true));
+        $this->assertFalse($termMeta->getValueFromWordPress());
+        $this->assertFalse($termMeta2->getValueFromWordPress());
     }
 
     public function testDeleteTransients()

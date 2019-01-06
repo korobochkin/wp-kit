@@ -197,6 +197,19 @@ class AbstractTransientTest extends \WP_UnitTestCase
         return new EverythingSet2(false, true);
     }
 
+    public function testUpdateValueWithExpiration()
+    {
+        $this->stub->setName('wp_kit_abstract_transient');
+
+        $expiration = HOUR_IN_SECONDS;
+        $this->stub->updateValue('1', $expiration);
+        $this->assertSame($expiration, $this->stub->getExpiration());
+
+        $expiration = DAY_IN_SECONDS;
+        $this->stub->updateValue('2', $expiration);
+        $this->assertSame($expiration, $this->stub->getExpiration());
+    }
+
     /**
      * Testing get() method.
      *

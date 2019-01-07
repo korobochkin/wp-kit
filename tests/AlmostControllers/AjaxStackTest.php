@@ -6,34 +6,24 @@ use Korobochkin\WPKit\Tests\DataSets\AlmostControllers\TestAction;
 
 class AjaxStackTest extends \WP_UnitTestCase
 {
-    /**
-     * @var AjaxStack
-     */
-    protected $stub;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->stub = new AjaxStack(array(), 'wp_kit_test_action_name');
-    }
-
     public function testRegister()
     {
+        $stub = new AjaxStack(array(), 'wp_kit_test_action_name');
         $this->setExpectedException(\LogicException::class, 'You need set actions before call register method.');
-        $this->stub->register();
+        $stub->register();
+    }
 
-        $this->setExpectedException(null);
+    public function testRegisterWithActions()
+    {
+        $stub = new AjaxStack(array(), 'wp_kit_test_action_name');
 
         $actions = array(
             new TestAction(),
         );
 
-        $this->stub
-            ->setActions($actions)
-            ->register();
+        $this->assertSame($stub, $stub->setActions($actions)->register());
 
-        $this->assertTrue(has_filter('wp_ajax_wp_kit_test_action_name', array($this->stub, 'handleRequest')));
-        $this->assertTrue(has_filter('wp_ajax_nopriv_wp_kit_test_action_name', array($this->stub, 'handleRequest')));
+        $this->assertSame(10, has_filter('wp_ajax_wp_kit_test_action_name', array($stub, 'handleRequest')));
+        $this->assertSame(10, has_filter('wp_ajax_nopriv_wp_kit_test_action_name', array($stub, 'handleRequest')));
     }
 }

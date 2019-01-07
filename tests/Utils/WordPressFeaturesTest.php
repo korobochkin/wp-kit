@@ -9,4 +9,14 @@ class WordPressFeaturesTest extends \WP_UnitTestCase
     {
         $this->assertTrue(is_bool(WordPressFeatures::isTermsMetaSupported()));
     }
+
+    public function testIsDebug()
+    {
+        $this->assertTrue(WordPressFeatures::isDebug());
+    }
+
+    public function testIsScriptDebug()
+    {
+        $this->assertFalse(WordPressFeatures::isScriptDebug());
+    }
 }

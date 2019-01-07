@@ -33,31 +33,22 @@ class AbstractOptionTest extends \WP_UnitTestCase
         $this->stub = $this->getMockForAbstractClass(AbstractOption::class);
     }
 
-    /**
-     * Test getting raw value from WordPress
-     */
+    public function testGetValueFromWordPressWithoutName()
+    {
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the name of option before calling any methods using name of option.'
+        );
+        $this->stub->getValueFromWordPress();
+    }
+
     public function testGetValueFromWordPress()
     {
-        if (PHP_VERSION_ID >= 70000) {
-            $this->expectException(\LogicException::class);
-            $this->stub->getValueFromWordPress();
-        } else {
-            try {
-                $this->stub->getValueFromWordPress();
-            } catch (\Exception $exception) {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            } finally {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            }
-        }
-
         $this->stub->setName('wp_kit_abstract_option');
         $this->assertFalse($this->stub->getValueFromWordPress());
     }
 
     /**
-     * Testing autoload getter and setter.
-     *
      * @dataProvider casesAutoload
      */
     public function testAutoload($value, $expected)
@@ -111,6 +102,39 @@ class AbstractOptionTest extends \WP_UnitTestCase
         return $values;
     }
 
+    public function testDeleteWithNoSavedValue()
+    {
+        $this->assertFalse($this->stub->setName('wp_kit_abstract_option')->delete());
+    }
+
+    /**
+     * @dataProvider casesDeleteFromWP
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
+     */
+    public function testDeleteWithSavedValue($value, $saveResult, $valueResult, $deleteResult)
+    {
+        $this->stub->setName('wp_kit_abstract_option')->updateValue($value);
+        if ($saveResult) {
+            $this->assertTrue($this->stub->delete());
+            $this->assertNull($this->stub->getLocalValue());
+        } else {
+            $this->assertFalse($this->stub->delete());
+            $this->assertSame($value, $this->stub->getLocalValue());
+        }
+    }
+
+    public function testDeleteFromWPWithoutName()
+    {
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the name of option before calling any methods using name of option.'
+        );
+        $this->stub->deleteFromWP();
+    }
+
     /**
      * Test deleting value in WordPress.
      *
@@ -123,22 +147,7 @@ class AbstractOptionTest extends \WP_UnitTestCase
      */
     public function testDeleteFromWP($value, $saveResult, $valueResult, $deleteResult)
     {
-        if (PHP_VERSION_ID >= 70000) {
-            $this->expectException(\LogicException::class);
-            $this->stub->deleteFromWP();
-        } else {
-            try {
-                $this->stub->deleteFromWP();
-            } catch (\Exception $exception) {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            } finally {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            }
-        }
-
-        $this->stub
-            ->setName('wp_kit_abstract_option')
-            ->updateValue($value);
+        $this->stub->setName('wp_kit_abstract_option')->updateValue($value);
 
         $this->assertSame($deleteResult, $this->stub->deleteFromWP());
         $this->assertFalse($this->stub->getValueFromWordPress());
@@ -159,31 +168,39 @@ class AbstractOptionTest extends \WP_UnitTestCase
      * @param $valueResult mixed $value returned by WordPress.
      * @param $deleteResult bool Result of deleting $value in WordPress.
      */
-    public function testFlush($value, $saveResult, $valueResult, $deleteResult)
+    public function testFlushWithoutName($value, $saveResult, $valueResult, $deleteResult)
     {
         $this->stub->set($value);
 
-        // Catch \LogicException if name was not specified.
-        if (PHP_VERSION_ID >= 70000) {
-            $this->expectException(\LogicException::class);
-            $this->stub->flush();
-        } else {
-            try {
-                $this->stub->flush();
-            } catch (\Exception $exception) {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            } finally {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            }
-        }
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the name of option before calling any methods using name of option.'
+        );
+
+        $this->stub->flush();
+    }
+
+    /**
+     * Test flushing (saving) values into WordPress with flush().
+     *
+     * @dataProvider casesFlush
+     *
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
+     */
+    public function testFlush($value, $saveResult, $valueResult, $deleteResult)
+    {
+        $this->stub->set($value);
 
         if (null !== $value) {
             $this->assertSame($value, $this->stub->get());
         }
 
-        $this->stub->setName('wp_kit_abstract_option');
-
-        $this->assertSame($saveResult, $this->stub->flush());
+        $this->stub
+            ->setName('wp_kit_abstract_option')
+            ->flush();
 
         wp_cache_flush();
 
@@ -217,8 +234,7 @@ class AbstractOptionTest extends \WP_UnitTestCase
      */
     public function testUpdateValue($value, $saveResult, $valueResult, $deleteResult)
     {
-        $this->stub
-            ->setName('wp_kit_abstract_option');
+        $this->stub->setName('wp_kit_abstract_option');
 
         $this->assertSame($saveResult, $this->stub->updateValue($value));
         wp_cache_flush();
@@ -239,6 +255,23 @@ class AbstractOptionTest extends \WP_UnitTestCase
     public function casesUpdateValue()
     {
         return new EverythingSet2();
+    }
+
+    public function testUpdateValueWithAutoload()
+    {
+        $this->stub->setName('wp_kit_abstract_option');
+
+        $this->stub->updateValue('1', true);
+        $this->assertTrue($this->stub->isAutoload());
+
+        $this->stub->updateValue('2', false);
+        $this->assertFalse($this->stub->isAutoload());
+    }
+
+    public function testGetLocalValue()
+    {
+        $this->stub->setLocalValue('TEST');
+        $this->assertSame('TEST', $this->stub->get());
     }
 
     /* The tests bellow for methods inherited from AbstractNode class */
@@ -375,6 +408,28 @@ class AbstractOptionTest extends \WP_UnitTestCase
     public function casesDefaultValue()
     {
         return new EverythingSet2();
+    }
+
+    public function testHasDefaultValueNotSetUp()
+    {
+        $this->assertFalse($this->stub->hasDefaultValue());
+    }
+
+    /**
+     * @dataProvider casesDefaultValue
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
+     */
+    public function testHasDefaultValue($value, $saveResult, $valueResult, $deleteResult)
+    {
+        $this->stub->setDefaultValue($value);
+        if (is_null($value)) {
+            $this->assertFalse($this->stub->hasDefaultValue());
+        } else {
+            $this->assertTrue($this->stub->hasDefaultValue());
+        }
     }
 
     /**

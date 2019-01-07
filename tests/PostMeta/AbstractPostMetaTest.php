@@ -32,7 +32,8 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->stub   = $this->getMockForAbstractClass(AbstractPostMeta::class);
+        $this->stub = $this->getMockForAbstractClass(AbstractPostMeta::class);
+        $this->stub->setVisibility(true);
         $this->postId = wp_insert_post(
             array(
                 'post_content' => 'WP Kit demo post.',
@@ -41,27 +42,80 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
         );
     }
 
-    /**
-     * Test getting raw value from WordPress
-     */
+    public function testGetValueFromWordPressWithoutName()
+    {
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the name of post meta before calling any methods using name of post meta.'
+        );
+        $this->stub->getValueFromWordPress();
+    }
+
+    public function testGetValueFromWordPressWithoutPostId()
+    {
+        $this->stub->setName('wp_kit_abstract_post_meta');
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the ID of post before calling any methods using ID of post.'
+        );
+        $this->stub->getValueFromWordPress();
+    }
+
     public function testGetValueFromWordPress()
     {
-        if (PHP_VERSION_ID >= 70000) {
-            $this->expectException(\LogicException::class);
-            $this->stub->getValueFromWordPress();
-        } else {
-            try {
-                $this->stub->getValueFromWordPress();
-            } catch (\Exception $exception) {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            } finally {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            }
-        }
-
-        $this->stub->setName('wp_kit_abstract_option');
-        $this->stub->setPostId($this->postId);
+        $this->stub
+            ->setName('wp_kit_abstract_post_meta')
+            ->setPostId($this->postId);
         $this->assertFalse($this->stub->getValueFromWordPress());
+    }
+
+    public function testDeleteWithNoSavedValue()
+    {
+        $this->stub->setName('wp_kit_abstract_post_meta')->setPostId($this->postId);
+        $this->assertFalse($this->stub->delete());
+    }
+
+    /**
+     * @dataProvider casesDeleteFromWP
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
+     */
+    public function testDeleteWithSavedValue($value, $saveResult, $valueResult, $deleteResult)
+    {
+        $this->stub
+            ->setName('wp_kit_abstract_post_meta')
+            ->setPostId($this->postId)
+            ->updateValue($value);
+
+        if ($saveResult) {
+            $this->assertTrue($this->stub->delete());
+            $this->assertNull($this->stub->getLocalValue());
+        } else {
+            $this->assertFalse($this->stub->delete());
+            $this->assertSame($value, $this->stub->getLocalValue());
+        }
+    }
+
+    public function testDeleteFromWPWithoutName()
+    {
+        $this->stub->setVisibility(true);
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the name of post meta before calling any methods using name of post meta.'
+        );
+        $this->stub->deleteFromWP();
+    }
+
+    public function testDeleteFromWPWithoutPostId()
+    {
+        $this->stub->setName('wp_kit_abstract_post_meta');
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the ID of post before calling any methods using ID of post.'
+        );
+        $this->stub->deleteFromWP();
     }
 
     /**
@@ -76,19 +130,6 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
      */
     public function testDeleteFromWP($value, $saveResult, $valueResult, $deleteResult)
     {
-        if (PHP_VERSION_ID >= 70000) {
-            $this->expectException(\LogicException::class);
-            $this->stub->deleteFromWP();
-        } else {
-            try {
-                $this->stub->deleteFromWP();
-            } catch (\Exception $exception) {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            } finally {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            }
-        }
-
         $this->stub
             ->setName('wp_kit_abstract_post_meta')
             ->setPostId($this->postId)
@@ -113,30 +154,63 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
      * @param $valueResult mixed $value returned by WordPress.
      * @param $deleteResult bool Result of deleting $value in WordPress.
      */
-    public function testFlush($value, $saveResult, $valueResult, $deleteResult)
+    public function testFlushWithoutName($value, $saveResult, $valueResult, $deleteResult)
     {
         $this->stub->set($value);
 
-        if (PHP_VERSION_ID >= 70000) {
-            $this->expectException(\LogicException::class);
-            $this->stub->flush();
-        } else {
-            try {
-                $this->stub->flush();
-            } catch (\Exception $exception) {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            } finally {
-                $this->assertInstanceOf(\LogicException::class, $exception);
-            }
-        }
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the name of post meta before calling any methods using name of post meta.'
+        );
+
+        $this->stub->flush();
+    }
+
+    /**
+     * Test flushing (saving) values into WordPress with flush().
+     *
+     * @dataProvider casesFlush
+     *
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
+     */
+    public function testFlushWithoutPostId($value, $saveResult, $valueResult, $deleteResult)
+    {
+        $this->stub->set($value)->setName('wp_kit_abstract_post_meta');
+
+        $this->setExpectedException(
+            \LogicException::class,
+            'You must specify the ID of post before calling any methods using ID of post.'
+        );
+
+        $this->stub->flush();
+    }
+
+
+    /**
+     * Test flushing (saving) values into WordPress with flush().
+     *
+     * @dataProvider casesFlush
+     *
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
+     */
+    public function testFlush($value, $saveResult, $valueResult, $deleteResult)
+    {
+        $this->stub->set($value);
 
         if (null !== $value) {
             $this->assertSame($value, $this->stub->get());
         }
 
-        $this->stub->setName('wp_kit_abstract_post_meta');
-        $this->stub->setPostId($this->postId);
-        $this->stub->flush();
+        $this->stub
+            ->setName('wp_kit_abstract_post_meta')
+            ->setPostId($this->postId)
+            ->flush();
 
         if (true === $saveResult) {
             if (is_object($value)) {
@@ -286,10 +360,30 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
 
     public function testName()
     {
-        $this->assertSame('_', $this->stub->getName());
+        $this->assertNull($this->stub->getName());
 
         $this->assertSame($this->stub, $this->stub->setName('wp_kit_dummy_name'));
+        $this->assertSame('wp_kit_dummy_name', $this->stub->getName());
+
+        $this->stub->setVisibility(false);
         $this->assertSame('_wp_kit_dummy_name', $this->stub->getName());
+    }
+
+    public function testNameWithVisibility()
+    {
+        $this->stub->setName('wp_kit_dummy_name')->setVisibility(true);
+        $this->assertSame('wp_kit_dummy_name', $this->stub->getName());
+    }
+
+    public function testGetterAndSetterVisibility()
+    {
+        $this->assertTrue($this->stub->isVisible());
+
+        $this->assertSame($this->stub, $this->stub->setVisibility(false));
+        $this->assertFalse($this->stub->isVisible());
+
+        $this->assertSame($this->stub, $this->stub->setVisibility(true));
+        $this->assertTrue($this->stub->isVisible());
     }
 
     /**
@@ -334,6 +428,28 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
     public function casesDefaultValue()
     {
         return new EverythingSet2(true);
+    }
+
+    public function testHasDefaultValueNotSetUp()
+    {
+        $this->assertFalse($this->stub->hasDefaultValue());
+    }
+
+    /**
+     * @dataProvider casesDefaultValue
+     * @param $value mixed Any variable types.
+     * @param $saveResult bool Result of saving $value in WordPress.
+     * @param $valueResult mixed $value returned by WordPress.
+     * @param $deleteResult bool Result of deleting $value in WordPress.
+     */
+    public function testHasDefaultValue($value, $saveResult, $valueResult, $deleteResult)
+    {
+        $this->stub->setDefaultValue($value);
+        if (is_null($value)) {
+            $this->assertFalse($this->stub->hasDefaultValue());
+        } else {
+            $this->assertTrue($this->stub->hasDefaultValue());
+        }
     }
 
     /**

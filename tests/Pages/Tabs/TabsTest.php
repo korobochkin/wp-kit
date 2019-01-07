@@ -10,9 +10,23 @@ use Korobochkin\WPKit\Pages\Tabs\Tabs;
  */
 class TabsTest extends \WP_UnitTestCase
 {
+    /**
+     * @var Tabs
+     */
+    protected $stub;
+
+    /**
+     * @inheritdoc
+     */
+    public function setUp()
+    {
+        parent::setUp();
+        $this->stub = new Tabs();
+    }
+
     public function testIterator()
     {
-        $tabs = new Tabs();
+        $tabs = $this->stub;
 
         $tab = new Tab();
         $tab->setName('test_1');
@@ -28,5 +42,40 @@ class TabsTest extends \WP_UnitTestCase
             $this->assertInstanceOf(TabInterface::class, $tabInstance);
             $this->assertContains($tabName, array('test_1', 'test_2'));
         }
+    }
+
+    public function testAddTabWithNoName()
+    {
+        $this->setExpectedException(\LogicException::class);
+        $this->stub->addTab(new Tab());
+    }
+
+    public function testGetTab()
+    {
+        $tab = new Tab();
+        $tab->setName('wp_kit_test_name');
+        $this->stub->addTab($tab);
+
+        $this->assertSame($tab, $this->stub->getTab('wp_kit_test_name'));
+    }
+
+    public function testGetTabWithWrongName()
+    {
+        $tab = new Tab();
+        $tab->setName('wp_kit_test_name');
+        $this->stub->addTab($tab);
+
+        $this->setExpectedException(\InvalidArgumentException::class);
+        $this->stub->getTab('not_exists_name');
+    }
+
+    public function testHasTab()
+    {
+        $tab = new Tab();
+        $tab->setName('wp_kit_test_name');
+        $this->stub->addTab($tab);
+
+        $this->assertTrue($this->stub->hasTab('wp_kit_test_name'));
+        $this->assertFalse($this->stub->hasTab('not_exists_name'));
     }
 }

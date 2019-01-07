@@ -7,6 +7,11 @@ namespace Korobochkin\WPKit\Sanitizers;
  */
 class IntegerSanitizer implements SanitizerInterface
 {
+    /**
+     * @param $value mixed Any types of values.
+     *
+     * @return int Value converted to int.
+     */
     public static function sanitize($value)
     {
         if (is_object($value)) {

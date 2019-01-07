@@ -6,6 +6,7 @@ use Korobochkin\WPKit\Options\OptionInterface;
 use Korobochkin\WPKit\PostMeta\PostMetaInterface;
 use Korobochkin\WPKit\TermMeta\TermMetaInterface;
 use Korobochkin\WPKit\Transients\TransientInterface;
+use Korobochkin\WPKit\Utils\WordPressFeatures;
 
 /**
  * Class Uninstall delete everything data used by your product.
@@ -196,9 +197,13 @@ class Uninstall implements UninstallInterface
             ->deleteCronEvents()
             ->deleteOptions()
             ->deletePostMetas()
-            ->deleteTermMetas()
-            ->deleteTransients()
-            ->flushAfterRun();
+            ->deleteTransients();
+
+        if (WordPressFeatures::isTermsMetaSupported()) {
+            $this->deleteTermMetas();
+        }
+
+        $this->flushAfterRun();
 
         return $this;
     }
@@ -213,7 +218,6 @@ class Uninstall implements UninstallInterface
     public function flushAfterRun()
     {
         try {
-            // Flush all cache.
             wp_cache_flush();
         } catch (\Exception $exception) {
             if (!$this->isSuppressExceptions()) {
@@ -287,11 +291,11 @@ class Uninstall implements UninstallInterface
             WHERE meta_key = %s
             ";
 
-        foreach ($this->termMetas as $termMeta) {
+        foreach ($this->postMetas as $postMeta) {
             try {
                 $query = $wpdb->prepare(
                     $queryTemplate,
-                    $termMeta->getName()
+                    $postMeta->getName()
                 );
                 $wpdb->get_results($query);
             } catch (\Exception $exception) {

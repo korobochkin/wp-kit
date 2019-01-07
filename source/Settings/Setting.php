@@ -2,6 +2,7 @@
 namespace Korobochkin\WPKit\Settings;
 
 use Korobochkin\WPKit\Options\OptionInterface;
+use Korobochkin\WPKit\Utils\Compatibility;
 
 /**
  * Class Setting
@@ -26,7 +27,7 @@ class Setting implements SettingInterface
      */
     public function __construct(OptionInterface $option)
     {
-        $this->option = $this->setOption($option);
+        $this->option = $option;
     }
 
     /**
@@ -34,7 +35,7 @@ class Setting implements SettingInterface
      */
     public function getOption()
     {
-        return $this->getOption();
+        return $this->option;
     }
 
     /**
@@ -70,14 +71,17 @@ class Setting implements SettingInterface
      */
     public function register()
     {
-        $option = $this->getOption();
-        if (isset($option)) {
-            register_setting(
-                $option->getGroup(),
-                $option->getName(),
-                array($option, '_sanitize')
-            );
+        if (!isset($this->option)) {
+            throw new \LogicException('Set option before call register method.');
         }
+
+        register_setting(
+            $this->getGroup(),
+            $this->option->getName(),
+            array($this->option, 'sanitize')
+        );
+
+        return $this;
     }
 
     /**
@@ -85,9 +89,16 @@ class Setting implements SettingInterface
      */
     public function unRegister()
     {
-        $option = $this->getOption();
-        if (isset($option)) {
-            unregister_setting($option->getGroup(), $option->getName());
+        if (!isset($this->option)) {
+            throw new \LogicException('Set option before call unRegister method.');
         }
+
+        if (!Compatibility::checkWordPress('4.7')) {
+            unregister_setting($this->getGroup(), $this->option->getName(), array($this->option, 'sanitize'));
+        } else {
+            unregister_setting($this->getGroup(), $this->option->getName());
+        }
+
+        return $this;
     }
 }

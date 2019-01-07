@@ -64,7 +64,7 @@ abstract class AbstractTermMeta extends AbstractNode implements TermMetaInterfac
 
         if (!$id) {
             throw new \LogicException(
-                'You must specify the ID of term meta before calling any methods using ID of term meta.'
+                'You must specify the ID of term before calling any methods using ID of term.'
             );
         }
 
@@ -94,7 +94,7 @@ abstract class AbstractTermMeta extends AbstractNode implements TermMetaInterfac
 
         if (!$id) {
             throw new \LogicException(
-                'You must specify the ID of term meta before calling any methods using ID of term meta.'
+                'You must specify the ID of term before calling any methods using ID of term.'
             );
         }
 

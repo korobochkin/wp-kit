@@ -2,8 +2,10 @@
 namespace Korobochkin\WPKit\Tests\Pages;
 
 use Korobochkin\WPKit\Pages\AbstractPage;
+use Korobochkin\WPKit\Pages\Tabs\Tabs;
 use Korobochkin\WPKit\Pages\Views\TwigPageView;
 use Symfony\Component\Form\FormFactoryBuilder;
+use Symfony\Component\Form\Forms;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -81,6 +83,27 @@ class AbstractPageTest extends \WP_UnitTestCase
         $this->assertSame($value, $this->stub->getView());
     }
 
+    public function testRender()
+    {
+        $title = 'WP Kit Test Title';
+        $this->stub
+            ->setView(new PageTestingPurposesView())
+            ->setPageTitle($title);
+
+        ob_start();
+        $this->stub->render();
+        $this->assertSame(
+            '<div class="wp-kit-test-page-wrapper"><h1>' . $title . '</h1><p>Page text.</p></div>',
+            ob_get_contents()
+        );
+        ob_end_clean();
+    }
+
+    public function testEnqueueScriptStyles()
+    {
+        $this->assertNull($this->stub->enqueueScriptStyles());
+    }
+
     public function testGetterAndSetterRequest()
     {
         $value = new Request();
@@ -102,9 +125,10 @@ class AbstractPageTest extends \WP_UnitTestCase
 
     public function testGetterAndSetterForm()
     {
+        $value = Forms::createFormFactoryBuilder()->getFormFactory()->create();
         $this->assertNull($this->stub->getForm());
-        //$this->assertSame($this->stub, $this->stub->setForm($value));
-        //$this->assertSame($value, $this->stub->getForm());
+        $this->assertSame($this->stub, $this->stub->setForm($value));
+        $this->assertSame($value, $this->stub->getForm());
     }
 
     public function testGetterAndSetterFormEntity()
@@ -114,6 +138,14 @@ class AbstractPageTest extends \WP_UnitTestCase
         $this->assertNull($this->stub->getFormEntity());
         $this->assertSame($this->stub, $this->stub->setFormEntity($value));
         $this->assertSame($value, $this->stub->getFormEntity());
+    }
+
+    public function testGetterAndSetterTabs()
+    {
+        $value = new Tabs();
+        $this->assertNull($this->stub->getTabs());
+        $this->assertSame($this->stub, $this->stub->setTabs($value));
+        $this->assertSame($value, $this->stub->getTabs());
     }
 
     public function testHandleRequest()

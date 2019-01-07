@@ -4,6 +4,7 @@ namespace Korobochkin\WPKit\Tests\MetaBoxes;
 use Korobochkin\WPKit\MetaBoxes\MetaBox;
 use Korobochkin\WPKit\MetaBoxes\MetaBoxTwigView;
 use Symfony\Component\Form\FormFactoryBuilder;
+use Symfony\Component\Form\Forms;
 use Symfony\Component\HttpFoundation\Request;
 
 class MetaBoxTest extends \WP_UnitTestCase
@@ -152,7 +153,10 @@ class MetaBoxTest extends \WP_UnitTestCase
 
     public function testGetterAndSetterForm()
     {
+        $value = Forms::createFormFactoryBuilder()->getFormFactory()->create();
         $this->assertNull($this->stub->getForm());
+        $this->assertSame($this->stub, $this->stub->setForm($value));
+        $this->assertSame($value, $this->stub->getForm());
     }
 
     public function testGetterAndSetterFormEntity()
@@ -162,6 +166,11 @@ class MetaBoxTest extends \WP_UnitTestCase
         $this->assertNull($this->stub->getFormEntity());
         $this->assertSame($this->stub, $this->stub->setFormEntity($value));
         $this->assertSame($value, $this->stub->getFormEntity());
+    }
+
+    public function testHandleRequest()
+    {
+        $this->assertNull($this->stub->handleRequest());
     }
 
     public function testGetterAndSetterRequest()
@@ -177,5 +186,23 @@ class MetaBoxTest extends \WP_UnitTestCase
 
         $this->assertSame($stub, $stub->setRequest($value));
         $this->assertSame($value, $stub->getRequest());
+    }
+
+    public function testRender()
+    {
+        $title = 'WP Kit Test Title';
+        $this->stub
+            ->setView(new MetaBoxTestingPurposesView())
+            ->setTitle($title);
+
+        ob_start();
+        $this->stub->render();
+        $this->assertSame(
+            '<div class="wp-kit-test-meta-box">This is test Meta Box view instance. Title of Meta Box: <code>'
+            . $title
+            . '</code></div>',
+            ob_get_contents()
+        );
+        ob_end_clean();
     }
 }

@@ -27,4 +27,28 @@ class VirtualMenuPageTest extends \WP_UnitTestCase
         $this->assertSame($this->stub, $this->stub->setVirtualPage($value));
         $this->assertSame($value, $this->stub->getVirtualPage());
     }
+
+    public function testRender()
+    {
+        $title = 'WP Kit Test Virtual Title';
+
+        $page = new MenuPage();
+        $page->setView(new PageTestingPurposesView())
+             ->setPageTitle($title);
+        $this->stub->setVirtualPage($page);
+
+        ob_start();
+        $this->stub->render();
+        $this->assertSame(
+            '<div class="wp-kit-test-page-wrapper"><h1>' . $title . '</h1><p>Page text.</p></div>',
+            ob_get_contents()
+        );
+        ob_end_clean();
+    }
+
+    public function testLateConstruct()
+    {
+        $this->stub->setVirtualPage(new MenuPage());
+        $this->assertSame($this->stub, $this->stub->lateConstruct());
+    }
 }

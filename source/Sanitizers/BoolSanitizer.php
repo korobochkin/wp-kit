@@ -7,16 +7,13 @@ namespace Korobochkin\WPKit\Sanitizers;
  */
 class BoolSanitizer implements SanitizerInterface
 {
+    /**
+     * @param $value mixed Any types of values.
+     *
+     * @return bool Value converted to boolean.
+     */
     public static function sanitize($value)
     {
-        if (is_string($value)) {
-            if ($value == '1') {
-                return true;
-            } elseif ($value == '0') {
-                return false;
-            }
-        }
-
         return (bool) $value;
     }
 }

@@ -3,6 +3,8 @@
 ## ON DEVELOP BRANCH
 
 * Added classes for MU plugins (AbstractMUPlugin, MUPluginTranslations) ([#35](https://github.com/korobochkin/wp-kit/issues/35))
+* Fixed `Uninstall::deletePostMetas` method ([#40](https://github.com/korobochkin/wp-kit/issues/40)).
+* Added code coverage statistics ([#38](https://github.com/korobochkin/wp-kit/issues/38)). 
 
 ## 0.10.1 - October 19, 2018
 

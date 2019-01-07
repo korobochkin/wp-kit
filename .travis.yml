@@ -14,6 +14,14 @@ notifications:
       - ./vendor/
 
 .deploy_code_coverage: &deploy_code_coverage
+  before_deploy:
+    - cd dist/coverage
+    - mv .css css
+    - mv .fonts fonts
+    - mv .js js
+    - find ./ -type f -exec sed -i 's/\.css\//css\//g' {} \;
+    - find ./ -type f -exec sed -i 's/\.fonts\//fonts\//g' {} \;
+    - find ./ -type f -exec sed -i 's/\.js\//js\//g' {} \;
   deploy:
     provider: pages
     github-token: $GITHUB_TOKEN

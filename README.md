@@ -1,13 +1,15 @@
 # WordPress Kit
 
 [![Packagist Pre Release](https://img.shields.io/packagist/vpre/korobochkin/wp-kit.svg)](https://packagist.org/packages/korobochkin/wp-kit)
-[![Codecov branch](https://img.shields.io/codecov/c/github/korobochkin/wp-kit/master.svg)](https://github.com/korobochkin/wp-kit)
+[![Codecov branch](https://img.shields.io/codecov/c/github/korobochkin/wp-kit/master.svg)](https://codecov.io/gh/korobochkin/wp-kit)
 [![Build Status](https://travis-ci.org/korobochkin/wp-kit.svg?branch=master)](https://travis-ci.org/korobochkin/wp-kit)
 [![Packagist](https://img.shields.io/packagist/dt/korobochkin/wp-kit.svg)](https://packagist.org/packages/korobochkin/wp-kit)
 
 If you have been coding with plain WordPress functions and long unreadable code, you need to switch to Object Oriented Programming (OOP) code. It's easy! This library makes WordPress more friendly. Plugin and theme authors can create more reusable components and products by using this library.
 
-Documentation already in progress 🚀
+* [Code coverage report](https://codecov.io/gh/korobochkin/wp-kit)
+* [Homepage on Github Pages](https://korobochkin.github.io/wp-kit/) (with metrics from PHP Unit)
+* Documentation already in progress 🚀
 
 ## Available components
 

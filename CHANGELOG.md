@@ -1,6 +1,6 @@
 # Changelog
 
-## ON DEVELOP BRANCH
+## 0.11.0 - January 7, 2019
 
 * Added classes for MU plugins (AbstractMUPlugin, MUPluginTranslations) ([#35](https://github.com/korobochkin/wp-kit/issues/35))
 * Fixed `Uninstall::deletePostMetas` method ([#40](https://github.com/korobochkin/wp-kit/issues/40)).

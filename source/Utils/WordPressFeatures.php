@@ -38,4 +38,14 @@ class WordPressFeatures
 
         return false;
     }
+
+    /**
+     * Check for wordpress.com environment.
+     *
+     * @return bool True if WordPress.com env, false otherwise.
+     */
+    public static function isVIP()
+    {
+        return defined('WPCOM_IS_VIP_ENV') && true === WPCOM_IS_VIP_ENV;
+    }
 }

@@ -19,4 +19,9 @@ class WordPressFeaturesTest extends \WP_UnitTestCase
     {
         $this->assertFalse(WordPressFeatures::isScriptDebug());
     }
+
+    public function testIsVIP()
+    {
+        $this->assertFalse(WordPressFeatures::isVIP());
+    }
 }

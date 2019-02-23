@@ -18,11 +18,7 @@ class WordPressFeatures
      */
     public static function isDebug()
     {
-        if (defined('WP_DEBUG') && WP_DEBUG == true) {
-            return true;
-        }
-
-        return false;
+        return defined('WP_DEBUG') && WP_DEBUG == true;
     }
 
     /**
@@ -32,11 +28,7 @@ class WordPressFeatures
      */
     public static function isScriptDebug()
     {
-        if (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG == true) {
-            return true;
-        }
-
-        return false;
+        return defined('SCRIPT_DEBUG') && SCRIPT_DEBUG == true;
     }
 
     /**

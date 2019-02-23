@@ -4,7 +4,7 @@ namespace Korobochkin\WPKit\Utils;
 class WordPressFeatures
 {
     /**
-     * @return bool True if WordPress supported terms meta.
+     * @return bool True if WordPress support terms meta.
      */
     public static function isTermsMetaSupported()
     {

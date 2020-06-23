@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Korobochkin\WPKit\Notices;
 
+use Twig\Environment;
+
 /**
  * Class NoticeTwigView
  */
@@ -19,7 +21,7 @@ class NoticeTwigView implements NoticeViewInterface, NoticeTwigViewInterface
     protected $context = array();
 
     /**
-     * @var \Twig_Environment Twig.
+     * @var Environment Twig.
      */
     protected $twigEnvironment;
 
@@ -76,7 +78,7 @@ class NoticeTwigView implements NoticeViewInterface, NoticeTwigViewInterface
     /**
      * @inheritdoc
      */
-    public function setTwigEnvironment(\Twig_Environment $twigEnvironment)
+    public function setTwigEnvironment(Environment $twigEnvironment)
     {
         $this->twigEnvironment = $twigEnvironment;
         return $this;

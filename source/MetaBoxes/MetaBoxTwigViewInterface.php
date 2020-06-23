@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Korobochkin\WPKit\MetaBoxes;
 
+use Twig\Environment;
+
 /**
  * Interface MetaBoxTwigViewInterface
  */
@@ -45,7 +47,7 @@ interface MetaBoxTwigViewInterface extends MetaBoxViewInterface
      *
      * If you use Twig for rendering this method would helpful.
      *
-     * @return \Twig_Environment Twig.
+     * @return Environment Twig.
      */
     public function getTwigEnvironment();
 
@@ -54,9 +56,9 @@ interface MetaBoxTwigViewInterface extends MetaBoxViewInterface
      *
      * If you use Twig for rendering this method would helpful.
      *
-     * @param \Twig_Environment $twigEnvironment Twig.
+     * @param Environment $twigEnvironment Twig.
      *
      * @return $this For chain calls.
      */
-    public function setTwigEnvironment(\Twig_Environment $twigEnvironment);
+    public function setTwigEnvironment(Environment $twigEnvironment);
 }

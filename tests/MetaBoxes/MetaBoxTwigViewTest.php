@@ -26,7 +26,7 @@ class MetaBoxTwigViewTest extends \WP_UnitTestCase
             ))
         );
 
-        $stub->setTwigEnvironment($value);
+        $stub->setTwig($value);
 
         ob_start();
         $stub->setTemplate('title');
@@ -80,7 +80,7 @@ class MetaBoxTwigViewTest extends \WP_UnitTestCase
          */
         $stub = new MetaBoxTwigView();
 
-        $this->assertSame(null, $stub->getTwigEnvironment());
+        $this->assertSame(null, $stub->getTwig());
 
         $value = new \Twig_Environment(
             new \Twig_Loader_Array(array(
@@ -88,7 +88,7 @@ class MetaBoxTwigViewTest extends \WP_UnitTestCase
             ))
         );
 
-        $this->assertSame($stub, $stub->setTwigEnvironment(($value)));
-        $this->assertSame($value, $stub->getTwigEnvironment());
+        $this->assertSame($stub, $stub->setTwig($value));
+        $this->assertSame($value, $stub->getTwig());
     }
 }

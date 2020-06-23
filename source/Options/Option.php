@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Options;
 
 use Korobochkin\WPKit\DataComponents\Traits\DummyBuildConstraintTrait;

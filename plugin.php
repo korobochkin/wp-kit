@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
 Plugin Name: WP Kit
 Plugin URI: https://korobochkin.github.io/wp-kit/

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Tests\Transients;
 
 use Korobochkin\WPKit\Tests\DataSets\EverythingSet2;

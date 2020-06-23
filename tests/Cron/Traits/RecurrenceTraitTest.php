@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Tests\Cron\Traits;
 
 use Korobochkin\WPKit\Cron\Traits\RecurrenceTrait;

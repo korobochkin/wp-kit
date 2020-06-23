@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Tests\Sanitizers;
 
 use Korobochkin\WPKit\Sanitizers\DateTimeISO8601Sanitizer;

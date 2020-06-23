@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Tests\TermMeta;
 
 use Korobochkin\WPKit\TermMeta\TermMeta;

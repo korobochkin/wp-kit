@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Notices;
 
 class NoticeErrorView extends NoticeView

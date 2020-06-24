@@ -1,3 +1,6 @@
+sudo: false
+dist: trusty
+
 stages:
   - test
   - deploy
@@ -10,7 +13,7 @@ notifications:
 .composer_cache: &composer_cache
   cache:
     directories:
-      - $HOME/.composer/
+      - $HOME/.composer/cache
       - ./vendor/
 
 .deploy_code_coverage: &deploy_code_coverage

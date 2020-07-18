@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Korobochkin\WPKit\Tests\PostMeta\Special;
 
 use Korobochkin\WPKit\PostMeta\Special\BoolPostMeta;
-use Korobochkin\WPKit\Tests\DataSets\Bool\BoolTransformationSet;
+use Korobochkin\WPKit\Tests\Common\DataComponents\Special\AbstractBoolDataComponentTest;
 
 /**
  * Class BoolPostMetaTest
@@ -12,94 +12,27 @@ use Korobochkin\WPKit\Tests\DataSets\Bool\BoolTransformationSet;
  *
  * @group data-components
  */
-class BoolPostMetaTest extends \WP_UnitTestCase
+class BoolPostMetaTest extends AbstractBoolDataComponentTest
 {
-    /**
-     * @var BoolPostMeta
-     */
-    protected $stub;
-
     /**
      * @var int Post ID for accessing post meta.
      */
     protected $postId;
 
     /**
-     * Prepare option for tests.
+     * @return BoolPostMeta
      */
-    public function setUp()
+    protected function createAndConfigureStub()
     {
-        parent::setUp();
+        $this->postId = wp_insert_post(array(
+            'post_content' => 'WP Kit demo post.',
+            'post_title'   => 'WP Kit demo title',
+        ));
 
-        $this->postId = wp_insert_post(
-            array(
-                'post_content' => 'WP Kit demo post.',
-                'post_title'   => 'WP Kit demo title',
-            )
-        );
+        $stub = new BoolPostMeta();
+        $stub->setName('wp_kit_bool_post_meta');
+        $stub->setPostId($this->postId);
 
-        $this->stub = new BoolPostMeta();
-        $this->stub->setName('wp_kit_bool_post_meta');
-        $this->stub->setPostId($this->postId);
-    }
-
-    /**
-     * @dataProvider casesTypesAfterSaving
-     *
-     * @var $value    mixed Value to insert and test.
-     * @var $expected mixed Value to compare output value with.
-     */
-    public function testTypesAfterSaving($value, $expected)
-    {
-        $this->stub
-            ->set($value);
-
-        if (class_exists($expected)) {
-            if (PHP_VERSION_ID >= 70000) {
-                $this->expectException($expected);
-                $this->stub->flush();
-            } else {
-                try {
-                    $this->stub->flush();
-                } catch (\Exception $exception) {
-                    $this->assertTrue(is_a($exception, $expected));
-                }
-            }
-        } else {
-            $this->stub->flush();
-            $this->assertSame($expected, $this->stub->get());
-        }
-    }
-
-    public function casesTypesAfterSaving()
-    {
-        return new BoolTransformationSet();
-    }
-
-    /**
-     * @dataProvider casesTypesWithoutSaving
-     *
-     * @var $value mixed Value to insert and test.
-     * @var $expected mixed Value to compare output value with.
-     */
-    public function testTypesWithoutSaving($value, $expected)
-    {
-        $this->stub->set($value);
-
-        if (class_exists($expected)) {
-            $this->assertSame($value, $this->stub->get());
-        } else {
-            $this->assertSame($expected, $this->stub->get());
-        }
-    }
-
-    public function casesTypesWithoutSaving()
-    {
-        return new BoolTransformationSet();
-    }
-
-    public function testDefaultValue()
-    {
-        $this->assertSame(true, $this->stub->get());
+        return $stub;
     }
 }

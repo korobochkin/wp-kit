@@ -5,6 +5,8 @@ namespace Korobochkin\WPKit\Tests\Notices;
 
 use Korobochkin\WPKit\Notices\Notice;
 use Korobochkin\WPKit\Notices\NoticeTwigView;
+use Twig\Environment;
+use Twig\Loader\ArrayLoader;
 
 /**
  * Class NoticeTwigViewTest
@@ -19,8 +21,8 @@ class NoticeTwigViewTest extends \WP_UnitTestCase
         $stub   = new NoticeTwigView();
         $notice = new Notice();
 
-        $value = new \Twig_Environment(
-            new \Twig_Loader_Array(array(
+        $value = new Environment(
+            new ArrayLoader(array(
                 'title' => '{{ "my first car"|title }}',
                 'min'   => '{{ min(1, 3, 2) }}',
             ))
@@ -82,8 +84,8 @@ class NoticeTwigViewTest extends \WP_UnitTestCase
 
         $this->assertNull($stub->getTwigEnvironment());
 
-        $value = new \Twig_Environment(
-            new \Twig_Loader_Array(array(
+        $value = new Environment(
+            new ArrayLoader(array(
                 'title' => '{{ "my first car"|title }}',
             ))
         );

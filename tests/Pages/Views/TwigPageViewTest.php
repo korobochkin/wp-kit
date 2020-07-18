@@ -6,6 +6,8 @@ namespace Korobochkin\WPKit\Tests\Pages\Views;
 use Korobochkin\WPKit\Pages\MenuPage;
 use Korobochkin\WPKit\Pages\PageInterface;
 use Korobochkin\WPKit\Pages\Views\TwigPageView;
+use Twig\Environment;
+use Twig\Loader\ArrayLoader;
 
 class TwigPageViewTest extends \WP_UnitTestCase
 {
@@ -20,7 +22,7 @@ class TwigPageViewTest extends \WP_UnitTestCase
     protected $page;
 
     /**
-     * @var \Twig_Environment
+     * @var Environment
      */
     protected $twig;
 
@@ -34,8 +36,8 @@ class TwigPageViewTest extends \WP_UnitTestCase
         $this->stub = new TwigPageView();
         $this->page = new MenuPage();
 
-        $this->twig = new \Twig_Environment(
-            new \Twig_Loader_Array(array(
+        $this->twig = new Environment(
+            new ArrayLoader(array(
                 'title' => '{{ "my first car"|title }}',
                 'min'   => '{{ min(1, 3, 2) }}',
             ))

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Korobochkin\WPKit\Tests\TermMeta\Special;
 
 use Korobochkin\WPKit\TermMeta\Special\NumericTermMeta;
-use Korobochkin\WPKit\Tests\DataSets\Numeric\NumericTransformationSet;
+use Korobochkin\WPKit\Tests\Common\DataComponents\Special\AbstractNumericDataComponentTest;
 use Korobochkin\WPKit\Utils\WordPressFeatures;
 
 /**
@@ -13,22 +13,13 @@ use Korobochkin\WPKit\Utils\WordPressFeatures;
  *
  * @group data-components
  */
-class NumericTermMetaTest extends \WP_UnitTestCase
+class NumericTermMetaTest extends AbstractNumericDataComponentTest
 {
-
-    /**
-     * @var NumericTermMeta
-     */
-    protected $stub;
-
     /**
      * @var int Term ID for accessing post meta.
      */
     protected $termId;
 
-    /**
-     * Prepare option for tests.
-     */
     public function setUp()
     {
         if (!WordPressFeatures::isTermsMetaSupported()) {
@@ -37,78 +28,22 @@ class NumericTermMetaTest extends \WP_UnitTestCase
         }
 
         parent::setUp();
-
-        $this->termId = wp_insert_post(
-            array(
-                'post_content' => 'WP Kit demo post.',
-                'post_title'   => 'WP Kit demo title',
-            )
-        );
-
-        $this->stub = new NumericTermMeta();
-        $this->stub->setName('wp_kit_numeric_term_meta');
-        $this->stub->setTermId($this->termId);
     }
 
     /**
-     * @dataProvider casesTypesAfterSaving
-     *
-     * @var $value    mixed Value to insert and test.
-     * @var $expected mixed Value to compare output value with.
+     * @return NumericTermMeta
      */
-    public function testTypesAfterSaving($value, $expected)
+    protected function createAndConfigureStub()
     {
-        $this->stub
-            ->set($value);
+        $this->termId = wp_insert_post(array(
+            'post_content' => 'WP Kit demo post.',
+            'post_title'   => 'WP Kit demo title',
+        ));
 
-        if (class_exists($expected)) {
-            if (PHP_VERSION_ID >= 70000) {
-                $this->expectException($expected);
-                $this->stub->flush();
-            } else {
-                try {
-                    $this->stub->flush();
-                } catch (\Exception $exception) {
-                    $this->assertInstanceOf($expected, $exception);
-                } finally {
-                    $this->assertInstanceOf($expected, $exception);
-                }
-            }
-        } else {
-            $this->stub->flush();
-            $this->assertSame($expected, $this->stub->get());
-        }
-    }
+        $stub = new NumericTermMeta();
+        $stub->setName('wp_kit_numeric_term_meta');
+        $stub->setTermId($this->termId);
 
-    public function casesTypesAfterSaving()
-    {
-        return new NumericTransformationSet();
-    }
-
-    /**
-     * @dataProvider casesTypesWithoutSaving
-     *
-     * @var $value    mixed Value to insert and test.
-     * @var $expected mixed Value to compare output value with.
-     */
-    public function testTypesWithoutSaving($value, $expected)
-    {
-        $this->stub->set($value);
-        if (is_null($value)) {
-            // Default value (null is not caught via $this->hasLocalValue())
-            $this->assertSame(0.0, $this->stub->get());
-        } else {
-            $this->assertSame($value, $this->stub->get());
-        }
-    }
-
-    public function casesTypesWithoutSaving()
-    {
-        return new NumericTransformationSet();
-    }
-
-    public function testDefaultValue()
-    {
-        $this->assertSame(0.0, $this->stub->get());
+        return $stub;
     }
 }

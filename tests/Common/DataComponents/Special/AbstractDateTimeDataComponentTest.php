@@ -38,7 +38,7 @@ abstract class AbstractDateTimeDataComponentTest extends \WP_UnitTestCase
 
         if (is_object($expected) && is_a($expected, \DateTime::class)) {
             $this->stub->flush();
-            $this->assertEquals($expected, $this->stub->get());
+            $this->assertSame($expected->format('Y-m-d H:i:s'), $this->stub->get()->format('Y-m-d H:i:s'));
         } else {
             $this->expectException($expected);
             $this->stub->flush();

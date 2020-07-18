@@ -33,7 +33,7 @@ class SubMenuPageTest extends \WP_UnitTestCase
     public function testRegister()
     {
         global $wp_version;
-        if ('4.0' === $wp_version && PHP_VERSION_ID >= 70000) {
+        if (substr($wp_version, 0, 3) === '4.0' && PHP_VERSION_ID >= 70000) {
             $this->markTestSkipped('wp_insert_user() call triggers error in old WP and new PHP.');
         }
 

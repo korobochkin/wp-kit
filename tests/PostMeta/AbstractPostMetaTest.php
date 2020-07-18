@@ -548,8 +548,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
             )
         );
 
-        $this->setExpectedException(\Exception::class, 'Expected argument of type "array", "string" given');
-        $this->stub->validate();
+        $this->assertInstanceOf(ConstraintViolationList::class, $this->stub->validate());
     }
 
     /**

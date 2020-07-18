@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Korobochkin\WPKit\Tests\TermMeta\Special;
 
 use Korobochkin\WPKit\TermMeta\Special\DateTimeTermMeta;
-use Korobochkin\WPKit\Tests\DataSets\DateTime\DateTimeTransformationSet;
+use Korobochkin\WPKit\Tests\Common\DataComponents\Special\AbstractDateTimeDataComponentTest;
 use Korobochkin\WPKit\Utils\WordPressFeatures;
 
 /**
@@ -13,21 +13,13 @@ use Korobochkin\WPKit\Utils\WordPressFeatures;
  *
  * @group data-components
  */
-class DateTimeTermMetaTest extends \WP_UnitTestCase
+class DateTimeTermMetaTest extends AbstractDateTimeDataComponentTest
 {
-    /**
-     * @var DateTimeTermMeta
-     */
-    protected $stub;
-
     /**
      * @var int Term ID for accessing post meta.
      */
     protected $termId;
 
-    /**
-     * Prepare option for tests.
-     */
     public function setUp()
     {
         if (!WordPressFeatures::isTermsMetaSupported()) {
@@ -36,7 +28,13 @@ class DateTimeTermMetaTest extends \WP_UnitTestCase
         }
 
         parent::setUp();
+    }
 
+    /**
+     * @return DateTimeTermMeta
+     */
+    protected function createAndConfigureStub()
+    {
         $result = wp_insert_term('Test Term with PHP Unit', 'category', array(
             'description' => 'Description for Test Term',
             'slug' => 'test-term-with-php-unit',
@@ -44,47 +42,10 @@ class DateTimeTermMetaTest extends \WP_UnitTestCase
 
         $this->termId = $result['term_id'];
 
-        $this->stub = new DateTimeTermMeta();
-        $this->stub->setName('wp_kit_datetime_term_meta');
-        $this->stub->setTermId($this->termId);
-    }
+        $stub = new DateTimeTermMeta();
+        $stub->setName('wp_kit_datetime_term_meta');
+        $stub->setTermId($this->termId);
 
-    /**
-     * @dataProvider casesTypes
-     * @var $value mixed Value to insert and test.
-     * @var $expected mixed Value to compare output value with.
-     */
-    public function testTypes($value, $expected)
-    {
-        $this->stub->set($value);
-
-        if (is_a($expected, \DateTime::class)) {
-            $this->stub->flush();
-            $this->assertEquals($expected, $this->stub->get());
-        } else {
-            if (PHP_VERSION_ID >= 70000) {
-                $this->expectException($expected);
-                $this->stub->flush();
-            } else {
-                try {
-                    $this->stub->flush();
-                } catch (\Exception $exception) {
-                    $this->assertInstanceOf($expected, $exception);
-                } finally {
-                    $this->assertInstanceOf($expected, $exception);
-                }
-            }
-        }
-    }
-
-    public function casesTypes()
-    {
-        return new DateTimeTransformationSet();
-    }
-
-    public function testNull()
-    {
-        $this->stub->set(null);
-        $this->assertNull($this->stub->get());
+        return $stub;
     }
 }

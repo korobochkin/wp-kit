@@ -45,14 +45,18 @@ interface CronSingleEventInterface
     /**
      * Register event in WordPress.
      *
-     * @return mixed
+     * @throws \RuntimeException
+     *
+     * @return $this
      */
     public function schedule();
 
     /**
      * Delete single event in WordPress based on args and timestamp.
      *
-     * @return mixed
+     * @throws \RuntimeException
+     *
+     * @return $this
      */
     public function unschedule();
 

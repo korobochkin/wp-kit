@@ -30,11 +30,19 @@ abstract class AbstractCronEvent extends AbstractCronSingleEvent
             throw new \LogicException('Invalid recurrence name. You should register before using.');
         }
 
-        return wp_schedule_event(
+        $result = wp_schedule_event(
             $this->getTimestamp(),
             $this->getRecurrence(),
             $this->getName(),
             $this->getArgs()
         );
+
+        if (true === $result || null === $result) {
+            return $this;
+        } elseif (false === $result) {
+            throw new \RuntimeException('Cannot schedule or event already scheduled.');
+        } else {
+            throw new \RuntimeException('Unknown result from WordPress function wp_schedule_event() returned.');
+        }
     }
 }

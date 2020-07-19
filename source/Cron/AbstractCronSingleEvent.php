@@ -32,7 +32,15 @@ abstract class AbstractCronSingleEvent implements CronSingleEventInterface
             throw new \LogicException('You must specify name for event before schedule.');
         }
 
-        return wp_schedule_single_event($this->getTimestamp(), $this->getName(), $this->getArgs());
+        $result = wp_schedule_single_event($this->getTimestamp(), $this->getName(), $this->getArgs());
+
+        if (true === $result || null === $result) {
+            return $this;
+        } elseif (false === $result) {
+            throw new \RuntimeException('Cannot schedule or event already scheduled.');
+        } else {
+            throw new \RuntimeException('Unknown result from WordPress function wp_schedule_single_event() returned.');
+        }
     }
 
     /**
@@ -48,7 +56,15 @@ abstract class AbstractCronSingleEvent implements CronSingleEventInterface
             throw new \LogicException('You must specify name for event before un schedule.');
         }
 
-        return wp_unschedule_event($this->getTimestamp(), $this->getName(), $this->getArgs());
+        $result = wp_unschedule_event($this->getTimestamp(), $this->getName(), $this->getArgs());
+
+        if (true === $result || null === $result) {
+            return $this;
+        } elseif (false === $result) {
+            throw new \RuntimeException('Cannot delete event or event not exists.');
+        } else {
+            throw new \RuntimeException('Unknown result from WordPress function wp_unschedule_event() returned.');
+        }
     }
 
     /**

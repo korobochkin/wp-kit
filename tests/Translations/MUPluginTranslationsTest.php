@@ -36,6 +36,14 @@ class MUPluginTranslationsTest extends \WP_UnitTestCase
 
     public function testTranslationsWorks()
     {
+        global $wp_version;
+
+        if (substr($wp_version, 0, 3) === '4.0' && PHP_VERSION_ID >= 70200) {
+            $this->markTestSkipped(
+                'WordPress wp-includes/pomo/translations.php uses create_function() which is deprecated in PHP 7.2+.'
+            );
+        }
+
         $reflection  = new \ReflectionClass(EverythingSet::class);
         $source      = dirname($reflection->getFileName()) . '/Translations/wp-kit-example-ru_RU.mo';
         $destination = WPMU_PLUGIN_DIR . '/wp-kit-example/translations/';

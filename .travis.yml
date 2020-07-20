@@ -43,7 +43,7 @@ notifications:
 matrix:
   include:
     - name: 'PHP Code Sniffer'
-      before_script: composer install --no-ansi --no-interaction --no-progress --no-scripts --optimize-autoloader --classmap-authoritative;
+      before_script: bash bin/before_script.sh
       script: vendor/bin/phpcs --standard=phpcs.ruleset.xml
       language: php
       <<: *composer_cache

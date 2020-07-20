@@ -164,14 +164,17 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase
 
         $this->stub
             ->setTimestamp($time)
+            ->setArgs(array($time))
             ->schedule();
 
         $this->stub
             ->setTimestamp($time2)
+            ->setArgs(array($time2))
             ->schedule();
 
         $this->stub
             ->setTimestamp($time3)
+            ->setArgs(array($time3))
             ->schedule();
 
         global $wp_version;

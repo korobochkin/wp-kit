@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Korobochkin\WPKit\Tests\Pages;
 
 use Korobochkin\WPKit\Pages\MenuPage;
+use Korobochkin\WPKit\Utils\Compatibility;
 
 /**
  * Class MenuPageTest
@@ -49,6 +50,10 @@ class MenuPageTest extends \WP_UnitTestCase
 
     public function testGetURL()
     {
+        if (!Compatibility::checkWordPress('5.3') && PHP_VERSION_ID >= 70400) {
+            $this->markTestSkipped('https://core.trac.wordpress.org/ticket/47783');
+        }
+
         $this->assertSame(
             'http://example.org/wp-admin/options-general.php?page=test-menu-slug',
             $this->stub->getURL()

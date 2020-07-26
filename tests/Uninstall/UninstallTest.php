@@ -9,6 +9,7 @@ use Korobochkin\WPKit\PostMeta\PostMeta;
 use Korobochkin\WPKit\TermMeta\TermMeta;
 use Korobochkin\WPKit\Transients\Transient;
 use Korobochkin\WPKit\Uninstall\Uninstall;
+use Korobochkin\WPKit\Utils\Compatibility;
 use Korobochkin\WPKit\Utils\WordPressFeatures;
 
 class UninstallTest extends \WP_UnitTestCase
@@ -188,6 +189,10 @@ class UninstallTest extends \WP_UnitTestCase
 
     public function testDeletePostMetas()
     {
+        if (!Compatibility::checkWordPress('5.0') && PHP_VERSION_ID >= 70300) {
+            $this->markTestSkipped('https://core.trac.wordpress.org/ticket/44416');
+        }
+
         $postId = wp_insert_post(
             array(
                 'post_content' => 'WP Kit demo post.',

@@ -5,6 +5,7 @@ namespace Korobochkin\WPKit\Tests\PostMeta\Special;
 
 use Korobochkin\WPKit\PostMeta\Special\NumericPostMeta;
 use Korobochkin\WPKit\Tests\Common\DataComponents\Special\AbstractNumericDataComponentTest;
+use Korobochkin\WPKit\Utils\Compatibility;
 
 /**
  * Class NumericPostMetaTest
@@ -24,6 +25,10 @@ class NumericPostMetaTest extends AbstractNumericDataComponentTest
      */
     protected function createAndConfigureStub()
     {
+        if (!Compatibility::checkWordPress('5.0') && PHP_VERSION_ID >= 70300) {
+            $this->markTestSkipped('https://core.trac.wordpress.org/ticket/44416');
+        }
+
         $this->postId = wp_insert_post(array(
             'post_content' => 'WP Kit demo post.',
             'post_title'   => 'WP Kit demo title',

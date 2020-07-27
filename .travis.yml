@@ -69,6 +69,18 @@ matrix:
       env: WP_VERSION=4.0 WP_MULTISITE=0
       <<: *php_unit_template
     - php: 7.4
+      env: WP_VERSION=5.0 WP_MULTISITE=0
+      <<: *php_unit_template
+    - php: 7.4
+      env: WP_VERSION=5.1 WP_MULTISITE=0
+      <<: *php_unit_template
+    - php: 7.4
+      env: WP_VERSION=5.2 WP_MULTISITE=0
+      <<: *php_unit_template
+    - php: 7.4
+      env: WP_VERSION=5.3 WP_MULTISITE=0
+      <<: *php_unit_template
+    - php: 7.4
       env: WP_VERSION=latest WP_MULTISITE=0
       <<: *php_unit_template
       <<: *deploy_code_coverage

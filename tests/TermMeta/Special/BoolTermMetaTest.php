@@ -5,6 +5,7 @@ namespace Korobochkin\WPKit\Tests\TermMeta\Special;
 
 use Korobochkin\WPKit\TermMeta\Special\BoolTermMeta;
 use Korobochkin\WPKit\Tests\Common\DataComponents\Special\AbstractBoolDataComponentTest;
+use Korobochkin\WPKit\Utils\Compatibility;
 use Korobochkin\WPKit\Utils\WordPressFeatures;
 
 /**
@@ -26,6 +27,12 @@ class BoolTermMetaTest extends AbstractBoolDataComponentTest
             // Skip tests on WP bellow 4.4 since it doesn't have required functions.
             $this->markTestSkipped('Term meta features not supported in WordPress bellow 4.4');
         }
+
+        if (!Compatibility::checkWordPress('5.3') && PHP_VERSION_ID >= 70400) {
+            // WP <5.3 && PHP >= 7.4
+            $this->markTestSkipped('https://core.trac.wordpress.org/ticket/47783');
+        }
+
         parent::setUp();
     }
 

@@ -6,6 +6,7 @@ namespace Korobochkin\WPKit\Tests\TermMeta;
 use Korobochkin\WPKit\TermMeta\AbstractTermMeta;
 use Korobochkin\WPKit\Tests\DataSets\EverythingSet2;
 use Korobochkin\WPKit\Tests\DataSets\ValidateSet;
+use Korobochkin\WPKit\Utils\Compatibility;
 use Korobochkin\WPKit\Utils\WordPressFeatures;
 use Symfony\Component\Form\Extension\Core\DataTransformer\BooleanToStringTransformer;
 use Symfony\Component\Form\ReversedTransformer;
@@ -37,6 +38,11 @@ class AbstractTermMetaTest extends \WP_UnitTestCase
         if (!WordPressFeatures::isTermsMetaSupported()) {
             // Skip tests on WP bellow 4.4 since it doesn't have required functions.
             $this->markTestSkipped('Term meta features not supported in WordPress bellow 4.4');
+        }
+
+        if (!Compatibility::checkWordPress('5.3') && PHP_VERSION_ID >= 70400) {
+            // WP <5.3 && PHP >= 7.4
+            $this->markTestSkipped('https://core.trac.wordpress.org/ticket/47783');
         }
 
         parent::setUp();

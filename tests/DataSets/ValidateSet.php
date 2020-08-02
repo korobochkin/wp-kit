@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Tests\DataSets;
 
 use Symfony\Component\Validator\Constraints;

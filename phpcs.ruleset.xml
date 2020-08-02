@@ -15,7 +15,9 @@
 	<rule ref="Generic.Commenting">
 		<exclude name="Generic.Commenting.DocComment"/>
 	</rule>
-	<rule ref="Generic.ControlStructures"/>
+	<rule ref="Generic.ControlStructures">
+		<exclude name="Generic.ControlStructures.DisallowYodaConditions.Found"/>
+	</rule>
 	<rule ref="Generic.Debug"/>
 	<rule ref="Generic.Files">
 		<exclude name="Generic.Files.EndFileNoNewline"/>
@@ -43,7 +45,9 @@
 	<rule ref="Squiz.Classes"/>
 
 	<rule ref="Squiz.Commenting.DocCommentAlignment"/>
-	<rule ref="Squiz.Commenting.VariableComment"/>
+	<rule ref="Squiz.Commenting.VariableComment">
+		<exclude name="Squiz.Commenting.VariableComment.IncorrectVarType"/>
+	</rule>
 	<rule ref="Squiz.ControlStructures">
 		<exclude name="Squiz.ControlStructures.ElseIfDeclaration"/>
 	</rule>

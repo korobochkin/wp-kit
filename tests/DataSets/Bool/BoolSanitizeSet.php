@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Tests\DataSets\Bool;
 
 use Korobochkin\WPKit\Tests\DataSets\AbstractDataSet;

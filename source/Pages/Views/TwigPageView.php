@@ -1,7 +1,10 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Pages\Views;
 
 use Korobochkin\WPKit\Pages\PageInterface;
+use Twig\Environment;
 
 /**
  * Class TwigPageView
@@ -19,7 +22,7 @@ class TwigPageView implements PageViewInterface
     protected $context = array();
 
     /**
-     * @var \Twig_Environment
+     * @var Environment
      */
     protected $twigEnvironment;
 
@@ -70,7 +73,7 @@ class TwigPageView implements PageViewInterface
     }
 
     /**
-     * @return \Twig_Environment
+     * @return Environment
      */
     public function getTwigEnvironment()
     {
@@ -78,11 +81,11 @@ class TwigPageView implements PageViewInterface
     }
 
     /**
-     * @param \Twig_Environment $twigEnvironment
+     * @param Environment $twigEnvironment
      *
      * @return $this
      */
-    public function setTwigEnvironment($twigEnvironment)
+    public function setTwigEnvironment(Environment $twigEnvironment)
     {
         $this->twigEnvironment = $twigEnvironment;
         return $this;

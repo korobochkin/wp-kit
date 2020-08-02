@@ -1,5 +1,9 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Notices;
+
+use Twig\Environment;
 
 /**
  * Interface NoticeTwigViewInterface
@@ -43,7 +47,7 @@ interface NoticeTwigViewInterface
      *
      * If you use Twig for rendering this method would helpful.
      *
-     * @return \Twig_Environment Twig.
+     * @return Environment Twig.
      */
     public function getTwigEnvironment();
 
@@ -52,9 +56,9 @@ interface NoticeTwigViewInterface
      *
      * If you use Twig for rendering this method would helpful.
      *
-     * @param \Twig_Environment $twigEnvironment Twig.
+     * @param Environment $twigEnvironment Twig.
      *
      * @return $this For chain calls.
      */
-    public function setTwigEnvironment(\Twig_Environment $twigEnvironment);
+    public function setTwigEnvironment(Environment $twigEnvironment);
 }

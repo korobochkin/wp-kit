@@ -4,7 +4,8 @@ declare(strict_types=1);
 namespace Korobochkin\WPKit\Tests\PostMeta\Special;
 
 use Korobochkin\WPKit\PostMeta\Special\DateTimePostMeta;
-use Korobochkin\WPKit\Tests\DataSets\DateTime\DateTimeTransformationSet;
+use Korobochkin\WPKit\Tests\Common\DataComponents\Special\AbstractDateTimeDataComponentTest;
+use Korobochkin\WPKit\Utils\Compatibility;
 
 /**
  * Class DateTimePostMetaTest
@@ -12,73 +13,31 @@ use Korobochkin\WPKit\Tests\DataSets\DateTime\DateTimeTransformationSet;
  *
  * @group data-components
  */
-class DateTimePostMetaTest extends \WP_UnitTestCase
+class DateTimePostMetaTest extends AbstractDateTimeDataComponentTest
 {
-    /**
-     * @var DateTimePostMeta
-     */
-    protected $stub;
-
     /**
      * @var int Post ID for accessing post meta.
      */
     protected $postId;
 
     /**
-     * Prepare option for tests.
+     * @return DateTimePostMeta
      */
-    public function setUp()
+    protected function createAndConfigureStub()
     {
-        parent::setUp();
-
-        $this->postId = wp_insert_post(
-            array(
-                'post_content' => 'WP Kit demo post.',
-                'post_title'   => 'WP Kit demo title',
-            )
-        );
-
-        $this->stub = new DateTimePostMeta();
-        $this->stub->setName('wp_kit_datetime_post_meta');
-        $this->stub->setPostId($this->postId);
-    }
-
-    /**
-     * @dataProvider casesTypes
-     * @var $value mixed Value to insert and test.
-     * @var $expected mixed Value to compare output value with.
-     */
-    public function testTypes($value, $expected)
-    {
-        $this->stub->set($value);
-
-        if (is_a($expected, \DateTime::class)) {
-            $this->stub->flush();
-            $this->assertEquals($expected, $this->stub->get());
-        } else {
-            if (PHP_VERSION_ID >= 70000) {
-                $this->expectException($expected);
-                $this->stub->flush();
-            } else {
-                try {
-                    $this->stub->flush();
-                } catch (\Exception $exception) {
-                    $this->assertInstanceOf($expected, $exception);
-                } finally {
-                    $this->assertInstanceOf($expected, $exception);
-                }
-            }
+        if (!Compatibility::checkWordPress('5.0') && PHP_VERSION_ID >= 70300) {
+            $this->markTestSkipped('https://core.trac.wordpress.org/ticket/44416');
         }
-    }
 
-    public function casesTypes()
-    {
-        return new DateTimeTransformationSet();
-    }
+        $this->postId = wp_insert_post(array(
+            'post_content' => 'WP Kit demo post.',
+            'post_title'   => 'WP Kit demo title',
+        ));
 
-    public function testNull()
-    {
-        $this->stub->set(null);
-        $this->assertNull($this->stub->get());
+        $stub = new DateTimePostMeta();
+        $stub->setName('wp_kit_datetime_post_meta');
+        $stub->setPostId($this->postId);
+
+        return $stub;
     }
 }

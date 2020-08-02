@@ -68,7 +68,7 @@ class AbstractCronEventTest extends \WP_UnitTestCase
 
         $this->stub->setTimestamp($time)->setName($name);
 
-        $this->assertNull($this->stub->schedule());
+        $this->assertSame($this->stub, $this->stub->schedule());
 
         $tasks = _get_cron_array();
 

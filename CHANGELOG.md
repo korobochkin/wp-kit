@@ -2,8 +2,8 @@
 
 ## 1.0.0 - August 3, 2020
 
-* Updated Symfony packages to 4.4 (also compatible with 5+) and new PHP 7 versions.
-    * Updated some PHP Unit tests for compatibility.
+* Updated Symfony packages to 4.4 (also compatible with Symfony 5+) to support new PHP versions.
+  * Updated some PHP Unit tests for compatibility.
 * Cron events interface and classes updated. WordPress 5.1+ returns boolean values from `wp_schedule_event()`, `wp_schedule_single_event()`, `wp_unschedule_event()` . The `CronSingleEventInterface::schedule()` and `CronSingleEventInterface::unschedule()`  will return `$this` in case of successful schedule/unschedule and throw `\RuntimeException` in case of `false` or non boolean result ([#42](https://github.com/korobochkin/wp-kit/issues/42)).
 
 ## 0.11.0 - January 7, 2019

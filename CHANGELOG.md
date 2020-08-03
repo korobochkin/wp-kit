@@ -1,6 +1,6 @@
 # Changelog
 
-## DEVELOP
+## 1.0.0 - August 3, 2020
 
 * Updated Symfony packages to 4.4 (also compatible with 5+) and new PHP 7 versions.
     * Updated some PHP Unit tests for compatibility.

@@ -1,12 +1,13 @@
 {
     "name": "korobochkin/wp-kit",
-    "description": "Tools for WordPress developers",
+    "description": "Classes and interfaces for WordPress APIs",
     "type": "library",
     "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Kolya Korobochkin",
-            "email": "me@korobochkin.com"
+            "email": "korobochkin@users.noreply.github.com",
+            "homepage": "https://github.com/korobochkin"
         }
     ],
     "minimum-stability": "stable",

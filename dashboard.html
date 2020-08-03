@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/travis/build/korobochkin/wp-kit/source</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">/home/travis/build/korobochkin/wp-kit/source</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Utils/CronUtils.php.html#9">Korobochkin\WPKit\Utils\CronUtils</a></td><td class="text-right">30%</td></tr>
+       <tr><td><a href="AlmostControllers/Stack.php.html#18">Korobochkin\WPKit\AlmostControllers\Stack</a></td><td class="text-right">65%</td></tr>
+       <tr><td><a href="Utils/WordPressFeatures.php.html#6">Korobochkin\WPKit\Utils\WordPressFeatures</a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="DataComponents/Traits/Aggregate/AggregateGetTrait.php.html#9">AggregateGetTrait</a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="DataComponents/Traits/ValidateTrait.php.html#12">ValidateTrait</a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Uninstall/Uninstall.php.html#16">Korobochkin\WPKit\Uninstall\Uninstall</a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Cron/AbstractCronSingleEvent.php.html#12">Korobochkin\WPKit\Cron\AbstractCronSingleEvent</a></td><td class="text-right">78%</td></tr>
+       <tr><td><a href="Utils/RequestFactory.php.html#12">Korobochkin\WPKit\Utils\RequestFactory</a></td><td class="text-right">81%</td></tr>
+       <tr><td><a href="Cron/AbstractCronEvent.php.html#10">Korobochkin\WPKit\Cron\AbstractCronEvent</a></td><td class="text-right">82%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="AlmostControllers/Stack.php.html#18">Korobochkin\WPKit\AlmostControllers\Stack</a></td><td class="text-right">71</td></tr>
+       <tr><td><a href="Uninstall/Uninstall.php.html#16">Korobochkin\WPKit\Uninstall\Uninstall</a></td><td class="text-right">57</td></tr>
+       <tr><td><a href="Cron/AbstractCronSingleEvent.php.html#12">Korobochkin\WPKit\Cron\AbstractCronSingleEvent</a></td><td class="text-right">22</td></tr>
+       <tr><td><a href="Utils/CronUtils.php.html#9">Korobochkin\WPKit\Utils\CronUtils</a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="Cron/AbstractCronEvent.php.html#10">Korobochkin\WPKit\Cron\AbstractCronEvent</a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Utils/WordPressFeatures.php.html#6">Korobochkin\WPKit\Utils\WordPressFeatures</a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="DataComponents/Traits/Aggregate/AggregateGetTrait.php.html#9">AggregateGetTrait</a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="DataComponents/Traits/ValidateTrait.php.html#12">ValidateTrait</a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="Utils/RequestFactory.php.html#12">Korobochkin\WPKit\Utils\RequestFactory</a></td><td class="text-right">4</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="AlmostControllers/Stack.php.html#159"><abbr title="Korobochkin\WPKit\AlmostControllers\Stack::handleRequest">handleRequest</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AlmostControllers/Stack.php.html#236"><abbr title="Korobochkin\WPKit\AlmostControllers\Stack::send">send</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/CronUtils.php.html#20"><abbr title="Korobochkin\WPKit\Utils\CronUtils::unscheduleHook">unscheduleHook</abbr></a></td><td class="text-right">30%</td></tr>
+       <tr><td><a href="Uninstall/Uninstall.php.html#220"><abbr title="Korobochkin\WPKit\Uninstall\Uninstall::flushAfterRun">flushAfterRun</abbr></a></td><td class="text-right">40%</td></tr>
+       <tr><td><a href="Uninstall/Uninstall.php.html#359"><abbr title="Korobochkin\WPKit\Uninstall\Uninstall::deleteTransients">deleteTransients</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Uninstall/Uninstall.php.html#239"><abbr title="Korobochkin\WPKit\Uninstall\Uninstall::deleteCronEvents">deleteCronEvents</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Uninstall/Uninstall.php.html#260"><abbr title="Korobochkin\WPKit\Uninstall\Uninstall::deleteOptions">deleteOptions</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Utils/WordPressFeatures.php.html#21"><abbr title="Korobochkin\WPKit\Utils\WordPressFeatures::isDebug">isDebug</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Utils/WordPressFeatures.php.html#35"><abbr title="Korobochkin\WPKit\Utils\WordPressFeatures::isScriptDebug">isScriptDebug</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="DataComponents/Traits/ValidateTrait.php.html#38"><abbr title="ValidateTrait::isValid">isValid</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Cron/AbstractCronSingleEvent.php.html#49"><abbr title="Korobochkin\WPKit\Cron\AbstractCronSingleEvent::unschedule">unschedule</abbr></a></td><td class="text-right">70%</td></tr>
+       <tr><td><a href="Cron/AbstractCronSingleEvent.php.html#25"><abbr title="Korobochkin\WPKit\Cron\AbstractCronSingleEvent::schedule">schedule</abbr></a></td><td class="text-right">70%</td></tr>
+       <tr><td><a href="Uninstall/Uninstall.php.html#281"><abbr title="Korobochkin\WPKit\Uninstall\Uninstall::deletePostMetas">deletePostMetas</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Uninstall/Uninstall.php.html#320"><abbr title="Korobochkin\WPKit\Uninstall\Uninstall::deleteTermMetas">deleteTermMetas</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="DataComponents/Traits/Aggregate/AggregateGetTrait.php.html#14"><abbr title="AggregateGetTrait::get">get</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Utils/RequestFactory.php.html#23"><abbr title="Korobochkin\WPKit\Utils\RequestFactory::create">create</abbr></a></td><td class="text-right">81%</td></tr>
+       <tr><td><a href="Cron/AbstractCronEvent.php.html#18"><abbr title="Korobochkin\WPKit\Cron\AbstractCronEvent::schedule">schedule</abbr></a></td><td class="text-right">82%</td></tr>
+       <tr><td><a href="Settings/Setting.php.html#92"><abbr title="Korobochkin\WPKit\Settings\Setting::unRegister">unRegister</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="AlmostControllers/Stack.php.html#188"><abbr title="Korobochkin\WPKit\AlmostControllers\Stack::requestManager">requestManager</abbr></a></td><td class="text-right">85%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="AlmostControllers/Stack.php.html#159"><abbr title="Korobochkin\WPKit\AlmostControllers\Stack::handleRequest">handleRequest</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="AlmostControllers/Stack.php.html#236"><abbr title="Korobochkin\WPKit\AlmostControllers\Stack::send">send</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Utils/CronUtils.php.html#20"><abbr title="Korobochkin\WPKit\Utils\CronUtils::unscheduleHook">unscheduleHook</abbr></a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="Cron/AbstractCronEvent.php.html#18"><abbr title="Korobochkin\WPKit\Cron\AbstractCronEvent::schedule">schedule</abbr></a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Cron/AbstractCronSingleEvent.php.html#25"><abbr title="Korobochkin\WPKit\Cron\AbstractCronSingleEvent::schedule">schedule</abbr></a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Cron/AbstractCronSingleEvent.php.html#49"><abbr title="Korobochkin\WPKit\Cron\AbstractCronSingleEvent::unschedule">unschedule</abbr></a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="AlmostControllers/Stack.php.html#188"><abbr title="Korobochkin\WPKit\AlmostControllers\Stack::requestManager">requestManager</abbr></a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Uninstall/Uninstall.php.html#359"><abbr title="Korobochkin\WPKit\Uninstall\Uninstall::deleteTransients">deleteTransients</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Uninstall/Uninstall.php.html#260"><abbr title="Korobochkin\WPKit\Uninstall\Uninstall::deleteOptions">deleteOptions</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Uninstall/Uninstall.php.html#239"><abbr title="Korobochkin\WPKit\Uninstall\Uninstall::deleteCronEvents">deleteCronEvents</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="DataComponents/Traits/Aggregate/AggregateGetTrait.php.html#14"><abbr title="AggregateGetTrait::get">get</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="Uninstall/Uninstall.php.html#220"><abbr title="Korobochkin\WPKit\Uninstall\Uninstall::flushAfterRun">flushAfterRun</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Uninstall/Uninstall.php.html#281"><abbr title="Korobochkin\WPKit\Uninstall\Uninstall::deletePostMetas">deletePostMetas</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Uninstall/Uninstall.php.html#320"><abbr title="Korobochkin\WPKit\Uninstall\Uninstall::deleteTermMetas">deleteTermMetas</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Utils/RequestFactory.php.html#23"><abbr title="Korobochkin\WPKit\Utils\RequestFactory::create">create</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Utils/WordPressFeatures.php.html#21"><abbr title="Korobochkin\WPKit\Utils\WordPressFeatures::isDebug">isDebug</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Utils/WordPressFeatures.php.html#35"><abbr title="Korobochkin\WPKit\Utils\WordPressFeatures::isScriptDebug">isScriptDebug</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="DataComponents/Traits/ValidateTrait.php.html#38"><abbr title="ValidateTrait::isValid">isValid</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Settings/Setting.php.html#92"><abbr title="Korobochkin\WPKit\Settings\Setting::unRegister">unRegister</abbr></a></td><td class="text-right">3</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 6.1.4</a> using <a href="https://secure.php.net/" target="_top">PHP 7.4.0</a> with <a href="https://xdebug.org/">Xdebug 2.8.1</a> and <a href="https://phpunit.de/">PHPUnit 7.5.20</a> at Mon Aug 3 18:17:08 UTC 2020.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/d3.min.js" type="text/javascript"></script>
+  <script src="js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([0,0,0,0,1,0,0,1,5,2,1,101], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([2,0,0,0,1,1,3,3,5,4,0,302], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[100,16,"<a href=\"AlmostControllers\/AbstractAction.php.html#14\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction<\/a>"],[100,2,"<a href=\"AlmostControllers\/AjaxStack.php.html#11\">Korobochkin\\WPKit\\AlmostControllers\\AjaxStack<\/a>"],[100,0,"<a href=\"AlmostControllers\/Exceptions\/ActionNotFoundException.php.html#9\">Korobochkin\\WPKit\\AlmostControllers\\Exceptions\\ActionNotFoundException<\/a>"],[100,0,"<a href=\"AlmostControllers\/Exceptions\/UnauthorizedException.php.html#9\">Korobochkin\\WPKit\\AlmostControllers\\Exceptions\\UnauthorizedException<\/a>"],[100,2,"<a href=\"AlmostControllers\/HttpStack.php.html#11\">Korobochkin\\WPKit\\AlmostControllers\\HttpStack<\/a>"],[65.07936507936508,31,"<a href=\"AlmostControllers\/Stack.php.html#18\">Korobochkin\\WPKit\\AlmostControllers\\Stack<\/a>"],[82.35294117647058,8,"<a href=\"Cron\/AbstractCronEvent.php.html#10\">Korobochkin\\WPKit\\Cron\\AbstractCronEvent<\/a>"],[78.57142857142857,19,"<a href=\"Cron\/AbstractCronSingleEvent.php.html#12\">Korobochkin\\WPKit\\Cron\\AbstractCronSingleEvent<\/a>"],[100,0,"<a href=\"DataComponents\/AbstractNode.php.html#21\">Korobochkin\\WPKit\\DataComponents\\AbstractNode<\/a>"],[100,4,"<a href=\"DataComponents\/NodeFactory.php.html#11\">Korobochkin\\WPKit\\DataComponents\\NodeFactory<\/a>"],[100,9,"<a href=\"DataTransformers\/BooleanToStringTransformer.php.html#13\">Korobochkin\\WPKit\\DataTransformers\\BooleanToStringTransformer<\/a>"],[100,1,"<a href=\"MetaBoxes\/DashboardMetaBox.php.html#9\">Korobochkin\\WPKit\\MetaBoxes\\DashboardMetaBox<\/a>"],[100,24,"<a href=\"MetaBoxes\/MetaBox.php.html#13\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox<\/a>"],[100,8,"<a href=\"MetaBoxes\/MetaBoxStack.php.html#11\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxStack<\/a>"],[100,7,"<a href=\"MetaBoxes\/MetaBoxTwigView.php.html#11\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxTwigView<\/a>"],[100,18,"<a href=\"Notices\/Notice.php.html#11\">Korobochkin\\WPKit\\Notices\\Notice<\/a>"],[100,0,"<a href=\"Notices\/NoticeErrorView.php.html#6\">Korobochkin\\WPKit\\Notices\\NoticeErrorView<\/a>"],[100,0,"<a href=\"Notices\/NoticeInfoView.php.html#9\">Korobochkin\\WPKit\\Notices\\NoticeInfoView<\/a>"],[100,0,"<a href=\"Notices\/NoticeSuccessView.php.html#9\">Korobochkin\\WPKit\\Notices\\NoticeSuccessView<\/a>"],[100,7,"<a href=\"Notices\/NoticeTwigView.php.html#11\">Korobochkin\\WPKit\\Notices\\NoticeTwigView<\/a>"],[100,6,"<a href=\"Notices\/NoticeView.php.html#9\">Korobochkin\\WPKit\\Notices\\NoticeView<\/a>"],[100,0,"<a href=\"Notices\/NoticeWarningView.php.html#9\">Korobochkin\\WPKit\\Notices\\NoticeWarningView<\/a>"],[100,14,"<a href=\"Notices\/NoticesStack.php.html#9\">Korobochkin\\WPKit\\Notices\\NoticesStack<\/a>"],[100,12,"<a href=\"Options\/AbstractOption.php.html#13\">Korobochkin\\WPKit\\Options\\AbstractOption<\/a>"],[100,0,"<a href=\"Options\/Option.php.html#11\">Korobochkin\\WPKit\\Options\\Option<\/a>"],[100,0,"<a href=\"Options\/Special\/AbstractAggregateOption.php.html#13\">Korobochkin\\WPKit\\Options\\Special\\AbstractAggregateOption<\/a>"],[100,0,"<a href=\"Options\/Special\/AbstractArrayOption.php.html#12\">Korobochkin\\WPKit\\Options\\Special\\AbstractArrayOption<\/a>"],[100,0,"<a href=\"Options\/Special\/AbstractStringOption.php.html#12\">Korobochkin\\WPKit\\Options\\Special\\AbstractStringOption<\/a>"],[100,0,"<a href=\"Options\/Special\/BoolOption.php.html#14\">Korobochkin\\WPKit\\Options\\Special\\BoolOption<\/a>"],[100,0,"<a href=\"Options\/Special\/DateTimeOption.php.html#14\">Korobochkin\\WPKit\\Options\\Special\\DateTimeOption<\/a>"],[100,0,"<a href=\"Options\/Special\/NumericOption.php.html#14\">Korobochkin\\WPKit\\Options\\Special\\NumericOption<\/a>"],[100,26,"<a href=\"Pages\/AbstractPage.php.html#11\">Korobochkin\\WPKit\\Pages\\AbstractPage<\/a>"],[100,8,"<a href=\"Pages\/MenuPage.php.html#6\">Korobochkin\\WPKit\\Pages\\MenuPage<\/a>"],[100,9,"<a href=\"Pages\/SubMenuPage.php.html#6\">Korobochkin\\WPKit\\Pages\\SubMenuPage<\/a>"],[100,9,"<a href=\"Pages\/Tabs\/Tab.php.html#9\">Korobochkin\\WPKit\\Pages\\Tabs\\Tab<\/a>"],[100,12,"<a href=\"Pages\/Tabs\/Tabs.php.html#9\">Korobochkin\\WPKit\\Pages\\Tabs\\Tabs<\/a>"],[100,7,"<a href=\"Pages\/Views\/TwigPageView.php.html#12\">Korobochkin\\WPKit\\Pages\\Views\\TwigPageView<\/a>"],[100,4,"<a href=\"Pages\/VirtualMenuPage.php.html#9\">Korobochkin\\WPKit\\Pages\\VirtualMenuPage<\/a>"],[100,0,"<a href=\"Plugins\/AbstractMUPlugin.php.html#6\">Korobochkin\\WPKit\\Plugins\\AbstractMUPlugin<\/a>"],[100,10,"<a href=\"Plugins\/AbstractPlugin.php.html#12\">Korobochkin\\WPKit\\Plugins\\AbstractPlugin<\/a>"],[100,0,"<a href=\"Plugins\/ConstantsAbstractPlugin.php.html#12\">Korobochkin\\WPKit\\Plugins\\ConstantsAbstractPlugin<\/a>"],[100,16,"<a href=\"PostMeta\/AbstractPostMeta.php.html#16\">Korobochkin\\WPKit\\PostMeta\\AbstractPostMeta<\/a>"],[100,0,"<a href=\"PostMeta\/PostMeta.php.html#12\">Korobochkin\\WPKit\\PostMeta\\PostMeta<\/a>"],[100,0,"<a href=\"PostMeta\/Special\/AbstractAggregatePostMeta.php.html#13\">Korobochkin\\WPKit\\PostMeta\\Special\\AbstractAggregatePostMeta<\/a>"],[100,0,"<a href=\"PostMeta\/Special\/AbstractArrayPostMeta.php.html#12\">Korobochkin\\WPKit\\PostMeta\\Special\\AbstractArrayPostMeta<\/a>"],[100,0,"<a href=\"PostMeta\/Special\/AbstractStringPostMeta.php.html#12\">Korobochkin\\WPKit\\PostMeta\\Special\\AbstractStringPostMeta<\/a>"],[100,0,"<a href=\"PostMeta\/Special\/BoolPostMeta.php.html#14\">Korobochkin\\WPKit\\PostMeta\\Special\\BoolPostMeta<\/a>"],[100,0,"<a href=\"PostMeta\/Special\/DateTimePostMeta.php.html#14\">Korobochkin\\WPKit\\PostMeta\\Special\\DateTimePostMeta<\/a>"],[100,0,"<a href=\"PostMeta\/Special\/NumericPostMeta.php.html#14\">Korobochkin\\WPKit\\PostMeta\\Special\\NumericPostMeta<\/a>"],[100,2,"<a href=\"Runners\/AbstractRunner.php.html#16\">Korobochkin\\WPKit\\Runners\\AbstractRunner<\/a>"],[100,1,"<a href=\"Sanitizers\/BoolSanitizer.php.html#10\">Korobochkin\\WPKit\\Sanitizers\\BoolSanitizer<\/a>"],[100,1,"<a href=\"Sanitizers\/DateTimeISO8601Sanitizer.php.html#10\">Korobochkin\\WPKit\\Sanitizers\\DateTimeISO8601Sanitizer<\/a>"],[100,2,"<a href=\"Sanitizers\/FloatSanitizer.php.html#10\">Korobochkin\\WPKit\\Sanitizers\\FloatSanitizer<\/a>"],[100,2,"<a href=\"Sanitizers\/IntegerSanitizer.php.html#10\">Korobochkin\\WPKit\\Sanitizers\\IntegerSanitizer<\/a>"],[100,5,"<a href=\"ScriptsStyles\/AbstractScriptsStyles.php.html#9\">Korobochkin\\WPKit\\ScriptsStyles\\AbstractScriptsStyles<\/a>"],[95.23809523809523,10,"<a href=\"Settings\/Setting.php.html#13\">Korobochkin\\WPKit\\Settings\\Setting<\/a>"],[100,15,"<a href=\"TermMeta\/AbstractTermMeta.php.html#14\">Korobochkin\\WPKit\\TermMeta\\AbstractTermMeta<\/a>"],[100,0,"<a href=\"TermMeta\/Special\/AbstractAggregateTermMeta.php.html#13\">Korobochkin\\WPKit\\TermMeta\\Special\\AbstractAggregateTermMeta<\/a>"],[100,0,"<a href=\"TermMeta\/Special\/AbstractArrayTermMeta.php.html#12\">Korobochkin\\WPKit\\TermMeta\\Special\\AbstractArrayTermMeta<\/a>"],[100,0,"<a href=\"TermMeta\/Special\/AbstractStringTermMeta.php.html#12\">Korobochkin\\WPKit\\TermMeta\\Special\\AbstractStringTermMeta<\/a>"],[100,0,"<a href=\"TermMeta\/Special\/BoolTermMeta.php.html#14\">Korobochkin\\WPKit\\TermMeta\\Special\\BoolTermMeta<\/a>"],[100,0,"<a href=\"TermMeta\/Special\/DateTimeTermMeta.php.html#14\">Korobochkin\\WPKit\\TermMeta\\Special\\DateTimeTermMeta<\/a>"],[100,0,"<a href=\"TermMeta\/Special\/NumericTermMeta.php.html#14\">Korobochkin\\WPKit\\TermMeta\\Special\\NumericTermMeta<\/a>"],[100,0,"<a href=\"TermMeta\/TermMeta.php.html#12\">Korobochkin\\WPKit\\TermMeta\\TermMeta<\/a>"],[100,6,"<a href=\"Themes\/AbstractTheme.php.html#12\">Korobochkin\\WPKit\\Themes\\AbstractTheme<\/a>"],[100,0,"<a href=\"Themes\/ConstantsAbstractTheme.php.html#12\">Korobochkin\\WPKit\\Themes\\ConstantsAbstractTheme<\/a>"],[100,10,"<a href=\"Transients\/AbstractTransient.php.html#14\">Korobochkin\\WPKit\\Transients\\AbstractTransient<\/a>"],[100,0,"<a href=\"Transients\/Special\/AbstractAggregateTransient.php.html#13\">Korobochkin\\WPKit\\Transients\\Special\\AbstractAggregateTransient<\/a>"],[100,0,"<a href=\"Transients\/Special\/AbstractArrayTransient.php.html#12\">Korobochkin\\WPKit\\Transients\\Special\\AbstractArrayTransient<\/a>"],[100,0,"<a href=\"Transients\/Special\/AbstractStringTransient.php.html#12\">Korobochkin\\WPKit\\Transients\\Special\\AbstractStringTransient<\/a>"],[100,0,"<a href=\"Transients\/Special\/BoolTransient.php.html#14\">Korobochkin\\WPKit\\Transients\\Special\\BoolTransient<\/a>"],[100,0,"<a href=\"Transients\/Special\/DateTimeTransient.php.html#14\">Korobochkin\\WPKit\\Transients\\Special\\DateTimeTransient<\/a>"],[100,0,"<a href=\"Transients\/Special\/NumericTransient.php.html#14\">Korobochkin\\WPKit\\Transients\\Special\\NumericTransient<\/a>"],[100,0,"<a href=\"Transients\/Transient.php.html#12\">Korobochkin\\WPKit\\Transients\\Transient<\/a>"],[100,5,"<a href=\"Translations\/AbstractTranslations.php.html#9\">Korobochkin\\WPKit\\Translations\\AbstractTranslations<\/a>"],[100,1,"<a href=\"Translations\/MUPluginTranslations.php.html#6\">Korobochkin\\WPKit\\Translations\\MUPluginTranslations<\/a>"],[100,1,"<a href=\"Translations\/PluginTranslations.php.html#9\">Korobochkin\\WPKit\\Translations\\PluginTranslations<\/a>"],[100,1,"<a href=\"Translations\/ThemeTranslations.php.html#9\">Korobochkin\\WPKit\\Translations\\ThemeTranslations<\/a>"],[75.34246575342466,37,"<a href=\"Uninstall\/Uninstall.php.html#16\">Korobochkin\\WPKit\\Uninstall\\Uninstall<\/a>"],[100,3,"<a href=\"Utils\/Compatibility.php.html#6\">Korobochkin\\WPKit\\Utils\\Compatibility<\/a>"],[30,4,"<a href=\"Utils\/CronUtils.php.html#9\">Korobochkin\\WPKit\\Utils\\CronUtils<\/a>"],[81.81818181818183,4,"<a href=\"Utils\/RequestFactory.php.html#12\">Korobochkin\\WPKit\\Utils\\RequestFactory<\/a>"],[71.42857142857143,7,"<a href=\"Utils\/WordPressFeatures.php.html#6\">Korobochkin\\WPKit\\Utils\\WordPressFeatures<\/a>"],[100,2,"<a href=\"Cron\/Traits\/ArgsTrait.php.html#10\">ArgsTrait<\/a>"],[100,2,"<a href=\"Cron\/Traits\/HookTrait.php.html#10\">HookTrait<\/a>"],[100,2,"<a href=\"DataComponents\/Traits\/NameTrait.php.html#6\">NameTrait<\/a>"],[100,2,"<a href=\"Cron\/Traits\/RecurrenceTrait.php.html#10\">RecurrenceTrait<\/a>"],[100,2,"<a href=\"Cron\/Traits\/TimestampTrait.php.html#10\">TimestampTrait<\/a>"],[75,5,"<a href=\"DataComponents\/Traits\/Aggregate\/AggregateGetTrait.php.html#9\">AggregateGetTrait<\/a>"],[100,2,"<a href=\"DataComponents\/Traits\/ConstraintTrait.php.html#6\">ConstraintTrait<\/a>"],[100,2,"<a href=\"DataComponents\/Traits\/DataTransformerTrait.php.html#8\">DataTransformerTrait<\/a>"],[100,3,"<a href=\"DataComponents\/Traits\/DefaultValueTrait.php.html#6\">DefaultValueTrait<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/DeleteLocalValueTrait.php.html#8\">DeleteLocalValueTrait<\/a>"],[100,2,"<a href=\"DataComponents\/Traits\/DeleteTrait.php.html#6\">DeleteTrait<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/DummyBuildConstraintTrait.php.html#9\">DummyBuildConstraintTrait<\/a>"],[100,2,"<a href=\"DataComponents\/Traits\/ExpirationTrait.php.html#6\">ExpirationTrait<\/a>"],[100,4,"<a href=\"DataComponents\/Traits\/GetTrait.php.html#6\">GetTrait<\/a>"],[100,3,"<a href=\"DataComponents\/Traits\/LocalValueTrait.php.html#6\">LocalValueTrait<\/a>"],[100,2,"<a href=\"DataComponents\/Traits\/PostIdTrait.php.html#6\">PostIdTrait<\/a>"],[100,2,"<a href=\"DataComponents\/Traits\/PostMeta\/GetNameWithVisibilityTrait.php.html#12\">GetNameWithVisibilityTrait<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/SetTrait.php.html#6\">SetTrait<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/Special\/Bool\/BoolBuildConstraintTrait.php.html#12\">BoolBuildConstraintTrait<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/Special\/Bool\/BoolConstructorTrait.php.html#13\">BoolConstructorTrait<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/Special\/DateTime\/DateTimeBuildConstraintTrait.php.html#12\">DateTimeBuildConstraintTrait<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/Special\/DateTime\/DateTimeConstructorTrait.php.html#13\">DateTimeConstructorTrait<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/Special\/Numeric\/NumericBuildConstraintTrait.php.html#12\">NumericBuildConstraintTrait<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/Special\/Numeric\/NumericConstructorTrait.php.html#13\">NumericConstructorTrait<\/a>"],[100,2,"<a href=\"DataComponents\/Traits\/TermIdTrait.php.html#6\">TermIdTrait<\/a>"],[75,5,"<a href=\"DataComponents\/Traits\/ValidateTrait.php.html#12\">ValidateTrait<\/a>"],[100,2,"<a href=\"DataComponents\/Traits\/ValidatorTrait.php.html#11\">ValidatorTrait<\/a>"],[100,2,"<a href=\"DataComponents\/Traits\/VisibilityTrait.php.html#6\">VisibilityTrait<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#60\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::isEnabledForLoggedIn<\/a>"],[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#68\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::setEnabledForLoggedIn<\/a>"],[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#78\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::isEnabledForNotLoggedIn<\/a>"],[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#86\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::setEnabledForNotLoggedIn<\/a>"],[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#96\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::getName<\/a>"],[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#104\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::setName<\/a>"],[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#114\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::getStack<\/a>"],[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#122\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::setStack<\/a>"],[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#132\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::getViolationsList<\/a>"],[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#140\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::setViolationsList<\/a>"],[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#150\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::getRequest<\/a>"],[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#158\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::setRequest<\/a>"],[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#168\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::getResponse<\/a>"],[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#176\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::setResponse<\/a>"],[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#186\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::setContainer<\/a>"],[100,1,"<a href=\"AlmostControllers\/AbstractAction.php.html#196\">Korobochkin\\WPKit\\AlmostControllers\\AbstractAction::get<\/a>"],[100,2,"<a href=\"AlmostControllers\/AjaxStack.php.html#16\">Korobochkin\\WPKit\\AlmostControllers\\AjaxStack::register<\/a>"],[100,2,"<a href=\"AlmostControllers\/HttpStack.php.html#16\">Korobochkin\\WPKit\\AlmostControllers\\HttpStack::register<\/a>"],[100,1,"<a href=\"AlmostControllers\/Stack.php.html#56\">Korobochkin\\WPKit\\AlmostControllers\\Stack::__construct<\/a>"],[100,1,"<a href=\"AlmostControllers\/Stack.php.html#65\">Korobochkin\\WPKit\\AlmostControllers\\Stack::getActions<\/a>"],[100,1,"<a href=\"AlmostControllers\/Stack.php.html#73\">Korobochkin\\WPKit\\AlmostControllers\\Stack::setActions<\/a>"],[100,1,"<a href=\"AlmostControllers\/Stack.php.html#83\">Korobochkin\\WPKit\\AlmostControllers\\Stack::addAction<\/a>"],[100,1,"<a href=\"AlmostControllers\/Stack.php.html#93\">Korobochkin\\WPKit\\AlmostControllers\\Stack::getActionName<\/a>"],[100,1,"<a href=\"AlmostControllers\/Stack.php.html#101\">Korobochkin\\WPKit\\AlmostControllers\\Stack::setActionName<\/a>"],[100,1,"<a href=\"AlmostControllers\/Stack.php.html#111\">Korobochkin\\WPKit\\AlmostControllers\\Stack::getRequest<\/a>"],[100,1,"<a href=\"AlmostControllers\/Stack.php.html#119\">Korobochkin\\WPKit\\AlmostControllers\\Stack::setRequest<\/a>"],[100,1,"<a href=\"AlmostControllers\/Stack.php.html#129\">Korobochkin\\WPKit\\AlmostControllers\\Stack::getResponse<\/a>"],[100,1,"<a href=\"AlmostControllers\/Stack.php.html#137\">Korobochkin\\WPKit\\AlmostControllers\\Stack::setResponse<\/a>"],[100,2,"<a href=\"AlmostControllers\/Stack.php.html#147\">Korobochkin\\WPKit\\AlmostControllers\\Stack::register<\/a>"],[0,6,"<a href=\"AlmostControllers\/Stack.php.html#159\">Korobochkin\\WPKit\\AlmostControllers\\Stack::handleRequest<\/a>"],[85.71428571428571,8,"<a href=\"AlmostControllers\/Stack.php.html#188\">Korobochkin\\WPKit\\AlmostControllers\\Stack::requestManager<\/a>"],[0,3,"<a href=\"AlmostControllers\/Stack.php.html#236\">Korobochkin\\WPKit\\AlmostControllers\\Stack::send<\/a>"],[100,1,"<a href=\"AlmostControllers\/Stack.php.html#251\">Korobochkin\\WPKit\\AlmostControllers\\Stack::setContainer<\/a>"],[100,1,"<a href=\"AlmostControllers\/Stack.php.html#261\">Korobochkin\\WPKit\\AlmostControllers\\Stack::get<\/a>"],[82.35294117647058,8,"<a href=\"Cron\/AbstractCronEvent.php.html#18\">Korobochkin\\WPKit\\Cron\\AbstractCronEvent::schedule<\/a>"],[70,7,"<a href=\"Cron\/AbstractCronSingleEvent.php.html#25\">Korobochkin\\WPKit\\Cron\\AbstractCronSingleEvent::schedule<\/a>"],[70,7,"<a href=\"Cron\/AbstractCronSingleEvent.php.html#49\">Korobochkin\\WPKit\\Cron\\AbstractCronSingleEvent::unschedule<\/a>"],[100,1,"<a href=\"Cron\/AbstractCronSingleEvent.php.html#73\">Korobochkin\\WPKit\\Cron\\AbstractCronSingleEvent::unscheduleAll<\/a>"],[100,1,"<a href=\"Cron\/AbstractCronSingleEvent.php.html#82\">Korobochkin\\WPKit\\Cron\\AbstractCronSingleEvent::immediately<\/a>"],[100,3,"<a href=\"Cron\/AbstractCronSingleEvent.php.html#92\">Korobochkin\\WPKit\\Cron\\AbstractCronSingleEvent::isScheduled<\/a>"],[100,1,"<a href=\"DataComponents\/NodeFactory.php.html#23\">Korobochkin\\WPKit\\DataComponents\\NodeFactory::__construct<\/a>"],[100,1,"<a href=\"DataComponents\/NodeFactory.php.html#35\">Korobochkin\\WPKit\\DataComponents\\NodeFactory::create<\/a>"],[100,1,"<a href=\"DataComponents\/NodeFactory.php.html#54\">Korobochkin\\WPKit\\DataComponents\\NodeFactory::getValidator<\/a>"],[100,1,"<a href=\"DataComponents\/NodeFactory.php.html#66\">Korobochkin\\WPKit\\DataComponents\\NodeFactory::setValidator<\/a>"],[100,1,"<a href=\"DataTransformers\/BooleanToStringTransformer.php.html#33\">Korobochkin\\WPKit\\DataTransformers\\BooleanToStringTransformer::__construct<\/a>"],[100,4,"<a href=\"DataTransformers\/BooleanToStringTransformer.php.html#48\">Korobochkin\\WPKit\\DataTransformers\\BooleanToStringTransformer::transform<\/a>"],[100,4,"<a href=\"DataTransformers\/BooleanToStringTransformer.php.html#70\">Korobochkin\\WPKit\\DataTransformers\\BooleanToStringTransformer::reverseTransform<\/a>"],[100,1,"<a href=\"MetaBoxes\/DashboardMetaBox.php.html#14\">Korobochkin\\WPKit\\MetaBoxes\\DashboardMetaBox::register<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#68\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::register<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#88\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::lateConstruct<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#96\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::getId<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#104\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::setId<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#113\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::getTitle<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#121\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::setTitle<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#130\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::getView<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#138\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::setView<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#147\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::getScreen<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#155\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::setScreen<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#164\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::getContext<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#172\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::setContext<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#181\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::getPriority<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#189\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::setPriority<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#198\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::getFormFactory<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#206\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::setFormFactory<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#215\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::getForm<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#223\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::setForm<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#232\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::getFormEntity<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#240\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::setFormEntity<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#249\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::handleRequest<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#256\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::getRequest<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#264\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::setRequest<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBox.php.html#270\">Korobochkin\\WPKit\\MetaBoxes\\MetaBox::render<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBoxStack.php.html#26\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxStack::getMetaBoxes<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBoxStack.php.html#34\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxStack::setMetaBoxes<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBoxStack.php.html#43\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxStack::addMetaBox<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBoxStack.php.html#52\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxStack::initialize<\/a>"],[100,2,"<a href=\"MetaBoxes\/MetaBoxStack.php.html#60\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxStack::register<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBoxStack.php.html#73\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxStack::setContainer<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBoxStack.php.html#82\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxStack::get<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBoxTwigView.php.html#31\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxTwigView::render<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBoxTwigView.php.html#39\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxTwigView::getTemplate<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBoxTwigView.php.html#47\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxTwigView::setTemplate<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBoxTwigView.php.html#56\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxTwigView::getContext<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBoxTwigView.php.html#64\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxTwigView::setContext<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBoxTwigView.php.html#73\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxTwigView::getTwigEnvironment<\/a>"],[100,1,"<a href=\"MetaBoxes\/MetaBoxTwigView.php.html#81\">Korobochkin\\WPKit\\MetaBoxes\\MetaBoxTwigView::setTwigEnvironment<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#46\">Korobochkin\\WPKit\\Notices\\Notice::lateConstruct<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#54\">Korobochkin\\WPKit\\Notices\\Notice::getName<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#62\">Korobochkin\\WPKit\\Notices\\Notice::setName<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#71\">Korobochkin\\WPKit\\Notices\\Notice::getTitle<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#79\">Korobochkin\\WPKit\\Notices\\Notice::setTitle<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#88\">Korobochkin\\WPKit\\Notices\\Notice::getContent<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#96\">Korobochkin\\WPKit\\Notices\\Notice::setContent<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#105\">Korobochkin\\WPKit\\Notices\\Notice::isDismissible<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#113\">Korobochkin\\WPKit\\Notices\\Notice::setDismissible<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#122\">Korobochkin\\WPKit\\Notices\\Notice::disable<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#135\">Korobochkin\\WPKit\\Notices\\Notice::enable<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#148\">Korobochkin\\WPKit\\Notices\\Notice::getRelevantStorage<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#156\">Korobochkin\\WPKit\\Notices\\Notice::setRelevantStorage<\/a>"],[100,2,"<a href=\"Notices\/Notice.php.html#165\">Korobochkin\\WPKit\\Notices\\Notice::isRelevant<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#177\">Korobochkin\\WPKit\\Notices\\Notice::getView<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#185\">Korobochkin\\WPKit\\Notices\\Notice::setView<\/a>"],[100,1,"<a href=\"Notices\/Notice.php.html#194\">Korobochkin\\WPKit\\Notices\\Notice::render<\/a>"],[100,1,"<a href=\"Notices\/NoticeTwigView.php.html#31\">Korobochkin\\WPKit\\Notices\\NoticeTwigView::render<\/a>"],[100,1,"<a href=\"Notices\/NoticeTwigView.php.html#39\">Korobochkin\\WPKit\\Notices\\NoticeTwigView::getTemplate<\/a>"],[100,1,"<a href=\"Notices\/NoticeTwigView.php.html#47\">Korobochkin\\WPKit\\Notices\\NoticeTwigView::setTemplate<\/a>"],[100,1,"<a href=\"Notices\/NoticeTwigView.php.html#56\">Korobochkin\\WPKit\\Notices\\NoticeTwigView::getContext<\/a>"],[100,1,"<a href=\"Notices\/NoticeTwigView.php.html#64\">Korobochkin\\WPKit\\Notices\\NoticeTwigView::setContext<\/a>"],[100,1,"<a href=\"Notices\/NoticeTwigView.php.html#73\">Korobochkin\\WPKit\\Notices\\NoticeTwigView::getTwigEnvironment<\/a>"],[100,1,"<a href=\"Notices\/NoticeTwigView.php.html#81\">Korobochkin\\WPKit\\Notices\\NoticeTwigView::setTwigEnvironment<\/a>"],[100,2,"<a href=\"Notices\/NoticeView.php.html#24\">Korobochkin\\WPKit\\Notices\\NoticeView::render<\/a>"],[100,2,"<a href=\"Notices\/NoticeView.php.html#50\">Korobochkin\\WPKit\\Notices\\NoticeView::prepareCssClasses<\/a>"],[100,1,"<a href=\"Notices\/NoticeView.php.html#70\">Korobochkin\\WPKit\\Notices\\NoticeView::getCssClasses<\/a>"],[100,1,"<a href=\"Notices\/NoticeView.php.html#82\">Korobochkin\\WPKit\\Notices\\NoticeView::setCssClasses<\/a>"],[100,1,"<a href=\"Notices\/NoticesStack.php.html#19\">Korobochkin\\WPKit\\Notices\\NoticesStack::getNotices<\/a>"],[100,1,"<a href=\"Notices\/NoticesStack.php.html#27\">Korobochkin\\WPKit\\Notices\\NoticesStack::setNotices<\/a>"],[100,1,"<a href=\"Notices\/NoticesStack.php.html#36\">Korobochkin\\WPKit\\Notices\\NoticesStack::addNotice<\/a>"],[100,4,"<a href=\"Notices\/NoticesStack.php.html#45\">Korobochkin\\WPKit\\Notices\\NoticesStack::removeNoticeByName<\/a>"],[100,4,"<a href=\"Notices\/NoticesStack.php.html#65\">Korobochkin\\WPKit\\Notices\\NoticesStack::removeNoticeByClassName<\/a>"],[100,3,"<a href=\"Notices\/NoticesStack.php.html#85\">Korobochkin\\WPKit\\Notices\\NoticesStack::run<\/a>"],[100,2,"<a href=\"Options\/AbstractOption.php.html#26\">Korobochkin\\WPKit\\Options\\AbstractOption::getValueFromWordPress<\/a>"],[100,1,"<a href=\"Options\/AbstractOption.php.html#42\">Korobochkin\\WPKit\\Options\\AbstractOption::isAutoload<\/a>"],[100,1,"<a href=\"Options\/AbstractOption.php.html#50\">Korobochkin\\WPKit\\Options\\AbstractOption::setAutoload<\/a>"],[100,2,"<a href=\"Options\/AbstractOption.php.html#60\">Korobochkin\\WPKit\\Options\\AbstractOption::deleteFromWP<\/a>"],[100,4,"<a href=\"Options\/AbstractOption.php.html#76\">Korobochkin\\WPKit\\Options\\AbstractOption::flush<\/a>"],[100,2,"<a href=\"Options\/AbstractOption.php.html#104\">Korobochkin\\WPKit\\Options\\AbstractOption::updateValue<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#71\">Korobochkin\\WPKit\\Pages\\AbstractPage::lateConstruct<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#79\">Korobochkin\\WPKit\\Pages\\AbstractPage::getName<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#87\">Korobochkin\\WPKit\\Pages\\AbstractPage::setName<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#96\">Korobochkin\\WPKit\\Pages\\AbstractPage::getPageTitle<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#104\">Korobochkin\\WPKit\\Pages\\AbstractPage::setPageTitle<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#113\">Korobochkin\\WPKit\\Pages\\AbstractPage::getMenuTitle<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#121\">Korobochkin\\WPKit\\Pages\\AbstractPage::setMenuTitle<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#130\">Korobochkin\\WPKit\\Pages\\AbstractPage::getCapability<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#138\">Korobochkin\\WPKit\\Pages\\AbstractPage::setCapability<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#147\">Korobochkin\\WPKit\\Pages\\AbstractPage::getMenuSlug<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#155\">Korobochkin\\WPKit\\Pages\\AbstractPage::setMenuSlug<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#164\">Korobochkin\\WPKit\\Pages\\AbstractPage::getView<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#172\">Korobochkin\\WPKit\\Pages\\AbstractPage::setView<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#181\">Korobochkin\\WPKit\\Pages\\AbstractPage::render<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#189\">Korobochkin\\WPKit\\Pages\\AbstractPage::enqueueScriptStyles<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#196\">Korobochkin\\WPKit\\Pages\\AbstractPage::getRequest<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#204\">Korobochkin\\WPKit\\Pages\\AbstractPage::setRequest<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#213\">Korobochkin\\WPKit\\Pages\\AbstractPage::getFormFactory<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#221\">Korobochkin\\WPKit\\Pages\\AbstractPage::setFormFactory<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#230\">Korobochkin\\WPKit\\Pages\\AbstractPage::getForm<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#238\">Korobochkin\\WPKit\\Pages\\AbstractPage::setForm<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#247\">Korobochkin\\WPKit\\Pages\\AbstractPage::getFormEntity<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#255\">Korobochkin\\WPKit\\Pages\\AbstractPage::setFormEntity<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#264\">Korobochkin\\WPKit\\Pages\\AbstractPage::getTabs<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#272\">Korobochkin\\WPKit\\Pages\\AbstractPage::setTabs<\/a>"],[100,1,"<a href=\"Pages\/AbstractPage.php.html#281\">Korobochkin\\WPKit\\Pages\\AbstractPage::handleRequest<\/a>"],[100,1,"<a href=\"Pages\/MenuPage.php.html#21\">Korobochkin\\WPKit\\Pages\\MenuPage::register<\/a>"],[100,2,"<a href=\"Pages\/MenuPage.php.html#49\">Korobochkin\\WPKit\\Pages\\MenuPage::unRegister<\/a>"],[100,1,"<a href=\"Pages\/MenuPage.php.html#63\">Korobochkin\\WPKit\\Pages\\MenuPage::getURL<\/a>"],[100,1,"<a href=\"Pages\/MenuPage.php.html#75\">Korobochkin\\WPKit\\Pages\\MenuPage::getIcon<\/a>"],[100,1,"<a href=\"Pages\/MenuPage.php.html#83\">Korobochkin\\WPKit\\Pages\\MenuPage::setIcon<\/a>"],[100,1,"<a href=\"Pages\/MenuPage.php.html#92\">Korobochkin\\WPKit\\Pages\\MenuPage::getPosition<\/a>"],[100,1,"<a href=\"Pages\/MenuPage.php.html#100\">Korobochkin\\WPKit\\Pages\\MenuPage::setPosition<\/a>"],[100,2,"<a href=\"Pages\/SubMenuPage.php.html#21\">Korobochkin\\WPKit\\Pages\\SubMenuPage::register<\/a>"],[100,2,"<a href=\"Pages\/SubMenuPage.php.html#47\">Korobochkin\\WPKit\\Pages\\SubMenuPage::unRegister<\/a>"],[100,1,"<a href=\"Pages\/SubMenuPage.php.html#60\">Korobochkin\\WPKit\\Pages\\SubMenuPage::getURL<\/a>"],[100,1,"<a href=\"Pages\/SubMenuPage.php.html#72\">Korobochkin\\WPKit\\Pages\\SubMenuPage::getParentSlug<\/a>"],[100,1,"<a href=\"Pages\/SubMenuPage.php.html#80\">Korobochkin\\WPKit\\Pages\\SubMenuPage::setParentSlug<\/a>"],[100,1,"<a href=\"Pages\/SubMenuPage.php.html#89\">Korobochkin\\WPKit\\Pages\\SubMenuPage::getParentPage<\/a>"],[100,1,"<a href=\"Pages\/SubMenuPage.php.html#97\">Korobochkin\\WPKit\\Pages\\SubMenuPage::setParentPage<\/a>"],[100,1,"<a href=\"Pages\/Tabs\/Tab.php.html#34\">Korobochkin\\WPKit\\Pages\\Tabs\\Tab::getName<\/a>"],[100,1,"<a href=\"Pages\/Tabs\/Tab.php.html#42\">Korobochkin\\WPKit\\Pages\\Tabs\\Tab::setName<\/a>"],[100,1,"<a href=\"Pages\/Tabs\/Tab.php.html#51\">Korobochkin\\WPKit\\Pages\\Tabs\\Tab::getTitle<\/a>"],[100,1,"<a href=\"Pages\/Tabs\/Tab.php.html#59\">Korobochkin\\WPKit\\Pages\\Tabs\\Tab::setTitle<\/a>"],[100,1,"<a href=\"Pages\/Tabs\/Tab.php.html#68\">Korobochkin\\WPKit\\Pages\\Tabs\\Tab::getUrl<\/a>"],[100,1,"<a href=\"Pages\/Tabs\/Tab.php.html#76\">Korobochkin\\WPKit\\Pages\\Tabs\\Tab::setUrl<\/a>"],[100,1,"<a href=\"Pages\/Tabs\/Tab.php.html#85\">Korobochkin\\WPKit\\Pages\\Tabs\\Tab::isActive<\/a>"],[100,1,"<a href=\"Pages\/Tabs\/Tab.php.html#93\">Korobochkin\\WPKit\\Pages\\Tabs\\Tab::markActive<\/a>"],[100,1,"<a href=\"Pages\/Tabs\/Tab.php.html#102\">Korobochkin\\WPKit\\Pages\\Tabs\\Tab::markUnActive<\/a>"],[100,1,"<a href=\"Pages\/Tabs\/Tabs.php.html#19\">Korobochkin\\WPKit\\Pages\\Tabs\\Tabs::getTabs<\/a>"],[100,2,"<a href=\"Pages\/Tabs\/Tabs.php.html#27\">Korobochkin\\WPKit\\Pages\\Tabs\\Tabs::addTab<\/a>"],[100,2,"<a href=\"Pages\/Tabs\/Tabs.php.html#40\">Korobochkin\\WPKit\\Pages\\Tabs\\Tabs::getTab<\/a>"],[100,2,"<a href=\"Pages\/Tabs\/Tabs.php.html#51\">Korobochkin\\WPKit\\Pages\\Tabs\\Tabs::hasTab<\/a>"],[100,1,"<a href=\"Pages\/Tabs\/Tabs.php.html#62\">Korobochkin\\WPKit\\Pages\\Tabs\\Tabs::rewind<\/a>"],[100,1,"<a href=\"Pages\/Tabs\/Tabs.php.html#70\">Korobochkin\\WPKit\\Pages\\Tabs\\Tabs::current<\/a>"],[100,1,"<a href=\"Pages\/Tabs\/Tabs.php.html#78\">Korobochkin\\WPKit\\Pages\\Tabs\\Tabs::key<\/a>"],[100,1,"<a href=\"Pages\/Tabs\/Tabs.php.html#86\">Korobochkin\\WPKit\\Pages\\Tabs\\Tabs::next<\/a>"],[100,1,"<a href=\"Pages\/Tabs\/Tabs.php.html#94\">Korobochkin\\WPKit\\Pages\\Tabs\\Tabs::valid<\/a>"],[100,1,"<a href=\"Pages\/Views\/TwigPageView.php.html#32\">Korobochkin\\WPKit\\Pages\\Views\\TwigPageView::render<\/a>"],[100,1,"<a href=\"Pages\/Views\/TwigPageView.php.html#40\">Korobochkin\\WPKit\\Pages\\Views\\TwigPageView::getTemplate<\/a>"],[100,1,"<a href=\"Pages\/Views\/TwigPageView.php.html#50\">Korobochkin\\WPKit\\Pages\\Views\\TwigPageView::setTemplate<\/a>"],[100,1,"<a href=\"Pages\/Views\/TwigPageView.php.html#59\">Korobochkin\\WPKit\\Pages\\Views\\TwigPageView::getContext<\/a>"],[100,1,"<a href=\"Pages\/Views\/TwigPageView.php.html#69\">Korobochkin\\WPKit\\Pages\\Views\\TwigPageView::setContext<\/a>"],[100,1,"<a href=\"Pages\/Views\/TwigPageView.php.html#78\">Korobochkin\\WPKit\\Pages\\Views\\TwigPageView::getTwigEnvironment<\/a>"],[100,1,"<a href=\"Pages\/Views\/TwigPageView.php.html#88\">Korobochkin\\WPKit\\Pages\\Views\\TwigPageView::setTwigEnvironment<\/a>"],[100,1,"<a href=\"Pages\/VirtualMenuPage.php.html#21\">Korobochkin\\WPKit\\Pages\\VirtualMenuPage::getVirtualPage<\/a>"],[100,1,"<a href=\"Pages\/VirtualMenuPage.php.html#33\">Korobochkin\\WPKit\\Pages\\VirtualMenuPage::setVirtualPage<\/a>"],[100,1,"<a href=\"Pages\/VirtualMenuPage.php.html#42\">Korobochkin\\WPKit\\Pages\\VirtualMenuPage::render<\/a>"],[100,1,"<a href=\"Pages\/VirtualMenuPage.php.html#50\">Korobochkin\\WPKit\\Pages\\VirtualMenuPage::lateConstruct<\/a>"],[100,1,"<a href=\"Plugins\/AbstractPlugin.php.html#27\">Korobochkin\\WPKit\\Plugins\\AbstractPlugin::__construct<\/a>"],[100,1,"<a href=\"Plugins\/AbstractPlugin.php.html#35\">Korobochkin\\WPKit\\Plugins\\AbstractPlugin::run<\/a>"],[100,1,"<a href=\"Plugins\/AbstractPlugin.php.html#43\">Korobochkin\\WPKit\\Plugins\\AbstractPlugin::runAdmin<\/a>"],[100,1,"<a href=\"Plugins\/AbstractPlugin.php.html#51\">Korobochkin\\WPKit\\Plugins\\AbstractPlugin::getFile<\/a>"],[100,1,"<a href=\"Plugins\/AbstractPlugin.php.html#59\">Korobochkin\\WPKit\\Plugins\\AbstractPlugin::setFile<\/a>"],[100,1,"<a href=\"Plugins\/AbstractPlugin.php.html#69\">Korobochkin\\WPKit\\Plugins\\AbstractPlugin::getContainer<\/a>"],[100,1,"<a href=\"Plugins\/AbstractPlugin.php.html#77\">Korobochkin\\WPKit\\Plugins\\AbstractPlugin::setContainer<\/a>"],[100,1,"<a href=\"Plugins\/AbstractPlugin.php.html#87\">Korobochkin\\WPKit\\Plugins\\AbstractPlugin::getDir<\/a>"],[100,1,"<a href=\"Plugins\/AbstractPlugin.php.html#95\">Korobochkin\\WPKit\\Plugins\\AbstractPlugin::getUrl<\/a>"],[100,1,"<a href=\"Plugins\/AbstractPlugin.php.html#103\">Korobochkin\\WPKit\\Plugins\\AbstractPlugin::getBasename<\/a>"],[100,6,"<a href=\"PostMeta\/AbstractPostMeta.php.html#29\">Korobochkin\\WPKit\\PostMeta\\AbstractPostMeta::getValueFromWordPress<\/a>"],[100,3,"<a href=\"PostMeta\/AbstractPostMeta.php.html#63\">Korobochkin\\WPKit\\PostMeta\\AbstractPostMeta::deleteFromWP<\/a>"],[100,6,"<a href=\"PostMeta\/AbstractPostMeta.php.html#87\">Korobochkin\\WPKit\\PostMeta\\AbstractPostMeta::flush<\/a>"],[100,1,"<a href=\"PostMeta\/AbstractPostMeta.php.html#130\">Korobochkin\\WPKit\\PostMeta\\AbstractPostMeta::updateValue<\/a>"],[100,1,"<a href=\"Runners\/AbstractRunner.php.html#28\">Korobochkin\\WPKit\\Runners\\AbstractRunner::getContainer<\/a>"],[100,1,"<a href=\"Runners\/AbstractRunner.php.html#38\">Korobochkin\\WPKit\\Runners\\AbstractRunner::setContainer<\/a>"],[100,1,"<a href=\"Sanitizers\/BoolSanitizer.php.html#17\">Korobochkin\\WPKit\\Sanitizers\\BoolSanitizer::sanitize<\/a>"],[100,1,"<a href=\"Sanitizers\/DateTimeISO8601Sanitizer.php.html#17\">Korobochkin\\WPKit\\Sanitizers\\DateTimeISO8601Sanitizer::sanitize<\/a>"],[100,2,"<a href=\"Sanitizers\/FloatSanitizer.php.html#17\">Korobochkin\\WPKit\\Sanitizers\\FloatSanitizer::sanitize<\/a>"],[100,2,"<a href=\"Sanitizers\/IntegerSanitizer.php.html#17\">Korobochkin\\WPKit\\Sanitizers\\IntegerSanitizer::sanitize<\/a>"],[100,1,"<a href=\"ScriptsStyles\/AbstractScriptsStyles.php.html#27\">Korobochkin\\WPKit\\ScriptsStyles\\AbstractScriptsStyles::__construct<\/a>"],[100,1,"<a href=\"ScriptsStyles\/AbstractScriptsStyles.php.html#36\">Korobochkin\\WPKit\\ScriptsStyles\\AbstractScriptsStyles::getBaseUrl<\/a>"],[100,1,"<a href=\"ScriptsStyles\/AbstractScriptsStyles.php.html#44\">Korobochkin\\WPKit\\ScriptsStyles\\AbstractScriptsStyles::setBaseUrl<\/a>"],[100,1,"<a href=\"ScriptsStyles\/AbstractScriptsStyles.php.html#53\">Korobochkin\\WPKit\\ScriptsStyles\\AbstractScriptsStyles::isDev<\/a>"],[100,1,"<a href=\"ScriptsStyles\/AbstractScriptsStyles.php.html#61\">Korobochkin\\WPKit\\ScriptsStyles\\AbstractScriptsStyles::setDev<\/a>"],[100,1,"<a href=\"Settings\/Setting.php.html#30\">Korobochkin\\WPKit\\Settings\\Setting::__construct<\/a>"],[100,1,"<a href=\"Settings\/Setting.php.html#38\">Korobochkin\\WPKit\\Settings\\Setting::getOption<\/a>"],[100,1,"<a href=\"Settings\/Setting.php.html#46\">Korobochkin\\WPKit\\Settings\\Setting::setOption<\/a>"],[100,1,"<a href=\"Settings\/Setting.php.html#56\">Korobochkin\\WPKit\\Settings\\Setting::getGroup<\/a>"],[100,1,"<a href=\"Settings\/Setting.php.html#64\">Korobochkin\\WPKit\\Settings\\Setting::setGroup<\/a>"],[100,2,"<a href=\"Settings\/Setting.php.html#74\">Korobochkin\\WPKit\\Settings\\Setting::register<\/a>"],[83.33333333333334,3,"<a href=\"Settings\/Setting.php.html#92\">Korobochkin\\WPKit\\Settings\\Setting::unRegister<\/a>"],[100,5,"<a href=\"TermMeta\/AbstractTermMeta.php.html#23\">Korobochkin\\WPKit\\TermMeta\\AbstractTermMeta::getValueFromWordPress<\/a>"],[100,3,"<a href=\"TermMeta\/AbstractTermMeta.php.html#55\">Korobochkin\\WPKit\\TermMeta\\AbstractTermMeta::deleteFromWP<\/a>"],[100,6,"<a href=\"TermMeta\/AbstractTermMeta.php.html#79\">Korobochkin\\WPKit\\TermMeta\\AbstractTermMeta::flush<\/a>"],[100,1,"<a href=\"TermMeta\/AbstractTermMeta.php.html#122\">Korobochkin\\WPKit\\TermMeta\\AbstractTermMeta::updateValue<\/a>"],[100,1,"<a href=\"Themes\/AbstractTheme.php.html#22\">Korobochkin\\WPKit\\Themes\\AbstractTheme::run<\/a>"],[100,1,"<a href=\"Themes\/AbstractTheme.php.html#30\">Korobochkin\\WPKit\\Themes\\AbstractTheme::runAdmin<\/a>"],[100,1,"<a href=\"Themes\/AbstractTheme.php.html#38\">Korobochkin\\WPKit\\Themes\\AbstractTheme::getContainer<\/a>"],[100,1,"<a href=\"Themes\/AbstractTheme.php.html#46\">Korobochkin\\WPKit\\Themes\\AbstractTheme::setContainer<\/a>"],[100,1,"<a href=\"Themes\/AbstractTheme.php.html#55\">Korobochkin\\WPKit\\Themes\\AbstractTheme::getDir<\/a>"],[100,1,"<a href=\"Themes\/AbstractTheme.php.html#65\">Korobochkin\\WPKit\\Themes\\AbstractTheme::getUrl<\/a>"],[100,2,"<a href=\"Transients\/AbstractTransient.php.html#23\">Korobochkin\\WPKit\\Transients\\AbstractTransient::getValueFromWordPress<\/a>"],[100,2,"<a href=\"Transients\/AbstractTransient.php.html#39\">Korobochkin\\WPKit\\Transients\\AbstractTransient::deleteFromWP<\/a>"],[100,4,"<a href=\"Transients\/AbstractTransient.php.html#55\">Korobochkin\\WPKit\\Transients\\AbstractTransient::flush<\/a>"],[100,2,"<a href=\"Transients\/AbstractTransient.php.html#83\">Korobochkin\\WPKit\\Transients\\AbstractTransient::updateValue<\/a>"],[100,1,"<a href=\"Translations\/AbstractTranslations.php.html#27\">Korobochkin\\WPKit\\Translations\\AbstractTranslations::__construct<\/a>"],[100,1,"<a href=\"Translations\/AbstractTranslations.php.html#38\">Korobochkin\\WPKit\\Translations\\AbstractTranslations::getTextDomain<\/a>"],[100,1,"<a href=\"Translations\/AbstractTranslations.php.html#50\">Korobochkin\\WPKit\\Translations\\AbstractTranslations::setTextDomain<\/a>"],[100,1,"<a href=\"Translations\/AbstractTranslations.php.html#61\">Korobochkin\\WPKit\\Translations\\AbstractTranslations::getTranslationsPath<\/a>"],[100,1,"<a href=\"Translations\/AbstractTranslations.php.html#73\">Korobochkin\\WPKit\\Translations\\AbstractTranslations::setTranslationsPath<\/a>"],[100,1,"<a href=\"Translations\/MUPluginTranslations.php.html#11\">Korobochkin\\WPKit\\Translations\\MUPluginTranslations::loadTranslations<\/a>"],[100,1,"<a href=\"Translations\/PluginTranslations.php.html#14\">Korobochkin\\WPKit\\Translations\\PluginTranslations::loadTranslations<\/a>"],[100,1,"<a href=\"Translations\/ThemeTranslations.php.html#14\">Korobochkin\\WPKit\\Translations\\ThemeTranslations::loadTranslations<\/a>"],[100,1,"<a href=\"Uninstall\/Uninstall.php.html#53\">Korobochkin\\WPKit\\Uninstall\\Uninstall::getCronEvents<\/a>"],[100,1,"<a href=\"Uninstall\/Uninstall.php.html#65\">Korobochkin\\WPKit\\Uninstall\\Uninstall::setCronEvents<\/a>"],[100,1,"<a href=\"Uninstall\/Uninstall.php.html#76\">Korobochkin\\WPKit\\Uninstall\\Uninstall::getOptions<\/a>"],[100,1,"<a href=\"Uninstall\/Uninstall.php.html#88\">Korobochkin\\WPKit\\Uninstall\\Uninstall::setOptions<\/a>"],[100,1,"<a href=\"Uninstall\/Uninstall.php.html#99\">Korobochkin\\WPKit\\Uninstall\\Uninstall::getPostMetas<\/a>"],[100,1,"<a href=\"Uninstall\/Uninstall.php.html#111\">Korobochkin\\WPKit\\Uninstall\\Uninstall::setPostMetas<\/a>"],[100,1,"<a href=\"Uninstall\/Uninstall.php.html#122\">Korobochkin\\WPKit\\Uninstall\\Uninstall::getTermMetas<\/a>"],[100,1,"<a href=\"Uninstall\/Uninstall.php.html#134\">Korobochkin\\WPKit\\Uninstall\\Uninstall::setTermMetas<\/a>"],[100,1,"<a href=\"Uninstall\/Uninstall.php.html#145\">Korobochkin\\WPKit\\Uninstall\\Uninstall::getTransients<\/a>"],[100,1,"<a href=\"Uninstall\/Uninstall.php.html#157\">Korobochkin\\WPKit\\Uninstall\\Uninstall::setTransients<\/a>"],[100,1,"<a href=\"Uninstall\/Uninstall.php.html#166\">Korobochkin\\WPKit\\Uninstall\\Uninstall::isSuppressExceptions<\/a>"],[100,1,"<a href=\"Uninstall\/Uninstall.php.html#176\">Korobochkin\\WPKit\\Uninstall\\Uninstall::setSuppressExceptions<\/a>"],[100,2,"<a href=\"Uninstall\/Uninstall.php.html#196\">Korobochkin\\WPKit\\Uninstall\\Uninstall::run<\/a>"],[40,3,"<a href=\"Uninstall\/Uninstall.php.html#220\">Korobochkin\\WPKit\\Uninstall\\Uninstall::flushAfterRun<\/a>"],[50,4,"<a href=\"Uninstall\/Uninstall.php.html#239\">Korobochkin\\WPKit\\Uninstall\\Uninstall::deleteCronEvents<\/a>"],[50,4,"<a href=\"Uninstall\/Uninstall.php.html#260\">Korobochkin\\WPKit\\Uninstall\\Uninstall::deleteOptions<\/a>"],[75,4,"<a href=\"Uninstall\/Uninstall.php.html#281\">Korobochkin\\WPKit\\Uninstall\\Uninstall::deletePostMetas<\/a>"],[75,4,"<a href=\"Uninstall\/Uninstall.php.html#320\">Korobochkin\\WPKit\\Uninstall\\Uninstall::deleteTermMetas<\/a>"],[50,4,"<a href=\"Uninstall\/Uninstall.php.html#359\">Korobochkin\\WPKit\\Uninstall\\Uninstall::deleteTransients<\/a>"],[100,2,"<a href=\"Utils\/Compatibility.php.html#16\">Korobochkin\\WPKit\\Utils\\Compatibility::checkForMinimalVersion<\/a>"],[100,1,"<a href=\"Utils\/Compatibility.php.html#34\">Korobochkin\\WPKit\\Utils\\Compatibility::checkWordPress<\/a>"],[30,4,"<a href=\"Utils\/CronUtils.php.html#20\">Korobochkin\\WPKit\\Utils\\CronUtils::unscheduleHook<\/a>"],[81.81818181818183,4,"<a href=\"Utils\/RequestFactory.php.html#23\">Korobochkin\\WPKit\\Utils\\RequestFactory::create<\/a>"],[100,1,"<a href=\"Utils\/WordPressFeatures.php.html#11\">Korobochkin\\WPKit\\Utils\\WordPressFeatures::isTermsMetaSupported<\/a>"],[66.66666666666666,3,"<a href=\"Utils\/WordPressFeatures.php.html#21\">Korobochkin\\WPKit\\Utils\\WordPressFeatures::isDebug<\/a>"],[66.66666666666666,3,"<a href=\"Utils\/WordPressFeatures.php.html#35\">Korobochkin\\WPKit\\Utils\\WordPressFeatures::isScriptDebug<\/a>"],[100,1,"<a href=\"Cron\/Traits\/ArgsTrait.php.html#23\">ArgsTrait::getArgs<\/a>"],[100,1,"<a href=\"Cron\/Traits\/ArgsTrait.php.html#35\">ArgsTrait::setArgs<\/a>"],[100,1,"<a href=\"Cron\/Traits\/HookTrait.php.html#23\">HookTrait::getHook<\/a>"],[100,1,"<a href=\"Cron\/Traits\/HookTrait.php.html#35\">HookTrait::setHook<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/NameTrait.php.html#13\">NameTrait::getName<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/NameTrait.php.html#18\">NameTrait::setName<\/a>"],[100,1,"<a href=\"Cron\/Traits\/RecurrenceTrait.php.html#24\">RecurrenceTrait::getRecurrence<\/a>"],[100,1,"<a href=\"Cron\/Traits\/RecurrenceTrait.php.html#36\">RecurrenceTrait::setRecurrence<\/a>"],[100,1,"<a href=\"Cron\/Traits\/TimestampTrait.php.html#22\">TimestampTrait::getTimestamp<\/a>"],[100,1,"<a href=\"Cron\/Traits\/TimestampTrait.php.html#34\">TimestampTrait::setTimestamp<\/a>"],[75,5,"<a href=\"DataComponents\/Traits\/Aggregate\/AggregateGetTrait.php.html#14\">AggregateGetTrait::get<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/ConstraintTrait.php.html#13\">ConstraintTrait::getConstraint<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/ConstraintTrait.php.html#18\">ConstraintTrait::setConstraint<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/DataTransformerTrait.php.html#20\">DataTransformerTrait::getDataTransformer<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/DataTransformerTrait.php.html#32\">DataTransformerTrait::setDataTransformer<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/DefaultValueTrait.php.html#13\">DefaultValueTrait::getDefaultValue<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/DefaultValueTrait.php.html#18\">DefaultValueTrait::setDefaultValue<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/DefaultValueTrait.php.html#25\">DefaultValueTrait::hasDefaultValue<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/DeleteLocalValueTrait.php.html#10\">DeleteLocalValueTrait::deleteLocal<\/a>"],[100,2,"<a href=\"DataComponents\/Traits\/DeleteTrait.php.html#11\">DeleteTrait::delete<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/DummyBuildConstraintTrait.php.html#14\">DummyBuildConstraintTrait::buildConstraint<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/ExpirationTrait.php.html#18\">ExpirationTrait::getExpiration<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/ExpirationTrait.php.html#30\">ExpirationTrait::setExpiration<\/a>"],[100,4,"<a href=\"DataComponents\/Traits\/GetTrait.php.html#11\">GetTrait::get<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/LocalValueTrait.php.html#13\">LocalValueTrait::getLocalValue<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/LocalValueTrait.php.html#18\">LocalValueTrait::setLocalValue<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/LocalValueTrait.php.html#25\">LocalValueTrait::hasLocalValue<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/PostIdTrait.php.html#18\">PostIdTrait::getPostId<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/PostIdTrait.php.html#30\">PostIdTrait::setPostId<\/a>"],[100,2,"<a href=\"DataComponents\/Traits\/PostMeta\/GetNameWithVisibilityTrait.php.html#15\">GetNameWithVisibilityTrait::getName<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/SetTrait.php.html#11\">SetTrait::set<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/Special\/Bool\/BoolBuildConstraintTrait.php.html#14\">BoolBuildConstraintTrait::buildConstraint<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/Special\/Bool\/BoolConstructorTrait.php.html#18\">BoolConstructorTrait::__construct<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/Special\/DateTime\/DateTimeBuildConstraintTrait.php.html#14\">DateTimeBuildConstraintTrait::buildConstraint<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/Special\/DateTime\/DateTimeConstructorTrait.php.html#15\">DateTimeConstructorTrait::__construct<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/Special\/Numeric\/NumericBuildConstraintTrait.php.html#18\">NumericBuildConstraintTrait::buildConstraint<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/Special\/Numeric\/NumericConstructorTrait.php.html#15\">NumericConstructorTrait::__construct<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/TermIdTrait.php.html#18\">TermIdTrait::getTermId<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/TermIdTrait.php.html#30\">TermIdTrait::setTermId<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/ValidateTrait.php.html#25\">ValidateTrait::validate<\/a>"],[66.66666666666666,3,"<a href=\"DataComponents\/Traits\/ValidateTrait.php.html#38\">ValidateTrait::isValid<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/ValidateTrait.php.html#64\">ValidateTrait::validateValue<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/ValidatorTrait.php.html#21\">ValidatorTrait::getValidator<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/ValidatorTrait.php.html#33\">ValidatorTrait::setValidator<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/VisibilityTrait.php.html#18\">VisibilityTrait::isVisible<\/a>"],[100,1,"<a href=\"DataComponents\/Traits\/VisibilityTrait.php.html#30\">VisibilityTrait::setVisibility<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

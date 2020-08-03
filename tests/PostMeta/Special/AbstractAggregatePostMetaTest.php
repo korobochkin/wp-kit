@@ -1,8 +1,11 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Tests\PostMeta\Special;
 
 use Korobochkin\WPKit\PostMeta\Special\AbstractAggregatePostMeta;
 use Korobochkin\WPKit\Tests\DataSets\AggregateDataSet;
+use Korobochkin\WPKit\Utils\Compatibility;
 
 class AbstractAggregatePostMetaTest extends \WP_UnitTestCase
 {
@@ -23,6 +26,10 @@ class AbstractAggregatePostMetaTest extends \WP_UnitTestCase
     public function setUp()
     {
         parent::setUp();
+
+        if (!Compatibility::checkWordPress('5.0') && PHP_VERSION_ID >= 70300) {
+            $this->markTestSkipped('https://core.trac.wordpress.org/ticket/44416');
+        }
 
         $this->stub = $this->getMockForAbstractClass(AbstractAggregatePostMeta::class);
 

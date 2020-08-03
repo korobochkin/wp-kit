@@ -1,3 +1,6 @@
+sudo: false
+dist: trusty
+
 stages:
   - test
   - deploy
@@ -10,17 +13,17 @@ notifications:
 .composer_cache: &composer_cache
   cache:
     directories:
-      - $HOME/.composer/
+      - $HOME/.composer/cache
       - ./vendor/
 
 .deploy_code_coverage: &deploy_code_coverage
   before_deploy:
     - cd dist/coverage
     - mv .css css
-    - mv .fonts fonts
+    - mv .icons icons
     - mv .js js
     - find ./ -type f -exec sed -i 's/\.css\//css\//g' {} \;
-    - find ./ -type f -exec sed -i 's/\.fonts\//fonts\//g' {} \;
+    - find ./ -type f -exec sed -i 's/\.icons\//icons\//g' {} \;
     - find ./ -type f -exec sed -i 's/\.js\//js\//g' {} \;
   deploy:
     provider: pages
@@ -40,20 +43,44 @@ notifications:
 matrix:
   include:
     - name: 'PHP Code Sniffer'
-      before_script: composer install --no-ansi --no-interaction --no-progress --no-scripts --optimize-autoloader --classmap-authoritative;
+      before_script: bash bin/before_script.sh
       script: vendor/bin/phpcs --standard=phpcs.ruleset.xml
       language: php
       <<: *composer_cache
-    - php: 5.6
+    - php: 7.1
       env: WP_VERSION=4.0 WP_MULTISITE=0
       <<: *php_unit_template
-    - php: 5.6
+    - php: 7.1
       env: WP_VERSION=latest WP_MULTISITE=0
       <<: *php_unit_template
-    - php: 7.0
+    - php: 7.2
       env: WP_VERSION=4.0 WP_MULTISITE=0
       <<: *php_unit_template
-    - php: 7.0
+    - php: 7.2
+      env: WP_VERSION=latest WP_MULTISITE=0
+      <<: *php_unit_template
+    - php: 7.3
+      env: WP_VERSION=4.0 WP_MULTISITE=0
+      <<: *php_unit_template
+    - php: 7.3
+      env: WP_VERSION=latest WP_MULTISITE=0
+      <<: *php_unit_template
+    - php: 7.4
+      env: WP_VERSION=4.0 WP_MULTISITE=0
+      <<: *php_unit_template
+    - php: 7.4
+      env: WP_VERSION=5.0 WP_MULTISITE=0
+      <<: *php_unit_template
+    - php: 7.4
+      env: WP_VERSION=5.1 WP_MULTISITE=0
+      <<: *php_unit_template
+    - php: 7.4
+      env: WP_VERSION=5.2 WP_MULTISITE=0
+      <<: *php_unit_template
+    - php: 7.4
+      env: WP_VERSION=5.3 WP_MULTISITE=0
+      <<: *php_unit_template
+    - php: 7.4
       env: WP_VERSION=latest WP_MULTISITE=0
       <<: *php_unit_template
       <<: *deploy_code_coverage

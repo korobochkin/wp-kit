@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Tests\Cron;
 
 use Korobochkin\WPKit\Cron\AbstractCronSingleEvent;
@@ -54,7 +56,7 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase
 
         $this->stub->setTimestamp($time)->setName($name);
 
-        $this->assertNull($this->stub->schedule());
+        $this->assertSame($this->stub, $this->stub->schedule());
 
         $tasks = _get_cron_array();
 
@@ -128,7 +130,7 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase
             ->setName($name)
             ->schedule();
 
-        $this->assertSame($resultOfScheduling, $this->stub->unSchedule());
+        $this->assertSame($this->stub, $this->stub->unSchedule());
 
         $tasks = _get_cron_array();
         $this->assertFalse(isset($tasks[$time][$name]));
@@ -162,14 +164,17 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase
 
         $this->stub
             ->setTimestamp($time)
+            ->setArgs(array($time))
             ->schedule();
 
         $this->stub
             ->setTimestamp($time2)
+            ->setArgs(array($time2))
             ->schedule();
 
         $this->stub
             ->setTimestamp($time3)
+            ->setArgs(array($time3))
             ->schedule();
 
         global $wp_version;
@@ -177,7 +182,7 @@ class AbstractCronSingleEventTest extends \WP_UnitTestCase
         if ($result >= 0) {
             // Do not check this if WordPress lower 4.1 because this versions have a bugs.
             $tasks = _get_cron_array();
-            if ($resultOfScheduling === null) {
+            if (true === $resultOfScheduling || null === $resultOfScheduling) {
                 $this->assertTrue(isset($tasks[$time][$name]));
                 $this->assertTrue(isset($tasks[$time2][$name]));
                 $this->assertTrue(isset($tasks[$time3][$name]));

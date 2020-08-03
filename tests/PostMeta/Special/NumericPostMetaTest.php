@@ -1,8 +1,11 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Tests\PostMeta\Special;
 
 use Korobochkin\WPKit\PostMeta\Special\NumericPostMeta;
-use Korobochkin\WPKit\Tests\DataSets\Numeric\NumericTransformationSet;
+use Korobochkin\WPKit\Tests\Common\DataComponents\Special\AbstractNumericDataComponentTest;
+use Korobochkin\WPKit\Utils\Compatibility;
 
 /**
  * Class NumericPostMetaTest
@@ -10,97 +13,31 @@ use Korobochkin\WPKit\Tests\DataSets\Numeric\NumericTransformationSet;
  *
  * @group data-components
  */
-class NumericPostMetaTest extends \WP_UnitTestCase
+class NumericPostMetaTest extends AbstractNumericDataComponentTest
 {
-
-    /**
-     * @var NumericPostMeta
-     */
-    protected $stub;
-
     /**
      * @var int Post ID for accessing post meta.
      */
     protected $postId;
 
     /**
-     * Prepare option for tests.
+     * @return NumericPostMeta
      */
-    public function setUp()
+    protected function createAndConfigureStub()
     {
-        parent::setUp();
-
-        $this->postId = wp_insert_post(
-            array(
-                'post_content' => 'WP Kit demo post.',
-                'post_title'   => 'WP Kit demo title',
-            )
-        );
-
-        $this->stub = new NumericPostMeta();
-        $this->stub->setName('wp_kit_numeric_post_meta');
-        $this->stub->setPostId($this->postId);
-    }
-
-    /**
-     * @dataProvider casesTypesAfterSaving
-     *
-     * @var $value    mixed Value to insert and test.
-     * @var $expected mixed Value to compare output value with.
-     */
-    public function testTypesAfterSaving($value, $expected)
-    {
-        $this->stub
-            ->set($value);
-
-        if (class_exists($expected)) {
-            if (PHP_VERSION_ID >= 70000) {
-                $this->expectException($expected);
-                $this->stub->flush();
-            } else {
-                try {
-                    $this->stub->flush();
-                } catch (\Exception $exception) {
-                    $this->assertInstanceOf($expected, $exception);
-                } finally {
-                    $this->assertInstanceOf($expected, $exception);
-                }
-            }
-        } else {
-            $this->stub->flush();
-            $this->assertSame($expected, $this->stub->get());
+        if (!Compatibility::checkWordPress('5.0') && PHP_VERSION_ID >= 70300) {
+            $this->markTestSkipped('https://core.trac.wordpress.org/ticket/44416');
         }
-    }
 
-    public function casesTypesAfterSaving()
-    {
-        return new NumericTransformationSet();
-    }
+        $this->postId = wp_insert_post(array(
+            'post_content' => 'WP Kit demo post.',
+            'post_title'   => 'WP Kit demo title',
+        ));
 
-    /**
-     * @dataProvider casesTypesWithoutSaving
-     *
-     * @var $value    mixed Value to insert and test.
-     * @var $expected mixed Value to compare output value with.
-     */
-    public function testTypesWithoutSaving($value, $expected)
-    {
-        $this->stub->set($value);
-        if (is_null($value)) {
-            // Default value (null is not caught via $this->hasLocalValue())
-            $this->assertSame(0.0, $this->stub->get());
-        } else {
-            $this->assertSame($value, $this->stub->get());
-        }
-    }
+        $stub = new NumericPostMeta();
+        $stub->setName('wp_kit_numeric_post_meta');
+        $stub->setPostId($this->postId);
 
-    public function casesTypesWithoutSaving()
-    {
-        return new NumericTransformationSet();
-    }
-
-    public function testDefaultValue()
-    {
-        $this->assertSame(0.0, $this->stub->get());
+        return $stub;
     }
 }

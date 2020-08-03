@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Tests\Themes;
 
 use Korobochkin\WPKit\Themes\AbstractTheme;
@@ -48,7 +50,7 @@ class AbstractThemeTest extends \WP_UnitTestCase
     {
         global $wp_version;
 
-        if ($wp_version == '4.0') {
+        if (substr($wp_version, 0, 3) === '4.0') {
             $path = '/tmp/wordpress/wp-content/themes/twentyfourteen';
         } else {
             $path = '/tmp/wordpress-tests-lib/includes/../data/themedir1/default';
@@ -61,7 +63,7 @@ class AbstractThemeTest extends \WP_UnitTestCase
     {
         global $wp_version;
 
-        if ($wp_version == '4.0') {
+        if (substr($wp_version, 0, 3) === '4.0') {
             $url = 'http://example.org/wp-content/themes/twentyfourteen';
         } else {
             $url = '/tmp/wordpress-tests-lib/includes/../data/themedir1/default';

@@ -9,7 +9,6 @@ If you have been coding with plain WordPress functions and long unreadable code,
 
 * [Code coverage report](https://codecov.io/gh/korobochkin/wp-kit)
 * [Homepage on Github Pages](https://korobochkin.github.io/wp-kit/) (with metrics from PHP Unit)
-* Documentation already in progress 🚀
 
 ## Available components
 

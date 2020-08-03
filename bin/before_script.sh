@@ -2,17 +2,22 @@
 
 bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION;
 
-echo 'ENV VARIABLE WP_VERSION IS: ';
-echo "$WP_VERSION";
-
 if [[ ${WP_VERSION} == '4.0' ]]; then
-    composer require "phpunit/phpunit=5.6.*";
+    composer require phpunit/phpunit=5.6;
+elif [[ ${WP_VERSION} == '5.0' ]]; then
+    composer require phpunit/phpunit=^6;
 else
-   if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.0" ]]; then
-        composer require phpunit/phpunit;
-    else
-        composer require "phpunit/phpunit=5.6.*";
-    fi
+    composer require phpunit/phpunit:^7;
 fi
 
-composer install --no-ansi --no-interaction --no-progress --no-scripts --optimize-autoloader --classmap-authoritative;
+composer require \
+    squizlabs/php_codesniffer \
+;
+
+composer install \
+    --no-ansi \
+    --no-interaction \
+    --no-progress \
+    --optimize-autoloader \
+    --classmap-authoritative \
+;

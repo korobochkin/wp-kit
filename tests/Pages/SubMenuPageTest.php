@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Tests\Pages;
 
 use Korobochkin\WPKit\Pages\MenuPage;
@@ -31,7 +33,7 @@ class SubMenuPageTest extends \WP_UnitTestCase
     public function testRegister()
     {
         global $wp_version;
-        if ('4.0' === $wp_version && PHP_VERSION_ID >= 70000) {
+        if (substr($wp_version, 0, 3) === '4.0' && PHP_VERSION_ID >= 70000) {
             $this->markTestSkipped('wp_insert_user() call triggers error in old WP and new PHP.');
         }
 
@@ -73,6 +75,10 @@ class SubMenuPageTest extends \WP_UnitTestCase
 
     public function testGetURL()
     {
+        if (!Compatibility::checkWordPress('5.3') && PHP_VERSION_ID >= 70400) {
+            $this->markTestSkipped('https://core.trac.wordpress.org/ticket/47783');
+        }
+
         $this->assertSame(
             'http://example.org/wp-admin/admin.php?page=test-menu-slug',
             $this->stub->getURL()

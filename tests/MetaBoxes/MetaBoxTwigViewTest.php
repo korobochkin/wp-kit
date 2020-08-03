@@ -1,8 +1,12 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Tests\MetaBoxes;
 
 use Korobochkin\WPKit\MetaBoxes\MetaBox;
 use Korobochkin\WPKit\MetaBoxes\MetaBoxTwigView;
+use Twig\Environment;
+use Twig\Loader\ArrayLoader;
 
 /**
  * Class MetaBoxTwigViewTest
@@ -17,8 +21,8 @@ class MetaBoxTwigViewTest extends \WP_UnitTestCase
         $stub    = new MetaBoxTwigView();
         $metaBox = new MetaBox();
 
-        $value = new \Twig_Environment(
-            new \Twig_Loader_Array(array(
+        $value = new Environment(
+            new ArrayLoader(array(
                 'title' => '{{ "my first car"|title }}',
                 'min'   => '{{ min(1, 3, 2) }}',
             ))
@@ -80,13 +84,13 @@ class MetaBoxTwigViewTest extends \WP_UnitTestCase
 
         $this->assertSame(null, $stub->getTwigEnvironment());
 
-        $value = new \Twig_Environment(
-            new \Twig_Loader_Array(array(
+        $value = new Environment(
+            new ArrayLoader(array(
                 'title' => '{{ "my first car"|title }}',
             ))
         );
 
-        $this->assertSame($stub, $stub->setTwigEnvironment(($value)));
+        $this->assertSame($stub, $stub->setTwigEnvironment($value));
         $this->assertSame($value, $stub->getTwigEnvironment());
     }
 }

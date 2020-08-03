@@ -1,9 +1,12 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Tests\PostMeta;
 
 use Korobochkin\WPKit\PostMeta\AbstractPostMeta;
 use Korobochkin\WPKit\Tests\DataSets\EverythingSet2;
 use Korobochkin\WPKit\Tests\DataSets\ValidateSet;
+use Korobochkin\WPKit\Utils\Compatibility;
 use Symfony\Component\Form\Extension\Core\DataTransformer\BooleanToStringTransformer;
 use Symfony\Component\Form\ReversedTransformer;
 use Symfony\Component\Validator\ConstraintViolationList;
@@ -32,6 +35,11 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
     public function setUp()
     {
         parent::setUp();
+
+        if (!Compatibility::checkWordPress('5.0') && PHP_VERSION_ID >= 70300) {
+            $this->markTestSkipped('https://core.trac.wordpress.org/ticket/44416');
+        }
+
         $this->stub = $this->getMockForAbstractClass(AbstractPostMeta::class);
         $this->stub->setVisibility(true);
         $this->postId = wp_insert_post(
@@ -546,8 +554,7 @@ class AbstractPostMetaTest extends \WP_UnitTestCase
             )
         );
 
-        $this->setExpectedException(\Exception::class, 'Expected argument of type "array", "string" given');
-        $this->stub->validate();
+        $this->assertInstanceOf(ConstraintViolationList::class, $this->stub->validate());
     }
 
     /**

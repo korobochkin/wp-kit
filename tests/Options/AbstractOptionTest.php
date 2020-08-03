@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Korobochkin\WPKit\Tests\Options;
 
 use Korobochkin\WPKit\Options\AbstractOption;
@@ -525,8 +527,7 @@ class AbstractOptionTest extends \WP_UnitTestCase
             )
         );
 
-        $this->setExpectedException(\Exception::class, 'Expected argument of type "array", "string" given');
-        $this->stub->validate();
+        $this->assertInstanceOf(ConstraintViolationList::class, $this->stub->validate());
     }
 
     /**
